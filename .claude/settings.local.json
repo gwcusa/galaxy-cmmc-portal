@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@14:*)",
+      "Bash(git config:*)",
+      "Read(//c/projects//**)",
+      "Read(//c/projects/**)",
+      "Bash(cp -r /c/projects/galaxy-temp/. /c/projects/Galaxy/)",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(node:*)",
+      "Bash(npm run:*)",
+      "Bash(npm list:*)",
+      "Bash(npm ls:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
