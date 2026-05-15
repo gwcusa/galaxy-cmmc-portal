@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { calculateScore, ResponseMap } from "@/lib/scoring";
 import ScoreGauge from "@/components/ScoreGauge";
 import DomainBar from "@/components/DomainBar";
+import GapRemediationPanel from "./GapRemediationPanel";
 
 export default async function ClientDetailPage({ params }: { params: { id: string } }) {
   const supabase = createServerSupabaseClient();
@@ -24,6 +25,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
   const activeAssessment = assessments?.find((a) => a.status === "in_progress") ?? assessments?.[0];
 
   let responses: ResponseMap = {};
+  let gapControlIds: string[] = [];
   if (activeAssessment) {
     const { data: responseRows } = await supabase
       .from("assessment_responses")
@@ -33,6 +35,28 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
       responses = Object.fromEntries(
         responseRows.map((r: { control_id: string; response: string }) => [r.control_id, r.response])
       ) as ResponseMap;
+      gapControlIds = responseRows
+        .filter((r: { control_id: string; response: string }) => r.response === "no")
+        .map((r: { control_id: string; response: string }) => r.control_id);
+    }
+  }
+
+  type GapControl = {
+    id: string;
+    domain: string;
+    domain_code: string;
+    description: string;
+    guidance: string;
+  };
+
+  let gapControls: GapControl[] = [];
+  if (gapControlIds.length > 0) {
+    const { data: controlRows } = await supabase
+      .from("controls")
+      .select("id, domain, domain_code, description, guidance")
+      .in("id", gapControlIds);
+    if (controlRows) {
+      gapControls = controlRows as GapControl[];
     }
   }
 
@@ -101,6 +125,28 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
             <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 4 }}>Notes</div>
             <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.6 }}>{client.notes}</div>
           </div>
+        )}
+      </div>
+
+      <div style={{ marginTop: 40 }}>
+        <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", marginBottom: 20 }}>
+          Gap Remediation
+        </div>
+        {gapControls.length === 0 ? (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: 14,
+              padding: 24,
+              fontSize: 14,
+              color: "rgba(255,255,255,0.4)",
+            }}
+          >
+            No gaps to remediate — client has no &ldquo;No&rdquo; responses.
+          </div>
+        ) : (
+          <GapRemediationPanel assessmentId={activeAssessment!.id} gaps={gapControls} />
         )}
       </div>
     </div>
