@@ -35,6 +35,22 @@ export default async function DashboardPage() {
     }
   }
 
+  // Fetch approved remediation notes for current assessment
+  let remediationMap: Record<string, string> = {};
+  if (assessment) {
+    const { data: remediationNotes } = await supabase
+      .from("remediation_notes")
+      .select("control_id, custom_guidance")
+      .eq("assessment_id", assessment.id)
+      .eq("status", "approved");
+
+    if (remediationNotes) {
+      remediationMap = Object.fromEntries(
+        remediationNotes.map((n: { control_id: string; custom_guidance: string }) => [n.control_id, n.custom_guidance])
+      );
+    }
+  }
+
   const score = calculateScore(responses);
 
   const card = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
@@ -136,7 +152,7 @@ export default async function DashboardPage() {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                {["Control ID", "Domain", "Severity", "Description"].map((h) => (
+                {["Control ID", "Domain", "Severity", "Description", "Galaxy Recommendation"].map((h) => (
                   <th key={h} style={{ textAlign: "left", fontSize: 11, color: "rgba(255,255,255,0.35)", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", padding: "0 0 12px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>{h}</th>
                 ))}
               </tr>
@@ -152,6 +168,26 @@ export default async function DashboardPage() {
                     </span>
                   </td>
                   <td style={{ padding: "12px 0", fontSize: 12, color: "rgba(255,255,255,0.5)", maxWidth: 400 }}>{g.description}</td>
+                  <td style={{ padding: "12px 0 12px 8px" }}>
+                    {remediationMap[g.id] ? (
+                      <div style={{
+                        background: "rgba(77,255,160,0.06)",
+                        border: "1px solid rgba(77,255,160,0.15)",
+                        borderRadius: 6,
+                        padding: "8px 12px",
+                        fontSize: 12,
+                        color: "rgba(255,255,255,0.75)",
+                        lineHeight: 1.5,
+                        maxWidth: 320,
+                      }}>
+                        {remediationMap[g.id]}
+                      </div>
+                    ) : (
+                      <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", fontStyle: "italic" }}>
+                        Pending Galaxy review
+                      </span>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

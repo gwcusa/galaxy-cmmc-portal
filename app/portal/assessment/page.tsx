@@ -15,6 +15,7 @@ export default function AssessmentPage() {
   const [clientId, setClientId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [approvedGuidance, setApprovedGuidance] = useState<Record<string, string>>({});
   const supabase = createClient();
 
   useEffect(() => {
@@ -43,6 +44,20 @@ export default function AssessmentPage() {
       }
       setResponses(responseMap);
       setNotes(notesMap);
+
+      // Fetch approved Galaxy guidance for this assessment
+      if (data.assessmentId) {
+        const guidanceRes = await fetch(`/api/remediation/client?assessmentId=${data.assessmentId}`);
+        if (guidanceRes.ok) {
+          const guidanceData = await guidanceRes.json();
+          const guidanceMap: Record<string, string> = {};
+          for (const n of guidanceData.notes ?? []) {
+            guidanceMap[n.control_id] = n.custom_guidance;
+          }
+          setApprovedGuidance(guidanceMap);
+        }
+      }
+
       setLoaded(true);
     }
     init();
@@ -209,6 +224,25 @@ export default function AssessmentPage() {
             }}
           />
         </div>
+
+        {/* Galaxy Recommendation callout (approved guidance only) */}
+        {approvedGuidance[control.id] && (
+          <div style={{
+            marginTop: 16,
+            marginBottom: 24,
+            background: "rgba(77,255,160,0.06)",
+            border: "1px solid rgba(77,255,160,0.2)",
+            borderRadius: 10,
+            padding: "14px 16px",
+          }}>
+            <div style={{ fontSize: 11, color: "#4DFFA0", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 6, fontWeight: 600 }}>
+              Galaxy Recommendation
+            </div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.8)", lineHeight: 1.6 }}>
+              {approvedGuidance[control.id]}
+            </div>
+          </div>
+        )}
 
         {/* Navigation */}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
