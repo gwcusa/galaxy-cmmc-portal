@@ -112,7 +112,7 @@ export default function ReportsPage() {
 
         // Count responses
         const { count } = await supabase
-          .from("responses")
+          .from("assessment_responses")
           .select("id", { count: "exact", head: true })
           .eq("assessment_id", assessmentRow.id);
 
@@ -213,18 +213,14 @@ export default function ReportsPage() {
   // No assessment state
   if (clientData && !assessment) {
     return (
-      <div style={{ maxWidth: 700, margin: "0 auto", padding: "48px 24px" }}>
-        <h1 style={{ fontSize: 28, fontWeight: 700, color: "#fff", marginBottom: 8 }}>
-          Reports
-        </h1>
-        <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginBottom: 40 }}>
-          Generate and download your CMMC compliance gap assessment reports
-        </p>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "60vh" }}>
         <div
           style={{
             ...cardStyle,
             textAlign: "center",
             padding: 48,
+            maxWidth: 420,
+            width: "100%",
           }}
         >
           <div style={{ fontSize: 40, marginBottom: 16 }}>📋</div>
