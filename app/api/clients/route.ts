@@ -33,6 +33,9 @@ export async function POST(req: NextRequest) {
   if (cmmcTargetLevel !== 1 && cmmcTargetLevel !== 2) {
     return NextResponse.json({ error: "CMMC target level must be 1 or 2" }, { status: 400 });
   }
+  if (!["lead", "active", "completed"].includes(engagementStage)) {
+    return NextResponse.json({ error: "Engagement stage must be lead, active, or completed" }, { status: 400 });
+  }
 
   // 5. Create Supabase auth user via admin API
   const adminClient = createClient(
@@ -60,12 +63,12 @@ export async function POST(req: NextRequest) {
     .from("clients")
     .insert({
       user_id: userId,
-      company_name: companyName,
-      contact_name: contactName,
-      phone: phone || null,
+      company_name: companyName.trim(),
+      contact_name: contactName.trim(),
+      phone: phone?.trim() || null,
       cmmc_target_level: cmmcTargetLevel,
       engagement_stage: engagementStage,
-      notes: notes || null,
+      notes: notes?.trim() || null,
     })
     .select("id")
     .single();
