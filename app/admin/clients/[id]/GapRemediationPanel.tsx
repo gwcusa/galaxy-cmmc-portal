@@ -16,6 +16,7 @@ type NoteState = {
   customGuidance: string;
   status: NoteStatus;
   loading: boolean;
+  error: string | null;
 };
 
 type Props = {
@@ -89,6 +90,7 @@ export default function GapRemediationPanel({ assessmentId, gaps }: Props) {
         customGuidance: gap.guidance,
         status: "not_reviewed",
         loading: false,
+        error: null,
       };
     }
     setNotes(initial);
@@ -149,18 +151,19 @@ export default function GapRemediationPanel({ assessmentId, gaps }: Props) {
             ...prev[controlId],
             status: data.status as NoteStatus,
             loading: false,
+            error: null,
           },
         }));
       } else {
         setNotes((prev) => ({
           ...prev,
-          [controlId]: { ...prev[controlId], loading: false },
+          [controlId]: { ...prev[controlId], loading: false, error: data.error || "Failed to save. Try again." },
         }));
       }
     } catch {
       setNotes((prev) => ({
         ...prev,
-        [controlId]: { ...prev[controlId], loading: false },
+        [controlId]: { ...prev[controlId], loading: false, error: "Network error. Please try again." },
       }));
     }
   }
@@ -233,6 +236,13 @@ export default function GapRemediationPanel({ assessmentId, gaps }: Props) {
                 rows={4}
               />
             </div>
+
+            {/* Error message */}
+            {note.error && (
+              <div style={{ fontSize: 12, color: "#F87171", marginBottom: 10, padding: "6px 10px", background: "rgba(248,113,113,0.1)", borderRadius: 6, border: "1px solid rgba(248,113,113,0.2)" }}>
+                {note.error}
+              </div>
+            )}
 
             {/* Action buttons */}
             <div style={{ display: "flex", gap: 10 }}>
