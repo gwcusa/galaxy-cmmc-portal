@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { createServiceSupabaseClient } from "@/lib/supabase-server";
+import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { calculateScore, ResponseMap } from "@/lib/scoring";
 import { generatePdf } from "@/components/pdf/ReportTemplate";
+
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // Direct service-role client for storage (avoids SSR cookie issues)
 function getStorageClient() {
@@ -14,18 +16,30 @@ function getStorageClient() {
 
 // POST /api/reports — generate a new PDF report
 export async function POST(req: NextRequest) {
-  const supabase = createServiceSupabaseClient();
+  // Use anon client to read the session (respects RLS, cookie-based)
+  const anonSupabase = createServerSupabaseClient();
   const {
     data: { session },
-  } = await supabase.auth.getSession();
+  } = await anonSupabase.auth.getSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const body = await req.json();
+  // Use service client for privileged DB operations
+  const supabase = createServiceSupabaseClient();
+
+  let body: { assessmentId?: string };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+  }
   const { assessmentId } = body;
   if (!assessmentId) {
     return NextResponse.json({ error: "assessmentId required" }, { status: 400 });
+  }
+  if (!UUID_REGEX.test(assessmentId)) {
+    return NextResponse.json({ error: "Invalid assessmentId" }, { status: 400 });
   }
 
   // Load assessment
@@ -147,17 +161,49 @@ export async function POST(req: NextRequest) {
 
 // GET /api/reports?assessmentId=xxx — get signed download URL for existing report
 export async function GET(req: NextRequest) {
-  const supabase = createServiceSupabaseClient();
+  // Use anon client to read the session (respects RLS, cookie-based)
+  const anonSupabase = createServerSupabaseClient();
   const {
     data: { session },
-  } = await supabase.auth.getSession();
+  } = await anonSupabase.auth.getSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  // Use service client for privileged DB operations
+  const supabase = createServiceSupabaseClient();
+
   const assessmentId = req.nextUrl.searchParams.get("assessmentId");
   if (!assessmentId) {
     return NextResponse.json({ error: "assessmentId required" }, { status: 400 });
+  }
+  if (!UUID_REGEX.test(assessmentId)) {
+    return NextResponse.json({ error: "Invalid assessmentId" }, { status: 400 });
+  }
+
+  // Verify the calling user owns this assessment
+  const { data: assessment } = await supabase
+    .from("assessments")
+    .select("client_id")
+    .eq("id", assessmentId)
+    .single();
+
+  if (!assessment) {
+    return NextResponse.json({ error: "Assessment not found" }, { status: 404 });
+  }
+
+  const { data: client } = await supabase
+    .from("clients")
+    .select("user_id")
+    .eq("id", assessment.client_id)
+    .single();
+
+  if (!client) {
+    return NextResponse.json({ error: "Client not found" }, { status: 404 });
+  }
+
+  if (client.user_id !== session.user.id) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   // Fetch latest report for this assessment
