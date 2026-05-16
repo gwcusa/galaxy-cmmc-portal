@@ -94,6 +94,22 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
     artifactsByControl[a.control_id].push(a);
   }
 
+  // Fetch AI feedback for this assessment
+  let aiFeedbackRows: { control_id: string; verdict: string; feedback: string; generated_at: string }[] = [];
+  if (activeAssessment) {
+    const { data: feedbackData } = await supabase
+      .from("control_ai_feedback")
+      .select("control_id, verdict, feedback, generated_at")
+      .eq("assessment_id", activeAssessment.id);
+    aiFeedbackRows = feedbackData ?? [];
+  }
+
+  // Build lookup map
+  const aiFeedbackMap: Record<string, { verdict: string; feedback: string; generated_at: string }> = {};
+  for (const f of aiFeedbackRows) {
+    aiFeedbackMap[f.control_id] = f;
+  }
+
   const score = calculateScore(responses, (client.cmmc_target_level as 1 | 2) ?? 2);
   const card = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
   const stageColor: Record<string, string> = { lead: "#FFB347", active: "#00C9FF", completed: "#4DFFA0" };
@@ -183,6 +199,50 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
           <GapRemediationPanel assessmentId={activeAssessment!.id} gaps={gapControls} />
         )}
       </div>
+
+      {/* AI Evidence Review */}
+      {aiFeedbackRows.length > 0 && (
+        <div style={{ marginTop: 32 }}>
+          <div style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 16 }}>
+            AI Evidence Review
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {aiFeedbackRows.map((fb) => {
+              const verdictConfig = {
+                sufficient: { color: "#4DFFA0", bg: "rgba(77,255,160,0.06)", border: "rgba(77,255,160,0.15)", label: "✓ Sufficient" },
+                needs_more: { color: "#FFB347", bg: "rgba(255,179,71,0.06)", border: "rgba(255,179,71,0.15)", label: "⚠ Needs More Evidence" },
+                insufficient: { color: "#F87171", bg: "rgba(248,113,113,0.06)", border: "rgba(248,113,113,0.15)", label: "✗ Insufficient" },
+              }[fb.verdict as "sufficient" | "needs_more" | "insufficient"] ?? {
+                color: "#FFB347", bg: "rgba(255,179,71,0.06)", border: "rgba(255,179,71,0.15)", label: fb.verdict,
+              };
+
+              return (
+                <div key={fb.control_id} style={{
+                  background: verdictConfig.bg,
+                  border: `1px solid ${verdictConfig.border}`,
+                  borderRadius: 12,
+                  padding: "16px 20px",
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
+                    <span style={{ fontFamily: "monospace", fontSize: 13, fontWeight: 700, color: "#00C9FF" }}>
+                      {fb.control_id}
+                    </span>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: verdictConfig.color }}>
+                      {verdictConfig.label}
+                    </span>
+                    <span style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", marginLeft: "auto" }}>
+                      {new Date(fb.generated_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                    </span>
+                  </div>
+                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
+                    {fb.feedback}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Evidence Artifacts */}
       <div style={{ marginTop: 32 }}>
