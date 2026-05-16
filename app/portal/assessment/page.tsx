@@ -7,6 +7,15 @@ import type { ResponseMap } from "@/lib/scoring";
 
 type Response = "yes" | "partial" | "no" | "na";
 
+type ArtifactItem = {
+  id: string;
+  file_name: string;
+  file_size: number | null;
+  mime_type: string | null;
+  uploaded_at: string;
+  signedUrl: string;
+};
+
 export default function AssessmentPage() {
   const [step, setStep] = useState(0);
   const [responses, setResponses] = useState<ResponseMap>({});
@@ -17,6 +26,9 @@ export default function AssessmentPage() {
   const [saving, setSaving] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [approvedGuidance, setApprovedGuidance] = useState<Record<string, string>>({});
+  const [artifacts, setArtifacts] = useState<Record<string, ArtifactItem[]>>({});
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const supabase = createClient();
 
   useEffect(() => {
@@ -98,6 +110,57 @@ export default function AssessmentPage() {
   function handleNoteBlur() {
     if (currentResponse) {
       saveResponse(control.id, currentResponse, currentNote);
+    }
+  }
+
+  // Load artifacts when step or response changes (only for yes/partial)
+  useEffect(() => {
+    if (!assessmentId || !control) return;
+    const resp = responses[control.id];
+    if (resp !== "yes" && resp !== "partial") return;
+    loadArtifacts(control.id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step, assessmentId, responses[control?.id ?? ""]]);
+
+  async function loadArtifacts(controlId: string) {
+    if (!assessmentId) return;
+    const res = await fetch(`/api/artifacts?assessmentId=${assessmentId}&controlId=${controlId}`);
+    if (res.ok) {
+      const data = await res.json();
+      setArtifacts((prev) => ({ ...prev, [controlId]: data.artifacts }));
+    }
+  }
+
+  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file || !assessmentId || !control) return;
+    setUploading(true);
+    setUploadError(null);
+    const form = new FormData();
+    form.append("assessmentId", assessmentId);
+    form.append("controlId", control.id);
+    form.append("file", file);
+    const res = await fetch("/api/artifacts", { method: "POST", body: form });
+    const data = await res.json();
+    if (res.ok) {
+      setArtifacts((prev) => ({
+        ...prev,
+        [control.id]: [...(prev[control.id] ?? []), data.artifact],
+      }));
+    } else {
+      setUploadError(data.error ?? "Upload failed");
+    }
+    setUploading(false);
+    e.target.value = "";
+  }
+
+  async function handleDelete(artifactId: string, controlId: string) {
+    const res = await fetch(`/api/artifacts?artifactId=${artifactId}`, { method: "DELETE" });
+    if (res.ok) {
+      setArtifacts((prev) => ({
+        ...prev,
+        [controlId]: (prev[controlId] ?? []).filter((a) => a.id !== artifactId),
+      }));
     }
   }
 
@@ -228,6 +291,84 @@ export default function AssessmentPage() {
             }}
           />
         </div>
+
+        {/* Evidence / Artifacts (only when yes or partial) */}
+        {(currentResponse === "yes" || currentResponse === "partial") && (
+          <div style={{ marginBottom: 24 }}>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 10 }}>
+              Evidence / Artifacts{" "}
+              <span style={{ color: "rgba(255,255,255,0.25)", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>
+                (optional)
+              </span>
+            </div>
+
+            {/* Existing artifacts list */}
+            {(artifacts[control.id] ?? []).map((artifact) => (
+              <div key={artifact.id} style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
+                borderRadius: 8, padding: "10px 14px", marginBottom: 8,
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+                  <span style={{ fontSize: 16 }}>📎</span>
+                  <div style={{ minWidth: 0 }}>
+                    <a
+                      href={artifact.signedUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        fontSize: 13, color: "#00C9FF", textDecoration: "none", fontWeight: 500,
+                        display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                      }}
+                    >
+                      {artifact.file_name}
+                    </a>
+                    {artifact.file_size && (
+                      <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>
+                        {(artifact.file_size / 1024).toFixed(1)} KB
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleDelete(artifact.id, control.id)}
+                  style={{
+                    background: "none", border: "none", color: "rgba(248,113,113,0.6)",
+                    cursor: "pointer", fontSize: 18, padding: "0 4px", flexShrink: 0,
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+
+            {/* Upload error */}
+            {uploadError && (
+              <div style={{ fontSize: 12, color: "#F87171", marginBottom: 8 }}>{uploadError}</div>
+            )}
+
+            {/* Upload button */}
+            <label style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              padding: "9px 16px", borderRadius: 8, fontSize: 13, fontWeight: 500,
+              border: "1px dashed rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.03)",
+              color: uploading ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.6)",
+              cursor: uploading ? "not-allowed" : "pointer",
+            }}>
+              <span>{uploading ? "Uploading..." : "+ Attach Evidence"}</span>
+              <input
+                type="file"
+                accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.txt"
+                onChange={handleUpload}
+                disabled={uploading}
+                style={{ display: "none" }}
+              />
+            </label>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginTop: 6 }}>
+              PDF, PNG, JPG, DOCX, XLSX, TXT · Max 10MB
+            </div>
+          </div>
+        )}
 
         {/* Galaxy Recommendation callout (approved guidance only) */}
         {approvedGuidance[control.id] && (
