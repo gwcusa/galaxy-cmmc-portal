@@ -173,6 +173,13 @@ export async function POST(req: NextRequest) {
     .from("artifacts")
     .createSignedUrl(storagePath, 3600);
 
+  // Trigger AI review in background (non-blocking)
+  fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/ai-review`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Cookie": req.headers.get("cookie") ?? "" },
+    body: JSON.stringify({ assessmentId, controlId }),
+  }).catch(() => {}); // fire and forget
+
   return NextResponse.json({
     artifact: {
       id: artifact.id,
