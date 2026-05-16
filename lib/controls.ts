@@ -35,3 +35,14 @@ export function getControlsByDomain(domainCode: string): Control[] {
 export function getDomain(code: string) {
   return DOMAINS.find((d) => d.code === code);
 }
+
+export function getControlsForLevel(targetLevel: 1 | 2): Control[] {
+  if (targetLevel === 1) return CONTROLS.filter((c) => c.level === 1);
+  return CONTROLS; // Level 2 includes all controls
+}
+
+export function getDomainsForLevel(targetLevel: 1 | 2) {
+  const controls = getControlsForLevel(targetLevel);
+  const codes = new Set(controls.map((c) => c.domain_code));
+  return DOMAINS.filter((d) => codes.has(d.code));
+}

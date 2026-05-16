@@ -60,7 +60,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
     }
   }
 
-  const score = calculateScore(responses);
+  const score = calculateScore(responses, (client.cmmc_target_level as 1 | 2) ?? 2);
   const card = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
   const stageColor: Record<string, string> = { lead: "#FFB347", active: "#00C9FF", completed: "#4DFFA0" };
 

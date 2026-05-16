@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/lib/supabase";
-import { CONTROLS, DOMAINS, getDomain } from "@/lib/controls";
+import { getControlsForLevel, getDomainsForLevel, getDomain } from "@/lib/controls";
 import type { ResponseMap } from "@/lib/scoring";
 
 type Response = "yes" | "partial" | "no" | "na";
@@ -13,6 +13,7 @@ export default function AssessmentPage() {
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [assessmentId, setAssessmentId] = useState<string | null>(null);
   const [clientId, setClientId] = useState<string | null>(null);
+  const [targetLevel, setTargetLevel] = useState<1 | 2>(2);
   const [saving, setSaving] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [approvedGuidance, setApprovedGuidance] = useState<Record<string, string>>({});
@@ -25,12 +26,13 @@ export default function AssessmentPage() {
 
       const { data: client } = await supabase
         .from("clients")
-        .select("id")
+        .select("id, cmmc_target_level")
         .eq("user_id", session.user.id)
         .single();
 
       if (!client) { setLoaded(true); return; }
       setClientId(client.id);
+      setTargetLevel((client.cmmc_target_level as 1 | 2) ?? 2);
 
       const res = await fetch(`/api/assessment?clientId=${client.id}`);
       const data = await res.json();
@@ -75,12 +77,14 @@ export default function AssessmentPage() {
     setSaving(false);
   }, [assessmentId]);
 
-  const control = CONTROLS[step];
-  const domain = getDomain(control.domain_code);
-  const progress = (step / CONTROLS.length) * 100;
+  const controls = getControlsForLevel(targetLevel);
+  const domains = getDomainsForLevel(targetLevel);
+  const control = controls[step] ?? controls[0];
+  const domain = getDomain(control?.domain_code ?? "");
+  const progress = controls.length > 0 ? (step / controls.length) * 100 : 0;
   const answeredCount = Object.keys(responses).length;
-  const currentResponse = responses[control.id];
-  const currentNote = notes[control.id] ?? "";
+  const currentResponse = responses[control?.id ?? ""];
+  const currentNote = notes[control?.id ?? ""] ?? "";
 
   function handleResponse(val: Response) {
     setResponses((r) => ({ ...r, [control.id]: val }));
@@ -123,7 +127,7 @@ export default function AssessmentPage() {
         <div>
           <div style={{ fontSize: 24, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px" }}>Gap Assessment</div>
           <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>
-            NIST SP 800-171 Rev 2 — 110 Controls · {answeredCount} answered {saving && "· Saving..."}
+            NIST SP 800-171 Rev 2 — {controls.length} Controls · {answeredCount} answered {saving && "· Saving..."}
           </div>
         </div>
         <a href="/portal/dashboard" style={{
@@ -140,14 +144,14 @@ export default function AssessmentPage() {
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
           <span style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>Progress</span>
           <span style={{ fontSize: 12, color: "#00C9FF", fontWeight: 600 }}>
-            {step + 1} of {CONTROLS.length} ({Math.round(progress)}%)
+            {step + 1} of {controls.length} ({Math.round(progress)}%)
           </span>
         </div>
         <div style={{ height: 6, background: "rgba(255,255,255,0.06)", borderRadius: 3 }}>
           <div style={{ height: "100%", width: `${progress}%`, background: "linear-gradient(90deg, #00C9FF, #4DFFA0)", borderRadius: 3 }} />
         </div>
         <div style={{ display: "flex", gap: 6, marginTop: 14, flexWrap: "wrap" }}>
-          {DOMAINS.map((d) => (
+          {domains.map((d) => (
             <span key={d.code} style={{
               fontSize: 10, padding: "3px 8px", borderRadius: 20, fontWeight: 600,
               background: d.code === control.domain_code ? `${d.color}22` : "rgba(255,255,255,0.04)",
@@ -260,7 +264,7 @@ export default function AssessmentPage() {
           </button>
           <button
             onClick={() => {
-              if (step < CONTROLS.length - 1) setStep((s) => s + 1);
+              if (step < controls.length - 1) setStep((s) => s + 1);
               else window.location.href = "/portal/dashboard";
             }}
             style={{
@@ -268,7 +272,7 @@ export default function AssessmentPage() {
               background: "linear-gradient(135deg, #00C9FF, #4DFFA0)", color: "#050B18", border: "none",
             }}
           >
-            {step < CONTROLS.length - 1 ? "Next Control" : "Complete & View Dashboard"}
+            {step < controls.length - 1 ? "Next Control" : "Complete & View Dashboard"}
           </button>
         </div>
       </div>

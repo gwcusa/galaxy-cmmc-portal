@@ -51,7 +51,7 @@ export default async function DashboardPage() {
     }
   }
 
-  const score = calculateScore(responses);
+  const score = calculateScore(responses, (client?.cmmc_target_level as 1 | 2) ?? 2);
 
   const card = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
   const label = { fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase" as const, letterSpacing: "1px", marginBottom: 6 };

@@ -68,7 +68,7 @@ export default async function AdminReportsPage() {
     if (!hasResponses) {
       return { id: c.id, company_name: c.company_name, contact_name: c.contact_name, engagement_stage: c.engagement_stage, score: null, started_at: assessment.started_at };
     }
-    const scored = calculateScore(responses);
+    const scored = calculateScore(responses, (c.cmmc_target_level as 1 | 2) ?? 2);
     return { id: c.id, company_name: c.company_name, contact_name: c.contact_name, engagement_stage: c.engagement_stage, score: scored.overallScore, started_at: assessment.started_at };
   });
 

@@ -1,4 +1,4 @@
-import { CONTROLS, DOMAINS, getDomain } from "./controls";
+import { CONTROLS, getControlsForLevel, getDomainsForLevel, getDomain } from "./controls";
 
 export type ResponseMap = Record<string, "yes" | "partial" | "no" | "na">;
 
@@ -20,7 +20,7 @@ export type AssessmentScore = {
   partial: number;
   gaps: number;
   domainScores: DomainScore[];
-  criticalGaps: typeof CONTROLS;
+  criticalGaps: ReturnType<typeof getControlsForLevel>;
 };
 
 const RESPONSE_POINTS: Record<string, number> = {
@@ -30,20 +30,23 @@ const RESPONSE_POINTS: Record<string, number> = {
   na: 0,
 };
 
-export function calculateScore(responses: ResponseMap): AssessmentScore {
+export function calculateScore(responses: ResponseMap, targetLevel: 1 | 2 = 2): AssessmentScore {
+  const controls = getControlsForLevel(targetLevel);
+  const levelDomains = getDomainsForLevel(targetLevel);
+
   let rawScore = 0;
   let maxScore = 0;
   let passed = 0;
   let partial = 0;
   let gaps = 0;
 
-  const domainScores: DomainScore[] = DOMAINS.map((domain) => {
-    const controls = CONTROLS.filter((c) => c.domain_code === domain.code);
+  const domainScores: DomainScore[] = levelDomains.map((domain) => {
+    const domainControls = controls.filter((c) => c.domain_code === domain.code);
     let domainRaw = 0;
     let domainMax = 0;
     let domainGaps = 0;
 
-    for (const control of controls) {
+    for (const control of domainControls) {
       const response = responses[control.id];
       if (!response || response === "na") continue;
       const points = RESPONSE_POINTS[response] * control.weight;
@@ -63,7 +66,7 @@ export function calculateScore(responses: ResponseMap): AssessmentScore {
     };
   });
 
-  for (const control of CONTROLS) {
+  for (const control of controls) {
     const response = responses[control.id];
     if (!response || response === "na") continue;
     rawScore += RESPONSE_POINTS[response] * control.weight;
@@ -73,7 +76,7 @@ export function calculateScore(responses: ResponseMap): AssessmentScore {
     else if (response === "no") gaps++;
   }
 
-  const criticalGaps = CONTROLS.filter(
+  const criticalGaps = controls.filter(
     (c) => responses[c.id] === "no" &&
     ["IR", "CA", "RA", "AU"].includes(c.domain_code)
   );
