@@ -1,4 +1,5 @@
 import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import { calculateScore, ResponseMap } from "@/lib/scoring";
 import ScoreGauge from "@/components/ScoreGauge";
@@ -58,6 +59,39 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
     if (controlRows) {
       gapControls = controlRows as GapControl[];
     }
+  }
+
+  // Fetch artifacts for this assessment
+  const storageClient = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+
+  let artifactRows: { id: string; control_id: string; file_name: string; file_size: number | null; storage_path: string; uploaded_at: string }[] = [];
+  if (activeAssessment) {
+    const { data: artifactData } = await supabase
+      .from("artifacts")
+      .select("id, control_id, file_name, file_size, storage_path, uploaded_at")
+      .eq("assessment_id", activeAssessment.id)
+      .order("uploaded_at", { ascending: false });
+    artifactRows = artifactData ?? [];
+  }
+
+  // Generate signed URLs for all artifacts
+  const artifactsWithUrls = await Promise.all(
+    artifactRows.map(async (a) => {
+      const { data: urlData } = await storageClient.storage
+        .from("artifacts")
+        .createSignedUrl(a.storage_path, 3600);
+      return { ...a, signedUrl: urlData?.signedUrl ?? null };
+    })
+  );
+
+  // Group by control_id
+  const artifactsByControl: Record<string, typeof artifactsWithUrls> = {};
+  for (const a of artifactsWithUrls) {
+    if (!artifactsByControl[a.control_id]) artifactsByControl[a.control_id] = [];
+    artifactsByControl[a.control_id].push(a);
   }
 
   const score = calculateScore(responses, (client.cmmc_target_level as 1 | 2) ?? 2);
@@ -147,6 +181,64 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
           </div>
         ) : (
           <GapRemediationPanel assessmentId={activeAssessment!.id} gaps={gapControls} />
+        )}
+      </div>
+
+      {/* Evidence Artifacts */}
+      <div style={{ marginTop: 32 }}>
+        <div style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 16 }}>
+          Evidence Artifacts
+        </div>
+
+        {artifactsWithUrls.length === 0 ? (
+          <div style={card}>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", textAlign: "center", padding: "24px 0" }}>
+              No evidence uploaded yet. Clients can attach evidence files when answering Yes or Partial on controls.
+            </div>
+          </div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {Object.entries(artifactsByControl).map(([controlId, items]) => (
+              <div key={controlId} style={card}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+                  <span style={{ fontFamily: "monospace", fontSize: 13, fontWeight: 700, color: "#00C9FF" }}>
+                    {controlId}
+                  </span>
+                  <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", background: "rgba(255,255,255,0.06)", borderRadius: 6, padding: "2px 8px" }}>
+                    {items.length} file{items.length !== 1 ? "s" : ""}
+                  </span>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  {items.map((artifact) => (
+                    <div key={artifact.id} style={{
+                      display: "flex", alignItems: "center", justifyContent: "space-between",
+                      background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: "10px 14px",
+                      border: "1px solid rgba(255,255,255,0.06)",
+                    }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        <span style={{ fontSize: 18 }}>📎</span>
+                        <div>
+                          {artifact.signedUrl ? (
+                            <a href={artifact.signedUrl} target="_blank" rel="noreferrer" style={{
+                              fontSize: 13, color: "#00C9FF", textDecoration: "none", fontWeight: 500,
+                            }}>
+                              {artifact.file_name}
+                            </a>
+                          ) : (
+                            <span style={{ fontSize: 13, color: "#E2E8F0" }}>{artifact.file_name}</span>
+                          )}
+                          <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 2 }}>
+                            {artifact.file_size ? `${(artifact.file_size / 1024).toFixed(1)} KB · ` : ""}
+                            {new Date(artifact.uploaded_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </div>
