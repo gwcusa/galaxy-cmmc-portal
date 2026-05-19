@@ -45,13 +45,13 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
 
   // Fetch responses WITH notes for review panel
   let responses: ResponseMap = {};
-  let responseRows: { control_id: string; response: string; notes: string | null }[] = [];
+  let responseRows: { control_id: string; response: string; notes: string | null; no_artifacts: boolean }[] = [];
   let gapControlIds: string[] = [];
 
   if (activeAssessment) {
     const { data } = await supabase
       .from("assessment_responses")
-      .select("control_id, response, notes")
+      .select("control_id, response, notes, no_artifacts")
       .eq("assessment_id", activeAssessment.id);
     if (data) {
       responseRows = data;
@@ -136,6 +136,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         domainColor: (domain?.color as string) ?? "#888",
         clientResponse: r.response,
         clientNotes: r.notes ?? null,
+        noArtifacts: r.no_artifacts ?? false,
         aiVerdict: ai?.verdict ?? null,
         aiFeedback: ai?.feedback ?? null,
         aiGeneratedAt: ai?.generated_at ?? null,

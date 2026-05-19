@@ -10,6 +10,7 @@ export type ControlReviewItem = {
   domainColor: string;
   clientResponse: string;
   clientNotes: string | null;
+  noArtifacts: boolean;
   aiVerdict: string | null;
   aiFeedback: string | null;
   aiGeneratedAt: string | null;
@@ -246,6 +247,15 @@ export default function AssessmentReviewPanel({
                     </div>
                   ) : (
                     <div style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", fontStyle: "italic" }}>No notes provided</div>
+                  )}
+                  {item.noArtifacts && (
+                    <div style={{
+                      marginTop: 8, padding: "4px 10px", borderRadius: 6, display: "inline-block",
+                      background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.25)",
+                      fontSize: 11, color: "#F87171", fontStyle: "normal",
+                    }}>
+                      No artifacts — client declared none available
+                    </div>
                   )}
                 </div>
 

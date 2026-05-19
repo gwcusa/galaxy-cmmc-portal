@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
 
   const { data: responses } = await supabase
     .from("assessment_responses")
-    .select("control_id, response, notes")
+    .select("control_id, response, notes, no_artifacts")
     .eq("assessment_id", assessment!.id);
 
   return NextResponse.json({
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await req.json();
-  const { assessmentId, controlId, response, notes } = body;
+  const { assessmentId, controlId, response, notes, no_artifacts } = body;
 
   if (!assessmentId || !controlId || !response) {
     return NextResponse.json({ error: "assessmentId, controlId, response required" }, { status: 400 });
@@ -73,6 +73,7 @@ export async function POST(req: NextRequest) {
         control_id: controlId,
         response,
         notes: notes ?? null,
+        no_artifacts: no_artifacts ?? false,
         updated_at: new Date().toISOString(),
       },
       { onConflict: "assessment_id,control_id" }

@@ -20,6 +20,7 @@ export default function AssessmentPage() {
   const [step, setStep] = useState(0);
   const [responses, setResponses] = useState<ResponseMap>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
+  const [noArtifacts, setNoArtifacts] = useState<Record<string, boolean>>({});
   const [assessmentId, setAssessmentId] = useState<string | null>(null);
   const [assessmentStatus, setAssessmentStatus] = useState<string>("in_progress");
   const [clientId, setClientId] = useState<string | null>(null);
@@ -30,6 +31,8 @@ export default function AssessmentPage() {
   const [artifacts, setArtifacts] = useState<Record<string, ArtifactItem[]>>({});
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [artifactError, setArtifactError] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const supabase = createClient();
 
   useEffect(() => {
@@ -54,14 +57,16 @@ export default function AssessmentPage() {
       setAssessmentStatus(data.assessmentStatus ?? "in_progress");
       const responseMap: ResponseMap = {};
       const notesMap: Record<string, string> = {};
+      const noArtifactsMap: Record<string, boolean> = {};
       for (const r of data.responses) {
         responseMap[r.control_id] = r.response;
         if (r.notes) notesMap[r.control_id] = r.notes;
+        if (r.no_artifacts) noArtifactsMap[r.control_id] = true;
       }
       setResponses(responseMap);
       setNotes(notesMap);
+      setNoArtifacts(noArtifactsMap);
 
-      // Fetch approved Galaxy guidance for this assessment
       if (data.assessmentId) {
         const guidanceRes = await fetch(`/api/remediation/client?assessmentId=${data.assessmentId}`);
         if (guidanceRes.ok) {
@@ -80,13 +85,24 @@ export default function AssessmentPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const saveResponse = useCallback(async (controlId: string, response: Response, note: string) => {
+  const saveResponse = useCallback(async (
+    controlId: string,
+    response: Response,
+    note: string,
+    noArt: boolean,
+  ) => {
     if (!assessmentId) return;
     setSaving(true);
     await fetch("/api/assessment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ assessmentId, controlId, response, notes: note }),
+      body: JSON.stringify({
+        assessmentId,
+        controlId,
+        response,
+        notes: note,
+        no_artifacts: noArt,
+      }),
     });
     setSaving(false);
   }, [assessmentId]);
@@ -99,10 +115,20 @@ export default function AssessmentPage() {
   const answeredCount = Object.keys(responses).length;
   const currentResponse = responses[control?.id ?? ""];
   const currentNote = notes[control?.id ?? ""] ?? "";
+  const currentNoArtifacts = noArtifacts[control?.id ?? ""] ?? false;
+  const currentArtifacts = artifacts[control?.id ?? ""] ?? [];
+  const needsEvidence = currentResponse === "yes" || currentResponse === "partial";
+  const evidenceSatisfied = needsEvidence ? (currentArtifacts.length > 0 || currentNoArtifacts) : true;
 
   function handleResponse(val: Response) {
+    setArtifactError(false);
     setResponses((r) => ({ ...r, [control.id]: val }));
-    saveResponse(control.id, val, currentNote);
+    const noArt = noArtifacts[control.id] ?? false;
+    saveResponse(control.id, val, currentNote, noArt);
+    // Load artifacts when switching to yes/partial
+    if ((val === "yes" || val === "partial") && !artifacts[control.id]) {
+      loadArtifacts(control.id);
+    }
   }
 
   function handleNote(val: string) {
@@ -111,11 +137,19 @@ export default function AssessmentPage() {
 
   function handleNoteBlur() {
     if (currentResponse) {
-      saveResponse(control.id, currentResponse, currentNote);
+      saveResponse(control.id, currentResponse, currentNote, currentNoArtifacts);
     }
   }
 
-  // Load artifacts when step or response changes (only for yes/partial)
+  function handleNoArtifactsToggle(checked: boolean) {
+    setNoArtifacts((n) => ({ ...n, [control.id]: checked }));
+    if (checked) setArtifactError(false);
+    if (currentResponse) {
+      saveResponse(control.id, currentResponse, currentNote, checked);
+    }
+  }
+
+  // Load artifacts when step changes for yes/partial controls
   useEffect(() => {
     if (!assessmentId || !control) return;
     const resp = responses[control.id];
@@ -149,6 +183,12 @@ export default function AssessmentPage() {
         ...prev,
         [control.id]: [...(prev[control.id] ?? []), data.artifact],
       }));
+      setArtifactError(false);
+      // Clear "no artifacts" if they upload something
+      if (currentNoArtifacts) {
+        setNoArtifacts((n) => ({ ...n, [control.id]: false }));
+        if (currentResponse) saveResponse(control.id, currentResponse, currentNote, false);
+      }
     } else {
       setUploadError(data.error ?? "Upload failed");
     }
@@ -164,6 +204,42 @@ export default function AssessmentPage() {
         [controlId]: (prev[controlId] ?? []).filter((a) => a.id !== artifactId),
       }));
     }
+  }
+
+  function handleNext() {
+    if (needsEvidence && !evidenceSatisfied) {
+      setArtifactError(true);
+      return;
+    }
+    setArtifactError(false);
+    setSubmitError(null);
+    setStep((s) => s + 1);
+  }
+
+  async function handleSubmit() {
+    if (needsEvidence && !evidenceSatisfied) {
+      setArtifactError(true);
+      return;
+    }
+    if (!assessmentId) return;
+    setSaving(true);
+    setSubmitError(null);
+    const res = await fetch("/api/assessment/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ assessmentId }),
+    });
+    const data = await res.json();
+    setSaving(false);
+    if (!res.ok) {
+      if (data.missingArtifacts) {
+        setSubmitError(`Evidence required for ${data.missingArtifacts.length} control(s): ${data.missingArtifacts.slice(0, 5).join(", ")}${data.missingArtifacts.length > 5 ? "…" : ""}. Please go back and upload artifacts or select "No artifacts available" for each.`);
+      } else {
+        setSubmitError(data.error ?? "Submission failed");
+      }
+      return;
+    }
+    window.location.href = "/portal/dashboard";
   }
 
   if (!loaded) {
@@ -183,7 +259,6 @@ export default function AssessmentPage() {
     );
   }
 
-  // Assessment is locked for editing once submitted — EXCEPT when remediation is required
   const isResubmission = assessmentStatus === "remediation_required";
   if (assessmentStatus !== "in_progress" && !isResubmission) {
     const statusLabel: Record<string, string> = {
@@ -215,21 +290,16 @@ export default function AssessmentPage() {
     );
   }
 
-  const card = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
+  const card: React.CSSProperties = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
 
   return (
     <div>
       {/* Remediation required banner */}
       {isResubmission && (
         <div style={{
-          background: "rgba(248,113,113,0.06)",
-          border: "1px solid rgba(248,113,113,0.2)",
-          borderRadius: 12,
-          padding: "14px 20px",
-          marginBottom: 20,
-          display: "flex",
-          gap: 14,
-          alignItems: "flex-start",
+          background: "rgba(248,113,113,0.06)", border: "1px solid rgba(248,113,113,0.2)",
+          borderRadius: 12, padding: "14px 20px", marginBottom: 20,
+          display: "flex", gap: 14, alignItems: "flex-start",
         }}>
           <span style={{ fontSize: 18, lineHeight: 1 }}>!</span>
           <div>
@@ -334,15 +404,16 @@ export default function AssessmentPage() {
         </div>
 
         {/* Notes */}
-        <div style={{ marginBottom: 24 }}>
+        <div style={{ marginBottom: needsEvidence ? 20 : 24 }}>
           <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 6 }}>
-            Notes / Evidence (optional)
+            Notes / Implementation Details
+            {needsEvidence && <span style={{ color: "rgba(255,255,255,0.2)", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}> (optional)</span>}
           </div>
           <textarea
             value={currentNote}
             onChange={(e) => handleNote(e.target.value)}
             onBlur={handleNoteBlur}
-            placeholder="Describe implementation details, link to evidence, or note remediation plans..."
+            placeholder="Describe how this control is implemented, what systems are in use, or any relevant context..."
             style={{
               width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
               borderRadius: 8, padding: 12, color: "#E2E8F0", fontSize: 13,
@@ -351,93 +422,161 @@ export default function AssessmentPage() {
           />
         </div>
 
-        {/* Evidence / Artifacts (only when yes or partial) */}
-        {(currentResponse === "yes" || currentResponse === "partial") && (
-          <div style={{ marginBottom: 24 }}>
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 10 }}>
-              Evidence / Artifacts{" "}
-              <span style={{ color: "rgba(255,255,255,0.25)", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>
-                (optional)
-              </span>
+        {/* Evidence / Artifacts — required for yes/partial */}
+        {needsEvidence && (
+          <div style={{
+            marginBottom: 24,
+            background: artifactError ? "rgba(248,113,113,0.04)" : "rgba(255,255,255,0.02)",
+            border: `1px solid ${artifactError ? "rgba(248,113,113,0.3)" : "rgba(255,255,255,0.08)"}`,
+            borderRadius: 10,
+            padding: 16,
+          }}>
+            {/* Header */}
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+              <div style={{ fontSize: 11, color: artifactError ? "#F87171" : "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "1px", fontWeight: 600 }}>
+                Evidence Required
+              </div>
+              <span style={{ fontSize: 11, color: "#F87171", fontWeight: 700 }}>*</span>
+              {evidenceSatisfied && (
+                <span style={{ fontSize: 11, color: "#4DFFA0", marginLeft: 4 }}>✓ Provided</span>
+              )}
             </div>
 
-            {/* Existing artifacts list */}
-            {(artifacts[control.id] ?? []).map((artifact) => (
-              <div key={artifact.id} style={{
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-                background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: 8, padding: "10px 14px", marginBottom: 8,
+            {/* CMMC Guidance */}
+            {control.guidance && (
+              <div style={{
+                marginBottom: 14, padding: "10px 14px",
+                background: "rgba(0,201,255,0.04)", border: "1px solid rgba(0,201,255,0.12)",
+                borderRadius: 8,
               }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
-                  <span style={{ fontSize: 16 }}>📎</span>
-                  <div style={{ minWidth: 0 }}>
-                    <a
-                      href={artifact.signedUrl}
-                      target="_blank"
-                      rel="noreferrer"
+                <div style={{ fontSize: 10, color: "#00C9FF", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 6, fontWeight: 600 }}>
+                  What your evidence should demonstrate
+                </div>
+                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", lineHeight: 1.6 }}>
+                  {control.guidance}
+                </div>
+              </div>
+            )}
+
+            {/* Uploaded artifacts */}
+            {currentArtifacts.length > 0 && (
+              <div style={{ marginBottom: 12 }}>
+                {currentArtifacts.map((artifact) => (
+                  <div key={artifact.id} style={{
+                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                    background: "rgba(77,255,160,0.04)", border: "1px solid rgba(77,255,160,0.15)",
+                    borderRadius: 8, padding: "10px 14px", marginBottom: 6,
+                  }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+                      <span style={{ fontSize: 16 }}>📎</span>
+                      <div style={{ minWidth: 0 }}>
+                        <a
+                          href={artifact.signedUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            fontSize: 13, color: "#4DFFA0", textDecoration: "none", fontWeight: 500,
+                            display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                          }}
+                        >
+                          {artifact.file_name}
+                        </a>
+                        {artifact.file_size && (
+                          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>
+                            {(artifact.file_size / 1024).toFixed(1)} KB
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleDelete(artifact.id, control.id)}
                       style={{
-                        fontSize: 13, color: "#00C9FF", textDecoration: "none", fontWeight: 500,
-                        display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                        background: "none", border: "none", color: "rgba(248,113,113,0.6)",
+                        cursor: "pointer", fontSize: 18, padding: "0 4px", flexShrink: 0,
                       }}
                     >
-                      {artifact.file_name}
-                    </a>
-                    {artifact.file_size && (
-                      <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>
-                        {(artifact.file_size / 1024).toFixed(1)} KB
-                      </span>
-                    )}
+                      ×
+                    </button>
                   </div>
-                </div>
-                <button
-                  onClick={() => handleDelete(artifact.id, control.id)}
-                  style={{
-                    background: "none", border: "none", color: "rgba(248,113,113,0.6)",
-                    cursor: "pointer", fontSize: 18, padding: "0 4px", flexShrink: 0,
-                  }}
-                >
-                  ×
-                </button>
+                ))}
               </div>
-            ))}
+            )}
 
             {/* Upload error */}
             {uploadError && (
               <div style={{ fontSize: 12, color: "#F87171", marginBottom: 8 }}>{uploadError}</div>
             )}
 
-            {/* Upload button */}
-            <label style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              padding: "9px 16px", borderRadius: 8, fontSize: 13, fontWeight: 500,
-              border: "1px dashed rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.03)",
-              color: uploading ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.6)",
-              cursor: uploading ? "not-allowed" : "pointer",
-            }}>
-              <span>{uploading ? "Uploading..." : "+ Attach Evidence"}</span>
-              <input
-                type="file"
-                accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.txt"
-                onChange={handleUpload}
-                disabled={uploading}
-                style={{ display: "none" }}
-              />
-            </label>
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginTop: 6 }}>
+            {/* Upload button — only show if no_artifacts not checked */}
+            {!currentNoArtifacts && (
+              <label style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                padding: "9px 16px", borderRadius: 8, fontSize: 13, fontWeight: 500,
+                border: "1px dashed rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.03)",
+                color: uploading ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.6)",
+                cursor: uploading ? "not-allowed" : "pointer", marginBottom: 6,
+              }}>
+                <span>{uploading ? "Uploading..." : "+ Attach Evidence"}</span>
+                <input
+                  type="file"
+                  accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.txt"
+                  onChange={handleUpload}
+                  disabled={uploading}
+                  style={{ display: "none" }}
+                />
+              </label>
+            )}
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginBottom: 14 }}>
               PDF, PNG, JPG, DOCX, XLSX, TXT · Max 10MB
             </div>
+
+            {/* Divider */}
+            {currentArtifacts.length === 0 && (
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+                <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)" }} />
+                <span style={{ fontSize: 11, color: "rgba(255,255,255,0.2)" }}>or</span>
+                <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)" }} />
+              </div>
+            )}
+
+            {/* No artifacts checkbox */}
+            {currentArtifacts.length === 0 && (
+              <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer" }}>
+                <input
+                  type="checkbox"
+                  checked={currentNoArtifacts}
+                  onChange={(e) => handleNoArtifactsToggle(e.target.checked)}
+                  style={{ marginTop: 2, accentColor: "#F87171", width: 15, height: 15, flexShrink: 0 }}
+                />
+                <div>
+                  <div style={{ fontSize: 13, color: currentNoArtifacts ? "#F87171" : "rgba(255,255,255,0.5)", fontWeight: currentNoArtifacts ? 600 : 400 }}>
+                    No artifacts available for this control
+                  </div>
+                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 2, lineHeight: 1.5 }}>
+                    Check this only if you are genuinely unable to provide supporting evidence. Your assessor will review this declaration.
+                  </div>
+                </div>
+              </label>
+            )}
+
+            {/* Validation error */}
+            {artifactError && (
+              <div style={{
+                marginTop: 12, padding: "10px 14px", borderRadius: 8,
+                background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.25)",
+                fontSize: 12, color: "#F87171",
+              }}>
+                Please attach at least one piece of evidence, or check &ldquo;No artifacts available&rdquo; to proceed.
+              </div>
+            )}
           </div>
         )}
 
         {/* Galaxy Recommendation callout (approved guidance only) */}
         {approvedGuidance[control.id] && (
           <div style={{
-            marginTop: 16,
-            marginBottom: 24,
-            background: "rgba(77,255,160,0.06)",
-            border: "1px solid rgba(77,255,160,0.2)",
-            borderRadius: 10,
-            padding: "14px 16px",
+            marginBottom: 24, background: "rgba(77,255,160,0.06)",
+            border: "1px solid rgba(77,255,160,0.2)", borderRadius: 10, padding: "14px 16px",
           }}>
             <div style={{ fontSize: 11, color: "#4DFFA0", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 6, fontWeight: 600 }}>
               Galaxy Recommendation
@@ -448,10 +587,21 @@ export default function AssessmentPage() {
           </div>
         )}
 
+        {/* Submit error */}
+        {submitError && (
+          <div style={{
+            marginBottom: 16, padding: "12px 14px", borderRadius: 8,
+            background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.25)",
+            fontSize: 13, color: "#F87171", lineHeight: 1.5,
+          }}>
+            {submitError}
+          </div>
+        )}
+
         {/* Navigation */}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <button
-            onClick={() => setStep((s) => Math.max(0, s - 1))}
+            onClick={() => { setArtifactError(false); setStep((s) => Math.max(0, s - 1)); }}
             disabled={step === 0}
             style={{
               padding: "11px 22px", borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: "pointer",
@@ -463,27 +613,15 @@ export default function AssessmentPage() {
             Previous
           </button>
           <button
-            onClick={async () => {
-              if (step < controls.length - 1) {
-                setStep((s) => s + 1);
-              } else {
-                if (assessmentId) {
-                  setSaving(true);
-                  await fetch("/api/assessment/submit", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ assessmentId }),
-                  }).catch(() => {});
-                }
-                window.location.href = "/portal/dashboard";
-              }
-            }}
+            onClick={step < controls.length - 1 ? handleNext : handleSubmit}
+            disabled={saving}
             style={{
               padding: "11px 22px", borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: "pointer",
-              background: "linear-gradient(135deg, #00C9FF, #4DFFA0)", color: "#050B18", border: "none",
+              background: saving ? "rgba(0,201,255,0.3)" : "linear-gradient(135deg, #00C9FF, #4DFFA0)",
+              color: saving ? "rgba(255,255,255,0.5)" : "#050B18", border: "none",
             }}
           >
-            {step < controls.length - 1
+            {saving ? "Saving..." : step < controls.length - 1
               ? "Next Control"
               : isResubmission
                 ? "Resubmit Assessment"

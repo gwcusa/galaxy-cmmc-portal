@@ -62,9 +62,33 @@ export async function POST(req: NextRequest) {
   // Get all controls the client answered yes or partial
   const { data: responses } = await serviceSupabase
     .from("assessment_responses")
-    .select("control_id")
+    .select("control_id, no_artifacts")
     .eq("assessment_id", assessmentId)
     .in("response", ["yes", "partial"]);
+
+  // Validate: every yes/partial control must have either an artifact or no_artifacts = true
+  const controlsNeedingArtifacts = (responses ?? [])
+    .filter((r) => !r.no_artifacts)
+    .map((r) => r.control_id);
+
+  if (controlsNeedingArtifacts.length > 0) {
+    const { data: artifacts } = await serviceSupabase
+      .from("artifacts")
+      .select("control_id")
+      .eq("assessment_id", assessmentId)
+      .in("control_id", controlsNeedingArtifacts);
+
+    const coveredSet = new Set((artifacts ?? []).map((a) => a.control_id));
+    const missing = controlsNeedingArtifacts.filter((id) => !coveredSet.has(id));
+
+    if (missing.length > 0) {
+      return NextResponse.json({
+        error: "Evidence required",
+        missingArtifacts: missing,
+        message: `${missing.length} control(s) require evidence. Please upload artifacts or select "No artifacts available" for: ${missing.join(", ")}`,
+      }, { status: 400 });
+    }
+  }
 
   // Fire AI review for each control — use waitUntil so Vercel doesn't kill the work
   const controlIds = (responses ?? []).map((r) => r.control_id);

@@ -7,6 +7,7 @@ export type Control = {
   level: number;
   weight: number;
   description: string;
+  guidance?: string;
 };
 
 export const CONTROLS: Control[] = controlsData as Control[];
