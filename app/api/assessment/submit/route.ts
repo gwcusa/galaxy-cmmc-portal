@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { waitUntil } from "@vercel/functions";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { runAiReview } from "@/lib/run-ai-review";
 import { sendAssessmentSubmittedEmail } from "@/lib/email";
@@ -65,11 +66,18 @@ export async function POST(req: NextRequest) {
     .eq("assessment_id", assessmentId)
     .in("response", ["yes", "partial"]);
 
-  // Fire AI review for each control in background — do not await
-  for (const r of responses ?? []) {
-    runAiReview(assessmentId, r.control_id).catch((err) => {
-      console.error(`AI review failed for control ${r.control_id}:`, err);
-    });
+  // Fire AI review for each control — use waitUntil so Vercel doesn't kill the work
+  const controlIds = (responses ?? []).map((r) => r.control_id);
+  if (controlIds.length > 0) {
+    waitUntil(
+      Promise.allSettled(
+        controlIds.map((controlId) =>
+          runAiReview(assessmentId, controlId).catch((err) => {
+            console.error(`AI review failed for control ${controlId}:`, err);
+          })
+        )
+      )
+    );
   }
 
   return NextResponse.json({ success: true, newStatus, reviewsQueued: (responses ?? []).length });

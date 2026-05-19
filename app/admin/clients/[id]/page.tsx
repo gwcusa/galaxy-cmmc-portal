@@ -12,6 +12,7 @@ import AssessmentReviewPanel, { ControlReviewItem } from "./AssessmentReviewPane
 import InformationRequestsPanel from "./InformationRequestsPanel";
 import ArtifactGenerationPanel from "./ArtifactGenerationPanel";
 import ClientInfoEditor from "./ClientInfoEditor";
+import RunAiButton from "./RunAiButton";
 
 const controlsMap = new Map(CONTROLS.map((c) => [c.id, c]));
 const domainsMap = new Map(DOMAINS.map((d) => [d.code, d]));
@@ -265,8 +266,13 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
 
       {/* Assessment Review Panel */}
       <div style={{ marginBottom: 40 }}>
-        <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", marginBottom: 6 }}>
-          Control Review
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16, marginBottom: 6, flexWrap: "wrap" }}>
+          <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px" }}>
+            Control Review
+          </div>
+          {activeAssessment && activeAssessment.status !== "in_progress" && (
+            <RunAiButton assessmentId={activeAssessment.id} />
+          )}
         </div>
         <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 20 }}>
           AI recommendations for controls the client answered Yes or Partial. Accept or override each determination.
