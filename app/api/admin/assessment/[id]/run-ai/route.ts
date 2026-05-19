@@ -11,19 +11,23 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user }, error: userError } = await authSupabase.auth.getUser();
+  if (userError || !user) {
+    console.error("[run-ai] getUser failed:", userError?.message);
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
   const serviceSupabase = createServiceSupabaseClient();
 
   // Admin check
-  const { data: roleRow } = await serviceSupabase
+  const { data: roleRow, error: roleError } = await serviceSupabase
     .from("user_roles")
     .select("role")
-    .eq("user_id", session.user.id)
+    .eq("user_id", user.id)
     .single();
+  console.log("[run-ai] user:", user.id, "role:", roleRow?.role, "roleError:", roleError?.message);
   if (roleRow?.role !== "admin") {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return NextResponse.json({ error: "Forbidden — role: " + (roleRow?.role ?? "none") }, { status: 403 });
   }
 
   const assessmentId = params.id;
