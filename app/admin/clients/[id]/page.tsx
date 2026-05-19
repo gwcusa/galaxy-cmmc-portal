@@ -266,17 +266,17 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
 
       {/* Assessment Review Panel */}
       <div style={{ marginBottom: 40 }}>
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16, marginBottom: 6, flexWrap: "wrap" }}>
-          <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px" }}>
-            Control Review
-          </div>
-          {activeAssessment && activeAssessment.status !== "in_progress" && (
-            <RunAiButton assessmentId={activeAssessment.id} />
-          )}
+        <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", marginBottom: 6 }}>
+          Control Review
         </div>
-        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 20 }}>
+        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 16 }}>
           Recommendations for controls the client answered Yes or Partial. Accept or override each determination.
         </div>
+        {activeAssessment && (
+          <div style={{ marginBottom: 20 }}>
+            <RunAiButton assessmentId={activeAssessment.id} />
+          </div>
+        )}
         {reviewItems.length === 0 ? (
           <div style={{ ...card, textAlign: "center", padding: 32, color: "rgba(255,255,255,0.3)", fontSize: 13 }}>
             No controls reviewed yet. Controls will appear here after the client submits their assessment.
