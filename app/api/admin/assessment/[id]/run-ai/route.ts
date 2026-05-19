@@ -20,14 +20,13 @@ export async function POST(
   const serviceSupabase = createServiceSupabaseClient();
 
   // Admin check
-  const { data: roleRow, error: roleError } = await serviceSupabase
+  const { data: roleRow } = await serviceSupabase
     .from("user_roles")
     .select("role")
     .eq("user_id", user.id)
     .single();
-  console.log("[run-ai] user:", user.id, "role:", roleRow?.role, "roleError:", roleError?.message);
   if (roleRow?.role !== "admin") {
-    return NextResponse.json({ error: "Forbidden — role: " + (roleRow?.role ?? "none") }, { status: 403 });
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   const assessmentId = params.id;
@@ -71,6 +70,6 @@ export async function POST(
     queued: controlIds.length,
     new: newCount,
     rerun: rerunCount,
-    message: `AI analysis queued for ${controlIds.length} control(s). Results will appear within a few minutes.`,
+    message: `Analysis queued for ${controlIds.length} control(s). Results will appear within a few minutes.`,
   });
 }
