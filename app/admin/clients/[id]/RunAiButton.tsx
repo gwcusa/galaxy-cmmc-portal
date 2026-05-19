@@ -17,7 +17,7 @@ export default function RunAiButton({ assessmentId }: { assessmentId: string }) 
       setMessage(data.message ?? `Queued ${data.queued} control(s).`);
     } catch (err: unknown) {
       setStatus("error");
-      setMessage(err instanceof Error ? err.message : "Failed to queue AI analysis.");
+      setMessage(err instanceof Error ? err.message : "Failed to queue analysis.");
     }
   }
 
@@ -38,7 +38,7 @@ export default function RunAiButton({ assessmentId }: { assessmentId: string }) 
           whiteSpace: "nowrap",
         }}
       >
-        {status === "loading" ? "Queuing…" : "Run AI Analysis"}
+        {status === "loading" ? "Queuing…" : "Run Analysis"}
       </button>
       {message && (
         <span style={{

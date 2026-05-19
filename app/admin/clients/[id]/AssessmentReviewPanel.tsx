@@ -142,7 +142,7 @@ export default function AssessmentReviewPanel({
           </span>
           {pendingAiCount > 0 && (
             <span style={{ fontSize: 12, color: "#FFB347" }}>
-              · {pendingAiCount} awaiting AI
+              · {pendingAiCount} pending analysis
             </span>
           )}
           {/* Filter tabs */}
@@ -174,7 +174,7 @@ export default function AssessmentReviewPanel({
               opacity: bulkSaving ? 0.5 : 1,
             }}
           >
-            {bulkSaving ? "Accepting..." : `Accept All AI Recommendations (${unreviewedCount})`}
+            {bulkSaving ? "Accepting..." : `Accept All Recommendations (${unreviewedCount})`}
           </button>
         )}
       </div>
@@ -252,7 +252,7 @@ export default function AssessmentReviewPanel({
                 {/* AI */}
                 <div style={innerCard}>
                   <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 8 }}>
-                    AI Analysis
+                    Analysis
                   </div>
                   {item.aiVerdict ? (
                     <>
@@ -265,7 +265,7 @@ export default function AssessmentReviewPanel({
                     </>
                   ) : (
                     <div style={{ fontSize: 12, color: "rgba(255,179,71,0.6)", fontStyle: "italic" }}>
-                      AI analysis pending...
+                      Analysis pending...
                     </div>
                   )}
                 </div>
@@ -296,7 +296,7 @@ export default function AssessmentReviewPanel({
                           opacity: isSaving ? 0.5 : 1,
                         }}
                       >
-                        {isSaving ? "Saving..." : "Accept AI"}
+                        {isSaving ? "Saving..." : "Accept"}
                       </button>
                     )}
                     <button
@@ -319,7 +319,7 @@ export default function AssessmentReviewPanel({
                         <VerdictBadge verdict={item.assessorVerdict!} />
                         {item.aiVerdict && item.assessorVerdict !== item.aiVerdict && (
                           <span style={{ marginLeft: 8, fontSize: 11, color: "#FFB347" }}>
-                            (AI: {VERDICT_CONFIG[item.aiVerdict as keyof typeof VERDICT_CONFIG]?.label ?? item.aiVerdict})
+                            (Recommended: {VERDICT_CONFIG[item.aiVerdict as keyof typeof VERDICT_CONFIG]?.label ?? item.aiVerdict})
                           </span>
                         )}
                       </div>

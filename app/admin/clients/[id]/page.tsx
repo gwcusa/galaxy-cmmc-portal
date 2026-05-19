@@ -275,11 +275,11 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
           )}
         </div>
         <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 20 }}>
-          AI recommendations for controls the client answered Yes or Partial. Accept or override each determination.
+          Recommendations for controls the client answered Yes or Partial. Accept or override each determination.
         </div>
         {reviewItems.length === 0 ? (
           <div style={{ ...card, textAlign: "center", padding: 32, color: "rgba(255,255,255,0.3)", fontSize: 13 }}>
-            No AI-reviewed controls yet. Controls will appear here after the client submits their assessment.
+            No controls reviewed yet. Controls will appear here after the client submits their assessment.
           </div>
         ) : (
           <AssessmentReviewPanel assessmentId={activeAssessment!.id} items={reviewItems} />
@@ -323,7 +323,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
             Compliance Artifacts
           </div>
           <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 20 }}>
-            Generate SSP, POA&amp;M, and policy templates using AI based on this client&apos;s assessment data and determinations.
+            Generate SSP, POA&amp;M, and policy templates based on this client&apos;s assessment data and determinations.
           </div>
           <ArtifactGenerationPanel assessmentId={activeAssessment.id} />
         </div>
