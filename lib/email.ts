@@ -1,6 +1,9 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazily initialised so missing key at build time doesn't crash the build
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY ?? "placeholder");
+}
 
 const FROM = process.env.EMAIL_FROM ?? "Galaxy CMMC <notifications@galaxyconsultingllc.com>";
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "";
@@ -77,7 +80,7 @@ async function send(to: string, subject: string, html: string): Promise<void> {
     console.warn("[email] No recipient address — skipping:", subject);
     return;
   }
-  const { error } = await resend.emails.send({ from: FROM, to, subject, html });
+  const { error } = await getResend().emails.send({ from: FROM, to, subject, html });
   if (error) console.error("[email] Failed to send:", subject, error);
 }
 
