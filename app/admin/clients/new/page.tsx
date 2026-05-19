@@ -39,10 +39,10 @@ export default function NewClientPage() {
     companyName: "",
     contactName: "",
     email: "",
-    password: "",
     phone: "",
     cmmcTargetLevel: 1,
     engagementStage: "lead",
+    engagementType: "assessment",
     notes: "",
   });
 
@@ -61,7 +61,6 @@ export default function NewClientPage() {
     if (!form.companyName.trim()) return "Company name is required.";
     if (!form.contactName.trim()) return "Contact name is required.";
     if (!form.email.trim() || !form.email.includes("@")) return "A valid email address is required.";
-    if (form.password.length < 8) return "Password must be at least 8 characters.";
     return null;
   }
 
@@ -110,7 +109,7 @@ export default function NewClientPage() {
         </Link>
         <div style={{ fontSize: 24, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px" }}>Invite Client</div>
         <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>
-          Create a client account and configure their CMMC engagement
+          Create a client account — they will receive an email to set their own password
         </div>
       </div>
 
@@ -163,25 +162,6 @@ export default function NewClientPage() {
             />
           </div>
 
-          {/* Password */}
-          <div style={{ marginBottom: 20 }}>
-            <label style={labelStyle} htmlFor="password">Password *</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              minLength={8}
-              value={form.password}
-              onChange={handleChange}
-              style={inputStyle}
-              placeholder="Min. 8 characters"
-            />
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 6 }}>
-              Client will use this to log in
-            </div>
-          </div>
-
           {/* Phone */}
           <div style={{ marginBottom: 20 }}>
             <label style={labelStyle} htmlFor="phone">Phone</label>
@@ -224,6 +204,24 @@ export default function NewClientPage() {
                 <option value="active">Active</option>
                 <option value="completed">Completed</option>
               </select>
+            </div>
+          </div>
+
+          {/* Engagement Type */}
+          <div style={{ marginBottom: 20 }}>
+            <label style={labelStyle} htmlFor="engagementType">Package Type *</label>
+            <select
+              id="engagementType"
+              name="engagementType"
+              value={form.engagementType}
+              onChange={handleChange}
+              style={inputStyle}
+            >
+              <option value="assessment">Assessment Only</option>
+              <option value="remediation">Remediation Package</option>
+            </select>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 6 }}>
+              Remediation Package enables artifact generation and information requests.
             </div>
           </div>
 
@@ -272,7 +270,7 @@ export default function NewClientPage() {
               letterSpacing: "0.3px",
             }}
           >
-            {loading ? "Creating account..." : "Create Client Account"}
+            {loading ? "Sending invite..." : "Send Invite"}
           </button>
         </div>
       </form>

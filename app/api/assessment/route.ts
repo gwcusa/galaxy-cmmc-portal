@@ -19,18 +19,22 @@ export async function GET(req: NextRequest) {
 
   if (!client) return NextResponse.json({ error: "Client not found" }, { status: 404 });
 
+  // Look for any non-archived assessment for this client
   let { data: assessment } = await supabase
     .from("assessments")
-    .select("id")
+    .select("id, status")
     .eq("client_id", clientId)
-    .eq("status", "in_progress")
+    .not("status", "eq", "archived")
+    .order("started_at", { ascending: false })
+    .limit(1)
     .single();
 
-  if (!assessment) {
+  // Create a new assessment only if none exists or the latest is finalized
+  if (!assessment || assessment.status === "finalized") {
     const { data: newAssessment, error } = await supabase
       .from("assessments")
       .insert({ client_id: clientId, status: "in_progress" })
-      .select("id")
+      .select("id, status")
       .single();
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     assessment = newAssessment;
@@ -41,7 +45,11 @@ export async function GET(req: NextRequest) {
     .select("control_id, response, notes")
     .eq("assessment_id", assessment!.id);
 
-  return NextResponse.json({ assessmentId: assessment!.id, responses: responses || [] });
+  return NextResponse.json({
+    assessmentId: assessment!.id,
+    assessmentStatus: assessment!.status,
+    responses: responses || [],
+  });
 }
 
 // POST /api/assessment

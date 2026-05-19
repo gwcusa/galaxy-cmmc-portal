@@ -8,21 +8,20 @@ export async function POST(req: NextRequest) {
   const { data: { session } } = await serverSupabase.auth.getSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  // 2. Check admin role
-  if (session.user.user_metadata?.role !== "admin") {
+  // 2. Check admin role via user_roles table
+  const serviceSupabaseForRole = createServiceSupabaseClient();
+  const { data: roleRow } = await serviceSupabaseForRole.from("user_roles").select("role").eq("user_id", session.user.id).single();
+  if (roleRow?.role !== "admin") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   // 3. Parse body
   const body = await req.json();
-  const { email, password, companyName, contactName, phone, cmmcTargetLevel, engagementStage, notes } = body;
+  const { email, companyName, contactName, phone, cmmcTargetLevel, engagementStage, engagementType, notes } = body;
 
   // 4. Validate
   if (!email || typeof email !== "string" || !email.includes("@")) {
     return NextResponse.json({ error: "Valid email is required" }, { status: 400 });
-  }
-  if (!password || typeof password !== "string" || password.length < 8) {
-    return NextResponse.json({ error: "Password must be at least 8 characters" }, { status: 400 });
   }
   if (!companyName || typeof companyName !== "string" || !companyName.trim()) {
     return NextResponse.json({ error: "Company name is required" }, { status: 400 });
@@ -36,6 +35,9 @@ export async function POST(req: NextRequest) {
   if (!["lead", "active", "completed"].includes(engagementStage)) {
     return NextResponse.json({ error: "Engagement stage must be lead, active, or completed" }, { status: 400 });
   }
+  if (engagementType && !["assessment", "remediation"].includes(engagementType)) {
+    return NextResponse.json({ error: "Package type must be assessment or remediation" }, { status: 400 });
+  }
 
   // 5. Create Supabase auth user via admin API
   const adminClient = createClient(
@@ -43,9 +45,12 @@ export async function POST(req: NextRequest) {
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 
+  // Generate a random temporary password — the client will set their own via the invite email
+  const tempPassword = crypto.randomUUID() + crypto.randomUUID();
+
   const { data: authData, error: authError } = await adminClient.auth.admin.createUser({
     email,
-    password,
+    password: tempPassword,
     email_confirm: true,
     user_metadata: { full_name: contactName, role: "client" },
   });
@@ -68,6 +73,7 @@ export async function POST(req: NextRequest) {
       phone: phone?.trim() || null,
       cmmc_target_level: cmmcTargetLevel,
       engagement_stage: engagementStage,
+      engagement_type: engagementType ?? "assessment",
       notes: notes?.trim() || null,
     })
     .select("id")
@@ -89,6 +95,17 @@ export async function POST(req: NextRequest) {
     console.error("Failed to insert user_roles:", roleError.message);
   }
 
-  // 8. Return success
-  return NextResponse.json({ success: true, clientId: clientData.id, userId });
+  // 8. Send invite email via Supabase password recovery
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "";
+  const { error: resetError } = await adminClient.auth.resetPasswordForEmail(email, {
+    redirectTo: `${appUrl}/update-password`,
+  });
+
+  if (resetError) {
+    console.error("Failed to send invite email:", resetError.message);
+    // Non-fatal: account is created, admin can manually reset password
+  }
+
+  // 9. Return success
+  return NextResponse.json({ success: true, clientId: clientData.id, userId, inviteEmailSent: !resetError });
 }

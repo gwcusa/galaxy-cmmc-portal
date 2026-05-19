@@ -1,23 +1,40 @@
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import Link from "next/link";
 
+const ASSESSMENT_STATUS_CONFIG: Record<string, { label: string; color: string }> = {
+  in_progress:          { label: "In Progress",         color: "#00C9FF" },
+  submitted:            { label: "Submitted",            color: "#FFB347" },
+  under_review:         { label: "Under Review",         color: "#A78BFA" },
+  remediation_required: { label: "Remediation Required", color: "#F87171" },
+  resubmitted:          { label: "Resubmitted",          color: "#FFB347" },
+  approved:             { label: "Approved",             color: "#4DFFA0" },
+  finalized:            { label: "Finalized",            color: "#4DFFA0" },
+  archived:             { label: "Archived",             color: "rgba(255,255,255,0.3)" },
+};
+
 export default async function AdminDashboardPage() {
   const supabase = createServerSupabaseClient();
 
   const { data: clients } = await supabase
     .from("clients")
-    .select("id, company_name, contact_name, cmmc_target_level, engagement_stage, assessments(id, total_score, status)")
+    .select("id, company_name, contact_name, cmmc_target_level, engagement_stage, engagement_type, assessments(id, status, started_at)")
     .order("created_at", { ascending: false });
 
   const totalClients = clients?.length ?? 0;
   const activeEngagements = clients?.filter((c) => c.engagement_stage === "active").length ?? 0;
-  const completed = clients?.filter((c) => c.engagement_stage === "completed").length ?? 0;
-  const scores = clients?.flatMap((c) =>
-    (c.assessments as { total_score: number | null; status: string }[])
-      ?.filter((a) => a.total_score !== null)
-      .map((a) => a.total_score as number) ?? []
-  ) ?? [];
-  const avgScore = scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+
+  // Count clients whose latest non-archived assessment is finalized
+  const finalizedCount = clients?.filter((c) => {
+    const assessments = (c.assessments as { id: string; status: string }[]) ?? [];
+    const active = assessments.find((a) => a.status !== "archived");
+    return active?.status === "finalized";
+  }).length ?? 0;
+
+  // Count assessments currently awaiting review (submitted or resubmitted)
+  const pendingReviewCount = clients?.filter((c) => {
+    const assessments = (c.assessments as { id: string; status: string }[]) ?? [];
+    return assessments.some((a) => a.status === "submitted" || a.status === "resubmitted");
+  }).length ?? 0;
 
   const stageColor: Record<string, string> = { lead: "#FFB347", active: "#00C9FF", completed: "#4DFFA0" };
   const card = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
@@ -41,10 +58,10 @@ export default async function AdminDashboardPage() {
       {/* Metrics */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 24 }}>
         {[
-          { label: "Total Clients", value: String(totalClients), color: "#00C9FF" },
-          { label: "Active Engagements", value: String(activeEngagements), color: "#4DFFA0" },
-          { label: "Assessments Complete", value: String(completed), color: "#FFB347" },
-          { label: "Avg. Score", value: `${avgScore}%`, color: "#F87171" },
+          { label: "Total Clients",      value: String(totalClients),       color: "#00C9FF" },
+          { label: "Active Engagements", value: String(activeEngagements),  color: "#4DFFA0" },
+          { label: "Finalized",          value: String(finalizedCount),     color: "#FFB347" },
+          { label: "Pending Review",     value: String(pendingReviewCount), color: pendingReviewCount > 0 ? "#F87171" : "rgba(255,255,255,0.4)" },
         ].map((m, i) => (
           <div key={i} style={card}>
             <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 6 }}>{m.label}</div>
@@ -59,36 +76,41 @@ export default async function AdminDashboardPage() {
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
-              {["Company", "Contact", "CMMC Level", "Stage", "Score", "Action"].map((h) => (
-                <th key={h} style={{ textAlign: "left", fontSize: 11, color: "rgba(255,255,255,0.35)", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", padding: "0 0 12px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>{h}</th>
+              {["Company", "Contact", "CMMC Level", "Package", "Stage", "Assessment", "Action"].map((h) => (
+                <th key={h} style={{ textAlign: "left", fontSize: 11, color: "rgba(255,255,255,0.35)", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", padding: "0 8px 12px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {(clients ?? []).map((c) => {
-              const assessments = c.assessments as { total_score: number | null; status: string }[];
-              const latestScore = assessments?.[0]?.total_score ?? null;
-              const color = stageColor[c.engagement_stage] ?? "#888";
+              const assessments = (c.assessments as { id: string; status: string }[]) ?? [];
+              const activeAssessment = assessments.find((a) => a.status !== "archived") ?? assessments[0];
+              const statusCfg = activeAssessment
+                ? (ASSESSMENT_STATUS_CONFIG[activeAssessment.status] ?? { label: activeAssessment.status, color: "#888" })
+                : null;
+              const stColor = stageColor[c.engagement_stage] ?? "#888";
               return (
                 <tr key={c.id} style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-                  <td style={{ padding: "12px 0", fontSize: 13, fontWeight: 600, color: "#fff" }}>{c.company_name}</td>
+                  <td style={{ padding: "12px 8px 12px 0", fontSize: 13, fontWeight: 600, color: "#fff" }}>{c.company_name}</td>
                   <td style={{ padding: "12px 8px", fontSize: 12, color: "rgba(255,255,255,0.5)" }}>{c.contact_name}</td>
                   <td style={{ padding: "12px 8px" }}>
                     <span style={{ fontSize: 12, color: "#00C9FF", fontWeight: 600 }}>L{c.cmmc_target_level}</span>
                   </td>
                   <td style={{ padding: "12px 8px" }}>
-                    <span style={{ fontSize: 11, padding: "3px 10px", borderRadius: 20, background: `${color}18`, color, fontWeight: 600, textTransform: "capitalize" }}>
+                    <span style={{ fontSize: 11, color: (c as { engagement_type?: string }).engagement_type === "remediation" ? "#4DFFA0" : "#00C9FF" }}>
+                      {(c as { engagement_type?: string }).engagement_type === "remediation" ? "Remediation" : "Assessment"}
+                    </span>
+                  </td>
+                  <td style={{ padding: "12px 8px" }}>
+                    <span style={{ fontSize: 11, padding: "3px 10px", borderRadius: 20, background: `${stColor}18`, color: stColor, fontWeight: 600, textTransform: "capitalize" }}>
                       {c.engagement_stage}
                     </span>
                   </td>
                   <td style={{ padding: "12px 8px" }}>
-                    {latestScore !== null ? (
-                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                        <div style={{ height: 4, width: 60, background: "rgba(255,255,255,0.06)", borderRadius: 2 }}>
-                          <div style={{ height: "100%", width: `${latestScore}%`, background: latestScore > 70 ? "#4DFFA0" : latestScore > 40 ? "#FFB347" : "#F87171", borderRadius: 2 }} />
-                        </div>
-                        <span style={{ fontSize: 12, color: "rgba(255,255,255,0.6)" }}>{latestScore}%</span>
-                      </div>
+                    {statusCfg ? (
+                      <span style={{ fontSize: 11, fontWeight: 600, color: statusCfg.color }}>
+                        {statusCfg.label}
+                      </span>
                     ) : (
                       <span style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>Not started</span>
                     )}

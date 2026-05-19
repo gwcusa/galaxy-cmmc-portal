@@ -21,6 +21,7 @@ export default function AssessmentPage() {
   const [responses, setResponses] = useState<ResponseMap>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [assessmentId, setAssessmentId] = useState<string | null>(null);
+  const [assessmentStatus, setAssessmentStatus] = useState<string>("in_progress");
   const [clientId, setClientId] = useState<string | null>(null);
   const [targetLevel, setTargetLevel] = useState<1 | 2>(2);
   const [saving, setSaving] = useState(false);
@@ -29,8 +30,6 @@ export default function AssessmentPage() {
   const [artifacts, setArtifacts] = useState<Record<string, ArtifactItem[]>>({});
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
-  const [aiFeedback, setAiFeedback] = useState<Record<string, { verdict: string; feedback: string } | null>>({});
-  const [aiLoading, setAiLoading] = useState<Record<string, boolean>>({});
   const supabase = createClient();
 
   useEffect(() => {
@@ -52,6 +51,7 @@ export default function AssessmentPage() {
       const data = await res.json();
 
       setAssessmentId(data.assessmentId);
+      setAssessmentStatus(data.assessmentStatus ?? "in_progress");
       const responseMap: ResponseMap = {};
       const notesMap: Record<string, string> = {};
       for (const r of data.responses) {
@@ -121,7 +121,6 @@ export default function AssessmentPage() {
     const resp = responses[control.id];
     if (resp !== "yes" && resp !== "partial") return;
     loadArtifacts(control.id);
-    loadAiFeedback(control.id);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step, assessmentId, responses[control?.id ?? ""]]);
 
@@ -132,32 +131,6 @@ export default function AssessmentPage() {
       const data = await res.json();
       setArtifacts((prev) => ({ ...prev, [controlId]: data.artifacts }));
     }
-  }
-
-  async function loadAiFeedback(controlId: string) {
-    if (!assessmentId) return;
-    const res = await fetch(`/api/ai-review?assessmentId=${assessmentId}&controlId=${controlId}`);
-    if (res.ok) {
-      const data = await res.json();
-      if (data.verdict) {
-        setAiFeedback(prev => ({ ...prev, [controlId]: { verdict: data.verdict, feedback: data.feedback } }));
-      }
-    }
-  }
-
-  async function triggerAiReview(controlId: string) {
-    if (!assessmentId) return;
-    setAiLoading(prev => ({ ...prev, [controlId]: true }));
-    const res = await fetch("/api/ai-review", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ assessmentId, controlId }),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      setAiFeedback(prev => ({ ...prev, [controlId]: { verdict: data.verdict, feedback: data.feedback } }));
-    }
-    setAiLoading(prev => ({ ...prev, [controlId]: false }));
   }
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -210,10 +183,67 @@ export default function AssessmentPage() {
     );
   }
 
+  // Assessment is locked for editing once submitted — EXCEPT when remediation is required
+  const isResubmission = assessmentStatus === "remediation_required";
+  if (assessmentStatus !== "in_progress" && !isResubmission) {
+    const statusLabel: Record<string, string> = {
+      submitted: "Submitted — Awaiting Review",
+      under_review: "Under Review",
+      resubmitted: "Resubmitted — Awaiting Review",
+      approved: "Approved",
+      finalized: "Finalized",
+      archived: "Archived",
+    };
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "60vh", flexDirection: "column", gap: 16 }}>
+        <div style={{ fontSize: 36, opacity: 0.5 }}>✓</div>
+        <div style={{ fontSize: 20, fontWeight: 700, color: "#fff" }}>
+          Assessment {statusLabel[assessmentStatus] ?? assessmentStatus.replace(/_/g, " ")}
+        </div>
+        <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", textAlign: "center", maxWidth: 420 }}>
+          Your assessment has been submitted and is no longer editable.
+          Return to your dashboard to check the status.
+        </div>
+        <a href="/portal/dashboard" style={{
+          marginTop: 8, padding: "11px 24px", borderRadius: 8, fontSize: 13, fontWeight: 600,
+          background: "linear-gradient(135deg, #00C9FF, #4DFFA0)", color: "#050B18",
+          textDecoration: "none",
+        }}>
+          Go to Dashboard
+        </a>
+      </div>
+    );
+  }
+
   const card = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
 
   return (
     <div>
+      {/* Remediation required banner */}
+      {isResubmission && (
+        <div style={{
+          background: "rgba(248,113,113,0.06)",
+          border: "1px solid rgba(248,113,113,0.2)",
+          borderRadius: 12,
+          padding: "14px 20px",
+          marginBottom: 20,
+          display: "flex",
+          gap: 14,
+          alignItems: "flex-start",
+        }}>
+          <span style={{ fontSize: 18, lineHeight: 1 }}>!</span>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: "#F87171", marginBottom: 4 }}>
+              Action Required — Remediation Requested
+            </div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.6 }}>
+              Your assessor has identified items that need attention. Review the Galaxy Recommendations on
+              each relevant control, update your responses and notes, then resubmit when ready.
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
         <div>
@@ -399,60 +429,6 @@ export default function AssessmentPage() {
           </div>
         )}
 
-        {/* AI Evidence Review */}
-        {(currentResponse === "yes" || currentResponse === "partial") && (
-          <div style={{ marginBottom: 24 }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px" }}>
-                AI Evidence Review
-              </div>
-              <button
-                onClick={() => triggerAiReview(control.id)}
-                disabled={aiLoading[control.id]}
-                style={{
-                  fontSize: 11, padding: "4px 12px", borderRadius: 6, cursor: "pointer",
-                  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-                  color: "rgba(255,255,255,0.5)",
-                }}
-              >
-                {aiLoading[control.id] ? "Analyzing..." : aiFeedback[control.id] ? "Re-analyze" : "Analyze Evidence"}
-              </button>
-            </div>
-
-            {aiLoading[control.id] && (
-              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", fontStyle: "italic" }}>
-                Claude is reviewing your evidence...
-              </div>
-            )}
-
-            {!aiLoading[control.id] && aiFeedback[control.id] && (() => {
-              const fb = aiFeedback[control.id]!;
-              const verdictConfig = {
-                sufficient: { color: "#4DFFA0", bg: "rgba(77,255,160,0.08)", border: "rgba(77,255,160,0.2)", label: "\u2713 Sufficient" },
-                needs_more: { color: "#FFB347", bg: "rgba(255,179,71,0.08)", border: "rgba(255,179,71,0.2)", label: "\u26A0 Needs More Evidence" },
-                insufficient: { color: "#F87171", bg: "rgba(248,113,113,0.08)", border: "rgba(248,113,113,0.2)", label: "\u2717 Insufficient" },
-              }[fb.verdict as "sufficient" | "needs_more" | "insufficient"] ?? { color: "#FFB347", bg: "rgba(255,179,71,0.08)", border: "rgba(255,179,71,0.2)", label: fb.verdict };
-
-              return (
-                <div style={{ background: verdictConfig.bg, border: `1px solid ${verdictConfig.border}`, borderRadius: 10, padding: "14px 16px" }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: verdictConfig.color, marginBottom: 8 }}>
-                    {verdictConfig.label}
-                  </div>
-                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>
-                    {fb.feedback}
-                  </div>
-                </div>
-              );
-            })()}
-
-            {!aiLoading[control.id] && !aiFeedback[control.id] && (
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", fontStyle: "italic" }}>
-                Click &quot;Analyze Evidence&quot; to get AI feedback on your notes and uploaded files.
-              </div>
-            )}
-          </div>
-        )}
-
         {/* Galaxy Recommendation callout (approved guidance only) */}
         {approvedGuidance[control.id] && (
           <div style={{
@@ -487,16 +463,32 @@ export default function AssessmentPage() {
             Previous
           </button>
           <button
-            onClick={() => {
-              if (step < controls.length - 1) setStep((s) => s + 1);
-              else window.location.href = "/portal/dashboard";
+            onClick={async () => {
+              if (step < controls.length - 1) {
+                setStep((s) => s + 1);
+              } else {
+                if (assessmentId) {
+                  setSaving(true);
+                  await fetch("/api/assessment/submit", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ assessmentId }),
+                  }).catch(() => {});
+                }
+                window.location.href = "/portal/dashboard";
+              }
             }}
             style={{
               padding: "11px 22px", borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: "pointer",
               background: "linear-gradient(135deg, #00C9FF, #4DFFA0)", color: "#050B18", border: "none",
             }}
           >
-            {step < controls.length - 1 ? "Next Control" : "Complete & View Dashboard"}
+            {step < controls.length - 1
+              ? "Next Control"
+              : isResubmission
+                ? "Resubmit Assessment"
+                : "Complete & View Dashboard"
+            }
           </button>
         </div>
       </div>
