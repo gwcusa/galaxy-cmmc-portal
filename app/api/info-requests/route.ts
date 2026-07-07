@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 
 // GET /api/info-requests — client: list their pending/responded requests
-export async function GET(req: NextRequest) {
+export async function GET() {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const svc = createServiceSupabaseClient();
 
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
   const { data: client } = await svc
     .from("clients")
     .select("id, engagement_type")
-    .eq("user_id", session.user.id)
+    .eq("user_id", user.id)
     .single();
 
   if (!client) return NextResponse.json({ requests: [] });

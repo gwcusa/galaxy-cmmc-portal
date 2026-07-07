@@ -3,14 +3,14 @@ import { createClient } from "@supabase/supabase-js";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 
 export async function POST(req: NextRequest) {
-  // 1. Verify session
+  // 1. Verify user
   const serverSupabase = createServerSupabaseClient();
-  const { data: { session } } = await serverSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await serverSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   // 2. Check admin role via user_roles table
   const serviceSupabaseForRole = createServiceSupabaseClient();
-  const { data: roleRow } = await serviceSupabaseForRole.from("user_roles").select("role").eq("user_id", session.user.id).single();
+  const { data: roleRow } = await serviceSupabaseForRole.from("user_roles").select("role").eq("user_id", user.id).single();
   if (roleRow?.role !== "admin") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }

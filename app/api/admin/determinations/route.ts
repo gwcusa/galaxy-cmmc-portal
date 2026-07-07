@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
+import { logAudit } from "@/lib/audit";
 
 // GET /api/admin/determinations?assessmentId=xxx
 export async function GET(req: NextRequest) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const serviceSupabase = createServiceSupabaseClient();
   const { data: role } = await serviceSupabase
-    .from("user_roles").select("role").eq("user_id", session.user.id).single();
+    .from("user_roles").select("role").eq("user_id", user.id).single();
   if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const assessmentId = req.nextUrl.searchParams.get("assessmentId");
@@ -29,12 +30,12 @@ export async function GET(req: NextRequest) {
 // Upserts a single assessor determination for a control.
 export async function POST(req: NextRequest) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const serviceSupabase = createServiceSupabaseClient();
   const { data: role } = await serviceSupabase
-    .from("user_roles").select("role").eq("user_id", session.user.id).single();
+    .from("user_roles").select("role").eq("user_id", user.id).single();
   if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const { assessmentId, controlId, assessorVerdict, assessorNotes } = await req.json();
@@ -66,7 +67,7 @@ export async function POST(req: NextRequest) {
         ai_feedback: aiData?.feedback ?? null,
         assessor_verdict: assessorVerdict,
         assessor_notes: assessorNotes ?? null,
-        reviewed_by: session.user.id,
+        reviewed_by: user.id,
         reviewed_at: now,
         updated_at: now,
       },
@@ -74,5 +75,15 @@ export async function POST(req: NextRequest) {
     );
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  logAudit({
+    actorId: user.id,
+    actorRole: "admin",
+    action: "determination.recorded",
+    entityType: "assessment",
+    entityId: assessmentId,
+    metadata: { controlId, assessorVerdict, aiVerdict: aiData?.verdict ?? null },
+  });
+
   return NextResponse.json({ success: true, reviewedAt: now });
 }

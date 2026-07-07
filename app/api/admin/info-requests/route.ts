@@ -4,12 +4,12 @@ import { sendInfoRequestEmail } from "@/lib/email";
 
 async function requireAdmin() {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return { error: "Unauthorized", status: 401 };
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return { error: "Unauthorized", status: 401 };
   const svc = createServiceSupabaseClient();
-  const { data: role } = await svc.from("user_roles").select("role").eq("user_id", session.user.id).single();
+  const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
   if (role?.role !== "admin") return { error: "Forbidden", status: 403 };
-  return { session, svc };
+  return { user, svc };
 }
 
 // GET /api/admin/info-requests?assessmentId=xxx
@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await svc
     .from("information_requests")
-    .select("id, subject, body, status, requested_at, client_response, responded_at")
+    .select("id, subject, body, status, requested_at, client_response, responded_at, request_type, control_id, questions, answers")
     .eq("assessment_id", assessmentId)
     .order("requested_at", { ascending: false });
 
@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const result = await requireAdmin();
   if ("error" in result) return NextResponse.json({ error: result.error }, { status: result.status });
-  const { session, svc } = result;
+  const { user, svc } = result;
 
   const { assessmentId, subject, body } = await req.json();
   if (!assessmentId || !subject?.trim() || !body?.trim()) {
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
       subject: subject.trim(),
       body: body.trim(),
       status: "pending",
-      requested_by: session.user.id,
+      requested_by: user.id,
     })
     .select("id, subject, body, status, requested_at")
     .single();

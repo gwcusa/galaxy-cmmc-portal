@@ -4,8 +4,8 @@ import { createServiceSupabaseClient } from "@/lib/supabase-server";
 // GET /api/assessment?clientId=xxx
 export async function GET(req: NextRequest) {
   const supabase = createServiceSupabaseClient();
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const clientId = req.nextUrl.searchParams.get("clientId");
   if (!clientId) return NextResponse.json({ error: "clientId required" }, { status: 400 });
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     .from("clients")
     .select("id")
     .eq("id", clientId)
-    .eq("user_id", session.user.id)
+    .eq("user_id", user.id)
     .single();
 
   if (!client) return NextResponse.json({ error: "Client not found" }, { status: 404 });
@@ -55,8 +55,8 @@ export async function GET(req: NextRequest) {
 // POST /api/assessment
 export async function POST(req: NextRequest) {
   const supabase = createServiceSupabaseClient();
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await req.json();
   const { assessmentId, controlId, response, notes, no_artifacts } = body;

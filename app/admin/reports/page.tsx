@@ -251,7 +251,7 @@ export default async function AdminReportsPage() {
         <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 14 }}>Domain Weakness Analysis</div>
         <div style={card}>
           <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginBottom: 16 }}>
-            Top 7 domains by number of "No" responses across all client assessments
+            Top 7 domains by number of &quot;No&quot; responses across all client assessments
           </div>
           {domainGapList.every((d) => d.gaps === 0) ? (
             <div style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", textAlign: "center", padding: "24px 0" }}>

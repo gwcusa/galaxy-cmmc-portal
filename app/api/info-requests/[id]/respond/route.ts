@@ -8,8 +8,8 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const svc = createServiceSupabaseClient();
 
@@ -17,14 +17,14 @@ export async function POST(
   const { data: client } = await svc
     .from("clients")
     .select("id")
-    .eq("user_id", session.user.id)
+    .eq("user_id", user.id)
     .single();
   if (!client) return NextResponse.json({ error: "Client not found" }, { status: 404 });
 
   // Verify this request belongs to the client's assessment
   const { data: infoReq } = await svc
     .from("information_requests")
-    .select("id, assessment_id, status, subject")
+    .select("id, assessment_id, status, subject, request_type, questions")
     .eq("id", params.id)
     .single();
 
@@ -41,16 +41,38 @@ export async function POST(
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const { response } = await req.json();
-  if (!response?.trim()) {
-    return NextResponse.json({ error: "response text is required" }, { status: 400 });
+  const { response, answers } = await req.json();
+
+  // Structured intake requests answer per-question; free-form requests answer with text
+  let responseText: string;
+  let answersJson: Record<string, string> | null = null;
+
+  if (infoReq.request_type === "ai_intake" && answers && typeof answers === "object") {
+    const questions = (infoReq.questions ?? []) as { id: string; question: string }[];
+    const answered = questions.filter((q) => String(answers[q.id] ?? "").trim());
+    if (answered.length === 0) {
+      return NextResponse.json({ error: "Please answer at least one question" }, { status: 400 });
+    }
+    answersJson = Object.fromEntries(
+      questions.map((q) => [q.id, String(answers[q.id] ?? "").trim()])
+    );
+    // Readable Q/A rendering so the assessor view and emails keep working
+    responseText = answered
+      .map((q) => `Q: ${q.question}\nA: ${String(answers[q.id]).trim()}`)
+      .join("\n\n");
+  } else {
+    if (!response?.trim()) {
+      return NextResponse.json({ error: "response text is required" }, { status: 400 });
+    }
+    responseText = response.trim();
   }
 
   const { error } = await svc
     .from("information_requests")
     .update({
       status: "responded",
-      client_response: response.trim(),
+      client_response: responseText,
+      answers: answersJson,
       responded_at: new Date().toISOString(),
     })
     .eq("id", params.id);
@@ -70,7 +92,7 @@ export async function POST(
       contactName: clientRecord.contact_name,
       clientId: clientRecord.id,
       subject: infoReq.subject,
-      response: response.trim(),
+      response: responseText,
     }).catch(() => {});
   }
 

@@ -48,8 +48,8 @@ async function getClientIdForAssessment(
 // GET /api/artifacts?assessmentId=xxx&controlId=yyy
 export async function GET(req: NextRequest) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const assessmentId = req.nextUrl.searchParams.get("assessmentId");
   const controlId = req.nextUrl.searchParams.get("controlId");
@@ -58,7 +58,7 @@ export async function GET(req: NextRequest) {
   }
 
   const serviceSupabase = createServiceSupabaseClient();
-  const clientId = await getClientIdForAssessment(serviceSupabase, assessmentId, session.user.id);
+  const clientId = await getClientIdForAssessment(serviceSupabase, assessmentId, user.id);
   if (!clientId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const { data: artifactRows, error } = await serviceSupabase
@@ -93,8 +93,8 @@ export async function GET(req: NextRequest) {
 // POST /api/artifacts — multipart form upload
 export async function POST(req: NextRequest) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const formData = await req.formData();
   const assessmentId = formData.get("assessmentId") as string | null;
@@ -113,16 +113,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "File exceeds 10MB limit" }, { status: 400 });
   }
 
-  // Validate type by extension and mime
+  // Validate type by extension and mime (browsers may omit the mime type; extension is mandatory)
   const ext = "." + file.name.split(".").pop()?.toLowerCase();
-  const mimeOk = ALLOWED_TYPES.includes(file.type) || ALLOWED_TYPES.includes("image/jpg");
   const extOk = ALLOWED_EXTENSIONS.includes(ext);
-  if (!extOk) {
+  const mimeOk = !file.type || ALLOWED_TYPES.includes(file.type);
+  if (!extOk || !mimeOk) {
     return NextResponse.json({ error: "File type not allowed. Accepted: PDF, PNG, JPG, DOCX, XLSX, TXT" }, { status: 400 });
   }
 
   const serviceSupabase = createServiceSupabaseClient();
-  const clientId = await getClientIdForAssessment(serviceSupabase, assessmentId, session.user.id);
+  const clientId = await getClientIdForAssessment(serviceSupabase, assessmentId, user.id);
   if (!clientId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   // Ensure bucket exists
@@ -156,7 +156,7 @@ export async function POST(req: NextRequest) {
       storage_path: storagePath,
       file_size: file.size,
       mime_type: file.type || null,
-      uploaded_by: session.user.id,
+      uploaded_by: user.id,
       uploaded_at: new Date().toISOString(),
     })
     .select("id, file_name, file_size, mime_type, uploaded_at")
@@ -188,8 +188,8 @@ export async function POST(req: NextRequest) {
 // DELETE /api/artifacts?artifactId=xxx
 export async function DELETE(req: NextRequest) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const artifactId = req.nextUrl.searchParams.get("artifactId");
   if (!artifactId) return NextResponse.json({ error: "artifactId required" }, { status: 400 });
@@ -215,7 +215,7 @@ export async function DELETE(req: NextRequest) {
       : assessment.clients
     : null;
 
-  if (!client || client.user_id !== session.user.id) {
+  if (!client || client.user_id !== user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

@@ -7,11 +7,11 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const svc = createServiceSupabaseClient();
-  const { data: role } = await svc.from("user_roles").select("role").eq("user_id", session.user.id).single();
+  const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
   if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const { status } = await req.json();

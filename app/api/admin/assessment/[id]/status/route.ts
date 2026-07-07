@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { sendStatusChangeEmail } from "@/lib/email";
+import { logAudit } from "@/lib/audit";
 
 // Valid assessor-driven status transitions
 const ALLOWED_TRANSITIONS: Record<string, string[]> = {
@@ -18,8 +19,8 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const serviceSupabase = createServiceSupabaseClient();
 
@@ -27,7 +28,7 @@ export async function POST(
   const { data: role } = await serviceSupabase
     .from("user_roles")
     .select("role")
-    .eq("user_id", session.user.id)
+    .eq("user_id", user.id)
     .single();
   if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
@@ -62,6 +63,15 @@ export async function POST(
     .eq("id", assessmentId);
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  logAudit({
+    actorId: user.id,
+    actorRole: "admin",
+    action: "assessment.status_changed",
+    entityType: "assessment",
+    entityId: assessmentId,
+    metadata: { from: assessment.status, to: newStatus },
+  });
 
   // Notify client of status change — fire and forget
   const { data: clientRecord } = await serviceSupabase

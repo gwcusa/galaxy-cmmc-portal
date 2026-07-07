@@ -136,12 +136,12 @@ export default async function DashboardPage() {
   }
 
   // Fetch open information requests (remediation clients only)
-  let infoRequests: { id: string; subject: string; body: string; status: string; requested_at: string; client_response: string | null }[] = [];
+  let infoRequests: { id: string; subject: string; body: string; status: string; requested_at: string; client_response: string | null; request_type: string | null; questions: { id: string; question: string; hint?: string }[] | null; answers: Record<string, string> | null }[] = [];
   const isRemediation = client?.engagement_type === "remediation";
   if (isRemediation && assessment) {
     const { data: reqs } = await supabase
       .from("information_requests")
-      .select("id, subject, body, status, requested_at, client_response")
+      .select("id, subject, body, status, requested_at, client_response, request_type, questions, answers")
       .eq("assessment_id", assessment.id)
       .neq("status", "closed")
       .order("requested_at", { ascending: false });

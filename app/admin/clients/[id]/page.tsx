@@ -13,6 +13,10 @@ import InformationRequestsPanel from "./InformationRequestsPanel";
 import ArtifactGenerationPanel from "./ArtifactGenerationPanel";
 import ClientInfoEditor from "./ClientInfoEditor";
 import RunAiButton from "./RunAiButton";
+import AssessmentSummaryPanel, { AssessmentSummary } from "./AssessmentSummaryPanel";
+import IntakeQuestionsPanel from "./IntakeQuestionsPanel";
+import AssignAssessorSelect from "./AssignAssessorSelect";
+import { formatScopingForPrompt } from "@/lib/scoping-questions";
 
 const controlsMap = new Map(CONTROLS.map((c) => [c.id, c]));
 const domainsMap = new Map(DOMAINS.map((d) => [d.code, d]));
@@ -35,7 +39,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
 
   const { data: assessments } = await supabase
     .from("assessments")
-    .select("id, status, started_at, completed_at")
+    .select("id, status, started_at, completed_at, assigned_to")
     .eq("client_id", params.id)
     .order("started_at", { ascending: false });
 
@@ -101,7 +105,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
   }
 
   // AI feedback
-  let aiFeedbackMap: Record<string, { verdict: string; feedback: string; generated_at: string }> = {};
+  const aiFeedbackMap: Record<string, { verdict: string; feedback: string; generated_at: string }> = {};
   if (activeAssessment) {
     const { data } = await supabase
       .from("control_ai_feedback")
@@ -111,7 +115,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
   }
 
   // Assessor determinations
-  let determinationsMap: Record<string, { assessor_verdict: string; assessor_notes: string | null; reviewed_at: string }> = {};
+  const determinationsMap: Record<string, { assessor_verdict: string; assessor_notes: string | null; reviewed_at: string }> = {};
   if (activeAssessment) {
     const { data } = await supabase
       .from("assessor_determinations")
@@ -153,6 +157,51 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
       return a.controlId.localeCompare(b.controlId);
     });
 
+  // Client document library (with confirmed control mappings)
+  const { data: libraryDocs } = await supabase
+    .from("documents")
+    .select("id, file_name, title, doc_type, storage_path, uploaded_at, document_control_links(control_id, status)")
+    .eq("client_id", params.id)
+    .order("uploaded_at", { ascending: false });
+
+  const libraryWithUrls = await Promise.all(
+    (libraryDocs ?? []).map(async (d) => {
+      const { data } = await storageClient.storage.from("documents").createSignedUrl(d.storage_path, 3600);
+      const links = (d.document_control_links ?? []) as { control_id: string; status: string }[];
+      return {
+        id: d.id,
+        name: d.title ?? d.file_name,
+        docType: d.doc_type,
+        uploadedAt: d.uploaded_at,
+        signedUrl: data?.signedUrl ?? null,
+        confirmed: links.filter((l) => l.status === "confirmed").map((l) => l.control_id),
+        suggested: links.filter((l) => l.status === "suggested").length,
+      };
+    })
+  );
+
+  // Engagement-level AI synthesis + scoping profile
+  let summary: AssessmentSummary | null = null;
+  let scopingText: string | null = null;
+  if (activeAssessment) {
+    const [{ data: summaryRow }, { data: scopingRow }] = await Promise.all([
+      supabase
+        .from("assessment_summaries")
+        .select("overall_verdict, narrative, sprs_estimate, poam_eligible, domain_rollups, top_blockers, contradictions, generated_at")
+        .eq("assessment_id", activeAssessment.id)
+        .maybeSingle(),
+      supabase
+        .from("assessment_scoping")
+        .select("answers")
+        .eq("assessment_id", activeAssessment.id)
+        .maybeSingle(),
+    ]);
+    summary = (summaryRow as AssessmentSummary | null) ?? null;
+    if (scopingRow?.answers && Object.keys(scopingRow.answers).length > 0) {
+      scopingText = formatScopingForPrompt(scopingRow.answers as Record<string, unknown>);
+    }
+  }
+
   const score = calculateScore(responses, (client.cmmc_target_level as 1 | 2) ?? 2);
   const card: React.CSSProperties = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
   const stageColor: Record<string, string> = { lead: "#FFB347", active: "#00C9FF", completed: "#4DFFA0" };
@@ -176,7 +225,15 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
             </span>
           </div>
         </div>
-        <ResetPasswordButton clientId={params.id} />
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          {activeAssessment && (
+            <AssignAssessorSelect
+              assessmentId={activeAssessment.id}
+              assignedTo={(activeAssessment as { assigned_to?: string | null }).assigned_to ?? null}
+            />
+          )}
+          <ResetPasswordButton clientId={params.id} />
+        </div>
       </div>
 
       {/* Assessment lifecycle bar — only when assessment exists and not in_progress */}
@@ -206,8 +263,13 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
       )}
 
       {/* Score metrics (assessor-only) */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginBottom: 24 }}>
+      <div style={{ display: "grid", gridTemplateColumns: `repeat(${score.sprs ? 5 : 4}, 1fr)`, gap: 16, marginBottom: 24 }}>
         {[
+          ...(score.sprs ? [{
+            label: "SPRS Score",
+            value: score.sprs.scoreable ? String(score.sprs.score) : "No SSP",
+            color: !score.sprs.scoreable ? "#F87171" : score.sprs.score >= 88 ? "#4DFFA0" : score.sprs.score >= 0 ? "#FFB347" : "#F87171",
+          }] : []),
           { label: "Readiness Score", value: `${score.overallScore}%`, color: score.overallScore >= 70 ? "#4DFFA0" : score.overallScore >= 40 ? "#FFB347" : "#F87171" },
           { label: "Gaps (No)",        value: String(score.gaps),    color: "#F87171" },
           { label: "Passed (Yes)",     value: String(score.passed),  color: "#4DFFA0" },
@@ -219,6 +281,63 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
           </div>
         ))}
       </div>
+      {score.sprs && (
+        <div style={{
+          fontSize: 12, borderRadius: 10, padding: "10px 16px", marginBottom: 24,
+          color: score.sprs.poamEligible ? "#4DFFA0" : "rgba(255,255,255,0.55)",
+          background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
+        }}>
+          {!score.sprs.scoreable
+            ? "SPRS score cannot be calculated: 3.12.4 (System Security Plan) is not in place. An SSP is a precondition for a DoD assessment."
+            : score.sprs.poamEligible
+            ? `POA&M eligible for CMMC Level 2 Conditional status (score ≥ 88, all open gaps are 1-point items). Deductions: ${score.sprs.deductions.reduce((n, d) => n + d.points, 0)} points across ${score.sprs.deductions.length} requirements.`
+            : `Not POA&M eligible: ${score.sprs.score < 88 ? `score ${score.sprs.score} is below the 88-point minimum` : ""}${score.sprs.score < 88 && score.sprs.poamBlockers.length > 0 ? "; " : ""}${score.sprs.poamBlockers.length > 0 ? `${score.sprs.poamBlockers.length} gap(s) on 3/5-point requirements (${score.sprs.poamBlockers.slice(0, 6).join(", ")}${score.sprs.poamBlockers.length > 6 ? "…" : ""})` : ""}`}
+        </div>
+      )}
+
+      {/* Engagement-level readiness synthesis */}
+      {summary && <AssessmentSummaryPanel summary={summary} />}
+
+      {/* Client scoping profile */}
+      {scopingText && (
+        <div style={{ ...card, marginBottom: 24 }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 12 }}>Environment Scoping Profile</div>
+          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>
+            {scopingText}
+          </div>
+        </div>
+      )}
+
+      {/* Client document library */}
+      {libraryWithUrls.length > 0 && (
+        <div style={{ ...card, marginBottom: 24 }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 12 }}>
+            Document Library ({libraryWithUrls.length})
+          </div>
+          {libraryWithUrls.map((d, i) => (
+            <div key={d.id} style={{
+              display: "flex", alignItems: "center", gap: 12, padding: "9px 0",
+              borderTop: i > 0 ? "1px solid rgba(255,255,255,0.05)" : "none", fontSize: 13,
+            }}>
+              {d.signedUrl ? (
+                <a href={d.signedUrl} target="_blank" rel="noreferrer" style={{ color: "#00C9FF", textDecoration: "none", fontWeight: 600 }}>
+                  {d.name}
+                </a>
+              ) : (
+                <span style={{ color: "#E2E8F0", fontWeight: 600 }}>{d.name}</span>
+              )}
+              {d.docType && <span style={{ color: "rgba(255,255,255,0.35)", fontSize: 12 }}>{d.docType}</span>}
+              <span style={{ flex: 1 }} />
+              <span style={{ color: "rgba(255,255,255,0.45)", fontSize: 12 }}>
+                {d.confirmed.length > 0
+                  ? `evidence for ${d.confirmed.length} control${d.confirmed.length === 1 ? "" : "s"}`
+                  : "no confirmed mappings"}
+                {d.suggested > 0 ? ` · ${d.suggested} pending` : ""}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Score gauge + domain breakdown */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 24 }}>
@@ -317,6 +436,34 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         </div>
       )}
 
+      {/* Gap Intake Questions — remediation package only */}
+      {client.engagement_type === "remediation" && activeAssessment && (
+        <div style={{ marginBottom: 40 }}>
+          <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", marginBottom: 6 }}>
+            Gap Intake Questions
+          </div>
+          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 20 }}>
+            One click generates plain-language questions about a gap, grounded in everything the client
+            already submitted. Their answers feed artifact generation below.
+          </div>
+          <IntakeQuestionsPanel
+            assessmentId={activeAssessment.id}
+            gaps={responseRows
+              .filter((r) => {
+                const aiVerdict = aiFeedbackMap[r.control_id]?.verdict;
+                return r.response === "no" || r.response === "partial" ||
+                  aiVerdict === "not_met" || aiVerdict === "partially_met";
+              })
+              .map((r) => ({
+                id: r.control_id,
+                description: controlsMap.get(r.control_id)?.description ?? r.control_id,
+                verdict: aiFeedbackMap[r.control_id]?.verdict ?? r.response,
+              }))
+              .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }))}
+          />
+        </div>
+      )}
+
       {/* Artifact Generation — remediation package only */}
       {client.engagement_type === "remediation" && activeAssessment && (
         <div style={{ marginBottom: 40 }}>
@@ -326,7 +473,20 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
           <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 20 }}>
             Generate SSP, POA&amp;M, and policy templates based on this client&apos;s assessment data and determinations.
           </div>
-          <ArtifactGenerationPanel assessmentId={activeAssessment.id} />
+          <ArtifactGenerationPanel
+            assessmentId={activeAssessment.id}
+            gaps={responseRows
+              .filter((r) => {
+                const aiVerdict = aiFeedbackMap[r.control_id]?.verdict;
+                return r.response === "no" || r.response === "partial" ||
+                  aiVerdict === "not_met" || aiVerdict === "partially_met";
+              })
+              .map((r) => ({
+                id: r.control_id,
+                description: controlsMap.get(r.control_id)?.description ?? r.control_id,
+              }))
+              .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }))}
+          />
         </div>
       )}
 

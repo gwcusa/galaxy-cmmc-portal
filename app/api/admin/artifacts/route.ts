@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
+import { logAudit } from "@/lib/audit";
 
 // GET /api/admin/artifacts?assessmentId=xxx — list all generated artifacts
 export async function GET(req: NextRequest) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const svc = createServiceSupabaseClient();
-  const { data: role } = await svc.from("user_roles").select("role").eq("user_id", session.user.id).single();
+  const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
   if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const assessmentId = req.nextUrl.searchParams.get("assessmentId");
@@ -16,7 +17,7 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await svc
     .from("generated_artifacts")
-    .select("id, artifact_type, title, content, status, generated_at, updated_at")
+    .select("id, artifact_type, control_id, version, title, content, status, generated_at, updated_at")
     .eq("assessment_id", assessmentId)
     .order("generated_at", { ascending: false });
 
@@ -27,11 +28,11 @@ export async function GET(req: NextRequest) {
 // PATCH /api/admin/artifacts — update content or finalize
 export async function PATCH(req: NextRequest) {
   const authSupabase = createServerSupabaseClient();
-  const { data: { session } } = await authSupabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await authSupabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const svc = createServiceSupabaseClient();
-  const { data: role } = await svc.from("user_roles").select("role").eq("user_id", session.user.id).single();
+  const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
   if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const { id, content, status } = await req.json();
@@ -39,8 +40,7 @@ export async function PATCH(req: NextRequest) {
 
   const updates: Record<string, string> = { updated_at: new Date().toISOString() };
   if (content !== undefined) updates.content = content;
-  if (status === "finalized") updates.status = "finalized";
-  else if (status === "draft") updates.status = "draft";
+  if (["finalized", "draft", "published"].includes(status)) updates.status = status;
 
   const { error } = await svc
     .from("generated_artifacts")
@@ -48,5 +48,14 @@ export async function PATCH(req: NextRequest) {
     .eq("id", id);
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  logAudit({
+    actorId: user.id,
+    actorRole: "admin",
+    action: updates.status ? `artifact.status_${updates.status}` : "artifact.edited",
+    entityType: "artifact",
+    entityId: id,
+  });
+
   return NextResponse.json({ success: true });
 }

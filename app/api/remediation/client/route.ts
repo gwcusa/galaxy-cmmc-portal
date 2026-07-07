@@ -6,8 +6,8 @@ import { createServerSupabaseClient } from "@/lib/supabase-server";
 // No admin check — RLS enforces that clients only see approved notes for their own assessments.
 export async function GET(req: NextRequest) {
   const supabase = createServerSupabaseClient();
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const assessmentId = req.nextUrl.searchParams.get("assessmentId");
   if (!assessmentId) return NextResponse.json({ error: "assessmentId required" }, { status: 400 });
@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
   const { data: client } = await supabase
     .from("clients")
     .select("id")
-    .eq("user_id", session.user.id)
+    .eq("user_id", user.id)
     .single();
 
   if (!client) return NextResponse.json({ error: "Client not found" }, { status: 403 });

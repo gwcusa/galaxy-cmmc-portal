@@ -7,7 +7,17 @@ const supabase = createClient(
 );
 
 async function seed() {
-  const { error } = await supabase.from("controls").upsert(controls, { onConflict: "id" });
+  // Only the columns that exist on the controls table
+  const rows = controls.map((c) => ({
+    id: c.id,
+    domain: c.domain,
+    domain_code: c.domain_code,
+    level: c.level,
+    description: c.description,
+    weight: c.weight,
+    guidance: c.guidance ?? null,
+  }));
+  const { error } = await supabase.from("controls").upsert(rows, { onConflict: "id" });
   if (error) {
     console.error("Seed failed:", error);
     process.exit(1);

@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { waitUntil } from "@vercel/functions";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
-import { runAiReview } from "@/lib/run-ai-review";
+import { runAssessmentReview, executeReviewRun } from "@/lib/run-assessment-review";
+import { logAudit } from "@/lib/audit";
+
+export const maxDuration = 300;
 
 // POST /api/admin/assessment/[id]/run-ai
-// Triggers AI analysis for all yes/partial controls that are missing feedback.
-// Admin-only.
+// Starts a tracked AI review run (all yes/partial controls + synthesis).
+// Admin-only. Poll /run-status for progress.
 export async function POST(
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -31,45 +34,41 @@ export async function POST(
 
   const assessmentId = params.id;
 
-  // Get all yes/partial responses for this assessment
-  const { data: responses } = await serviceSupabase
-    .from("assessment_responses")
-    .select("control_id")
+  // Don't stack runs
+  const { data: activeRun } = await serviceSupabase
+    .from("ai_review_runs")
+    .select("id")
     .eq("assessment_id", assessmentId)
-    .in("response", ["yes", "partial"]);
-
-  if (!responses || responses.length === 0) {
-    return NextResponse.json({ queued: 0, message: "No yes/partial controls to analyze." });
+    .eq("status", "running")
+    .limit(1)
+    .maybeSingle();
+  if (activeRun) {
+    return NextResponse.json({ runId: activeRun.id, message: "A review run is already in progress." });
   }
 
-  // Get controls that already have AI feedback
-  const { data: existing } = await serviceSupabase
-    .from("control_ai_feedback")
-    .select("control_id")
-    .eq("assessment_id", assessmentId);
+  const { runId, total } = await runAssessmentReview(assessmentId, user.id);
+  if (total === 0) {
+    await serviceSupabase
+      .from("ai_review_runs")
+      .update({ status: "completed", finished_at: new Date().toISOString() })
+      .eq("id", runId);
+    return NextResponse.json({ runId, queued: 0, message: "No yes/partial controls to analyze." });
+  }
 
-  const existingSet = new Set((existing ?? []).map((r) => r.control_id));
+  waitUntil(executeReviewRun(runId, assessmentId));
 
-  // Re-run all (including existing) when called manually — assessor wants fresh analysis
-  const controlIds = responses.map((r) => r.control_id);
-
-  waitUntil(
-    Promise.allSettled(
-      controlIds.map((controlId) =>
-        runAiReview(assessmentId, controlId).catch((err) => {
-          console.error(`AI review failed for control ${controlId}:`, err);
-        })
-      )
-    )
-  );
-
-  const newCount = controlIds.filter((id) => !existingSet.has(id)).length;
-  const rerunCount = controlIds.length - newCount;
+  logAudit({
+    actorId: user.id,
+    actorRole: "admin",
+    action: "review_run.started",
+    entityType: "assessment",
+    entityId: assessmentId,
+    metadata: { runId, controls: total },
+  });
 
   return NextResponse.json({
-    queued: controlIds.length,
-    new: newCount,
-    rerun: rerunCount,
-    message: `Analysis queued for ${controlIds.length} control(s). Results will appear within a few minutes.`,
+    runId,
+    queued: total,
+    message: `Review started for ${total} control(s).`,
   });
 }

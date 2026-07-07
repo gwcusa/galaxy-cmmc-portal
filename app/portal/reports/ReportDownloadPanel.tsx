@@ -16,7 +16,7 @@ const card: React.CSSProperties = {
   padding: 24,
 };
 
-export default function ReportDownloadPanel({ assessmentId, companyName, contactName, cmmcLevel }: Props) {
+export default function ReportDownloadPanel({ assessmentId, companyName, cmmcLevel }: Props) {
   const [existingReport, setExistingReport] = useState<{ reportId: string; signedUrl: string; generatedAt: string } | null>(null);
   const [checking, setChecking] = useState(true);
   const [generating, setGenerating] = useState(false);

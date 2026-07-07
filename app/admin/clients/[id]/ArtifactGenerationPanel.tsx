@@ -1,36 +1,41 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-type ArtifactType = "ssp" | "poam" | "policy_template";
+type ArtifactType = "ssp" | "poam" | "policy_template" | "config_baseline";
+type ArtifactStatus = "draft" | "finalized" | "published";
 
 type GeneratedArtifact = {
   id: string;
   artifact_type: ArtifactType;
+  control_id: string | null;
+  version: number;
   title: string;
   content: string;
-  status: "draft" | "finalized";
+  status: ArtifactStatus;
   generated_at: string;
   updated_at: string;
 };
 
-const ARTIFACT_DEFS: { type: ArtifactType; label: string; description: string; icon: string }[] = [
+type GapOption = { id: string; description: string };
+
+const CORE_DEFS: { type: Exclude<ArtifactType, "config_baseline">; label: string; description: string; icon: string }[] = [
   {
     type: "ssp",
     label: "System Security Plan (SSP)",
-    description: "Formal documentation of how your client's organization meets each implemented CMMC control.",
+    description: "Full SSP with per-control implementation statements, generated family by family from the client's evidence, scoping, and intake answers.",
     icon: "📄",
   },
   {
     type: "poam",
     label: "Plan of Action & Milestones",
-    description: "Structured remediation plan for all identified gaps with timelines and responsible parties.",
+    description: "Remediation plan for all gaps, prioritized by DoD point value, with timelines and responsible parties.",
     icon: "📋",
   },
   {
     type: "policy_template",
     label: "Policy & Procedure Templates",
-    description: "Ready-to-use policy templates covering the domains with identified compliance gaps.",
+    description: "Policies covering the domains with identified gaps, referencing the client's actual tooling.",
     icon: "📜",
   },
 ];
@@ -42,108 +47,104 @@ const card: React.CSSProperties = {
   padding: 24,
 };
 
-export default function ArtifactGenerationPanel({ assessmentId }: { assessmentId: string }) {
-  const [artifacts, setArtifacts] = useState<Record<ArtifactType, GeneratedArtifact | null>>({
-    ssp: null, poam: null, policy_template: null,
-  });
+const STATUS_BADGE: Record<ArtifactStatus, { label: string; color: string }> = {
+  draft: { label: "● Draft", color: "#FFB347" },
+  finalized: { label: "✓ Finalized", color: "#4DFFA0" },
+  published: { label: "⬆ Published to Client", color: "#00C9FF" },
+};
+
+export default function ArtifactGenerationPanel({
+  assessmentId,
+  gaps = [],
+}: {
+  assessmentId: string;
+  gaps?: GapOption[];
+}) {
+  const [artifacts, setArtifacts] = useState<GeneratedArtifact[]>([]);
   const [loading, setLoading] = useState(true);
-  const [generating, setGenerating] = useState<ArtifactType | null>(null);
-  const [editMode, setEditMode] = useState<ArtifactType | null>(null);
+  const [generating, setGenerating] = useState<string | null>(null); // type or `config:${controlId}`
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
   const [saving, setSaving] = useState(false);
-  const [finalizing, setFinalizing] = useState<ArtifactType | null>(null);
-  const [activeTab, setActiveTab] = useState<ArtifactType | null>(null);
+  const [statusBusy, setStatusBusy] = useState(false);
+  const [configControl, setConfigControl] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetch(`/api/admin/artifacts?assessmentId=${assessmentId}`)
-      .then((r) => r.json())
-      .then((d) => {
-        const map: Record<ArtifactType, GeneratedArtifact | null> = { ssp: null, poam: null, policy_template: null };
-        for (const a of (d.artifacts ?? []) as GeneratedArtifact[]) {
-          map[a.artifact_type] = a;
-        }
-        setArtifacts(map);
-        setLoading(false);
-        // Auto-open the first existing artifact
-        const first = (["ssp", "poam", "policy_template"] as ArtifactType[]).find((t) => map[t] !== null);
-        if (first) setActiveTab(first);
-      });
+  const load = useCallback(async () => {
+    const res = await fetch(`/api/admin/artifacts?assessmentId=${assessmentId}`);
+    if (res.ok) {
+      const data = await res.json();
+      setArtifacts(data.artifacts ?? []);
+    }
+    setLoading(false);
   }, [assessmentId]);
 
-  async function generate(type: ArtifactType) {
-    setGenerating(type);
+  useEffect(() => { load(); }, [load]);
+
+  const coreArtifact = (type: ArtifactType) =>
+    artifacts.find((a) => a.artifact_type === type && a.control_id === null) ?? null;
+  const configArtifacts = artifacts.filter((a) => a.artifact_type === "config_baseline");
+  const active = artifacts.find((a) => a.id === activeId) ?? null;
+
+  async function generate(type: ArtifactType, controlId?: string) {
+    const key = controlId ? `config:${controlId}` : type;
+    setGenerating(key);
+    setError(null);
     const res = await fetch("/api/admin/artifacts/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ assessmentId, artifactType: type }),
+      body: JSON.stringify({ assessmentId, artifactType: type, controlId }),
     });
     const data = await res.json();
-    if (data.content) {
-      setArtifacts((prev) => ({
-        ...prev,
-        [type]: {
-          id: data.artifactId,
-          artifact_type: type,
-          title: ARTIFACT_DEFS.find((a) => a.type === type)!.label,
-          content: data.content,
-          status: "draft",
-          generated_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        },
-      }));
-      setActiveTab(type);
+    if (!res.ok) {
+      setError(data.error ?? "Generation failed");
+    } else {
+      await load();
+      if (data.artifactId) setActiveId(data.artifactId);
     }
     setGenerating(null);
   }
 
-  async function saveEdit(type: ArtifactType) {
-    const artifact = artifacts[type];
-    if (!artifact) return;
+  async function saveEdit() {
+    if (!active) return;
     setSaving(true);
     await fetch("/api/admin/artifacts", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: artifact.id, content: editContent }),
+      body: JSON.stringify({ id: active.id, content: editContent }),
     });
-    setArtifacts((prev) => ({
-      ...prev,
-      [type]: prev[type] ? { ...prev[type]!, content: editContent, updated_at: new Date().toISOString() } : null,
-    }));
-    setEditMode(null);
+    await load();
+    setEditing(false);
     setSaving(false);
   }
 
-  async function finalize(type: ArtifactType) {
-    const artifact = artifacts[type];
-    if (!artifact) return;
-    setFinalizing(type);
+  async function setStatus(status: ArtifactStatus) {
+    if (!active) return;
+    setStatusBusy(true);
     await fetch("/api/admin/artifacts", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: artifact.id, status: "finalized" }),
+      body: JSON.stringify({ id: active.id, status }),
     });
-    setArtifacts((prev) => ({
-      ...prev,
-      [type]: prev[type] ? { ...prev[type]!, status: "finalized" } : null,
-    }));
-    setFinalizing(null);
+    await load();
+    setStatusBusy(false);
   }
 
   if (loading) {
     return <div style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", padding: "16px 0" }}>Loading artifacts...</div>;
   }
 
-  const activeArtifact = activeTab ? artifacts[activeTab] : null;
-  const activeDef = activeTab ? ARTIFACT_DEFS.find((d) => d.type === activeTab)! : null;
-
   return (
     <div>
-      {/* Artifact cards — selection row */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 20 }}>
-        {ARTIFACT_DEFS.map((def) => {
-          const artifact = artifacts[def.type];
-          const isActive = activeTab === def.type;
+      {error && <div style={{ color: "#F87171", fontSize: 13, marginBottom: 12 }}>{error}</div>}
+
+      {/* Core document cards */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 16 }}>
+        {CORE_DEFS.map((def) => {
+          const artifact = coreArtifact(def.type);
           const isGenerating = generating === def.type;
+          const isActive = active?.id === artifact?.id && artifact !== null;
           return (
             <div
               key={def.type}
@@ -154,7 +155,7 @@ export default function ArtifactGenerationPanel({ assessmentId }: { assessmentId
                 padding: "16px 18px",
                 cursor: artifact ? "pointer" : "default",
               }}
-              onClick={() => artifact && setActiveTab(def.type)}
+              onClick={() => artifact && setActiveId(artifact.id)}
             >
               <div style={{ fontSize: 20, marginBottom: 8 }}>{def.icon}</div>
               <div style={{ fontSize: 13, fontWeight: 600, color: "#fff", marginBottom: 4 }}>{def.label}</div>
@@ -164,11 +165,8 @@ export default function ArtifactGenerationPanel({ assessmentId }: { assessmentId
 
               {artifact ? (
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <span style={{
-                    fontSize: 11, fontWeight: 600,
-                    color: artifact.status === "finalized" ? "#4DFFA0" : "#FFB347",
-                  }}>
-                    {artifact.status === "finalized" ? "✓ Finalized" : "● Draft"}
+                  <span style={{ fontSize: 11, fontWeight: 600, color: STATUS_BADGE[artifact.status].color }}>
+                    {STATUS_BADGE[artifact.status].label} · v{artifact.version}
                   </span>
                   <button
                     onClick={(e) => { e.stopPropagation(); generate(def.type); }}
@@ -194,7 +192,7 @@ export default function ArtifactGenerationPanel({ assessmentId }: { assessmentId
                     opacity: isGenerating ? 0.7 : 1,
                   }}
                 >
-                  {isGenerating ? "Generating with AI..." : "Generate with AI"}
+                  {isGenerating ? "Generating (may take a minute)..." : "Generate Draft"}
                 </button>
               )}
             </div>
@@ -202,32 +200,90 @@ export default function ArtifactGenerationPanel({ assessmentId }: { assessmentId
         })}
       </div>
 
+      {/* Configuration baselines — per gap control */}
+      <div style={{ ...card, padding: 18, marginBottom: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>⚙ Configuration Baselines</div>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>
+              Step-by-step configuration guides for a specific gap, targeted at the client&apos;s stack.
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <select
+              value={configControl}
+              onChange={(e) => setConfigControl(e.target.value)}
+              style={{
+                background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+                borderRadius: 8, padding: "7px 10px", color: "#E2E8F0", fontSize: 12, outline: "none",
+                maxWidth: 320,
+              }}
+            >
+              <option value="">Select gap control…</option>
+              {gaps.map((g) => (
+                <option key={g.id} value={g.id} style={{ background: "#0A1428" }}>
+                  {g.id} — {g.description.slice(0, 60)}
+                </option>
+              ))}
+            </select>
+            <button
+              onClick={() => configControl && generate("config_baseline", configControl)}
+              disabled={!configControl || generating === `config:${configControl}`}
+              style={{
+                padding: "7px 16px", borderRadius: 8, fontSize: 12, fontWeight: 600, whiteSpace: "nowrap",
+                background: "rgba(167,139,250,0.12)", border: "1px solid rgba(167,139,250,0.3)", color: "#A78BFA",
+                cursor: !configControl ? "not-allowed" : "pointer", opacity: !configControl ? 0.5 : 1,
+              }}
+            >
+              {generating?.startsWith("config:") ? "Generating..." : "Generate Guide"}
+            </button>
+          </div>
+        </div>
+
+        {configArtifacts.length > 0 && (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 14 }}>
+            {configArtifacts.map((a) => (
+              <button
+                key={a.id}
+                onClick={() => setActiveId(a.id)}
+                style={{
+                  background: active?.id === a.id ? "rgba(0,201,255,0.1)" : "rgba(255,255,255,0.04)",
+                  border: active?.id === a.id ? "1px solid rgba(0,201,255,0.3)" : "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: 8, padding: "6px 12px", fontSize: 12, cursor: "pointer",
+                  color: STATUS_BADGE[a.status].color,
+                }}
+              >
+                {a.control_id} · v{a.version}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       {/* Content viewer/editor */}
-      {activeTab && activeArtifact && activeDef && (
+      {active && (
         <div style={card}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, flexWrap: "wrap", gap: 10 }}>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: 2 }}>
-                {activeDef.icon} {activeArtifact.title}
-              </div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: 2 }}>{active.title}</div>
               <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>
-                Generated {new Date(activeArtifact.generated_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
-                {activeArtifact.status === "finalized" && (
-                  <span style={{ marginLeft: 10, color: "#4DFFA0", fontWeight: 600 }}>✓ Finalized</span>
-                )}
+                v{active.version} · updated {new Date(active.updated_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                <span style={{ marginLeft: 10, color: STATUS_BADGE[active.status].color, fontWeight: 600 }}>
+                  {STATUS_BADGE[active.status].label}
+                </span>
               </div>
             </div>
-            <div style={{ display: "flex", gap: 8 }}>
-              {editMode === activeTab ? (
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              {editing ? (
                 <>
                   <button
-                    onClick={() => { setEditMode(null); }}
+                    onClick={() => setEditing(false)}
                     style={{ padding: "7px 16px", borderRadius: 8, fontSize: 12, cursor: "pointer", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)" }}
                   >
                     Cancel
                   </button>
                   <button
-                    onClick={() => saveEdit(activeTab)}
+                    onClick={saveEdit}
                     disabled={saving}
                     style={{ padding: "7px 16px", borderRadius: 8, fontSize: 12, cursor: saving ? "not-allowed" : "pointer", background: "rgba(0,201,255,0.12)", border: "1px solid rgba(0,201,255,0.3)", color: "#00C9FF", fontWeight: 600, opacity: saving ? 0.5 : 1 }}
                   >
@@ -236,29 +292,54 @@ export default function ArtifactGenerationPanel({ assessmentId }: { assessmentId
                 </>
               ) : (
                 <>
-                  {activeArtifact.status !== "finalized" && (
+                  <a
+                    href={`/api/artifacts-export/${active.id}`}
+                    style={{ padding: "7px 16px", borderRadius: 8, fontSize: 12, textDecoration: "none", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.6)" }}
+                  >
+                    ⬇ Export DOCX
+                  </a>
+                  {active.status !== "published" && (
                     <button
-                      onClick={() => { setEditContent(activeArtifact.content); setEditMode(activeTab); }}
+                      onClick={() => { setEditContent(active.content); setEditing(true); }}
                       style={{ padding: "7px 16px", borderRadius: 8, fontSize: 12, cursor: "pointer", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.6)" }}
                     >
                       Edit
                     </button>
                   )}
-                  {activeArtifact.status === "draft" && (
+                  {active.status === "draft" && (
                     <button
-                      onClick={() => finalize(activeTab)}
-                      disabled={finalizing === activeTab}
-                      style={{ padding: "7px 16px", borderRadius: 8, fontSize: 12, cursor: finalizing === activeTab ? "not-allowed" : "pointer", background: "rgba(77,255,160,0.1)", border: "1px solid rgba(77,255,160,0.3)", color: "#4DFFA0", fontWeight: 600, opacity: finalizing === activeTab ? 0.5 : 1 }}
+                      onClick={() => setStatus("finalized")}
+                      disabled={statusBusy}
+                      style={{ padding: "7px 16px", borderRadius: 8, fontSize: 12, cursor: "pointer", background: "rgba(77,255,160,0.1)", border: "1px solid rgba(77,255,160,0.3)", color: "#4DFFA0", fontWeight: 600, opacity: statusBusy ? 0.5 : 1 }}
                     >
-                      {finalizing === activeTab ? "Finalizing..." : "Finalize"}
+                      Finalize
                     </button>
                   )}
-                  {activeArtifact.status === "finalized" && (
+                  {active.status === "finalized" && (
+                    <>
+                      <button
+                        onClick={() => setStatus("published")}
+                        disabled={statusBusy}
+                        style={{ padding: "7px 16px", borderRadius: 8, fontSize: 12, cursor: "pointer", background: "rgba(0,201,255,0.12)", border: "1px solid rgba(0,201,255,0.35)", color: "#00C9FF", fontWeight: 700, opacity: statusBusy ? 0.5 : 1 }}
+                      >
+                        Publish to Client
+                      </button>
+                      <button
+                        onClick={() => setStatus("draft")}
+                        disabled={statusBusy}
+                        style={{ padding: "7px 16px", borderRadius: 8, fontSize: 12, cursor: "pointer", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.35)" }}
+                      >
+                        Revert to Draft
+                      </button>
+                    </>
+                  )}
+                  {active.status === "published" && (
                     <button
-                      onClick={() => finalize(activeTab)}
+                      onClick={() => setStatus("finalized")}
+                      disabled={statusBusy}
                       style={{ padding: "7px 16px", borderRadius: 8, fontSize: 12, cursor: "pointer", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.35)" }}
                     >
-                      Revert to Draft
+                      Unpublish
                     </button>
                   )}
                 </>
@@ -267,7 +348,7 @@ export default function ArtifactGenerationPanel({ assessmentId }: { assessmentId
           </div>
 
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 16 }}>
-            {editMode === activeTab ? (
+            {editing ? (
               <textarea
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
@@ -284,16 +365,16 @@ export default function ArtifactGenerationPanel({ assessmentId }: { assessmentId
                 whiteSpace: "pre-wrap", maxHeight: 560, overflowY: "auto",
                 padding: "0 4px",
               }}>
-                {activeArtifact.content}
+                {active.content}
               </div>
             )}
           </div>
         </div>
       )}
 
-      {!activeTab && Object.values(artifacts).every((a) => a === null) && (
+      {!active && artifacts.length === 0 && (
         <div style={{ ...card, textAlign: "center", padding: 32, color: "rgba(255,255,255,0.3)", fontSize: 13 }}>
-          No artifacts generated yet. Use the buttons above to generate each document with AI.
+          No artifacts generated yet. Use the buttons above to generate each document.
         </div>
       )}
     </div>

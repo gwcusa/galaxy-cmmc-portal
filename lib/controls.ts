@@ -1,13 +1,21 @@
 import controlsData from "@/data/nist-800-171-controls.json";
 
 export type Control = {
+  /** NIST SP 800-171 Rev 2 requirement ID, e.g. "3.1.1" */
   id: string;
   domain: string;
   domain_code: string;
+  /** 1 = CMMC Level 1 (FAR 52.204-21, 17 practices); 2 = Level 2 only */
   level: number;
+  /** DoD Assessment Methodology point value: 1, 3, or 5 (0 for 3.12.4) */
   weight: number;
+  /** "partial_3" (3.5.3, 3.13.11) or "ssp_required" (3.12.4) */
+  special_scoring?: string;
+  basic?: boolean;
   description: string;
   guidance?: string;
+  /** ID from the previous hand-written catalog, kept for data migration */
+  legacy_id?: string;
 };
 
 export const CONTROLS: Control[] = controlsData as Control[];

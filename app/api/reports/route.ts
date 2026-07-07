@@ -16,12 +16,12 @@ function getStorageClient() {
 
 // POST /api/reports — generate a new PDF report
 export async function POST(req: NextRequest) {
-  // Use anon client to read the session (respects RLS, cookie-based)
+  // Use anon client to read the user (respects RLS, cookie-based)
   const anonSupabase = createServerSupabaseClient();
   const {
-    data: { session },
-  } = await anonSupabase.auth.getSession();
-  if (!session) {
+    data: { user },
+  } = await anonSupabase.auth.getUser();
+  if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Only the owning user (or service admin) may generate reports
-  if (client.user_id !== session.user.id) {
+  if (client.user_id !== user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -161,12 +161,12 @@ export async function POST(req: NextRequest) {
 
 // GET /api/reports?assessmentId=xxx — get signed download URL for existing report
 export async function GET(req: NextRequest) {
-  // Use anon client to read the session (respects RLS, cookie-based)
+  // Use anon client to read the user (respects RLS, cookie-based)
   const anonSupabase = createServerSupabaseClient();
   const {
-    data: { session },
-  } = await anonSupabase.auth.getSession();
-  if (!session) {
+    data: { user },
+  } = await anonSupabase.auth.getUser();
+  if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -202,7 +202,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Client not found" }, { status: 404 });
   }
 
-  if (client.user_id !== session.user.id) {
+  if (client.user_id !== user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

@@ -10,13 +10,13 @@ const ADMIN_NAV = [
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const supabase = createServerSupabaseClient();
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) redirect("/login");
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/login");
 
-  const role = session.user.user_metadata?.role;
+  const role = user.user_metadata?.role;
   if (role !== "admin") redirect("/portal/dashboard");
 
-  const userName = session.user.user_metadata?.full_name || session.user.email || "Admin";
+  const userName = user.user_metadata?.full_name || user.email || "Admin";
 
   return (
     <div style={{ display: "flex", background: "#050B18", minHeight: "100vh" }}>

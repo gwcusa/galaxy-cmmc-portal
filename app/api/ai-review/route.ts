@@ -12,8 +12,8 @@ const serviceClient = createClient(
 // Used by admins to read cached AI feedback
 export async function GET(req: NextRequest) {
   const supabase = createServerSupabaseClient();
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const assessmentId = req.nextUrl.searchParams.get("assessmentId");
   const controlId = req.nextUrl.searchParams.get("controlId");
@@ -21,27 +21,32 @@ export async function GET(req: NextRequest) {
 
   const { data } = await serviceClient
     .from("control_ai_feedback")
-    .select("verdict, feedback, generated_at")
+    .select("verdict, feedback, objective_results, generated_at")
     .eq("assessment_id", assessmentId)
     .eq("control_id", controlId)
     .single();
 
   if (!data) return NextResponse.json({ verdict: null });
-  return NextResponse.json({ verdict: data.verdict, feedback: data.feedback, generatedAt: data.generated_at });
+  return NextResponse.json({
+    verdict: data.verdict,
+    feedback: data.feedback,
+    objectiveResults: data.objective_results ?? null,
+    generatedAt: data.generated_at,
+  });
 }
 
 // POST /api/ai-review
 // Admin-only: manually re-trigger AI review for a specific control
 export async function POST(req: NextRequest) {
   const supabase = createServerSupabaseClient();
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   // Restrict to admins only
   const { data: adminCheck } = await serviceClient
     .from("user_roles")
     .select("user_id")
-    .eq("user_id", session.user.id)
+    .eq("user_id", user.id)
     .eq("role", "admin")
     .single();
 

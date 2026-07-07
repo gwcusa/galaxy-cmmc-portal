@@ -450,6 +450,15 @@ function ExecutiveSummaryPage({
       </View>
 
       <View style={styles.statsRow}>
+        {score.sprs && (
+          <View style={[styles.statBox, { borderTopColor: "#00C9FF" }]}>
+            <Text style={styles.statLabel}>SPRS Score</Text>
+            <Text style={[styles.statValue, { color: "#00C9FF" }]}>
+              {score.sprs.scoreable ? score.sprs.score : "N/A"}
+              <Text style={styles.statUnit}>/110</Text>
+            </Text>
+          </View>
+        )}
         <View style={[styles.statBox, { borderTopColor: interp.color }]}>
           <Text style={styles.statLabel}>Overall Score</Text>
           <Text style={styles.statValue}>
@@ -479,9 +488,15 @@ function ExecutiveSummaryPage({
       </View>
 
       <Text style={styles.sectionNote}>
-        {`This assessment evaluated ${score.passed + score.partial + score.gaps} NIST SP 800-171 controls across 14 security domains. ` +
-          `Scores are calculated based on control weight and response status. ` +
-          `A score of 70% or above in each domain is recommended for CMMC Level 2 certification readiness. ` +
+        {`This assessment evaluated ${score.passed + score.partial + score.gaps} NIST SP 800-171 Rev 2 requirements across 14 security domains. ` +
+          (score.sprs
+            ? score.sprs.scoreable
+              ? `The SPRS score of ${score.sprs.score} follows the DoD Assessment Methodology (110 minus weighted deductions; range -203 to 110). ` +
+                (score.sprs.poamEligible
+                  ? `All open gaps are POA&M-eligible, supporting CMMC Level 2 Conditional certification (score >= 88). `
+                  : `The engagement is not yet POA&M-eligible for Conditional certification. `)
+              : `An SPRS score cannot be calculated because a System Security Plan (3.12.4) is not in place — the SSP is a precondition for any DoD assessment. `
+            : `CMMC Level 1 requires all 17 FAR 52.204-21 practices to be fully met; no POA&M is permitted. `) +
           `Controls marked as N/A are excluded from scoring calculations.`}
       </Text>
 
