@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import { calculateScore, ResponseMap } from "@/lib/scoring";
@@ -7,6 +7,7 @@ import ScoreGauge from "@/components/ScoreGauge";
 import DomainBar from "@/components/DomainBar";
 import GapRemediationPanel from "./GapRemediationPanel";
 import ResetPasswordButton from "./ResetPasswordButton";
+import ClientAccountActions from "./ClientAccountActions";
 import AssessmentLifecycleBar from "./AssessmentLifecycleBar";
 import AssessmentReviewPanel, { ControlReviewItem } from "./AssessmentReviewPanel";
 import InformationRequestsPanel from "./InformationRequestsPanel";
@@ -36,6 +37,12 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
     .single();
 
   if (!client) notFound();
+
+  const svc = createServiceSupabaseClient();
+  const { data: authUserData } = await svc.auth.admin.getUserById(client.user_id);
+  const clientEmail = authUserData?.user?.email ?? "";
+  const clientDisabled = !!authUserData?.user?.banned_until &&
+    new Date(authUserData.user.banned_until) > new Date();
 
   const { data: assessments } = await supabase
     .from("assessments")
@@ -225,7 +232,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
             </span>
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           {activeAssessment && (
             <AssignAssessorSelect
               assessmentId={activeAssessment.id}
@@ -233,6 +240,12 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
             />
           )}
           <ResetPasswordButton clientId={params.id} />
+          <ClientAccountActions
+            clientId={params.id}
+            companyName={client.company_name}
+            currentEmail={clientEmail}
+            isDisabled={clientDisabled}
+          />
         </div>
       </div>
 
