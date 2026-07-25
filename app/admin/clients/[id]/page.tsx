@@ -1,7 +1,7 @@
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
-import { calculateScore, ResponseMap } from "@/lib/scoring";
+import { calculateScore, ResponseMap, ResponseValue } from "@/lib/scoring";
 import { CONTROLS, DOMAINS } from "@/lib/controls";
 import ScoreGauge from "@/components/ScoreGauge";
 import DomainBar from "@/components/DomainBar";
@@ -211,7 +211,19 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
     }
   }
 
-  const score = calculateScore(responses, (client.cmmc_target_level as 1 | 2) ?? 2);
+  const targetLevel = (client.cmmc_target_level as 1 | 2) ?? 2;
+
+  // When assessor has reviewed a control, their verdict is authoritative — overlay it
+  // on the client's self-assessment response before computing the score.
+  const verdictToResponse: Record<string, ResponseValue> = { met: "yes", partially_met: "partial", not_met: "no" };
+  const effectiveResponses: ResponseMap = { ...responses };
+  for (const [cid, det] of Object.entries(determinationsMap)) {
+    const r = verdictToResponse[det.assessor_verdict];
+    if (r) effectiveResponses[cid] = r;
+  }
+  const determinationCount = Object.keys(determinationsMap).length;
+
+  const score = calculateScore(effectiveResponses, targetLevel);
   const card: React.CSSProperties = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
   const stageColor: Record<string, string> = { lead: "#FFB347", active: "#00C9FF", completed: "#4DFFA0" };
 
@@ -278,13 +290,24 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
       )}
 
       {/* Score metrics (assessor-only) */}
-      <div style={{ display: "grid", gridTemplateColumns: `repeat(${score.sprs ? 5 : 4}, 1fr)`, gap: 16, marginBottom: 24 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 16, marginBottom: 24 }}>
+        {score.sprs ? (
+          <div style={card}>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 6 }}>SPRS Score</div>
+            <div style={{ fontSize: 28, fontWeight: 700, color: !score.sprs.scoreable ? "#F87171" : score.sprs.score >= 88 ? "#4DFFA0" : score.sprs.score >= 0 ? "#FFB347" : "#F87171" }}>
+              {score.sprs.scoreable ? String(score.sprs.score) : "No SSP"}
+            </div>
+          </div>
+        ) : (
+          <div style={card}>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 6 }}>Level 1 Status</div>
+            <div style={{ fontSize: 20, fontWeight: 700, color: score.gaps === 0 ? "#4DFFA0" : "#F87171" }}>
+              {score.gaps === 0 ? "Compliant" : "Non-Compliant"}
+            </div>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", marginTop: 4 }}>{score.passed} / 17 practices</div>
+          </div>
+        )}
         {[
-          ...(score.sprs ? [{
-            label: "SPRS Score",
-            value: score.sprs.scoreable ? String(score.sprs.score) : "No SSP",
-            color: !score.sprs.scoreable ? "#F87171" : score.sprs.score >= 88 ? "#4DFFA0" : score.sprs.score >= 0 ? "#FFB347" : "#F87171",
-          }] : []),
           { label: "Readiness Score", value: `${score.overallScore}%`, color: score.overallScore >= 70 ? "#4DFFA0" : score.overallScore >= 40 ? "#FFB347" : "#F87171" },
           { label: "Gaps (No)",        value: String(score.gaps),    color: "#F87171" },
           { label: "Passed (Yes)",     value: String(score.passed),  color: "#4DFFA0" },
@@ -307,6 +330,18 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
             : score.sprs.poamEligible
             ? `POA&M eligible for CMMC Level 2 Conditional status (score ≥ 88, all open gaps are 1-point items). Deductions: ${score.sprs.deductions.reduce((n, d) => n + d.points, 0)} points across ${score.sprs.deductions.length} requirements.`
             : `Not POA&M eligible: ${score.sprs.score < 88 ? `score ${score.sprs.score} is below the 88-point minimum` : ""}${score.sprs.score < 88 && score.sprs.poamBlockers.length > 0 ? "; " : ""}${score.sprs.poamBlockers.length > 0 ? `${score.sprs.poamBlockers.length} gap(s) on 3/5-point requirements (${score.sprs.poamBlockers.slice(0, 6).join(", ")}${score.sprs.poamBlockers.length > 6 ? "…" : ""})` : ""}`}
+        </div>
+      )}
+      {targetLevel === 1 && (
+        <div style={{
+          fontSize: 12, borderRadius: 10, padding: "10px 16px", marginBottom: 24,
+          color: score.gaps === 0 ? "#4DFFA0" : "rgba(255,255,255,0.55)",
+          background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
+        }}>
+          {score.gaps === 0
+            ? "All 17 FAR 52.204-21 practices implemented. Client is eligible for annual CMMC Level 1 self-attestation."
+            : `${score.gaps} gap(s) identified. All 17 FAR 52.204-21 practices must be implemented for CMMC Level 1 annual self-attestation.`}
+          {determinationCount > 0 && ` Score reflects ${determinationCount} assessor determination${determinationCount === 1 ? "" : "s"}.`}
         </div>
       )}
 

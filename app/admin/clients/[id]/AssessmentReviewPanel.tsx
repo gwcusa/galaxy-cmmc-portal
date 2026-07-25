@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export type ControlReviewItem = {
   controlId: string;
@@ -56,6 +57,7 @@ export default function AssessmentReviewPanel({
   assessmentId: string;
   items: ControlReviewItem[];
 }) {
+  const router = useRouter();
   const [items, setItems] = useState(initialItems);
   const [editMode, setEditMode] = useState<Record<string, { verdict: string; notes: string } | null>>({});
   const [saving, setSaving] = useState<Record<string, boolean>>({});
@@ -89,6 +91,7 @@ export default function AssessmentReviewPanel({
         )
       );
       setEditMode((prev) => ({ ...prev, [controlId]: null }));
+      router.refresh();
     }
     setSaving((prev) => ({ ...prev, [controlId]: false }));
   }
