@@ -1,0 +1,36 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.4.5 - Access Restrictions for Configuration Changes
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC enforces access restrictions for configuration changes to CUI systems.
+
+2. PHYSICAL ACCESS RESTRICTIONS
+Server Room / Network Closet:
+- Location: Secured room with electronic keypad lock
+- Authorized personnel: Terrell Banks only (key code known only to Terrell Banks and Camille Odom for emergencies)
+- Access log: Electronic access log reviewed monthly by Terrell Banks
+- Visitor access: Requires Terrell Banks escort
+
+Physical Access Log (June 2026):
+Date       | Time   | User  | Purpose
+2026-06-03 | 09:15  | Terrell Banks  | Switch firmware update
+2026-06-15 | 14:30  | Terrell Banks  | Cable management and inspection
+
+3. LOGICAL ACCESS RESTRICTIONS
+Intune Admin: Terrell Banks only (Global Admin, PIM-gated)
+Azure AD: Terrell Banks only can modify device configurations
+GPO: Terrell Banks only has GPO Edit permissions in AD
+Sentinel: Terrell Banks has Contributor (config); Camille Odom has Reader only
+
+Conditional Access: Configuration console access blocked from non-compliant devices.
+
+4. UNAUTHORIZED CHANGE DETECTION
+Sentinel Rule: "UnauthorizedConfigChange" - alerts if non-Terrell Banks user makes Intune or Azure AD configuration changes.
+Last triggered: Never (FY2026)
+
+5. CONCLUSION
+Money Straight Talk LLC enforces physical and logical access restrictions for configuration changes per control 3.4.5.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

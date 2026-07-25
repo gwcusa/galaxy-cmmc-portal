@@ -1,0 +1,59 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+MOBILE CODE CONTROL POLICY
+================================================================
+Document ID:    POL-SC-013
+Version:        1.0
+Effective Date: March 10, 2026
+Review Date:    March 10, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy controls and monitors the use of mobile code
+on MST information systems.
+
+2. MOBILE CODE DEFINED
+Mobile code includes: JavaScript, Java applets, ActiveX
+controls, Flash, VBScript, macros (Office), and similar
+technologies that are automatically downloaded and executed.
+
+3. ALLOWED MOBILE CODE
+The following mobile code categories are permitted:
+  - JavaScript from HTTPS websites (standard browsing)
+  - Microsoft Office macros signed by trusted publishers
+    (trusted publisher list managed by Terrell Banks)
+  - JavaScript in Microsoft Teams and M365 apps
+    (Microsoft-controlled, trusted)
+
+4. PROHIBITED / RESTRICTED MOBILE CODE
+  - Unsigned or untrusted Office macros: DISABLED
+  - ActiveX controls from unknown publishers: DISABLED
+  - Java browser plugins: NOT INSTALLED (no Java plugin)
+  - Flash content: NOT SUPPORTED (Flash EOS, removed)
+
+5. TECHNICAL CONTROLS
+  a) Microsoft Edge (browser):
+     - Enhanced Security Mode: ENABLED for intranet sites
+     - SmartScreen: ENABLED (blocks known malicious scripts)
+     - JavaScript: ENABLED (required for M365)
+     - Downloads from unknown publishers: warn user
+
+  b) Microsoft 365 / Office:
+     - Macro policy: Block macros from internet (GPO)
+     - Signed macros from trusted publishers: allowed
+     - VBA macros from untrusted: BLOCKED
+
+  c) Microsoft Defender:
+     - Script behavior monitoring: ENABLED
+     - AMSI integration: ENABLED (scans scripts in memory)
+
+6. MONITORING
+  Defender alerts on suspicious script activity are reviewed
+  by Terrell Banks and escalated per IR procedures.
+
+================================================================
+Approved: Camille Odom           03/10/2026
+Prepared: Terrell Banks          03/08/2026
+================================================================

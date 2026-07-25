@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.8.7 - Removable Media Use Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy controls the use of removable media on system components, per NIST SP 800-171 Rev. 2 control 3.8.7.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC CUI endpoints and the removable media used with them.
+
+3. REQUIREMENTS
+a. Only Nathan Cruz-approved removable media may be used on CUI endpoints.
+b. Approved media must be encrypted (AES-256 hardware or software).
+c. Intune device control policies block unapproved USB storage devices.
+d. A register of approved removable media is maintained by Nathan Cruz.
+e. Approved media is inventoried and audited quarterly.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, manages the approved media register and Intune device control policies.
+
+5. ENFORCEMENT
+Unapproved removable media connected to CUI endpoints is blocked and generates a security alert.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

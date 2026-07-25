@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.1.4 - Separation of Duties
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy separates duties of individuals at Keith the Drone Guy LLC to reduce the risk of malevolent activity without collusion, per NIST SP 800-171 Rev. 2 control 3.1.4.
+
+2. SCOPE
+All Keith the Drone Guy LLC personnel with access to CUI systems or privileged administrative functions.
+
+3. REQUIREMENTS
+a. No single individual shall control all phases of a critical business or IT operation.
+b. Account creation/approval and account provisioning roles are assigned to different individuals.
+c. Keith Merritt administers accounts; Keith Merritt approves new privileged access requests.
+d. System audit log access is restricted to personnel independent of daily operations.
+e. Dual authorization is required for deletion of CUI data.
+
+4. RESPONSIBILITY
+Keith Merritt implements technical controls. Keith Merritt ensures organizational enforcement.
+
+5. ENFORCEMENT
+Deliberate circumvention of separation-of-duties controls is grounds for immediate termination.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

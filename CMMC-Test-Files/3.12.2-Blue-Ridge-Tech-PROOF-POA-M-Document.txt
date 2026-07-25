@@ -1,0 +1,32 @@
+﻿SECURITY ASSESSMENT IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.12.2 - Plan of Action and Milestones
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC maintains and updates a POA&M for identified security deficiencies.
+
+2. POA&M DOCUMENT
+Document: Blue Ridge Technology Solutions LLC POA-M-2026.xlsx
+Location: SharePoint/IT-Docs/Security-Assessments/
+Last Updated: 2026-07-01  |  Owner: Nathan Cruz
+Quarterly Review: Approved by Victor Osei on 2026-07-05
+
+3. CURRENT POA&M ENTRIES (Active)
+Item ID | Finding                          | Owner  | Due Date   | Status
+POA-001 | MFA not enrolled for svc account | Nathan Cruz   | 2026-08-01 | In Progress (75%)
+POA-002 | IR plan missing out-of-band comms | Nathan Cruz  | 2026-07-15 | CLOSED 2026-05-01
+
+4. CLOSED POA&M ENTRIES (Q2 2026)
+POA-002 | IR plan update       | Closed 2026-05-01 | Evidence: Updated IRP v2.1 on SharePoint
+POA-003 | Audit report gap     | Closed 2026-04-05 | Evidence: Sentinel workbook report generated
+
+5. POA&M QUARTERLY REVIEW
+Date: 2026-07-05  |  Reviewer: Victor Osei
+Total items: 2  |  Closed: 1  |  Open: 1  |  Overdue: 0
+Risk acceptance for POA-001: Accepted by Victor Osei pending completion by 2026-08-01
+
+6. CONCLUSION
+Blue Ridge Technology Solutions LLC maintains an active POA&M reviewed quarterly by Victor Osei per control 3.12.2.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

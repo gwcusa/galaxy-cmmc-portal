@@ -1,0 +1,39 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.5.3 - Multifactor Authentication
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC requires and enforces MFA for all CUI system access.
+
+2. CONDITIONAL ACCESS POLICY
+Policy Name: MFA-Required-All-Money Straight Talk LLC
+Tenant: moneystraighttalk.com
+Target: All users
+Target Apps: All cloud apps (Microsoft 365, SharePoint, Exchange, Teams, Azure Portal)
+Condition: Any network location, any device
+Grant Control: Require MFA
+
+Exclude: Emergency break-glass account (separate policy with hardware key requirement)
+
+3. MFA FACTORS IN USE
+Factor 1: Password (something you know)
+Factor 2: Microsoft Authenticator App (something you have)
+  - Push notification (tap to approve)
+  - TOTP 6-digit code (backup)
+  - Number matching enabled (anti-MFA fatigue)
+
+4. MFA ENFORCEMENT VERIFICATION
+Date: 2026-07-01  |  Tester: Terrell Banks
+Test: Attempt SharePoint CUI login with only password (no MFA)
+Result: BLOCKED - "This resource requires additional authentication"
+MFA prompt received on Authenticator App. PASS.
+
+5. MFA ENROLLMENT
+All 5 Money Straight Talk LLC users enrolled: 100%
+Last enrollment: 2026-01-20 (new staff)
+
+6. CONCLUSION
+Money Straight Talk LLC enforces MFA on all CUI access via Conditional Access per control 3.5.3.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

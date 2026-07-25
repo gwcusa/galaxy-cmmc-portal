@@ -1,0 +1,25 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.1.1 - Authorized User Access
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+This document demonstrates that Money Straight Talk LLC limits CUI system access to authorized users and devices.
+
+2. AUTHORIZED USER LIST (CUI Systems - Domain: moneystraighttalk.com)
+- Camille Odom (CEO) - Full CUI read/write
+- Terrell Banks (Systems Admin) - Admin and CUI access
+- 3 additional staff - reviewed and confirmed active
+- Accounts disabled Q2 2026: 2 (terminations processed within 24 hours)
+
+3. QUARTERLY REVIEW RECORD
+Date: 2026-06-28  |  Reviewer: Terrell Banks
+Result: All active accounts verified as authorized. No unauthorized accounts found.
+
+4. PRIMARY SYSTEM
+Workstation: MST-WS-001  |  Account: t.banks@moneystraighttalk.com  |  Authorization: Documented in asset register
+
+5. CONCLUSION
+Money Straight Talk LLC maintains and reviews authorized user lists per control 3.1.1. Provisioning and deprovisioning controls are operational.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

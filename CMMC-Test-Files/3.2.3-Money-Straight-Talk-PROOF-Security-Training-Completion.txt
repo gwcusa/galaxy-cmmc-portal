@@ -1,0 +1,34 @@
+﻿AWARENESS AND TRAINING IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.2.3 - Insider Threat Reporting
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC trains personnel to report insider threat indicators and maintains reporting mechanisms.
+
+2. REPORTING MECHANISMS
+Primary: Direct report to Camille Odom (Camille Odom@moneystraighttalk.com)
+Secondary: Anonymous tip email (security-reports@moneystraighttalk.com) - managed by Terrell Banks
+Physical: Drop-box in office (sealed, reviewed weekly by Camille Odom)
+
+Reporting channel communicated via:
+- Annual training module
+- Printed poster in break room
+- New-hire orientation packet
+
+3. TRAINING CONTENT (Reporting Module)
+Covered in KnowBe4 module "Insider Threat Reporting Procedures" (20 min):
+- What constitutes a reportable concern
+- How to submit a report (anonymous and named options)
+- What happens after a report is submitted
+- Non-retaliation guarantee
+
+4. REPORT LOG (FY2026)
+Reports received: 1 (anonymous tip - 2026-04-15)
+Nature: Unusual after-hours file access concern
+Resolution: Terrell Banks reviewed audit logs; confirmed authorized scheduled backup. No threat found.
+
+5. CONCLUSION
+Money Straight Talk LLC maintains active insider threat reporting mechanisms and trains all personnel per control 3.2.3.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

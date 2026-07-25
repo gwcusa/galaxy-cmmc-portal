@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.13.16 - Protection of CUI at Rest
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to protect the confidentiality of CUI at rest, per NIST SP 800-171 Rev. 2 control 3.13.16.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC storage locations containing CUI (endpoints, cloud storage, backups).
+
+3. REQUIREMENTS
+a. All endpoints storing CUI must have BitLocker full-disk encryption enabled.
+b. Microsoft 365 SharePoint stores CUI encrypted at rest (AES-256, Microsoft-managed keys).
+c. Removable media containing CUI must be encrypted.
+d. BitLocker recovery keys are stored in Azure Key Vault (not in AD only).
+e. Encryption status is verified monthly via Intune compliance reports.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, ensures all CUI storage locations have encryption at rest enabled.
+
+5. ENFORCEMENT
+Unencrypted devices with CUI are treated as data breach risk requiring immediate action.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

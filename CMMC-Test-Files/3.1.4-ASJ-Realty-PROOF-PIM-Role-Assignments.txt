@@ -1,0 +1,28 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.1.4 - Separation of Duties
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty separates duties to reduce insider risk for CUI system operations.
+
+2. ROLE SEPARATION MATRIX
+Function                    | Requester       | Approver        | Implementer
+New CUI account             | Department Head | Anthony James           | Sandra Okonkwo
+Privileged access grant     | Sandra Okonkwo            | Anthony James           | Sandra Okonkwo
+CUI data deletion           | Sandra Okonkwo            | Anthony James           | Dual sign-off
+
+Azure AD Roles: Sandra Okonkwo holds Global Admin; Anthony James holds Security Reader (read-only audit access).
+No single user holds both Global Admin and Billing Admin roles.
+
+3. AUDIT LOG INDEPENDENCE
+Microsoft Sentinel audit logs: Read access limited to Anthony James and external assessor accounts.
+Sandra Okonkwo cannot modify or delete audit log data.
+
+4. SYSTEM DETAILS
+Primary Workstation: ASJ-WS-001  |  User: s.okonkwo@asjrealty.com
+
+5. CONCLUSION
+ASJ Realty enforces separation of duties across critical CUI functions per control 3.1.4.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

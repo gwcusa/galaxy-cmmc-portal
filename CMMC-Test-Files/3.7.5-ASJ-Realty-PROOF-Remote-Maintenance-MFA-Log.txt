@@ -1,0 +1,36 @@
+﻿MAINTENANCE IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.7.5 - Remote Maintenance MFA
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty requires MFA for remote maintenance sessions and terminates them after use.
+
+2. REMOTE MAINTENANCE SESSION CONTROLS
+Platform: Azure Bastion (browser-based RDP/SSH - no client required)
+MFA Requirement: Azure Bastion requires Azure AD authentication + MFA (Conditional Access policy: MFA-Required-All)
+Session Termination: Automatic after 60 minutes idle or manual disconnect by Sandra Okonkwo
+Session Recording: Enabled in Azure Bastion (video recording of all sessions)
+
+3. REMOTE MAINTENANCE LOG (FY2026)
+Date       | Technician   | System     | MFA Used | Duration | Terminated | Recorded
+2026-03-10 | Network-A    | SW-CORE    | Yes      | 45m      | Yes        | Yes
+2026-05-20 | HP Support   | ASJ-WS-001       | Yes      | 1h 02m   | Yes        | Yes
+2026-06-12 | Sandra Okonkwo         | Azure AD   | Yes      | 35m      | Yes        | Yes (Azure log)
+
+4. MFA VERIFICATION
+For each session above, MFA authentication confirmed in Azure AD sign-in logs.
+Sign-in Log Entry (2026-05-20):
+  User: maintenance-vendor@asjrealty.com (temporary vendor account)
+  MFA Method: Authenticator App push
+  Result: Success
+  Conditional Access: Complied
+
+5. SESSION TERMINATION VERIFICATION
+Azure Bastion session logs confirm all sessions terminated upon disconnect.
+No sessions exceeded 2 hours or remained open after maintenance completion.
+
+6. CONCLUSION
+ASJ Realty requires MFA for all remote maintenance sessions with automatic recording and termination per control 3.7.5.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

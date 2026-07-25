@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.20 - External System Connection Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to verify and control connections to external systems, per NIST SP 800-171 Rev. 2 control 3.1.20.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC connections to systems, networks, or cloud services outside of direct organizational control.
+
+3. REQUIREMENTS
+a. External system connections require a documented Interconnection Security Agreement (ISA).
+b. Victor Osei must approve all new external system connections before establishment.
+c. Nathan Cruz maintains a register of all approved external connections.
+d. External connections are reviewed annually and when operational needs change.
+e. Connections to external systems are terminated when no longer operationally required.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, maintains the external connection register. Victor Osei approves connections.
+
+5. ENFORCEMENT
+Unapproved external connections are blocked and investigated as security incidents.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

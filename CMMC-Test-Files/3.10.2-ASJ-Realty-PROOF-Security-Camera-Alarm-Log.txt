@@ -1,0 +1,55 @@
+================================================================
+ASJ REALTY
+PHYSICAL SECURITY MONITORING REPORT
+Evidence for CMMC Control 3.10.2
+================================================================
+Report Period:  July 1-25, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+================================================================
+
+SECURITY CAMERA SYSTEM
+-------------------------------------------------
+NVR System:     Lorex Professional 8-Channel IP NVR
+Cameras Active: 8 of 8 (100%)
+Recording Mode: Continuous 24/7 (motion-enhanced during off-hours)
+Retention:      30 days (confirmed)
+
+CAMERA COVERAGE VERIFICATION (July 1, 2026)
+  Camera 1: Main entrance - ACTIVE
+  Camera 2: Rear entrance - ACTIVE
+  Camera 3: Server room - ACTIVE
+  Camera 4: Network closet - ACTIVE
+  Camera 5: Main office area - ACTIVE
+  Camera 6: Reception/lobby - ACTIVE
+  Camera 7: Parking lot (east) - ACTIVE
+  Camera 8: Parking lot (west) - ACTIVE
+
+ALARM SYSTEM - ADT COMMERCIAL
+-------------------------------------------------
+Account:          ASJ Realty (ADT account #4421-8830)
+Monitoring:       24/7 Central Station
+Zones:
+  Zone 1: Main entrance door
+  Zone 2: Rear entrance door
+  Zone 3: Server room door (motion + door)
+  Zone 4: Network closet door
+  Zone 5: Interior motion (office after hours)
+
+ALARM EVENTS - July 1-25, 2026
+-------------------------------------------------
+DATE         TIME      ZONE       EVENT          RESOLUTION
+-----------  --------  ---------  -------------  ----------------
+07/04/2026   08:45 AM  Zone 1    Entry (holiday) Sandra Okonkwo confirmed
+             (Sandra came in on holiday to handle urgent task)
+             Police dispatch: NOT required (authorized entry)
+
+No unauthorized access events in July 2026.
+
+TEMPERATURE MONITORING - Server Room
+-------------------------------------------------
+Average temperature: 68F (within 65-75F target range)
+High alert (80F threshold): NOT triggered in July 2026.
+
+================================================================
+Certified: Sandra Okonkwo - July 25, 2026
+================================================================

@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.3.9 - Audit Management Access
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy limits management of audit logging to a subset of privileged users, per NIST SP 800-171 Rev. 2 control 3.3.9.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC audit logging infrastructure and SIEM tools.
+
+3. REQUIREMENTS
+a. Management of audit log configuration is restricted to Nathan Cruz only.
+b. Standard users have no access to configure, modify, or disable audit logging.
+c. Audit management access is reviewed quarterly.
+d. Any changes to audit logging configuration require documented justification.
+e. Changes to logging configuration generate alerts to Victor Osei.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, is the sole administrator of the audit logging system.
+
+5. ENFORCEMENT
+Unauthorized changes to audit logging configuration are security incidents.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

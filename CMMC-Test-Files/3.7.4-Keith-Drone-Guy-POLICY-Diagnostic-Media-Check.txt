@@ -1,0 +1,26 @@
+﻿MAINTENANCE POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.7.4 - Diagnostic Media Inspection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to check media containing diagnostic programs for malicious code before use, per NIST SP 800-171 Rev. 2 control 3.7.4.
+
+2. SCOPE
+All portable media (USB drives, DVDs, external drives) used for maintenance or diagnostics on Keith the Drone Guy LLC CUI systems.
+
+3. REQUIREMENTS
+a. All diagnostic media is scanned for malware before use on any CUI system.
+b. Scanning is performed on a quarantine system not connected to the CUI network.
+c. Vendor-provided diagnostic media is treated as untrusted until scanned and cleared.
+d. Scan results are documented before media is connected to CUI systems.
+e. Media that fails scanning is quarantined and reported to Keith Merritt.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, scans and documents all diagnostic media before use.
+
+5. ENFORCEMENT
+Unscanned media on CUI systems is a security violation requiring immediate investigation.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

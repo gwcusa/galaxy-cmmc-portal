@@ -1,0 +1,36 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.3.4 - Audit Failure Alerting
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue alerts on audit logging failures.
+
+2. ALERT CONFIGURATION
+Platform: Microsoft Sentinel + Azure Monitor
+Tenant: bumpassfire.org
+
+Alert Rules for Logging Failures:
+- Rule: "LogSource-Heartbeat-Windows" - Fires if BFR-WS-001 stops sending events >30 min
+- Rule: "M365-UAL-Heartbeat" - Fires if M365 audit log connector silent >30 min
+- Rule: "AzureAD-SignIn-Heartbeat" - Fires if Azure AD sign-in logs silent >30 min
+- Rule: "LogAnalytics-StorageAlert" - Fires if workspace >80% capacity
+
+Notification: Email to Mike Sadler@bumpassfire.org + Teams channel "SecurityAlerts-Bumpass Fire & Rescue"
+Escalation: If unacknowledged >15 min, secondary alert sent to Randy Bowles@bumpassfire.org
+
+3. ALERT TEST RECORD
+Test Date: 2026-06-10  |  Tester: Mike Sadler
+Method: Paused Windows event log connector temporarily
+Alert fired: 31 minutes after pause (within threshold)
+Alert received by Mike Sadler: 31m 02s
+Response time: 8 minutes (within 15-minute SLA)
+Result: PASS
+
+4. ALERT HISTORY (FY2026)
+Total logging failure alerts: 0 (no production failures in FY2026)
+
+5. CONCLUSION
+Bumpass Fire & Rescue has active alerting for audit logging failures with tested response times per control 3.3.4.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

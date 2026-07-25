@@ -1,0 +1,61 @@
+================================================================
+ASJ REALTY
+PUBLICLY ACCESSIBLE SYSTEM CONTENT REVIEW
+Evidence for CMMC Control 3.1.22
+================================================================
+Review Date:    July 21, 2026
+Reviewed By:    Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+ANNUAL PUBLIC CONTENT AUDIT — July 21, 2026
+
+SYSTEMS REVIEWED
+-------------------------------------------------
+1. ASJ Realty Website (www.asjrealty.com)
+   Pages reviewed: Home, About, Listings, Contact, Blog
+   CUI found: NONE
+   PII beyond consented: NONE
+   Contract references: NONE
+   Result: CLEAN
+
+2. Zillow Listings (12 active listings reviewed)
+   CUI found: NONE
+   Listing descriptions contain only property details
+   No client PII beyond listed agent contact
+   Result: CLEAN
+
+3. MLS Portal (CVRMLS — 15 active listings)
+   CUI found: NONE
+   Result: CLEAN
+
+4. Facebook Page (ASJ Realty — 423 followers)
+   Posts reviewed: Last 90 days (47 posts)
+   CUI found: NONE
+   No contract information posted
+   Result: CLEAN
+
+5. Instagram (asjrealty_official — 187 followers)
+   Posts reviewed: Last 90 days (31 posts)
+   CUI found: NONE
+   Result: CLEAN
+
+6. LinkedIn Company Page
+   Posts reviewed: Last 90 days (12 posts)
+   CUI found: NONE
+   Result: CLEAN
+
+EMPLOYEE TRAINING COMPLIANCE
+-------------------------------------------------
+All 6 ASJ Realty staff completed "CUI Handling and Public
+Disclosure" training on April 15, 2026. Training explicitly
+covers prohibition on posting CUI to public platforms.
+Training records on file.
+
+FINDING: No CUI discovered on any publicly accessible system.
+No remediation required.
+
+================================================================
+Reviewed: Sandra Okonkwo         07/21/2026
+Approved: Anthony James          07/21/2026
+================================================================

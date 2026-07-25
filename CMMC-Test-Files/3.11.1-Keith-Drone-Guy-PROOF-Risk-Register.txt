@@ -1,0 +1,48 @@
+================================================================
+KEITH THE DRONE GUY LLC
+ANNUAL RISK REGISTER - 2026
+Evidence for CMMC Control 3.11.1
+================================================================
+Assessment Date:  March 15, 2026
+Assessor:         Keith Merritt
+Method:           NIST SP 800-30 Rev 1 (simplified)
+================================================================
+
+RISK REGISTER - 2026
+-------------------------------------------------
+RISK ID  DESCRIPTION                    LIKELIHOOD  IMPACT  LEVEL   MITIGATION
+-------  -----------------------------  ----------  ------  ------  -------------------------
+RA-01    Phishing attack leads to        HIGH        HIGH    CRITICAL  MFA (done), phishing
+         credential compromise                                         training (done)
+RA-02    Ransomware via malicious        MEDIUM      HIGH    HIGH    Defender (done), backups
+         email attachment                                             (done), user training
+RA-03    Unpatched vulnerability         MEDIUM      HIGH    HIGH    Monthly patching (done)
+         exploited on workstation
+RA-04    CUI exfiltrated via personal    LOW         HIGH    MEDIUM  DLP policies (done),
+         cloud storage                                               USB control (done)
+RA-05    Physical theft of laptop        LOW         HIGH    MEDIUM  BitLocker (done),
+         containing CUI                                             Intune wipe (done)
+RA-06    Unauthorized physical access    LOW         MEDIUM  LOW     Keypad lock (done),
+         to server room                                             camera (done)
+RA-07    Insider threat - data theft     LOW         HIGH    MEDIUM  Audit logging (done),
+                                                                     access reviews (done)
+RA-08    Cloud service outage (M365)     MEDIUM      MEDIUM  MEDIUM  Accept risk (SLA 99.9%);
+                                                                     offline backup copies
+RA-09    Supply chain compromise via     LOW         HIGH    MEDIUM  Vendor screening,
+         vendor software update                                      software allow-list
+
+RISK SUMMARY
+-------------------------------------------------
+Critical risks: 1 (RA-01 - all mitigations already in place)
+High risks:     2 (mitigations in place)
+Medium risks:   4 (mitigations in place or accepted)
+Low risks:      2 (mitigations in place)
+
+All HIGH/CRITICAL risks have active mitigations deployed.
+No unmitigated HIGH risks remain open.
+
+Next assessment: March 2027
+
+================================================================
+Accepted by: Keith Merritt - March 15, 2026
+================================================================

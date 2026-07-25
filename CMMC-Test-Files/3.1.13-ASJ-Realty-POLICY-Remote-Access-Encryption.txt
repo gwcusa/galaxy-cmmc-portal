@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: ASJ Realty
+Control: 3.1.13 - Remote Access Encryption
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to employ cryptographic mechanisms to protect the confidentiality of remote access sessions, per NIST SP 800-171 Rev. 2 control 3.1.13.
+
+2. SCOPE
+All remote access connections to ASJ Realty CUI systems.
+
+3. REQUIREMENTS
+a. All remote access sessions use TLS 1.2 or higher encryption.
+b. VPN connections use AES-256 encryption minimum.
+c. Weak cipher suites (RC4, DES, 3DES, TLS 1.0, TLS 1.1) are disabled.
+d. Remote desktop sessions require NLA and TLS encryption.
+e. Sandra Okonkwo reviews VPN and TLS cipher configurations quarterly.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, configures and maintains encryption settings for remote access.
+
+5. ENFORCEMENT
+Unencrypted remote access connections are blocked and reported.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

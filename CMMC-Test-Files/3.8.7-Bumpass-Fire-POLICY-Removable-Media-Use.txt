@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.8.7 - Removable Media Use Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy controls the use of removable media on system components, per NIST SP 800-171 Rev. 2 control 3.8.7.
+
+2. SCOPE
+All Bumpass Fire & Rescue CUI endpoints and the removable media used with them.
+
+3. REQUIREMENTS
+a. Only Mike Sadler-approved removable media may be used on CUI endpoints.
+b. Approved media must be encrypted (AES-256 hardware or software).
+c. Intune device control policies block unapproved USB storage devices.
+d. A register of approved removable media is maintained by Mike Sadler.
+e. Approved media is inventoried and audited quarterly.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, manages the approved media register and Intune device control policies.
+
+5. ENFORCEMENT
+Unapproved removable media connected to CUI endpoints is blocked and generates a security alert.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

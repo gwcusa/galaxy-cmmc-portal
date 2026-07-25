@@ -1,0 +1,35 @@
+﻿MAINTENANCE IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.7.3 - Equipment Sanitization
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue sanitizes equipment before off-site maintenance release.
+
+2. SANITIZATION PROCEDURE
+Standard: NIST SP 800-88 Rev. 1 Guidelines for Media Sanitization
+Method for Working Drives: Secure Erase (using manufacturer tools or DBAN)
+Method for Faulty Drives: Physical destruction if cannot be wiped; documented
+Method for SSDs: Manufacturer secure erase (NVMe Sanitize command)
+
+Sanitization tool: Eraser v6.2 (Windows) / Manufacturer SSD Secure Erase Utility
+
+3. SANITIZATION LOG (FY2026)
+Date       | Device    | SN           | Reason          | Method         | Technician | Verified
+2026-05-19 | Laptop    | HP-XW4892    | Off-site repair | BitLocker wipe + reset | Mike Sadler  | Randy Bowles
+2026-07-05 | USB Drive | KI-003       | Returned vendor | DBAN 2-pass    | Mike Sadler       | Mike Sadler
+
+4. RETURN-FROM-MAINTENANCE INSPECTION
+Date: 2026-05-22 | Device: HP Laptop (SN: HP-XW4892) | Returned from: HP Repair
+Inspection by: Mike Sadler
+Checks:
+  - Physical integrity: OK
+  - Malware scan: Clean (Windows Defender full scan)
+  - Firmware hash: Verified against HP reference
+  - Re-enrolled in Intune: Yes
+  - CUI data restored from backup: Yes (encrypted)
+
+5. CONCLUSION
+Bumpass Fire & Rescue sanitizes equipment before off-site release and inspects it upon return per control 3.7.3.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

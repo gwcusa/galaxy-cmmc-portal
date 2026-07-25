@@ -1,0 +1,30 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.12 - Remote Access Monitoring and Control
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC monitors and controls all remote access sessions to CUI systems.
+
+2. VPN CONFIGURATION
+Solution: GlobalProtect / Azure VPN Gateway
+Tenant: blueridgetech.com
+- All remote CUI access requires VPN connection
+- Non-compliant devices blocked (Intune compliance gate)
+- Max concurrent sessions per user: 1
+- Session logging: Full (user, source IP, start/end time, bytes transferred)
+
+3. REMOTE ACCESS LOG EXCERPT (June 2026)
+Date       | User          | Source IP     | Duration | Device
+2026-06-03 | n.cruz@blueridgetech.com   | 71.44.x.x     | 2h 14m   | BRTS-WS-001 (Compliant)
+2026-06-10 | n.cruz@blueridgetech.com   | 71.44.x.x     | 1h 05m   | BRTS-WS-001 (Compliant)
+2026-06-22 | Unknown       | 185.220.x.x   | Blocked  | Non-managed device
+
+4. WEEKLY REVIEW
+Date: 2026-07-07  |  Reviewer: Nathan Cruz
+Result: 1 blocked attempt from unknown IP. No further action required. Logged to security register.
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC monitors and controls all remote access sessions via VPN with full logging per control 3.1.12.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

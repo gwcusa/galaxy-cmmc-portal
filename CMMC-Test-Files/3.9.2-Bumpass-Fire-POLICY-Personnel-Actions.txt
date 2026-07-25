@@ -1,0 +1,54 @@
+================================================================
+BUMPASS FIRE & RESCUE
+PERSONNEL ACTIONS - SYSTEM PROTECTION POLICY
+================================================================
+Document ID:    POL-PS-002
+Version:        1.0
+Effective Date: May 15, 2026
+Review Date:    May 15, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy ensures CUI systems are protected during and after
+personnel actions such as terminations and transfers.
+
+2. TERMINATION PROCEDURES
+
+2.1 Voluntary Termination
+  On the employee's last day:
+    a) IT access disabled by Mike Sadler (AD account disabled)
+    b) Azure AD account disabled and all sessions revoked
+    c) M365 license removed or converted to shared mailbox
+    d) Physical access removed (key fob deactivated, codes changed)
+    e) Company devices (laptop, phone) collected and inventoried
+    f) Personal data removed from company devices per data handling policy
+
+2.2 Involuntary Termination
+  Access revocation occurs SIMULTANEOUSLY with notification:
+    a) HR/Command notifies Mike Sadler BEFORE informing the employee
+    b) Mike disables AD account and revokes M365 sessions
+    c) Physical access revoked
+    d) All above completed before the separation meeting ends
+
+3. TRANSFER PROCEDURES
+  When an employee changes roles:
+    a) Former role access is removed within 24 hours
+    b) New role access is granted per the new role definition
+    c) The principle of least privilege is re-evaluated
+    d) Mike Sadler updates group memberships accordingly
+
+4. ACCESS REVIEW TRIGGER
+  Any personnel action triggers an immediate access review
+  by Mike Sadler to ensure no access is carried over
+  inappropriately.
+
+5. DOCUMENTATION
+  All termination/transfer access changes logged in the
+  IT Action Log and HR personnel file.
+
+================================================================
+Approved: Chief Randy Bowles        05/15/2026
+Prepared: Mike Sadler               05/13/2026
+================================================================

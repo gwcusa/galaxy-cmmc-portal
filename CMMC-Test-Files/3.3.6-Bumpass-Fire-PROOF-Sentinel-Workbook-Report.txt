@@ -1,0 +1,36 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.3.6 - Audit Reduction and Report Generation
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue provides audit reduction and report generation without altering original records.
+
+2. AUDIT REDUCTION TOOLS
+Platform: Microsoft Sentinel + Log Analytics (tenant: bumpassfire.org)
+
+Capabilities:
+- KQL (Kusto Query Language) for real-time log filtering and analysis
+- Sentinel Workbooks for pre-built security dashboards
+- Log Analytics query editor for ad-hoc investigation
+- Export to CSV/Excel for offline analysis
+
+Original records: Stored immutably in Log Analytics workspace. KQL queries operate on indexed copies and do not modify source records.
+
+3. STANDARD REPORTS CONFIGURED
+Workbook: "Bumpass Fire & Rescue Security Overview" (refreshed daily)
+- Failed logins (last 7 days)
+- File access by user
+- Admin activity summary
+- Alert trend
+
+4. ON-DEMAND REPORT TEST
+Date: 2026-06-25  |  Requester: Randy Bowles  |  Tester: Mike Sadler
+Request: "Show all CUI file access by m.sadler@bumpassfire.org in June 2026"
+KQL executed: SecurityEvent + SharePoint logs joined on user
+Report delivered: 12 minutes  |  Original logs: Unaltered (confirmed via log count)
+
+5. CONCLUSION
+Bumpass Fire & Rescue provides audit reduction and reporting via Sentinel without altering original records per control 3.3.6.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

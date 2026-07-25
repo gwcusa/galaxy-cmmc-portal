@@ -1,0 +1,35 @@
+﻿RISK ASSESSMENT IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.11.1 - Risk Assessment
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty conducts periodic risk assessments of CUI systems.
+
+2. RISK ASSESSMENT DETAILS
+Date Conducted: 2026-03-15  |  Methodology: NIST SP 800-30 Rev. 1
+Conducted by: Sandra Okonkwo  |  Reviewed by: Anthony James
+Scope: All ASJ Realty systems handling CUI (M365, SharePoint, laptops, network infrastructure)
+
+3. RISK REGISTER SUMMARY (Top Risks - March 2026)
+Risk ID | Threat                          | Likelihood | Impact | Rating | Status
+R-001   | Phishing / credential theft     | High       | High   | HIGH   | Mitigated (MFA)
+R-002   | Ransomware via email attachment | Medium     | High   | HIGH   | Mitigated (Defender, DLP)
+R-003   | Insider data exfiltration       | Low        | High   | MEDIUM | Mitigated (DLP, audit logs)
+R-004   | Lost/stolen encrypted laptop    | Low        | Medium | LOW    | Mitigated (BitLocker)
+R-005   | Supply chain software risk      | Low        | High   | MEDIUM | Monitoring (app allowlist)
+
+Residual Risk: Acceptable per Anthony James approval (2026-03-20)
+
+4. RISK ASSESSMENT APPROVAL
+Approved by: Anthony James, Office Manager
+Date: 2026-03-20
+Finding: All residual risks within acceptable tolerance. No new remediation actions required beyond existing controls.
+
+5. NEXT ASSESSMENT DUE
+Date: 2027-03-15 (or sooner if significant system or threat changes occur)
+
+6. CONCLUSION
+ASJ Realty conducts annual risk assessments with documented Risk Register and executive approval per control 3.11.1.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

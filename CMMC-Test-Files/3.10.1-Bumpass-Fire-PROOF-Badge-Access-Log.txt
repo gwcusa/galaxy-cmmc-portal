@@ -1,0 +1,34 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.10.1 - Physical Access Authorization
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue limits physical access to CUI systems to authorized individuals.
+
+2. PHYSICAL ACCESS CONTROLS
+CUI Work Area: Main office - Suite 200
+Access Control: Electronic keypad with PIN (changed quarterly)
+Current Authorized Personnel:
+- Randy Bowles (Fire Chief): PIN access + office key
+- Mike Sadler (IT Coordinator): PIN access + office key
+- Staff-1 (Analyst): PIN access only (no key)
+- Staff-2 (Coordinator): PIN access only (no key)
+
+Terminated Staff Access: Revoked within 24 hours of departure.
+Last revocation: Staff member departed 2026-04-01. PIN removed 2026-04-01 (same day).
+
+3. QUARTERLY ACCESS REVIEW
+Date: 2026-06-30  |  Reviewer: Randy Bowles
+Result: 4 authorized personnel confirmed. 0 former employees with active access. No changes needed.
+
+4. ACCESS LOG (Electronic Keypad - June 2026 Sample)
+Date       | Time   | User       | Action     | Result
+2026-06-10 | 08:12  | Mike Sadler       | Entry      | Granted
+2026-06-10 | 17:45  | Mike Sadler       | Exit       | Logged
+2026-06-15 | Unknown| Unknown    | Entry      | DENIED (wrong PIN - no threat)
+
+5. CONCLUSION
+Bumpass Fire & Rescue limits CUI area physical access via PIN-controlled entry with documented authorized user list per control 3.10.1.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

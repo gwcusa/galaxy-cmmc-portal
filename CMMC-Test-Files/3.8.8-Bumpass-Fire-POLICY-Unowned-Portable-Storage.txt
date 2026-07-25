@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.8.8 - Unowned Portable Storage Prohibition
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy prohibits the use of portable storage devices when such devices have no identifiable owner, per NIST SP 800-171 Rev. 2 control 3.8.8.
+
+2. SCOPE
+All Bumpass Fire & Rescue CUI endpoints and removable storage found in or around Bumpass Fire & Rescue facilities.
+
+3. REQUIREMENTS
+a. Unidentified or ownerless portable storage devices found in Bumpass Fire & Rescue facilities are quarantined and reported to Mike Sadler.
+b. Found storage devices are never connected to Bumpass Fire & Rescue systems without malware scanning and approval.
+c. The approved media register identifies the owner of every authorized device.
+d. Personnel are trained not to connect found USB drives or storage devices.
+e. Intune device control ensures only allowlisted devices connect to CUI endpoints.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, enforces the no-unowned-media policy and trains personnel.
+
+5. ENFORCEMENT
+Connecting an unowned device to a CUI endpoint is a security incident.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

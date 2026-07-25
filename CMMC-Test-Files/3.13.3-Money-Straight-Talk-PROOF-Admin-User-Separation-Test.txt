@@ -1,0 +1,35 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.13.3 - Security Function Separation
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC separates user functionality from system management functionality.
+
+2. SEPARATION IMPLEMENTATION
+Azure AD Roles:
+- Standard Users: No admin role. Access to SharePoint, Teams, Exchange only.
+- Terrell Banks Admin Account: Global Admin (PIM-gated). Used ONLY for admin tasks.
+- Camille Odom: Security Reader (read-only on security dashboards). No config access.
+
+Management Portals Accessible Only to Terrell Banks:
+- Azure Portal (portal.azure.com): Blocked by Conditional Access for non-admin accounts
+- Microsoft 365 Admin Center: Blocked for non-admin accounts
+- Intune Admin Center: Blocked for non-admin accounts
+- Sentinel: Read-only for Camille Odom, Contributor for Terrell Banks
+
+3. TECHNICAL ENFORCEMENT
+Conditional Access Policy: AdminPortal-RestrictedAccess
+- Target: Access to Azure Portal, M365 Admin, Intune Admin
+- Require: Global Admin or Intune Admin role (enforced by AAD RBAC)
+- Standard users attempting access: BLOCKED with "You don't have permission" message
+
+4. SEPARATION TEST
+Date: 2026-06-20  |  Tester: Terrell Banks
+Test: Attempted to access Azure Portal with Staff-1 standard account (moneystraighttalk.com)
+Result: Access BLOCKED. "You need permission to access this." PASS.
+
+5. CONCLUSION
+Money Straight Talk LLC separates user and management functions via RBAC and Conditional Access per control 3.13.3.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

@@ -1,0 +1,39 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.13.9 - Network Session Termination
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC terminates network sessions after defined inactivity periods.
+
+2. SESSION TIMEOUT CONFIGURATION
+
+VPN (GlobalProtect / Azure VPN):
+- Idle timeout: 60 minutes
+- Maximum session: 8 hours
+- Action: Session disconnected; full re-authentication required
+
+SharePoint / Microsoft 365:
+- Idle session timeout: 30 minutes (configured in M365 Admin Center)
+- Token lifetime: 1 hour (Conditional Access - SignInFrequency policy)
+- Persistent browser session: DISABLED
+
+Windows Interactive Sessions (RDP / Local):
+- Idle disconnect: 60 minutes (GPO: SessionTimeout-Money Straight Talk LLC)
+- Applies to: All Money Straight Talk LLC endpoints
+
+3. SESSION TERMINATION TEST
+Date: 2026-06-25  |  Tester: Terrell Banks
+
+Test 1: SharePoint idle session
+Opened SharePoint CUI site on MST-WS-001 (t.banks@moneystraighttalk.com). Left idle 35 minutes.
+Result: Session terminated. Full MFA re-authentication required. PASS.
+
+Test 2: VPN idle session
+Connected GlobalProtect VPN. Left idle 65 minutes.
+Result: VPN disconnected. Full re-authentication required to reconnect. PASS.
+
+4. CONCLUSION
+Money Straight Talk LLC terminates network sessions after defined idle periods on all CUI systems per control 3.13.9.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

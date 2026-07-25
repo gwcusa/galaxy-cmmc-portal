@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.3.5 - Audit Log Correlation and Analysis
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to correlate audit record review, analysis, and reporting across organizational processes to gain situational awareness, per NIST SP 800-171 Rev. 2 control 3.3.5.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC audit log sources and CUI systems.
+
+3. REQUIREMENTS
+a. Audit records from multiple sources are correlated in a centralized SIEM.
+b. Correlation rules detect multi-source attack patterns.
+c. Nathan Cruz reviews correlation findings weekly.
+d. Cross-source incidents are escalated immediately to Victor Osei.
+e. Correlation rules are reviewed and updated quarterly.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, maintains and monitors the SIEM correlation infrastructure.
+
+5. ENFORCEMENT
+Gaps in log correlation coverage are remediated within 30 days of identification.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

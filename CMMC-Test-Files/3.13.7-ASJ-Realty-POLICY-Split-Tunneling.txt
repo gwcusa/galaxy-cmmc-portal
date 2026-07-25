@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: ASJ Realty
+Control: 3.13.7 - Split Tunneling Prohibition
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy prevents ASJ Realty remote access VPN clients from using split tunneling, per NIST SP 800-171 Rev. 2 control 3.13.7.
+
+2. SCOPE
+All ASJ Realty remote access VPN connections.
+
+3. REQUIREMENTS
+a. Split tunneling is disabled on all VPN profiles.
+b. When VPN is connected, all traffic (including internet) routes through the ASJ Realty gateway.
+c. VPN configuration is enforced by managed Intune profiles and cannot be changed by users.
+d. Sandra Okonkwo verifies split tunneling is disabled quarterly.
+e. Any detected split tunnel configuration is immediately remediated.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, configures VPN profiles with split tunneling disabled.
+
+5. ENFORCEMENT
+VPN connections with split tunneling enabled are disconnected and reconfigured.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

@@ -1,0 +1,50 @@
+================================================================
+KEITH THE DRONE GUY LLC
+MULTI-FACTOR AUTHENTICATION FOR PRIVILEGED ACCOUNTS POLICY
+================================================================
+Document ID:    POL-IA-005
+Version:        1.0
+Effective Date: February 20, 2026
+Review Date:    February 20, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy requires multi-factor authentication for all
+network access to privileged accounts at KDG.
+
+2. PRIVILEGED ACCOUNTS AT KDG
+  - Keith Merritt: Azure Global Admin, Intune Admin, Domain Admin
+  - adm_kmerritt: On-premises domain admin (admin account)
+
+3. MFA REQUIREMENTS FOR PRIVILEGED ACCESS
+
+3.1 Azure AD Privileged Roles
+  - MFA is required via Conditional Access for all Azure AD
+    role activation and privileged portal access
+  - Azure AD PIM requires MFA for role activation regardless
+    of location or device
+  - Acceptable MFA factors: Microsoft Authenticator (preferred),
+    FIDO2 hardware key
+
+3.2 On-Premises Admin Account
+  - Admin account (adm_kmerritt) used only from designated
+    admin workstation inside the network
+  - VPN + MFA required before any remote admin session
+  - Admin workstation cannot browse internet (reducing
+    risk of admin credential theft)
+
+3.3 No MFA Bypass
+  - No conditional access exclusions for admin accounts
+  - No trusted locations that bypass MFA for admin roles
+  - Emergency access account exists with FIDO2 key only
+    (for break-glass scenarios - stored in locked safe)
+
+4. MONITORING
+  All privileged account sign-ins are logged and reviewed.
+  Any MFA failure on a privileged account triggers an alert.
+
+================================================================
+Approved: Keith Merritt           02/20/2026
+================================================================

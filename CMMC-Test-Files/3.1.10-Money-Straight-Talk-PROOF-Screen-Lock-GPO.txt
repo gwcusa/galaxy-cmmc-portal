@@ -1,0 +1,47 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+GROUP POLICY — SCREEN LOCK / SESSION TIMEOUT CONFIGURATION
+Evidence for CMMC Control 3.1.10
+================================================================
+Report Date:    July 18, 2026
+Prepared By:    Terrell Banks, Systems Administrator
+Domain:         moneystalk.local
+================================================================
+
+GPO NAME: MST-Screen-Lock-Policy
+Applied To: All MST workstations and laptops (MST-Computers OU)
+
+CONFIGURED SETTINGS (from gpresult /h output)
+-------------------------------------------------
+User Configuration > Administrative Templates > Control Panel
+> Personalization:
+  Enable screen saver: ENABLED
+  Screen saver timeout: 900 seconds (15 minutes)
+  Password protect the screen saver: ENABLED
+  Force specific screen saver: blank (blank screensaver)
+
+Computer Configuration > Windows Settings > Security Settings
+> Local Policies > Security Options:
+  Interactive logon: Machine inactivity limit: 900 seconds
+
+LAPTOP-SPECIFIC GPO: MST-Laptop-Screen-Lock
+Applied To: MST-Laptops OU
+  Screen saver timeout: 600 seconds (10 minutes)
+  Password protect the screen saver: ENABLED
+
+VERIFICATION — DEVICE COMPLIANCE CHECK
+-------------------------------------------------
+Device          Timeout Setting   Password Lock   Compliant
+--------------  ---------------   -------------   ---------
+MST-WS-001      15 min            YES             YES
+MST-WS-002      15 min            YES             YES
+MST-WS-003      15 min            YES             YES
+MST-WS-004      15 min            YES             YES
+MST-LT-001      10 min            YES             YES
+MST-LT-002      10 min            YES             YES
+
+All 6 devices COMPLIANT. Users cannot modify timeout.
+
+================================================================
+Certified: Terrell Banks — July 18, 2026
+================================================================

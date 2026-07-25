@@ -1,0 +1,61 @@
+================================================================
+CMMC TEST FILES — INDEX
+================================================================
+Location: C:\Users\agmir\Downloads\CMMC-Test-Files\
+Total Files: 30 (2 per control: 1 POLICY + 1 PROOF)
+================================================================
+
+CONTROL  | FILE NAME                                            | COMPANY
+---------|------------------------------------------------------|--------------------
+3.1.1    | 3.1.1-ASJ-Realty-POLICY-Access-Control.txt          | ASJ Realty
+3.1.1    | 3.1.1-ASJ-Realty-PROOF-AD-User-Accounts.txt         | ASJ Realty
+---------|------------------------------------------------------|--------------------
+3.1.5    | 3.1.5-Bumpass-Fire-POLICY-Least-Privilege.txt        | Bumpass Fire
+3.1.5    | 3.1.5-Bumpass-Fire-PROOF-Role-Assignments.txt        | Bumpass Fire
+---------|------------------------------------------------------|--------------------
+3.2.1    | 3.2.1-Keith-Drone-Guy-POLICY-Security-Awareness.txt  | Keith the Drone Guy
+3.2.1    | 3.2.1-Keith-Drone-Guy-PROOF-Training-Completion.txt  | Keith the Drone Guy
+---------|------------------------------------------------------|--------------------
+3.3.1    | 3.3.1-Money-Straight-Talk-POLICY-Audit-Logging.txt   | Money Straight Talk
+3.3.1    | 3.3.1-Money-Straight-Talk-PROOF-SIEM-Log-Config.txt  | Money Straight Talk
+---------|------------------------------------------------------|--------------------
+3.4.1    | 3.4.1-ASJ-Realty-POLICY-Configuration-Management.txt | ASJ Realty
+3.4.1    | 3.4.1-ASJ-Realty-PROOF-Asset-Inventory.txt           | ASJ Realty
+---------|------------------------------------------------------|--------------------
+3.5.3    | 3.5.3-Bumpass-Fire-POLICY-MFA.txt                    | Bumpass Fire
+3.5.3    | 3.5.3-Bumpass-Fire-PROOF-MFA-Enrollment.txt          | Bumpass Fire
+---------|------------------------------------------------------|--------------------
+3.5.7    | 3.5.7-Keith-Drone-Guy-POLICY-Password-Complexity.txt | Keith the Drone Guy
+3.5.7    | 3.5.7-Keith-Drone-Guy-PROOF-Password-Policy-Config.txt| Keith the Drone Guy
+---------|------------------------------------------------------|--------------------
+3.6.1    | 3.6.1-Money-Straight-Talk-POLICY-Incident-Response.txt| Money Straight Talk
+3.6.1    | 3.6.1-Money-Straight-Talk-PROOF-IR-Tabletop-Exercise.txt| Money Straight Talk
+---------|------------------------------------------------------|--------------------
+3.10.1   | 3.10.1-Blue-Ridge-Tech-POLICY-Physical-Access.txt    | Blue Ridge Tech
+3.10.1   | 3.10.1-Blue-Ridge-Tech-PROOF-Badge-Access-Log.txt    | Blue Ridge Tech
+---------|------------------------------------------------------|--------------------
+3.11.2   | 3.11.2-ASJ-Realty-POLICY-Vulnerability-Scanning.txt  | ASJ Realty
+3.11.2   | 3.11.2-ASJ-Realty-PROOF-Vulnerability-Scan-Report.txt| ASJ Realty
+---------|------------------------------------------------------|--------------------
+3.12.4   | 3.12.4-Bumpass-Fire-POLICY-SSP.txt                   | Bumpass Fire
+3.12.4   | 3.12.4-Bumpass-Fire-PROOF-SSP-Document.txt           | Bumpass Fire
+---------|------------------------------------------------------|--------------------
+3.13.8   | 3.13.8-Keith-Drone-Guy-POLICY-Encryption-In-Transit.txt| Keith the Drone Guy
+3.13.8   | 3.13.8-Keith-Drone-Guy-PROOF-TLS-Config.txt          | Keith the Drone Guy
+---------|------------------------------------------------------|--------------------
+3.13.16  | 3.13.16-Money-Straight-Talk-POLICY-CUI-At-Rest.txt   | Money Straight Talk
+3.13.16  | 3.13.16-Money-Straight-Talk-PROOF-BitLocker-Status.txt| Money Straight Talk
+---------|------------------------------------------------------|--------------------
+3.14.2   | 3.14.2-Blue-Ridge-Tech-POLICY-Malware-Protection.txt | Blue Ridge Tech
+3.14.2   | 3.14.2-Blue-Ridge-Tech-PROOF-Defender-Status.txt     | Blue Ridge Tech
+---------|------------------------------------------------------|--------------------
+
+HOW TO USE:
+1. Open your browser and go to the CMMC assessment portal
+2. Navigate to the control number shown above
+3. Select "Yes" or "Partial" for that control
+4. Upload the POLICY file in the LEFT (Policy Document) panel
+5. Upload the PROOF file in the RIGHT (Implementation Evidence) panel
+6. Click Next Control and repeat
+
+================================================================

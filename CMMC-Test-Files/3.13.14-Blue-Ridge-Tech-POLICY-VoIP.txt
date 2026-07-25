@@ -1,0 +1,52 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+VOIP TECHNOLOGY CONTROL POLICY
+================================================================
+Document ID:    POL-SC-014
+Version:        1.0
+Effective Date: June 15, 2026
+Review Date:    June 15, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy controls and monitors the use of Voice over IP
+(VoIP) technologies at BRTS to protect CUI discussions and
+prevent eavesdropping.
+
+2. APPROVED VOIP TECHNOLOGIES
+  - Microsoft Teams Voice (primary): calls made through
+    the company M365 tenant
+  - Teams calling is encrypted end-to-end (SRTP + TLS)
+  - No third-party VoIP clients are approved for CUI discussions
+
+3. PROHIBITED VOIP TECHNOLOGIES
+  - Consumer VoIP apps (WhatsApp, FaceTime, Signal) for
+    CUI discussions: PROHIBITED
+  - Unapproved SIP clients: PROHIBITED
+  - VoIP over unencrypted channels: PROHIBITED
+
+4. CUI DISCUSSION CONTROLS
+  When discussing CUI over any voice channel:
+    - Use Microsoft Teams (encrypted) only
+    - Ensure no unauthorized parties can hear the discussion
+      (closed door, headphones if in open office)
+    - Do not use speakerphone in public areas for CUI calls
+
+5. NETWORK CONSIDERATIONS
+  - Teams VoIP traffic uses encrypted SRTP (AES-128 or AES-256)
+  - Media traffic flows through Microsoft data centers
+    (not directly peer-to-peer in enterprise plans)
+  - QoS DSCP markings applied for Teams media traffic
+    (no special security risk from QoS marking)
+
+6. MONITORING
+  Teams call records are available in the M365 admin center.
+  Unusual calling patterns (e.g., bulk external calls) are
+  reviewed by Nathan Cruz upon alert from Defender for Cloud Apps.
+
+================================================================
+Approved: Victor Osei            06/15/2026
+Prepared: Nathan Cruz            06/13/2026
+================================================================

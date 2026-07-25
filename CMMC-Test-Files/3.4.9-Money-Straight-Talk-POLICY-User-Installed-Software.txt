@@ -1,0 +1,48 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+USER-INSTALLED SOFTWARE CONTROL POLICY
+================================================================
+Document ID:    POL-CM-009
+Version:        1.0
+Effective Date: January 28, 2026
+Review Date:    January 28, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy controls and monitors software installed by users
+to prevent unauthorized, malicious, or unlicensed software
+on MST information systems.
+
+2. USER INSTALLATION RIGHTS
+  Standard users DO NOT have local administrator rights.
+  Standard users cannot install software without IT assistance.
+  All software installations must be performed by Terrell Banks
+  or via Intune-managed application deployment.
+
+3. REQUEST PROCESS
+  Staff who need software installed must:
+    a) Submit a request to Terrell Banks (email or Teams)
+    b) Provide business justification
+    c) Terrell Banks reviews for security, licensing, and need
+    d) Camille Odom approves purchases if licensing cost > 
+    e) Terrell Banks deploys via Intune Company Portal
+
+4. MONITORING
+  Monthly software inventory audit using Intune:
+    - All installed applications reported per device
+    - Any application not on the approved list is flagged
+    - Flagged items are reviewed and removed if unauthorized
+
+5. PROHIBITED SOFTWARE
+  - Peer-to-peer file sharing software
+  - Cryptocurrency mining software
+  - Remote access tools not approved by IT
+  - Software from unknown or untrusted publishers
+  - Cracked, pirated, or license-key-generated software
+
+================================================================
+Approved: Camille Odom           01/28/2026
+Prepared: Terrell Banks          01/26/2026
+================================================================

@@ -1,0 +1,26 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY
+Organization: ASJ Realty
+Control: 3.10.4 - Physical Access Audit Logging
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to maintain audit logs of physical access to CUI facilities, per NIST SP 800-171 Rev. 2 control 3.10.4.
+
+2. SCOPE
+All physical access points to ASJ Realty CUI facilities.
+
+3. REQUIREMENTS
+a. Physical access logs record each entry and exit from CUI areas.
+b. Logs include: individual identity, date, time, and access point.
+c. Physical access logs are reviewed monthly by Sandra Okonkwo.
+d. Anomalous physical access (after hours, weekends, unknown individuals) generates immediate review.
+e. Physical access logs are retained for 1 year.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, maintains and reviews physical access logs.
+
+5. ENFORCEMENT
+Unauthorized physical access detected in logs is treated as a security incident.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

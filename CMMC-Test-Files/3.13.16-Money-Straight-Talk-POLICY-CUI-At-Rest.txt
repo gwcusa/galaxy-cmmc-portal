@@ -1,0 +1,68 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+DATA ENCRYPTION AT REST POLICY
+================================================================
+Document ID:    POL-SC-005
+Version:        1.1
+Effective Date: April 1, 2026
+Review Date:    April 1, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+Money Straight Talk LLC stores CUI received under Department
+of Defense financial education contracts. This policy requires
+all CUI stored on company systems and media to be encrypted
+at rest using approved cryptographic methods.
+
+2. ENCRYPTION REQUIREMENTS
+
+2.1 Workstations and Laptops
+  - All company-issued Windows devices must have BitLocker
+    full-disk encryption enabled with AES-256
+  - BitLocker recovery keys are stored in Azure AD
+  - Pre-boot authentication is required (PIN + TPM)
+  - FileVault is required on any Apple devices (none currently)
+  - BitLocker compliance monitored via Microsoft Intune
+
+2.2 Servers and Cloud Storage
+  - Azure VM disks: Azure Disk Encryption (ADE) with
+    customer-managed keys in Azure Key Vault
+  - SharePoint Online: encrypted at rest by Microsoft
+    (AES-256 per Microsoft's encryption documentation)
+  - Azure Blob Storage (backup): SSE with AES-256,
+    customer-managed keys (CMK)
+
+2.3 Removable Media
+  - Any USB drive used to transport CUI must use BitLocker
+    To Go encryption (AES-256)
+  - Unencrypted removable media containing CUI is prohibited
+  - See Media Protection Policy (POL-MP-001) for full details
+
+2.4 Email at Rest
+  - Microsoft 365 mailboxes are encrypted at rest by Microsoft
+    (per Microsoft's Service Encryption documentation)
+  - The CUI mailbox folder uses a sensitivity label with
+    automatic encryption retention
+
+3. KEY MANAGEMENT
+  - BitLocker keys backed up to Azure AD automatically
+  - Azure Key Vault used for all customer-managed keys
+  - Key access limited to Terrell Banks and Camille Odom
+  - Key rotation performed annually (June 1)
+
+4. VERIFICATION
+  - Intune compliance report reviewed monthly
+  - Encryption status of all devices verified quarterly
+  - Any non-compliant device is quarantined from CUI access
+    until encryption is confirmed
+
+5. EXCEPTIONS
+  No exceptions to this policy are permitted for CUI storage.
+  Any system that cannot support encryption must not store CUI.
+
+================================================================
+Approved: Camille Odom            04/01/2026
+Prepared: Terrell Banks           03/30/2026
+================================================================

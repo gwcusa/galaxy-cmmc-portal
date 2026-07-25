@@ -1,0 +1,66 @@
+================================================================
+KEITH THE DRONE GUY LLC
+DATA ENCRYPTION IN TRANSIT POLICY
+================================================================
+Document ID:    POL-SC-002
+Version:        1.0
+Effective Date: February 1, 2026
+Review Date:    February 1, 2027
+Owner:          Keith Anderson, Owner/Operator
+================================================================
+
+1. PURPOSE
+Keith the Drone Guy LLC transmits CUI including drone flight
+data, aerial imagery, and survey results to federal clients
+(USDA, Army Corps of Engineers). This policy ensures all
+such transmissions are encrypted to protect confidentiality
+during transit.
+
+2. ENCRYPTION REQUIREMENTS
+
+2.1 All CUI transmitted over any network must be encrypted
+    using FIPS-validated cryptographic algorithms. Minimum
+    standards:
+      - TLS 1.2 or higher for all web-based transmission
+      - TLS 1.3 preferred for all new implementations
+      - AES-256 for file encryption prior to transfer
+      - SSH (v2) for any command-line remote access
+
+2.2 Prohibited Transmission Methods for CUI:
+      - Unencrypted HTTP
+      - FTP (non-SFTP)
+      - Unencrypted email (plain SMTP)
+      - USB without encryption
+      - Personal email accounts (Gmail, Yahoo, etc.)
+
+2.3 Approved File Transfer Methods:
+      - Microsoft SharePoint (SharePoint Online with TLS 1.3)
+      - SFTP to client-designated secure drop sites
+      - DoD SAFE (for DoD clients requiring this method)
+      - Encrypted email via Microsoft 365 (M365 Message Encryption)
+
+2.4 Email Encryption
+  - All emails containing CUI must use M365 Message Encryption
+  - Keith Anderson and all subcontractors are trained on
+    applying the "Encrypt" label in Outlook before sending CUI
+  - External recipients receive a one-time passcode to open
+    encrypted messages
+
+3. VPN
+All remote access to company systems must use the company
+VPN (Meraki Client VPN with AES-256 encryption).
+
+4. VERIFICATION
+Encryption settings are reviewed:
+  - When any new system or service is added
+  - Annually as part of the security assessment
+  - When a new CUI transmission method is proposed
+
+5. ENFORCEMENT
+Any CUI transmitted without proper encryption must be
+reported immediately as a potential data breach and handled
+per POL-IR-001 (Incident Response Policy).
+
+================================================================
+Approved: Keith Anderson, Owner    02/01/2026
+================================================================

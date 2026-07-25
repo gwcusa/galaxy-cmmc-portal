@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: Money Straight Talk LLC
+Control: 3.4.7 - Restrict Software Functions
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy restricts, disables, or prevents the use of programs, functions, ports, protocols, and services not required at Money Straight Talk LLC, per NIST SP 800-171 Rev. 2 control 3.4.7.
+
+2. SCOPE
+All Money Straight Talk LLC CUI systems, endpoints, and network devices.
+
+3. REQUIREMENTS
+a. Firewall rules block all ports and protocols not required for business operations.
+b. Software restriction policies prevent execution of unapproved applications.
+c. Removable media autorun is disabled on all endpoints.
+d. Macro execution in Office documents is restricted to digitally signed macros only.
+e. Terrell Banks reviews firewall rules and software restriction policies quarterly.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, configures and maintains software and network function restrictions.
+
+5. ENFORCEMENT
+Unauthorized software functions discovered in audits are disabled within 24 hours.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

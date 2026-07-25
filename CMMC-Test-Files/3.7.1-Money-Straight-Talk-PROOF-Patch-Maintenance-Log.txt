@@ -1,0 +1,39 @@
+﻿MAINTENANCE IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.7.1 - System Maintenance
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC performs and documents system maintenance on CUI systems.
+
+2. PATCH MANAGEMENT CONFIGURATION
+Platform: Microsoft Intune (Windows Update for Business)
+Patch Schedule:
+- Security updates: Deployed 3 days after release (auto-approval)
+- Critical/Emergency patches: Deployed within 24 hours
+- Feature updates: Reviewed and deployed quarterly
+
+Update Ring: Money Straight Talk LLC-Production
+Deferral: 3 days (allows time to assess before full rollout)
+
+3. MAINTENANCE LOG (June 2026)
+Date       | System    | Type                      | Performed By | Duration
+2026-06-11 | MST-WS-001      | Windows security update   | Intune auto  | 15 min
+2026-06-11 | WS-002    | Windows security update   | Intune auto  | 12 min
+2026-06-15 | Network SW| Firmware update to 8.5.5  | Terrell Banks         | 30 min
+2026-06-25 | MST-WS-001      | Defender definition update | Intune auto  | 2 min
+
+4. PATCH COMPLIANCE REPORT (2026-07-01)
+Source: Intune Device Compliance - Patch Status
+Endpoint                 | Last Patch Date   | Status
+MST-WS-001                     | 2026-07-01        | Compliant
+WS-002                   | 2026-07-01        | Compliant
+Mobile-001 (iOS)         | 2026-06-28        | Compliant
+
+Critical patches overdue (>72 hrs): 0
+Standard patches overdue (>30 days): 0
+
+5. CONCLUSION
+Money Straight Talk LLC performs and documents timely system maintenance via Intune and manual logs per control 3.7.1.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

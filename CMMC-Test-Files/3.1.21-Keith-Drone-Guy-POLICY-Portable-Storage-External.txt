@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.1.21 - Portable Storage on External Systems
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy limits the use of portable storage devices on external systems, per NIST SP 800-171 Rev. 2 control 3.1.21.
+
+2. SCOPE
+All Keith the Drone Guy LLC personnel who use portable storage devices (USB drives, external HDDs, SD cards) on non-Keith the Drone Guy LLC systems.
+
+3. REQUIREMENTS
+a. Keith the Drone Guy LLC-owned portable storage devices may not be connected to external (non-Keith the Drone Guy LLC) systems.
+b. Portable storage used on external systems may not subsequently be connected to CUI systems without approval and scanning.
+c. Personal portable storage devices are prohibited on Keith the Drone Guy LLC CUI endpoints.
+d. Intune device control policies block unauthorized USB storage on CUI endpoints.
+e. Any exemption requires written approval from Keith Merritt and is logged.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, enforces USB device control policies. Keith Merritt approves exceptions.
+
+5. ENFORCEMENT
+Violations of this policy are investigated and may result in disciplinary action.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

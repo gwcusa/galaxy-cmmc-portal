@@ -1,0 +1,53 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+MEDIA SANITIZATION LOG - 2026
+Evidence for CMMC Control 3.8.3
+================================================================
+Log Period:     January 1 - July 25, 2026
+Maintained By:  Terrell Banks, Systems Administrator
+================================================================
+
+SANITIZATION EVENTS - 2026
+-------------------------------------------------
+EVENT #1 - February 20, 2026
+Device:           MST-WS-002 (old machine - replaced)
+Media:            500 GB HDD (Seagate)
+Sanitization:     DBAN 3-pass overwrite (DoD 5220.22-M)
+Method Reference: NIST SP 800-88 Rev 1 - Clear (HDD)
+Tool Used:        DBAN (Darik's Boot and Nuke) v2.3.0
+Duration:         4 hours 22 minutes
+CUI on device:    YES (Terrell Banks' work files)
+Performed By:     Terrell Banks
+Outcome:          Sanitization complete. Drive disposed in
+                  general recycling (no data recoverable).
+Documentation:    DBAN completion report printed and filed.
+
+EVENT #2 - April 15, 2026
+Device:           USB flash drive (unencrypted, found in drawer)
+Media:            SanDisk 32 GB (unknown history/ownership)
+Sanitization:     Physical destruction - punctured drive PCB
+                  with hammer and drill (NIST SP 800-88 Destroy)
+Reason:           Could not confirm whether drive contained CUI;
+                  elected to destroy as precautionary measure.
+Performed By:     Terrell Banks
+Outcome:          Drive destroyed. Fragments disposed in trash.
+
+EVENT #3 - June 30, 2026
+Device:           MST-LT-001 (end of lease return)
+Media:            512 GB NVMe SSD (BitLocker encrypted)
+Sanitization:     Cryptographic Erase - BitLocker key destroyed
+                  via manage-bde -forcerecovery (key overwritten)
+                  Followed by: Full BitLocker wipe to new key,
+                  then recovery key deleted again.
+Method Reference: NIST SP 800-88 Rev 1 - Purge (cryptographic erase)
+Performed By:     Terrell Banks
+Outcome:          Device returned to leasing company.
+Certificate:      Obtained from Dell Lease Return (CoD #DELL-2026-9921)
+
+PAPER SHREDDING - ONGOING
+Shredder (Fellowes LX221): Used weekly for CUI paper documents.
+Monthly log maintained. Last entry: July 22, 2026.
+
+================================================================
+Certified: Terrell Banks - July 25, 2026
+================================================================

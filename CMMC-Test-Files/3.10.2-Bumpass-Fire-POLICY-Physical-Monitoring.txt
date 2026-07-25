@@ -1,0 +1,26 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.10.2 - Physical Monitoring
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to protect and monitor the physical facility and support infrastructure for CUI systems, per NIST SP 800-171 Rev. 2 control 3.10.2.
+
+2. SCOPE
+All Bumpass Fire & Rescue facilities where CUI systems are located.
+
+3. REQUIREMENTS
+a. Security cameras cover all entry and exit points to CUI areas.
+b. Camera footage is retained for 30 days.
+c. Mike Sadler reviews camera footage weekly or upon any incident report.
+d. A security alarm is installed and armed during non-business hours.
+e. Alarm events are responded to within 15 minutes by designated personnel.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, manages the physical monitoring infrastructure.
+
+5. ENFORCEMENT
+Any detected physical security breach is treated as a security incident.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

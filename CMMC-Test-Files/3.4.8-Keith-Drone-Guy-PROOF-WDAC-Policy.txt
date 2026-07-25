@@ -1,0 +1,52 @@
+================================================================
+KEITH THE DRONE GUY LLC
+MICROSOFT DEFENDER APPLICATION CONTROL (WDAC) STATUS
+Evidence for CMMC Control 3.4.8
+================================================================
+Report Date:    July 24, 2026
+Prepared By:    Keith Merritt
+================================================================
+
+WDAC POLICY: KDG-AppControl-Audit
+-------------------------------------------------
+Policy Mode:      Audit (Enforce mode targeted: Sept 1, 2026)
+Policy File:      KDG-AllowList-Policy.xml
+Deployed Via:     Intune Configuration Profile
+Applied To:       KDG-LT-001, KDG-LT-002, KDG-WS-001
+
+ALLOWED PUBLISHERS (Signer Rules)
+-------------------------------------------------
+Publisher: CN=Microsoft Corporation
+Publisher: CN=Adobe Systems Incorporated
+Publisher: CN=Autodesk Inc
+Publisher: CN=Cisco Systems Inc
+Publisher: CN=DJI Technology
+Publisher: CN=Skydio Inc
+Publisher: CN=Knowbe4 Inc
+
+ALLOWED FILE HASHES (Hash Rules)
+-------------------------------------------------
+FileZilla 3.67.0: [SHA256 hash on file - IT asset register]
+
+WDAC AUDIT LOG - Blocked Application Attempts (Last 30 Days)
+-------------------------------------------------
+EVENT 3076 (Audit block - would block in enforce mode):
+DATE         DEVICE      FILE                    PUBLISHER
+-----------  ----------  ----------------------  -----------------------
+07/03/2026   KDG-LT-002  VLC-3.0.21-installer.exe  VideoLAN (not approved)
+  User: dflowers | Action: Not installed - user informed of policy
+  Status: Request submitted, under review
+
+07/18/2026   KDG-WS-001  Zoom_5.17.1.exe        Zoom Video Comm (not approved)
+  User: kmerritt | Action: Exception approved - Teams is standard;
+  Zoom added to ASL for client-required meetings.
+
+ENFORCEMENT TRANSITION PLAN
+-------------------------------------------------
+Target enforce date: September 1, 2026
+Pre-enforce testing: August 2026 (identify any missed allowed apps)
+Current audit violations: 2 in 30 days (1 resolved, 1 in review)
+
+================================================================
+Certified: Keith Merritt - July 24, 2026
+================================================================

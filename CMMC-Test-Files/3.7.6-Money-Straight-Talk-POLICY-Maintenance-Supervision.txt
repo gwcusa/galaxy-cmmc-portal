@@ -1,0 +1,26 @@
+﻿MAINTENANCE POLICY
+Organization: Money Straight Talk LLC
+Control: 3.7.6 - Maintenance Personnel Supervision
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to supervise maintenance activities of personnel without required access authorization, per NIST SP 800-171 Rev. 2 control 3.7.6.
+
+2. SCOPE
+All maintenance personnel who do not have CUI access authorization but require physical or logical access to perform maintenance.
+
+3. REQUIREMENTS
+a. Unauthorized maintenance personnel are supervised by Terrell Banks at all times.
+b. Supervision includes monitoring all activities within CUI areas.
+c. Supervised personnel may not be left unattended with CUI systems.
+d. If supervision is not possible, CUI systems are powered off and locked before maintenance begins.
+e. Supervision activities are documented in the maintenance log.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, is responsible for supervising all unauthorized maintenance personnel.
+
+5. ENFORCEMENT
+Unattended unauthorized maintenance in CUI areas is a security incident.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

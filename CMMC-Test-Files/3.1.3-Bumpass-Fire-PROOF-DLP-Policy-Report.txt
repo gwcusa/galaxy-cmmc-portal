@@ -1,0 +1,30 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.3 - CUI Information Flow Control
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue controls CUI information flows per documented authorizations.
+
+2. DLP POLICY CONFIGURATION
+Platform: Microsoft Purview / Microsoft 365
+Tenant: bumpassfire.org
+Active DLP Rules:
+- Block CUI email to external addresses (exemption: encrypted with S/MIME)
+- Block upload of CUI files to personal cloud storage (OneDrive personal, Dropbox)
+- Alert on CUI copy to removable media
+
+DLP Policy Name: CUI-Protection-Bumpass Fire & Rescue-v1
+Status: Active and enforced
+
+3. DLP ALERT LOG (Last 30 Days)
+Total alerts: 3  |  False positives: 2  |  True policy violations: 1
+Violation: User attempted to email CUI to external vendor. Blocked and escalated to Mike Sadler.
+
+4. SYSTEM DETAILS
+Primary CUI System: BFR-WS-001  |  User: m.sadler@bumpassfire.org
+
+5. CONCLUSION
+Bumpass Fire & Rescue enforces CUI flow controls via DLP policies. Alerts are reviewed monthly by Mike Sadler per control 3.1.3.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

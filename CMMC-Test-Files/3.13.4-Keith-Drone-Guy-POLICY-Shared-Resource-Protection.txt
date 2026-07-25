@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.13.4 - Shared Resource Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to prevent unauthorized and unintended information transfer via shared system resources, per NIST SP 800-171 Rev. 2 control 3.13.4.
+
+2. SCOPE
+All Keith the Drone Guy LLC systems with shared resources (memory, storage, network) in the CUI environment.
+
+3. REQUIREMENTS
+a. Virtual machines and containers are isolated to prevent data leakage between workloads.
+b. Temporary storage is cleared between user sessions.
+c. Printer spooler directories are cleared after each job.
+d. Memory is overwritten or not re-used across security boundaries without clearing.
+e. Keith Merritt verifies isolation controls quarterly.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, configures and verifies shared resource isolation controls.
+
+5. ENFORCEMENT
+Shared resource isolation failures are treated as potential data leakage incidents.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

@@ -1,0 +1,26 @@
+﻿MAINTENANCE POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.7.2 - Controlled Maintenance
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to provide controls on tools, techniques, mechanisms, and personnel who perform maintenance, per NIST SP 800-171 Rev. 2 control 3.7.2.
+
+2. SCOPE
+All maintenance activities on Blue Ridge Technology Solutions LLC CUI systems by internal staff or vendors.
+
+3. REQUIREMENTS
+a. Vendor maintenance personnel are pre-approved by Victor Osei before being granted access.
+b. Vendor access is escorted by Nathan Cruz throughout the maintenance activity.
+c. Vendor tools and diagnostic software are inspected before use.
+d. Remote vendor access is monitored in real-time by Nathan Cruz.
+e. All vendor maintenance is logged with contact details, scope, and outcome.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, controls and supervises all maintenance activities.
+
+5. ENFORCEMENT
+Unsupervised vendor access to CUI systems is prohibited.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

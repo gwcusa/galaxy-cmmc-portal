@@ -1,0 +1,59 @@
+================================================================
+KEITH THE DRONE GUY LLC
+COLLABORATIVE COMPUTING DEVICE CONTROLS VERIFICATION
+Evidence for CMMC Control 3.13.12
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Keith Merritt
+================================================================
+
+INTUNE - CAMERA AND MICROPHONE RESTRICTIONS
+-------------------------------------------------
+Configuration Profile: KDG-Privacy-Controls
+  Setting: Allow Camera:      Allowed (Teams meetings - user consent)
+  Setting: Camera per-app:    Only approved apps (Teams, Zoom if approved)
+  Setting: Allow Microphone:  Allowed (user consent required per app)
+  Unapproved app camera access: Blocked by Windows Privacy settings
+
+Windows Privacy Settings (enforced via GPO: KDG-Privacy):
+  Camera access (user-controlled): ON
+  Let apps access camera: Per-app basis only
+  Apps with camera permission: Microsoft Teams only
+  All other apps: Camera access DENIED
+
+MICROPHONE SETTINGS (GPO: KDG-Privacy)
+  Microphone access: User-controlled
+  Apps with microphone permission: Microsoft Teams only
+  All other apps: Microphone access DENIED
+
+VERIFIED APP CAMERA ACCESS
+-------------------------------------------------
+Permitted: Microsoft Teams (meetings - user initiates)
+Permitted: Zoom (approved exception - CHG-2026-086)
+Denied:    All other applications
+
+PHYSICAL CONTROLS
+-------------------------------------------------
+KDG-LT-001: Webcam cover (physical slider) - PRESENT
+KDG-LT-002: Webcam cover (physical slider) - PRESENT
+Conference room camera: Power switch physically OFF when not in use
+  Last meeting: July 22, 2026. Camera powered off after meeting.
+
+IN-USE INDICATORS
+-------------------------------------------------
+Windows camera indicator LED: Present and functional (hardware LED)
+  Test performed July 1, 2026: LED illuminated during Teams test call.
+Teams screen share indicator: Green bar visible during share.
+  No remote or background activation capability found.
+
+REMOTE ACTIVATION TEST (July 1, 2026)
+-------------------------------------------------
+Tested: Can any installed application activate camera without
+  user consent?
+Result: No background app found with camera access.
+  Defender Application Control logs: no unauthorized camera calls.
+  COMPLIANT.
+
+================================================================
+Certified: Keith Merritt - July 25, 2026
+================================================================

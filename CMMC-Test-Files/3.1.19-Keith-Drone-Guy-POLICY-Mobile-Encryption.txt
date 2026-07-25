@@ -1,0 +1,55 @@
+================================================================
+KEITH THE DRONE GUY LLC
+MOBILE DEVICE CUI ENCRYPTION POLICY
+================================================================
+Document ID:    POL-AC-019
+Version:        1.0
+Effective Date: February 1, 2026
+Review Date:    February 1, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy requires that CUI on mobile devices and mobile
+computing platforms is encrypted to protect it from
+unauthorized disclosure if a device is lost or stolen.
+
+2. SCOPE
+Applies to all mobile devices and laptops used by Keith
+the Drone Guy LLC employees that store, process, or
+could potentially access CUI.
+
+3. ENCRYPTION REQUIREMENTS
+
+3.1 iPhones / iPads
+  - iOS hardware encryption (AES-256) is enabled by default
+    when a passcode is set — required for all enrolled devices
+  - Verified via Intune compliance check
+
+3.2 Laptops (Windows)
+  - BitLocker full-disk encryption required (AES-256)
+  - Recovery keys escrowed in Azure AD
+  - Pre-boot authentication: PIN required
+
+3.3 Laptops (Mac) — If Used
+  - FileVault 2 encryption required
+  - Recovery key stored in company password vault
+
+3.4 Removable Storage
+  - USB drives used with mobile devices must use BitLocker
+    To Go or equivalent AES-256 encryption
+  - No unencrypted USB drives may be used with CUI data
+
+4. ENFORCEMENT
+  Intune compliance policy blocks CUI app access if device
+  encryption is not confirmed. Devices without encryption
+  cannot access SharePoint CUI folders or company email.
+
+5. LOST/STOLEN PROCEDURE
+  Remote wipe via Intune is performed immediately upon
+  report of a lost or stolen device.
+
+================================================================
+Approved: Keith Merritt           02/01/2026
+================================================================

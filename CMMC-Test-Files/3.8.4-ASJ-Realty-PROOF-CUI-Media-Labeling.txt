@@ -1,0 +1,36 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.8.4 - CUI Media Marking
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty marks CUI media with required CUI designations.
+
+2. PHYSICAL MEDIA LABELING
+Label Standard: NARA CUI labels (printed from cui.gov)
+Label Applied to: USB drive body + case, external HDD case, backup media containers
+
+Physical Media Labeled (Current):
+Item          | Label Applied         | Date       | Verified by
+USB KI-001    | "CUI" orange label    | 2026-01-15 | Sandra Okonkwo
+USB KI-002    | "CUI" orange label    | 2026-01-15 | Sandra Okonkwo
+Backup HDD    | "CUI - ASJ Realty"       | 2026-01-20 | Sandra Okonkwo
+
+3. DIGITAL FILE MARKING
+SharePoint CUI site: All document templates include "CUI" header and footer
+File naming convention: Files with CUI include "-CUI" suffix (e.g., Contract-Q2-CUI.docx)
+Microsoft Purview: Sensitivity label "CUI" applied to CUI documents (enforced via DLP)
+
+Sample labeled file: DFARS-Compliance-Q2-CUI.docx
+Header: "CONTROLLED UNCLASSIFIED INFORMATION"
+Footer: "CUI - Handle per NARA/DoD guidelines"
+
+4. QUARTERLY MARKING REVIEW
+Date: 2026-06-30  |  Reviewer: Sandra Okonkwo
+Physical media: All 3 items labeled. Labels legible and current.
+SharePoint: 12 CUI files reviewed. All include CUI header/footer. 0 unmarked CUI files.
+
+5. CONCLUSION
+ASJ Realty applies and verifies CUI markings on all physical and digital CUI media per control 3.8.4.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

@@ -1,0 +1,34 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.9 - Privacy and Security Notices
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC displays privacy and security notices at system logon per control 3.1.9.
+
+2. LOGON BANNER TEXT (Active)
+"This system is the property of Blue Ridge Technology Solutions LLC. Access is restricted to authorized users only.
+By logging in, you consent to monitoring and recording of all activity. Unauthorized access
+or use of this system is prohibited and may be subject to criminal prosecution.
+This system may contain Controlled Unclassified Information (CUI). Handle accordingly."
+
+Banner approved by: Victor Osei, Director of Operations  |  Date: 2026-01-20
+
+3. IMPLEMENTATION DETAILS
+Windows Endpoints (GPO):
+- Policy: LegalNotice-Blue Ridge Technology Solutions LLC
+- Registry: HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon
+- LegalNoticeCaption: "AUTHORIZED USE ONLY"
+- LegalNoticeText: [Full banner text above]
+- Scope: All computers in blueridgetech.com domain
+
+Azure AD: Terms of Use policy enabled on Conditional Access - requires annual acknowledgment.
+
+4. COMPLIANCE VERIFICATION
+Date: 2026-07-01  |  Verified by: Nathan Cruz
+All Blue Ridge Technology Solutions LLC endpoints confirmed displaying banner on logon. Azure AD Terms acknowledged by all active users.
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC displays required logon notices on all systems per control 3.1.9.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

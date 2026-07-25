@@ -1,0 +1,26 @@
+﻿SYSTEM AND INFORMATION INTEGRITY POLICY
+Organization: Money Straight Talk LLC
+Control: 3.14.6 - Security Monitoring
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to monitor information systems to detect attacks and indicators of potential attacks, per NIST SP 800-171 Rev. 2 control 3.14.6.
+
+2. SCOPE
+All Money Straight Talk LLC CUI systems and the networks through which CUI flows.
+
+3. REQUIREMENTS
+a. Microsoft Sentinel provides continuous security monitoring and attack detection.
+b. Sentinel analytics rules are configured to detect known attack patterns (TTPs).
+c. Defender for Endpoint monitors endpoint behavior for attack indicators.
+d. Terrell Banks triages Sentinel incidents within 2 hours during business hours.
+e. After-hours critical incidents trigger automated alert to Terrell Banks via SMS/email.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, configures and monitors attack detection controls.
+
+5. ENFORCEMENT
+Unreviewed Sentinel incidents beyond SLA are escalated to Camille Odom.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

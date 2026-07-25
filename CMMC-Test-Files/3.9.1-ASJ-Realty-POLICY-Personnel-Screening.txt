@@ -1,0 +1,55 @@
+================================================================
+ASJ REALTY
+PERSONNEL SCREENING POLICY
+================================================================
+Document ID:    POL-PS-001
+Version:        1.0
+Effective Date: July 1, 2026
+Review Date:    July 1, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy requires that individuals are screened prior to
+being authorized access to ASJ Realty systems containing CUI.
+
+2. SCREENING REQUIREMENTS
+All personnel who will access CUI systems must undergo:
+  a) Criminal background check (nationwide)
+  b) Identity verification (government-issued ID)
+  c) Reference check (minimum 2 professional references)
+  d) Employment history verification (last 5 years)
+
+3. TIMING
+  - Screening is completed BEFORE granting access to CUI
+  - New hires may access non-CUI systems during the screening
+    period, but access to CUI systems is withheld until
+    screening is complete and results reviewed by Anthony James
+
+4. SCREENING PROVIDER
+  ASJ Realty uses HireRight (third-party background check
+  service) for all employment screening. Results are shared
+  only with Anthony James and Sandra Okonkwo.
+
+5. ADVERSE RESULTS
+  - Any adverse finding is reviewed by Anthony James
+  - A determination is made case-by-case based on the
+    nature, recency, and relevance of the adverse finding
+  - Access to CUI is not granted until Anthony James
+    approves after reviewing adverse results
+
+6. CONTRACTORS AND VENDORS
+  Third-party contractors who require regular unsupervised
+  access to CUI systems must undergo equivalent screening.
+  Contractors under supervision (short-term) require ID
+  verification only.
+
+7. RECORDS
+  Screening records retained per HireRight for 7 years.
+  Internal results summary retained in HR files (locked).
+
+================================================================
+Approved: Anthony James           07/01/2026
+Prepared: Sandra Okonkwo          06/28/2026
+================================================================

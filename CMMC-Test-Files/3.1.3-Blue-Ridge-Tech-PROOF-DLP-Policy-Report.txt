@@ -1,0 +1,30 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.3 - CUI Information Flow Control
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC controls CUI information flows per documented authorizations.
+
+2. DLP POLICY CONFIGURATION
+Platform: Microsoft Purview / Microsoft 365
+Tenant: blueridgetech.com
+Active DLP Rules:
+- Block CUI email to external addresses (exemption: encrypted with S/MIME)
+- Block upload of CUI files to personal cloud storage (OneDrive personal, Dropbox)
+- Alert on CUI copy to removable media
+
+DLP Policy Name: CUI-Protection-Blue Ridge Technology Solutions LLC-v1
+Status: Active and enforced
+
+3. DLP ALERT LOG (Last 30 Days)
+Total alerts: 3  |  False positives: 2  |  True policy violations: 1
+Violation: User attempted to email CUI to external vendor. Blocked and escalated to Nathan Cruz.
+
+4. SYSTEM DETAILS
+Primary CUI System: BRTS-WS-001  |  User: n.cruz@blueridgetech.com
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC enforces CUI flow controls via DLP policies. Alerts are reviewed monthly by Nathan Cruz per control 3.1.3.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

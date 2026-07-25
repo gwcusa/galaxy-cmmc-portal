@@ -1,0 +1,58 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+SYSTEM SCANNING POLICY
+================================================================
+Document ID:    POL-SI-005
+Version:        1.0
+Effective Date: June 20, 2026
+Review Date:    June 20, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy requires periodic scans of information systems
+and real-time scans of files as they are downloaded, opened,
+or executed.
+
+2. PERIODIC SCANNING
+
+2.1 Full System Scans
+  - Frequency: Weekly (every Sunday at 2:00 AM)
+  - Scope: All local drives, including hidden files and folders
+  - Tool: Microsoft Defender for Endpoint (scheduled scan)
+  - Scan reports: available in Defender portal
+
+2.2 Quick Scans
+  - Frequency: Daily at 12:00 PM
+  - Scope: Common malware locations (startup folders, registry)
+  - Tool: Microsoft Defender (scheduled quick scan)
+
+2.3 Vulnerability Scans
+  - Frequency: Monthly (first Monday of each month)
+  - Scope: All BRTS endpoints and servers
+  - Tool: Microsoft Defender Vulnerability Management + Nessus
+
+3. REAL-TIME SCANNING
+
+3.1 On-Access Scanning
+  - ALL file operations trigger real-time scan:
+    * Files downloaded from the internet
+    * Files opened from network shares
+    * Email attachments opened in Outlook
+    * Files copied from removable media
+    * Files executed (any .exe, .dll, .ps1, .bat, etc.)
+
+3.2 Email Scanning
+  - Defender for Office 365 Safe Attachments:
+    Detonates all email attachments in sandbox before delivery
+  - Safe Links: all URLs rewritten and checked at click time
+
+4. SCAN RESULTS
+  Threats detected are automatically quarantined.
+  Nathan Cruz receives alert on any detection.
+
+================================================================
+Approved: Victor Osei            06/20/2026
+Prepared: Nathan Cruz            06/18/2026
+================================================================

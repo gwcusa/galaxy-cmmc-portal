@@ -1,0 +1,55 @@
+================================================================
+ASJ REALTY
+VIRTUALIZATION-BASED SECURITY AND SHARED RESOURCE AUDIT
+Evidence for CMMC Control 3.13.4
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+================================================================
+
+VIRTUALIZATION-BASED SECURITY (VBS) STATUS
+-------------------------------------------------
+Checked on: ASJ-WS-001 (representative)
+Command: msinfo32 / System Summary
+  Virtualization-based security: Running
+  VBS services running:
+    Credential Guard: Running
+    Hypervisor enforced code integrity: Running
+
+VBS status on all devices (Intune report - July 25):
+  ASJ-WS-001: VBS Running
+  ASJ-WS-002: VBS Running
+  ASJ-WS-003: VBS Running
+  ASJ-WS-004: VBS Running
+  ASJ-LT-001: VBS Running
+  ASJ-LT-002: VBS Running
+All 6 devices: VBS ACTIVE. COMPLIANT.
+
+FILE SYSTEM PERMISSION ISOLATION (ASJ-WS-001)
+-------------------------------------------------
+C:\Users\sokonkwo (Sandra's profile):
+  Permissions: sokonkwo - FullControl | SYSTEM - FullControl
+  Others: ACCESS DENIED
+
+C:\Users\ajames (Anthony's profile):
+  Permissions: ajames - FullControl | SYSTEM - FullControl
+  Others: ACCESS DENIED
+
+Cross-user access test: sokonkwo attempting to list ajames profile
+Result: Access is denied. COMPLIANT.
+
+RDP CLIPBOARD RESTRICTION (GPO: ASJ-RDP-Clipboard)
+-------------------------------------------------
+Setting: Do not allow clipboard redirection = ENABLED
+Applied To: All workstations (verified July 25, 2026)
+
+SHAREPOINT CUI SITE ISOLATION
+-------------------------------------------------
+Site: ASJR CUI Documents
+Members: sokonkwo, ajames, rthomas (job role requires access)
+Others: NOT in site members - ACCESS DENIED
+Verified: July 1, 2026 access review.
+
+================================================================
+Certified: Sandra Okonkwo - July 25, 2026
+================================================================

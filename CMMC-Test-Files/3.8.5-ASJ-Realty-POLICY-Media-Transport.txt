@@ -1,0 +1,52 @@
+================================================================
+ASJ REALTY
+CUI MEDIA TRANSPORT CONTROL POLICY
+================================================================
+Document ID:    POL-MP-005
+Version:        1.0
+Effective Date: June 25, 2026
+Review Date:    June 25, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy controls access to media containing CUI and
+maintains accountability for media during transport.
+
+2. TRANSPORT AUTHORIZATION
+  No CUI media may be removed from ASJ Realty premises
+  without prior written (email) authorization from
+  Sandra Okonkwo.
+
+3. TRANSPORT REQUIREMENTS
+
+3.1 Digital Media
+  - All digital media containing CUI transported off-site
+    must be encrypted (BitLocker or equivalent)
+  - Transport packaging: sealed, tamper-evident bag or case
+  - Chain of custody documented (Media Transport Log)
+  - Media must be hand-carried by an authorized ASJ Realty
+    employee - not shipped via postal service unescorted
+
+3.2 Laptop Transport
+  - Laptops with CUI must have BitLocker active before
+    being removed from the office
+  - Laptops traveling by air: kept in carry-on luggage only
+    (not checked baggage)
+
+3.3 Paper CUI
+  - Paper CUI transported in sealed, opaque envelope
+  - Envelope marked "CUI - DO NOT OPEN - AUTHORIZED RECIPIENT ONLY"
+  - Hand-delivered by ASJ Realty staff only
+
+4. ACCOUNTABILITY
+  - The Media Transport Log records every off-site movement:
+    media ID, contents description, destination, transporter,
+    departure time, return/delivery time
+  - Lost media during transport must be reported within 1 hour
+
+================================================================
+Approved: Anthony James           06/25/2026
+Prepared: Sandra Okonkwo          06/23/2026
+================================================================

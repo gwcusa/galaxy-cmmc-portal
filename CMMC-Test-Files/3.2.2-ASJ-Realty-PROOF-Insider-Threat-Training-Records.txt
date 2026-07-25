@@ -1,0 +1,34 @@
+﻿AWARENESS AND TRAINING IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.2.2 - Insider Threat Awareness Training
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty provides insider threat awareness training to all personnel.
+
+2. INSIDER THREAT TRAINING MODULE
+Platform: KnowBe4 + Custom Video (recorded by Sandra Okonkwo)
+Module: "Recognizing and Reporting Insider Threats" (45 min)
+Topics Covered:
+- Behavioral indicators (unusual data access, financial stress, disgruntlement)
+- How to report concerns (anonymous hotline, direct to Anthony James)
+- Non-retaliation policy
+- Case study examples (sanitized real-world scenarios)
+
+3. COMPLETION RECORDS (FY2026)
+Name          | Role         | Completed   | Attestation Signed
+Anthony James         | Office Manager       | 2026-02-12  | Yes
+Sandra Okonkwo          | IT Director        | 2026-02-09  | Yes
+Staff-1       | Analyst      | 2026-02-16  | Yes
+Staff-2       | Coordinator  | 2026-02-17  | Yes
+
+Completion: 4/4 (100%)
+
+4. QUARTERLY INSIDER THREAT BRIEFING
+Date: 2026-07-01  |  Attendees: Anthony James, Sandra Okonkwo
+Topics: Recent CISA insider threat advisories, review of reporting channel
+
+5. CONCLUSION
+ASJ Realty maintains 100% insider threat training compliance per control 3.2.2.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

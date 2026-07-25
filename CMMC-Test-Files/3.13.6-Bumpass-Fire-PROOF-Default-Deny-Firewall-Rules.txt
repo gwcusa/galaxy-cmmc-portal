@@ -1,0 +1,39 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.13.6 - Default-Deny Network Communications
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue implements default-deny network communications policy.
+
+2. FIREWALL DEFAULT RULE CONFIGURATION
+Azure Firewall (perimeter):
+- Default inbound rule: DENY ALL (priority 65000 - lowest priority, catches unmatched traffic)
+- Default outbound rule: DENY ALL (for CUI VLAN)
+- Explicit allows placed at higher priorities
+
+Azure NSG (CUI subnet):
+- Default inbound security rule: DenyAllInBound (priority 65500, built-in)
+- Default outbound security rule: DenyAllOutBound (override applied)
+- Only specific approved rules above these defaults are allowed
+
+Windows Defender Firewall (endpoints):
+- Inbound: Block all (unless matching specific rules)
+- Outbound: Block all except approved applications
+
+3. ALLOWED TRAFFIC (Explicit Rules Only)
+Rule                | Source        | Destination      | Port     | Action
+VPN-Inbound         | Internet      | VPN Gateway      | UDP 500  | ALLOW
+M365-Outbound       | CUI VLAN      | Microsoft 365 IPs| TCP 443  | ALLOW
+DNS-Outbound        | CUI VLAN      | DNS Server       | UDP 53   | ALLOW
+All Others          | Any           | Any              | Any      | DENY (default)
+
+4. DEFAULT-DENY VERIFICATION
+Date: 2026-06-30  |  Verifier: Mike Sadler
+Test: Send ICMP ping from CUI VLAN to internet IP not in allowlist
+Result: BLOCKED by Azure NSG default deny rule. PASS.
+
+5. CONCLUSION
+Bumpass Fire & Rescue implements default-deny network policy with explicit allow rules only per control 3.13.6.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

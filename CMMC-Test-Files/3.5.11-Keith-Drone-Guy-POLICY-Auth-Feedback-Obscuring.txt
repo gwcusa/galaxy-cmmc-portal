@@ -1,0 +1,51 @@
+================================================================
+KEITH THE DRONE GUY LLC
+AUTHENTICATION FEEDBACK OBSCURING POLICY
+================================================================
+Document ID:    POL-IA-011
+Version:        1.0
+Effective Date: March 1, 2026
+Review Date:    March 1, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy requires that feedback during the authentication
+process obscures authentication information (e.g., passwords)
+to protect against shoulder-surfing and unauthorized disclosure.
+
+2. REQUIREMENTS
+
+2.1 Password Entry Fields
+  - All password fields on KDG systems display asterisks (*)
+    or dots (.) in place of the actual characters typed
+  - No "Show password" toggle is available on internal systems
+  - Windows login screen: password shown as dots by default
+    (the show/hide password icon is disabled via GPO for
+    CUI-accessing workstations)
+
+2.2 Web Applications
+  - All web-based login forms must use type="password"
+    HTML attribute, which obscures the password
+  - Verified quarterly on all applications in use
+
+2.3 Command-Line Authentication
+  - Scripts that pass credentials must use SecureString
+    objects and not display passwords in console output
+  - No scripts with hardcoded plaintext passwords are permitted
+
+2.4 MFA Codes
+  - Authenticator codes are not displayed on shared screens
+    or output to logs
+  - MFA push notifications do not display the OTP in
+    notification previews (notification preview disabled on
+    company-managed iPhones)
+
+3. TRAINING
+  Users are trained to never type passwords when someone
+  can observe their screen (shoulder-surfing awareness).
+
+================================================================
+Approved: Keith Merritt           03/01/2026
+================================================================

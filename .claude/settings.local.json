@@ -15,7 +15,19 @@
       "Bash(npm run:*)",
       "Bash(npm list:*)",
       "Bash(npm ls:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(xargs grep:*)",
+      "Bash(xargs ls:*)",
+      "Bash(gh run:*)",
+      "Bash(gh api:*)",
+      "Bash(npx vercel:*)",
+      "Read(//c/Users/agmir/.local/share/com.vercel.cli/**)",
+      "Read(//c/Users/agmir/AppData/Roaming/com.vercel.cli/**)",
+      "Bash(xargs -I{} gh api repos/gwcusa/galaxy-cmmc-portal/deployments/{}/statuses --jq '.[0] | {state, description}')",
+      "Bash(grep -n \"AI\\\\b\\\\|\\\\\" AI\\\\|AI \\\\|'AI\" app/admin/clients/[id]/AssessmentReviewPanel.tsx app/admin/clients/[id]/page.tsx app/admin/clients/[id]/RunAiButton.tsx app/admin/reports/page.tsx)",
+      "Bash(npx next:*)",
+      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); print\\(json.dumps\\(data[0], indent=2\\)\\)\")",
+      "mcp__plugin_supabase_supabase__execute_sql"
     ]
   }
 }

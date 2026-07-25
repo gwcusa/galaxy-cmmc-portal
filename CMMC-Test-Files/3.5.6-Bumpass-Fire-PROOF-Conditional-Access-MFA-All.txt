@@ -1,0 +1,36 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.5.6 - MFA for Non-Privileged Accounts
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue requires MFA for all standard user accounts accessing CUI systems over the network.
+
+2. CONDITIONAL ACCESS POLICY (Non-Privileged Users)
+Policy Name: MFA-All-Users-Bumpass Fire & Rescue
+Tenant: bumpassfire.org
+Target: All users (includes non-privileged standard accounts)
+Apps: All cloud apps
+Condition: All network access (any location, any device)
+Grant Control: Require MFA
+
+This policy covers standard accounts in addition to privileged accounts (control 3.5.5).
+
+3. MFA ENROLLMENT STATUS
+Non-Privileged Standard Accounts:
+User            | Role         | MFA Method             | Enrolled    | Status
+staff1@bumpassfire.org    | Analyst      | Authenticator App      | 2026-01-22  | Active
+staff2@bumpassfire.org    | Coordinator  | Authenticator App      | 2026-02-01  | Active
+Randy Bowles@bumpassfire.org     | Fire Chief       | Authenticator App      | 2026-01-20  | Active
+
+Non-Privileged MFA Compliance: 3/3 (100%)
+
+4. MONTHLY AUDIT
+Date: 2026-07-01  |  Auditor: Mike Sadler
+All standard accounts verified MFA-enrolled and policy-compliant.
+MFA disabled for any account: 0
+
+5. CONCLUSION
+Bumpass Fire & Rescue requires and enforces MFA for all non-privileged user accounts via Conditional Access per control 3.5.6.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

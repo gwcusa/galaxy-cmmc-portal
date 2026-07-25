@@ -1,0 +1,48 @@
+================================================================
+KEITH THE DRONE GUY LLC
+INSIDER THREAT INDICATOR REPORTING POLICY
+================================================================
+Document ID:    POL-AT-003
+Version:        1.0
+Effective Date: February 10, 2026
+Review Date:    February 10, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy trains personnel to recognize and report potential
+indicators of insider threat activity at Keith the Drone Guy LLC.
+
+2. INSIDER THREAT INDICATORS - STAFF ARE TRAINED TO RECOGNIZE
+  Technical indicators:
+    - Accessing data not required for job duties
+    - Downloading unusually large volumes of files
+    - Attempting to access systems after termination
+    - Inserting unauthorized removable media
+    - Using personal email for work files
+    - Disabling security software
+  Behavioral indicators:
+    - Expressing intent to harm the company or government
+    - Disgruntlement combined with data access changes
+    - Unexplained wealth or lifestyle changes
+    - Working unusual hours with unusual data access
+
+3. REPORTING REQUIREMENTS
+  Any observed indicator must be reported to Keith Merritt
+  within 24 hours. Reports are made via:
+    - Direct communication (preferred)
+    - Email to keith@keiththedroneguy.com (confidential)
+
+4. TRAINING DELIVERY
+  Training is delivered via KnowBe4 annually and reinforced
+  during quarterly team meetings where one security topic
+  is reviewed. Insider threat is covered each Q3 meeting.
+
+5. ANTI-RETALIATION
+  No employee will face retaliation for good-faith reporting
+  of suspected insider threat activity.
+
+================================================================
+Approved: Keith Merritt           02/10/2026
+================================================================

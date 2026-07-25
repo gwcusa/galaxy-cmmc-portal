@@ -1,0 +1,53 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+REMOTE MAINTENANCE SESSION LOG - Q2 2026
+Evidence for CMMC Control 3.7.5
+================================================================
+Report Period:  April 1 - June 30, 2026
+Prepared By:    Nathan Cruz
+================================================================
+
+INTERNAL REMOTE MAINTENANCE SESSIONS
+-------------------------------------------------
+SESSION #1 - April 14, 2026
+Admin:        Nathan Cruz (adm_ncruz)
+Target:       BRTS-SRV-001
+Method:       VPN (AnyConnect) + RDP
+MFA:          Microsoft Authenticator push - COMPLETED (09:02 AM)
+Purpose:      Apply April 2026 cumulative update
+Duration:     1 hour 15 minutes
+Ticket:       CHG-2026-041
+Outcome:      KB5036893 installed successfully. Server restarted.
+
+SESSION #2 - May 20, 2026
+Admin:        Nathan Cruz (adm_ncruz)
+Target:       BRTS-SRV-002
+Method:       VPN (AnyConnect) + RDP
+MFA:          Microsoft Authenticator push - COMPLETED (10:30 AM)
+Purpose:      Expand disk volume (disk at 88% - CHG-2026-053)
+Duration:     45 minutes
+Outcome:      Volume extended. Disk at 52% after expansion.
+
+SESSION #3 - June 11, 2026
+Admin:        Nathan Cruz (adm_ncruz)
+Target:       Azure VM (mst connection via Azure Portal)
+Method:       Browser (HTTPS) + Azure Portal
+MFA:          Authenticator push before portal access - COMPLETED
+Purpose:      Modify NSG rules per change request
+Outcome:      NSG updated. Change CHG-2026-066 closed.
+
+EXTERNAL VENDOR REMOTE SESSIONS
+-------------------------------------------------
+SESSION #4 - May 6, 2026
+Vendor:       Cisco TAC (SmartNet remote support)
+Purpose:      Review VPN configuration (read-only)
+Temp VPN account: cisco-temp-050626 (created 05/06, deleted 05/06)
+MFA method:   TOTP shared with TAC via secure Webex session
+Observed By:  Nathan Cruz (screen share with TAC)
+Outcome:      TAC identified config error. Nathan fixed locally.
+
+MFA completion confirmed on all 4 sessions: YES (100%)
+
+================================================================
+Certified: Nathan Cruz - June 30, 2026
+================================================================

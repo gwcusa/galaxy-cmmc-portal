@@ -1,0 +1,33 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.8.7 - Removable Media Use Control
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue controls the use of removable media on CUI endpoints.
+
+2. DEVICE CONTROL CONFIGURATION
+Platform: Microsoft Intune Device Control (tenant: bumpassfire.org)
+Policy Name: USBDeviceControl-Bumpass Fire & Rescue
+Default Action: BLOCK all removable storage
+Allowed Exception: Allowlisted by Hardware ID
+
+Allowlisted Devices:
+- Kingston IronKey D300S (SN: KI-001) - HW ID: USB\VID_0951&PID_1667
+- Kingston IronKey D300S (SN: KI-002) - HW ID: USB\VID_0951&PID_1667
+- IT Backup Drive (SN: ITBK-001) - HW ID: [registered in Intune]
+
+3. APPROVED MEDIA REGISTER
+Device         | SN      | Owner  | Encrypted | Purpose          | Last Audit
+KI-001 (32GB)  | KI-001  | Mike Sadler   | Yes       | CUI transfer     | 2026-06-30
+KI-002 (32GB)  | KI-002  | Randy Bowles  | Yes       | CUI backup       | 2026-06-30
+ITBK-001       | ITBK-001| Mike Sadler   | Yes       | IT backup (admin)| 2026-06-30
+
+4. BLOCK EVENT LOG (June 2026)
+Date: 2026-06-14 - Device: Generic USB (unregistered) - User: Staff-1 - Action: BLOCKED
+Event ID 6416 logged to Sentinel. Alert sent to Mike Sadler. Staff-1 reminded of policy.
+
+5. CONCLUSION
+Bumpass Fire & Rescue blocks unapproved removable media via Intune Device Control with an approved media register per control 3.8.7.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

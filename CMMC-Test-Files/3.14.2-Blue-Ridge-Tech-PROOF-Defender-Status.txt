@@ -1,0 +1,69 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+MICROSOFT DEFENDER FOR ENDPOINT — DEPLOYMENT STATUS REPORT
+Evidence for CMMC Control 3.14.2
+================================================================
+Report Date:    July 10, 2026
+Exported By:    Nathan Cruz, Lead Systems Engineer
+Portal:         Microsoft Defender XDR (security.microsoft.com)
+Tenant:         blueridgetech.com
+================================================================
+
+ENDPOINT PROTECTION DEPLOYMENT STATUS
+-------------------------------------------------
+DEVICE              OS              DEFENDER STATUS  RTP    SIGNATURES    LAST SCAN
+------------------  ------------    ---------------  -----  ----------    ----------
+BRTS-SRV-001        WS 2022         ACTIVE           ON     07/10/2026    07/10/2026
+BRTS-SRV-002        WS 2022         ACTIVE           ON     07/10/2026    07/10/2026
+BRTS-WS-OSEI        Win 11 23H2     ACTIVE           ON     07/10/2026    07/07/2026
+BRTS-WS-HARTWELL    Win 11 23H2     ACTIVE           ON     07/10/2026    07/07/2026
+BRTS-WS-CRUZ        Win 11 23H2     ACTIVE           ON     07/10/2026    07/07/2026
+BRTS-WS-KIMBLE      Win 11 23H2     ACTIVE           ON     07/10/2026    07/07/2026
+BRTS-WS-JOHNSON     Win 11 23H2     ACTIVE           ON     07/10/2026    07/07/2026
+BRTS-LT-OSEI        Win 11 23H2     ACTIVE           ON     07/10/2026    07/08/2026
+BRTS-LT-CRUZ        Win 11 23H2     ACTIVE           ON     07/10/2026    07/08/2026
+
+COVERAGE: 9 of 9 devices (100%) — Real-time protection ON
+
+SIGNATURE VERSION STATUS
+-------------------------------------------------
+Current Signature Version:   1.415.234.0 (released July 10, 2026)
+Platform Version:            4.18.26060.7
+Engine Version:              1.1.26060.5
+
+All devices running current signature: YES (9/9)
+Maximum signature age on any device: 4 hours
+
+TAMPER PROTECTION STATUS
+-------------------------------------------------
+Tamper Protection Enabled:   YES — all 9 devices
+Policy Source:               Microsoft Intune (enforced)
+Users can disable RTP:       NO
+
+SCHEDULED SCAN HISTORY — LAST 4 WEEKS
+-------------------------------------------------
+DATE         SCAN TYPE   DEVICES   THREATS FOUND   QUARANTINED
+-----------  ----------  -------   -------------   -----------
+07/07/2026   Full        9         0               0
+06/30/2026   Full        9         0               0
+06/23/2026   Full        9         1               1 *
+06/16/2026   Full        9         0               0
+
+* 06/23 — PUP (Potentially Unwanted Program) detected on
+  BRTS-WS-KIMBLE. Identified as bundled adware with a
+  downloaded utility. Auto-quarantined and deleted.
+  User notified. No CUI was at risk. Incident closed.
+
+DEFENDER FOR OFFICE 365 — EMAIL PROTECTION
+-------------------------------------------------
+Safe Attachments Policy:     ENABLED (Block mode)
+Safe Links Policy:           ENABLED (All messages)
+Anti-Phishing Policy:        ENABLED
+Threats blocked last 30 days:
+  Malware:   3 emails blocked
+  Phishing:  11 emails blocked
+  Spam:      247 emails filtered
+
+================================================================
+Report prepared by Nathan Cruz — July 10, 2026
+================================================================

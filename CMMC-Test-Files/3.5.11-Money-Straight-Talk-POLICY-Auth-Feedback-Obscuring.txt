@@ -1,0 +1,26 @@
+﻿IDENTIFICATION AND AUTHENTICATION POLICY
+Organization: Money Straight Talk LLC
+Control: 3.5.11 - Authentication Feedback Obscuring
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to obscure authentication feedback information to protect it from exploitation, per NIST SP 800-171 Rev. 2 control 3.5.11.
+
+2. SCOPE
+All Money Straight Talk LLC CUI system login interfaces.
+
+3. REQUIREMENTS
+a. Password fields display asterisks or dots instead of the actual characters typed.
+b. Login failure messages do not reveal whether the username or password was incorrect.
+c. Authentication error messages provide no information that aids guessing.
+d. Debug authentication information is never displayed to end users.
+e. Terrell Banks reviews authentication interface feedback annually.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, ensures all login interfaces obscure authentication feedback.
+
+5. ENFORCEMENT
+Any interface that reveals password characters or specific credential errors must be immediately remediated.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

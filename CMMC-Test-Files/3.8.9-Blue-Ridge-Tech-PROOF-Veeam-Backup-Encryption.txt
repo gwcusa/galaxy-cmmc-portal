@@ -1,0 +1,58 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+VEEAM BACKUP ENCRYPTION AND AZURE STORAGE VERIFICATION
+Evidence for CMMC Control 3.8.9
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Nathan Cruz, Lead Systems Engineer
+Backup System:  Veeam Backup and Replication v12
+================================================================
+
+VEEAM BACKUP JOB ENCRYPTION STATUS
+-------------------------------------------------
+Job Name: BRTS-Daily-Full-Backup
+  Encryption:         ENABLED
+  Algorithm:          AES-256
+  Key Management:     Password stored in Azure Key Vault
+                      (vault: brts-backup-keyvault)
+  Backup Target:      BRTS-SRV-002 (local NAS - D:\Backups\)
+  Schedule:           Daily 11:00 PM
+
+Job Name: BRTS-Offsite-Azure-Backup
+  Encryption:         ENABLED (Veeam level) + Azure SSE
+  Algorithm:          AES-256 (Veeam) + AES-256 (Azure SSE CMK)
+  Target:             Azure Blob Storage (brts-backups container)
+  Redundancy:         LRS (West US 2) + GRS (East US 2 failover)
+  Schedule:           Weekly (Sunday 1:00 AM)
+
+AZURE KEY VAULT - BACKUP ENCRYPTION KEYS
+-------------------------------------------------
+Key Name: brts-veeam-enc-key
+  Created:        2025-05-01
+  Last Rotated:   2026-05-01
+  Access Policy:  Nathan Cruz (Get, Unwrap, Wrap)
+  Status:         ACTIVE
+
+Azure Blob CMK Key: brts-backup-cmk
+  Status:         ACTIVE
+  Rotation:       Annual (next: May 2027)
+
+BACKUP STORAGE ACCESS CONTROL
+-------------------------------------------------
+Azure Storage Account: brtsbackups2026
+  RBAC Assignments:
+    Nathan Cruz: Storage Blob Data Contributor
+    All others: No assignment
+
+Veeam Repository Access:
+  VBR admin: BRTS\adm_ncruz only
+  Standard users: No Veeam console access
+
+LAST BACKUP VERIFICATION - July 21, 2026
+All backup jobs: SUCCESSFUL
+Encryption status: ENABLED (all jobs)
+Recovery test: PASS (10 files restored to test VM - data intact)
+
+================================================================
+Certified: Nathan Cruz - July 25, 2026
+================================================================

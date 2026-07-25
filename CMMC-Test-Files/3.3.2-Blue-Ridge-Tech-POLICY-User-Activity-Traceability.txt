@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.3.2 - User Activity Audit Traceability
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy ensures Blue Ridge Technology Solutions LLC audit logs can be traced to individual users and processes to support accountability, per NIST SP 800-171 Rev. 2 control 3.3.2.
+
+2. SCOPE
+All CUI systems at Blue Ridge Technology Solutions LLC where user activity occurs.
+
+3. REQUIREMENTS
+a. Audit records include user identity, timestamp, event type, source IP, and outcome.
+b. Shared accounts are prohibited to ensure individual traceability.
+c. User session IDs are included in all audit events.
+d. Audit records are sufficient to reconstruct user actions during an investigation.
+e. Nathan Cruz tests traceability during quarterly log reviews.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, ensures log fields capture sufficient data for traceability.
+
+5. ENFORCEMENT
+Systems with insufficient audit traceability must be remediated within 30 days.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

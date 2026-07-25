@@ -1,0 +1,72 @@
+================================================================
+ASJ REALTY GROUP
+ACCESS CONTROL POLICY
+================================================================
+Document ID:    POL-AC-001
+Version:        2.1
+Effective Date: January 15, 2026
+Review Date:    January 15, 2027
+Owner:          IT Director, Marcus Webb
+Approved By:    CEO, Sandra Joiner
+================================================================
+
+1. PURPOSE
+This policy establishes requirements for controlling access to ASJ
+Realty Group information systems, networks, and data — including
+all Controlled Unclassified Information (CUI) related to federal
+real estate transactions and DoD housing contracts.
+
+2. SCOPE
+This policy applies to all ASJ Realty employees, contractors,
+part-time agents, and third-party vendors who access company
+systems, including the MLS platform, contract management system,
+and internal file servers.
+
+3. POLICY STATEMENTS
+
+3.1 System Access Authorization
+- Access to all ASJ Realty systems requires prior written
+  authorization from the IT Director and the employee's
+  direct supervisor.
+- A completed User Access Request Form (FORM-IT-007) must be
+  submitted before any account is created.
+- Access is granted on a need-to-know basis only.
+
+3.2 User Account Requirements
+- Every individual receives a unique username in the format:
+  firstname.lastname@asjrealty.com
+- Shared accounts are strictly prohibited.
+- Service accounts must be documented and approved annually.
+
+3.3 Authorized Users
+- Only employees appearing on the Active Roster maintained
+  by Human Resources are eligible for system access.
+- Contract agents receive limited access profiles restricted
+  to listing tools only.
+- All access is reviewed quarterly by the IT Director.
+
+3.4 Unauthorized Access
+- Any attempt to access systems without proper authorization
+  is grounds for immediate termination and possible legal action.
+- Suspicious access attempts must be reported to IT within 1 hour.
+
+4. RESPONSIBILITIES
+- IT Director: Approve access requests, maintain user directory
+- HR Manager: Notify IT of new hires, transfers, and terminations
+  within 24 hours
+- Employees: Report any unauthorized access attempts immediately
+- Supervisors: Approve access requests for direct reports
+
+5. ENFORCEMENT
+Violations of this policy may result in disciplinary action up to
+and including termination and referral to law enforcement.
+
+6. REVIEW
+This policy is reviewed annually or following any significant
+security incident. Last reviewed: January 10, 2026.
+
+================================================================
+SIGNATURES
+IT Director: Marcus Webb          Date: 01/15/2026
+CEO:         Sandra Joiner        Date: 01/15/2026
+================================================================

@@ -1,0 +1,26 @@
+﻿INCIDENT RESPONSE POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.6.1 - Incident Response Capability
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy establishes Blue Ridge Technology Solutions LLC's capability to handle information security incidents, per NIST SP 800-171 Rev. 2 control 3.6.1.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC information systems and personnel.
+
+3. REQUIREMENTS
+a. Blue Ridge Technology Solutions LLC maintains a documented Incident Response Plan (IRP).
+b. The IRP defines roles, responsibilities, and procedures for incident handling.
+c. Nathan Cruz is the primary incident responder; Victor Osei provides management escalation.
+d. The IRP is tested annually via tabletop exercise.
+e. Incident response contacts include US-CERT reporting capability for CUI-related incidents.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, leads incident response. Victor Osei approves the IRP and provides executive escalation.
+
+5. ENFORCEMENT
+All personnel must report suspected security incidents to Nathan Cruz within 1 hour of discovery.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

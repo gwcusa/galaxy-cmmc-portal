@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: ASJ Realty
+Control: 3.13.3 - Security Function Separation
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to separate user functionality from information system management functionality, per NIST SP 800-171 Rev. 2 control 3.13.3.
+
+2. SCOPE
+All ASJ Realty CUI systems and the users who access them.
+
+3. REQUIREMENTS
+a. System management functions (admin consoles, configuration tools) are accessible only to Sandra Okonkwo.
+b. Standard users access only user-facing applications and cannot reach management interfaces.
+c. Administrative and user functions run in separate sessions and accounts.
+d. Management interfaces are not exposed on the same network segment as user desktops.
+e. Separation is verified during quarterly access reviews.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, implements and verifies security function separation.
+
+5. ENFORCEMENT
+Standard user accounts with management function access are immediately remediated.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.4.9 - User-Installed Software Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy controls and monitors user-installed software on Keith the Drone Guy LLC information systems, per NIST SP 800-171 Rev. 2 control 3.4.9.
+
+2. SCOPE
+All Keith the Drone Guy LLC CUI endpoints and systems.
+
+3. REQUIREMENTS
+a. Standard users do not have local administrator rights on CUI endpoints.
+b. All software must be installed by Keith Merritt from the approved software list.
+c. Keith Merritt scans endpoints monthly for unapproved or newly installed software.
+d. Unapproved software is removed within 24 hours of detection.
+e. Personnel are prohibited from installing personal software on Keith the Drone Guy LLC systems.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, controls software installation and conducts monthly software audits.
+
+5. ENFORCEMENT
+Personnel who install unauthorized software receive disciplinary action.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

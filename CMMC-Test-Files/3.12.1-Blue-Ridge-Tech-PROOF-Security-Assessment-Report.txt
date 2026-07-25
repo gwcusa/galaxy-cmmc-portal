@@ -1,0 +1,50 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+ANNUAL SECURITY CONTROL ASSESSMENT REPORT - 2026
+Evidence for CMMC Control 3.12.1
+================================================================
+Assessment Date:  May 2026
+Assessor:         Nathan Cruz, Lead Systems Engineer
+Reviewer:         Victor Osei, President
+Scope:            All BRTS systems in CUI scope
+================================================================
+
+ASSESSMENT SUMMARY
+-------------------------------------------------
+Total controls assessed:    110 (NIST SP 800-171 Rev 2)
+Implemented:                99
+Partially Implemented:      9
+Not Implemented:            2
+
+ASSESSMENT METHODS USED
+-------------------------------------------------
+Document review:    All policies reviewed for currency and completeness
+Interviews:         Nathan Cruz and Victor Osei (May 5, 2026)
+                    Staff spot checks (2 engineers, May 6, 2026)
+Technical testing:  MFA tested (confirmed required - May 5)
+                    Account lockout tested (confirmed 5 attempts - May 5)
+                    DLP policy tested (confirmed CUI block - May 5)
+                    Backup restore tested (10 files restored - May 7)
+                    Penetration test (external - NetSecure LLC, April 2026)
+
+SAMPLE FINDINGS
+-------------------------------------------------
+AC-01 (3.1.1): IMPLEMENTED - AD groups verified, access reviewed
+IA-05 (3.5.5): IMPLEMENTED - PIM + MFA confirmed on all admin roles
+SC-01 (3.13.1): PARTIALLY IMPLEMENTED - Internal network monitoring
+                (DPI) not yet configured. POA&M item #3.
+SI-03 (3.14.3): IMPLEMENTED - Defender + Sentinel alerts active
+
+PARTIALLY/NOT IMPLEMENTED - POA&M ITEMS
+-------------------------------------------------
+POA&M #1: 3.13.2 - Security engineering documentation needed
+  Target: September 1, 2026
+POA&M #2: 3.7.4 - Diagnostic media scan log form needed (created)
+  Status: CLOSED (completed May 20, 2026)
+POA&M #3: 3.13.1 - Internal boundary monitoring (DPI)
+  Target: October 1, 2026
+
+================================================================
+Signed: Nathan Cruz - May 31, 2026
+Approved: Victor Osei - June 1, 2026
+================================================================

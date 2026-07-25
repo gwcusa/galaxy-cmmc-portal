@@ -1,0 +1,54 @@
+================================================================
+ASJ REALTY
+SHARED RESOURCE INFORMATION TRANSFER PREVENTION POLICY
+================================================================
+Document ID:    POL-SC-004
+Version:        1.0
+Effective Date: July 5, 2026
+Review Date:    July 5, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy prevents unauthorized and unintended information
+transfer via shared system resources at ASJ Realty.
+
+2. SHARED RESOURCE CONTROLS
+
+2.1 Memory and Storage Isolation
+  - All ASJ Realty systems run Windows 11 with virtualization-
+    based security (VBS) enabled, which isolates kernel memory
+    from user processes
+  - Hyper-V container isolation prevents cross-process
+    memory access (enabled by default on Windows 11)
+  - File system: NTFS permissions prevent one user from
+    accessing another user's profile folder
+
+2.2 Print Spooler
+  - Print jobs are cleared from the spooler after completion
+  - Printer memory is cleared between jobs (configured on
+    HP LaserJet printer - Auto Clear after job)
+  - CUI documents must not be left in printer output tray
+
+2.3 Clipboard
+  - Remote Desktop clipboard sharing is disabled for sessions
+    involving CUI systems (GPO: Restrict clipboard redirection)
+  - Users are trained not to copy CUI to shared clipboards
+
+2.4 Temporary Files
+  - Temp folders (%TEMP%) are private per user (NTFS permissions)
+  - Browser cache is cleared on exit (configured via Intune
+    Edge policy for CUI-accessing workstations)
+  - Disk cleanup runs automatically on shutdown (GPO)
+
+3. CLOUD SHARED RESOURCES
+  - SharePoint: CUI site permissions prevent one department
+    from seeing another's CUI content
+  - OneDrive: Individual user storage is private by default
+  - Teams channels: CUI channel is private channel (invite only)
+
+================================================================
+Approved: Anthony James           07/05/2026
+Prepared: Sandra Okonkwo          07/03/2026
+================================================================

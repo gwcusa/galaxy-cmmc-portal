@@ -1,0 +1,45 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.13.15 - Session Authenticity
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC protects session authenticity via SPF, DKIM, and DMARC.
+
+2. EMAIL AUTHENTICATION CONFIGURATION (domain: keithdroney.com)
+
+SPF Record:
+DNS TXT record @ keithdroney.com: v=spf1 include:spf.protection.outlook.com -all
+Status: PASS (MXToolbox verified 2026-07-01)
+Policy: Hard fail (-all) - rejects unauthorized senders claiming to be @keithdroney.com
+
+DKIM:
+Selector: selector1._domainkey.keithdroney.com
+Key: 2048-bit RSA (Microsoft 365 managed)
+Status: ACTIVE - all outbound email from M365 signed with DKIM
+Verified: 2026-07-01 (MXToolbox DKIM lookup)
+
+DMARC:
+DNS TXT record _dmarc.keithdroney.com: v=DMARC1; p=reject; rua=mailto:k.merritt@keithdroney.com; pct=100
+Policy: REJECT (100% of non-compliant messages rejected)
+Reporting: Aggregate reports sent to Keith Merritt daily
+
+3. DMARC REPORT SUMMARY (June 2026)
+Total messages sent: 342
+SPF+DKIM passed: 340 (99.4%)
+Failed (rejected by recipient): 2 (investigated - both were legitimate forwarding edge cases, not spoofing)
+Spoofing attempts blocked: 7 (DMARC rejection enforced)
+
+4. WEB SESSION AUTHENTICITY
+SharePoint CUI portal uses HTTPS with Microsoft-issued TLS certificate
+Certificate: Valid until 2027-02-01, 2048-bit RSA key
+HSTS: Enabled (max-age=31536000)
+
+5. QUARTERLY REVIEW
+Date: 2026-07-01  |  Tool: MXToolbox
+SPF: PASS  |  DKIM: PASS  |  DMARC: PASS (p=reject)
+
+6. CONCLUSION
+Keith the Drone Guy LLC protects email and session authenticity with SPF hard fail, DKIM signing, and DMARC reject policy per control 3.13.15.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

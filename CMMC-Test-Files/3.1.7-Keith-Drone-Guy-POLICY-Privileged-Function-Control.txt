@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.1.7 - Privileged Function Execution Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy prevents non-privileged users at Keith the Drone Guy LLC from executing privileged functions and captures all privileged function executions in audit logs, per NIST SP 800-171 Rev. 2 control 3.1.7.
+
+2. SCOPE
+All Keith the Drone Guy LLC information systems and personnel.
+
+3. REQUIREMENTS
+a. Non-privileged accounts are technically blocked from executing privileged functions.
+b. All privileged function executions are captured in audit logs.
+c. Audit logs of privileged activity are reviewed by Keith Merritt monthly.
+d. Attempts by non-privileged users to escalate privileges generate security alerts.
+e. Windows UAC and Azure AD RBAC enforce privilege boundaries.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, configures and monitors privileged function controls.
+
+5. ENFORCEMENT
+Unauthorized privilege escalation attempts are investigated as security incidents.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

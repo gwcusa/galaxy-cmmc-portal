@@ -1,0 +1,94 @@
+================================================================
+BUMPASS VOLUNTEER FIRE & RESCUE DEPARTMENT
+SYSTEM SECURITY PLAN (SSP)
+================================================================
+SSP Version:    2.1
+Approval Date:  March 1, 2026
+Next Review:    March 1, 2027
+Classification: CUI — Law Enforcement Sensitive
+Approved By:    Raymond Stubbs, Fire Chief
+Prepared By:    Derek Holt, IT Coordinator
+================================================================
+
+SECTION 1 — SYSTEM IDENTIFICATION
+-------------------------------------------------
+System Name:          Bumpass Fire & Rescue IT Environment
+System Owner:         Raymond Stubbs, Fire Chief
+System Custodian:     Derek Holt, IT Coordinator
+Operating Status:     Operational
+Authorization Date:   March 1, 2026
+
+SECTION 2 — SYSTEM DESCRIPTION
+-------------------------------------------------
+Bumpass Fire & Rescue operates a small-scale IT environment
+supporting emergency dispatch, personnel records, and
+federal grant administration. CUI handled includes federal
+grant recipient data, personnel background check results,
+and DHS/FEMA program records.
+
+Primary components:
+  - 1x Windows Server 2022 (file server + domain controller)
+  - 7x Windows 11 workstations
+  - CAD software: ESO Fire (cloud-hosted, vendor-managed)
+  - Microsoft 365 Business Premium (email, SharePoint, Teams)
+  - Meraki MX67 Firewall/VPN
+  - Grant Portal: FEMA Grants Outcomes (GO) — web browser access
+
+SECTION 3 — SYSTEM BOUNDARY
+-------------------------------------------------
+In-scope systems: All systems listed in Section 2
+Out of scope: Personal devices not enrolled in MDM
+External connections: FEMA GO portal (HTTPS only), ESO Fire (HTTPS)
+Network: 192.168.50.0/24 (internal LAN), VPN (10.10.1.0/24)
+
+SECTION 4 — NIST SP 800-171 IMPLEMENTATION STATUS
+-------------------------------------------------
+Control   Description (abbreviated)          Status        Responsible
+--------  ---------------------------------  ------------  ---------------
+3.1.1     Limit access to authorized users  IMPLEMENTED   Derek Holt
+3.1.5     Least privilege                   IMPLEMENTED   Derek Holt
+3.2.1     Security awareness training       IMPLEMENTED   Raymond Stubbs
+3.3.1     Audit logging                     IMPLEMENTED   Derek Holt
+3.4.1     Configuration management          IMPLEMENTED   Derek Holt
+3.5.3     MFA                               IMPLEMENTED   Derek Holt
+3.6.1     Incident response                 IMPLEMENTED   Raymond Stubbs
+3.7.1     Maintenance                       IMPLEMENTED   Derek Holt
+3.8.1     Media protection                  IMPLEMENTED   Derek Holt
+3.9.1     Personnel screening               IMPLEMENTED   Raymond Stubbs
+3.10.1    Physical access control           IMPLEMENTED   Raymond Stubbs
+3.11.1    Risk assessment                   IMPLEMENTED   Derek Holt
+3.11.2    Vulnerability scanning            IMPLEMENTED   Derek Holt
+3.12.1    Security assessment               IMPLEMENTED   Derek Holt
+3.12.4    System Security Plan              IMPLEMENTED   Derek Holt
+3.13.1    Boundary protection               IMPLEMENTED   Derek Holt
+3.13.8    Encryption in transit             IMPLEMENTED   Derek Holt
+3.13.16   CUI at rest encryption            IMPLEMENTED   Derek Holt
+3.14.1    Flaw remediation                  IMPLEMENTED   Derek Holt
+3.14.2    Malware protection                IMPLEMENTED   Derek Holt
+3.5.11    Obscure auth feedback             IMPLEMENTED   Derek Holt
+3.4.8     Application whitelisting          PLANNED       Derek Holt *
+
+* 3.4.8 planned implementation by September 1, 2026.
+  See POA&M item POA-2026-003.
+
+SECTION 5 — INTERCONNECTIONS
+-------------------------------------------------
+External System     Connection Type    CUI Shared?   Agreement
+------------------  -----------------  -----------   -----------
+FEMA GO Portal      HTTPS/TLS 1.3      YES           FEMA ISA 2025
+ESO Fire (CAD)      HTTPS/TLS 1.3      YES           ESO BAA 2024
+Microsoft 365       HTTPS/TLS 1.3      YES           MS BAA 2023
+
+SECTION 6 — DOCUMENT HISTORY
+-------------------------------------------------
+Version  Date         Author        Changes
+-------  -----------  ------------  ---------------------------
+1.0      2024-03-01   Derek Holt    Initial SSP
+2.0      2025-03-01   Derek Holt    Added CAD/ESO interconnection
+2.1      2026-03-01   Derek Holt    Updated MFA, added M365 details
+
+================================================================
+APPROVAL SIGNATURES
+Fire Chief:       Raymond Stubbs     Date: 03/01/2026
+IT Coordinator:   Derek Holt         Date: 02/27/2026
+================================================================

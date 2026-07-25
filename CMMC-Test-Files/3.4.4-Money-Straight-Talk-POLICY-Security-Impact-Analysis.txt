@@ -1,0 +1,50 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+SECURITY IMPACT ANALYSIS POLICY
+================================================================
+Document ID:    POL-CM-004
+Version:        1.0
+Effective Date: January 25, 2026
+Review Date:    January 25, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy requires that the security impact of proposed
+changes to MST information systems is analyzed before
+implementation.
+
+2. WHEN ANALYSIS IS REQUIRED
+Security impact analysis is required for all Normal and
+Emergency changes to:
+  - Operating system configurations
+  - Security software configurations
+  - Network device configurations (firewall, VPN, switches)
+  - Applications that process CUI
+  - Access control settings (user permissions, group policies)
+  - Cryptographic configurations
+
+3. ANALYSIS PROCESS
+For each change, Terrell Banks must document:
+  a) Description of the change
+  b) Systems and data affected
+  c) Security controls that may be affected
+  d) Potential negative security impacts (if any)
+  e) Compensating controls or rollback plan (if negative impacts)
+  f) Whether the change introduces new attack surface
+  g) Recommendation: APPROVE / DEFER / REJECT
+
+4. APPROVAL
+  Camille Odom reviews the security impact analysis before
+  approving Normal and Emergency changes.
+
+5. DOCUMENTATION
+  Security impact analysis is documented in the Change Request
+  ticket in the IT ticketing system.
+  Analysis is retained with the change record for 3 years.
+
+================================================================
+Approved: Camille Odom           01/25/2026
+Prepared: Terrell Banks          01/23/2026
+================================================================

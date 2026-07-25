@@ -1,0 +1,49 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+APPROVED PORTABLE MEDIA INVENTORY
+Evidence for CMMC Control 3.8.8
+================================================================
+Inventory Date: July 25, 2026
+Maintained By:  Terrell Banks, Systems Administrator
+================================================================
+
+APPROVED PORTABLE STORAGE DEVICES - MST INVENTORY
+-------------------------------------------------
+ASSET ID     TYPE              ASSIGNED TO      LABEL?  HW-ID ON FILE?
+-----------  ----------------  ---------------  ------  ---------------
+MST-USB-001  Kingston IronKey  Terrell Banks    YES     YES
+MST-USB-002  Kingston IronKey  Camille Odom     YES     YES
+MST-USB-003  Kingston IronKey  (IT spare)       YES     YES
+MST-EXT-001  WD Passport HDD   Terrell Banks    YES     YES
+             (backup drive - kept in locked IT cabinet)
+
+Total approved portable storage devices: 4
+All have: Owner label, asset ID, and HW-ID registered in Intune.
+
+INTUNE DEVICE CONTROL STATUS
+-------------------------------------------------
+Policy: "MST-USB-Approved-Only"
+Default: BLOCK all USB storage
+Allowed: MST-USB-001, MST-USB-002, MST-USB-003, MST-EXT-001
+         (by Hardware ID whitelist)
+
+UNIDENTIFIED MEDIA EVENTS - 2026
+-------------------------------------------------
+DATE         FINDER    DEVICE DESCRIPTION     ACTION
+-----------  --------  --------------------   -------------------------
+03/12/2026   A. Price  Generic blue USB drive  Brought to Terrell Banks.
+             (on conference table after vendor meeting)
+             Action: Examined in isolated VM. Empty (formatted).
+             Not malicious. Destroyed. Not added to inventory.
+             Incident MST-INC-2026-002 documented.
+
+No other unidentified media events in 2026.
+
+STAFF TRAINING NOTE
+-------------------------------------------------
+All MST staff trained: "If you find a USB drive - do not plug it in."
+Training date: Annual security awareness - January 2026.
+
+================================================================
+Certified: Terrell Banks - July 25, 2026
+================================================================

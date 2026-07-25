@@ -1,0 +1,26 @@
+﻿SECURITY ASSESSMENT POLICY
+Organization: ASJ Realty
+Control: 3.12.3 - Security Control Monitoring
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to monitor security controls on an ongoing basis to ensure their continued effectiveness, per NIST SP 800-171 Rev. 2 control 3.12.3.
+
+2. SCOPE
+All security controls implemented in ASJ Realty CUI systems.
+
+3. REQUIREMENTS
+a. Security controls are continuously monitored through automated tools and periodic reviews.
+b. Microsoft Sentinel provides continuous monitoring of security events.
+c. Sandra Okonkwo conducts weekly security dashboard reviews.
+d. Monthly security posture reports are provided to Anthony James.
+e. Control effectiveness degradation triggers immediate review and remediation.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, monitors and reports on security control effectiveness continuously.
+
+5. ENFORCEMENT
+Degraded security controls are treated as priority incidents requiring same-day remediation.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

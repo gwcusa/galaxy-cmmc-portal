@@ -1,0 +1,35 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.1.6 - Use of Non-Privileged Accounts
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty requires use of non-privileged accounts for non-security functions.
+
+2. DUAL ACCOUNT CONFIGURATION
+IT Staff Affected: Sandra Okonkwo, IT Director
+
+Standard Account: s.okonkwo@asjrealty.com
+  - Used for: email, Teams, SharePoint, CUI document access
+  - Role: Contributor (no admin rights)
+
+Admin Account: s.okonkwo-adm@asjrealty.com
+  - Used for: Azure AD management, Intune, security configuration only
+  - Role: Global Admin (PIM-gated, requires MFA activation)
+  - Sign-in risk policy: Blocks non-admin workstation login
+
+Conditional Access Policy: AdminAccount-WorkstationOnly enforces admin accounts
+cannot authenticate from non-compliant devices.
+
+3. AUDIT VERIFICATION
+Sign-in logs reviewed for admin account: 2026-06-01 to 2026-07-01
+Admin account used only for: 4 Intune configuration sessions, 2 Azure AD changes.
+No email or browser sessions detected on admin account.
+
+4. SYSTEM DETAILS
+Non-Privileged Workstation: ASJ-WS-001  |  Daily Account: s.okonkwo@asjrealty.com
+
+5. CONCLUSION
+ASJ Realty enforces separation of privileged and non-privileged account use per control 3.1.6.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

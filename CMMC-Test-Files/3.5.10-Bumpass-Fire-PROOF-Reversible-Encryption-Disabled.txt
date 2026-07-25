@@ -1,0 +1,51 @@
+================================================================
+BUMPASS FIRE & RESCUE
+PASSWORD CRYPTOGRAPHIC PROTECTION - CONFIGURATION AUDIT
+Evidence for CMMC Control 3.5.10
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Mike Sadler, IT Administrator
+Domain:         bfr.local
+================================================================
+
+AD PASSWORD POLICY - REVERSIBLE ENCRYPTION
+-------------------------------------------------
+Get-ADDefaultDomainPasswordPolicy output (relevant fields):
+  ReversibleEncryptionEnabled : False
+
+Result: Passwords cannot be recovered from AD database.
+COMPLIANT.
+
+NTDS.DIT PROTECTION
+-------------------------------------------------
+Location:      C:\Windows\NTDS\ntds.dit (on DC01)
+Protection:    Encrypted by DPAPI (Data Protection API)
+Access:        SYSTEM account only (ACL restricted)
+VSS shadow copy access: Blocked for non-administrators
+DSRM password rotation: Last changed June 1, 2026
+
+AZURE AD PASSWORD HASH SYNC
+-------------------------------------------------
+Password Hash Sync:     ENABLED (via Azure AD Connect)
+Hash format:            Double-hashed (MD4 + HMAC-SHA256)
+                        Microsoft does not store original hash
+Transmission:           Encrypted HTTPS to Azure AD
+Plaintext transmitted:  NEVER
+
+LDAP CONFIGURATION
+-------------------------------------------------
+LDAP (port 389) simple bind: DISABLED
+LDAPS (port 636): ENABLED and required
+GPO: BFR-Secure-LDAP
+  Network security: LDAP client signing requirements: Require signing
+  Domain controller: LDAP server signing requirements: Require signing
+
+AZURE KEY VAULT - SERVICE ACCOUNT CREDENTIALS
+-------------------------------------------------
+Vault: bfr-keyvault
+Service account passwords stored: 3 secrets
+Plaintext password files: NONE found in quarterly scan
+
+================================================================
+Certified: Mike Sadler - July 25, 2026
+================================================================

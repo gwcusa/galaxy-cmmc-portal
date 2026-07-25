@@ -1,0 +1,34 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.8.5 - Media Transport Controls
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC controls the transport of CUI media outside secure areas.
+
+2. TRANSPORT AUTHORIZATION PROCESS
+Step 1: Requestor submits transport request to Keith Merritt (email or ticket)
+Step 2: Keith Merritt verifies media encryption status
+Step 3: Keith Merritt approves transport request
+Step 4: Transporter signs out media in transport log
+Step 5: Transporter returns media and signs back in
+
+3. MEDIA TRANSPORT LOG (FY2026)
+Date       | Media     | Transported By | Destination        | Purpose       | Approved | Return Date
+2026-03-12 | USB KI-001 | Keith Merritt          | DoD Contractor mtg | Contract docs | Keith Merritt    | 2026-03-12
+2026-06-05 | USB KI-001 | Keith Merritt         | Client meeting     | Deliverables  | Keith Merritt     | 2026-06-05
+
+Transport outside office: 2 events. Media encrypted in both cases. Kept in hand carry.
+
+4. ENCRYPTION VERIFICATION (Pre-Transport)
+Before each transport, Keith Merritt verifies:
+- USB drive encryption active (hardware IronKey status indicator: LOCKED)
+- Files accessible only with PIN
+
+5. LOST/STOLEN MEDIA INCIDENTS
+FY2026: 0 incidents
+
+6. CONCLUSION
+Keith the Drone Guy LLC controls CUI media transport with documented approval and encryption verification per control 3.8.5.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

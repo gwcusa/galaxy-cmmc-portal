@@ -1,0 +1,54 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+SEPARATION OF DUTIES POLICY
+================================================================
+Document ID:    POL-AC-004
+Version:        1.0
+Effective Date: January 10, 2026
+Review Date:    January 10, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy ensures that no single individual has the ability
+to independently execute actions that could result in harm to
+CUI systems, financial fraud, or unauthorized access without
+requiring collusion with another authorized individual.
+
+2. SEPARATED DUTIES
+
+2.1 IT Administration vs. Financial Access
+  - Terrell Banks (IT Admin) has no access to financial
+    accounts, banking portals, or payroll systems
+  - Angela Price (Finance) has no administrative access
+    to IT systems
+
+2.2 User Account Creation vs. Access Approval
+  - Terrell Banks can create user accounts
+  - Camille Odom must approve any CUI-level access grant
+  - No single person can create AND grant elevated access
+
+2.3 Code/Config Change vs. Deployment
+  - Changes to IT configuration drafted by Terrell Banks
+  - Changes must be reviewed and approved by Camille Odom
+    before implementation on production systems
+
+2.4 Backup Creation vs. Backup Restoration
+  - Backup jobs run automatically (unattended)
+  - Restoration requires both Terrell Banks (technical) AND
+    Camille Odom (business justification approval)
+
+3. ENFORCEMENT
+  Azure AD PIM (Privileged Identity Management) is used to
+  enforce time-limited privileged role activation requiring
+  manager approval. All privileged actions are logged.
+
+4. REVIEW
+  Separation of duties is reviewed quarterly and whenever
+  personnel changes occur.
+
+================================================================
+Approved: Camille Odom       01/10/2026
+Prepared: Terrell Banks      01/08/2026
+================================================================

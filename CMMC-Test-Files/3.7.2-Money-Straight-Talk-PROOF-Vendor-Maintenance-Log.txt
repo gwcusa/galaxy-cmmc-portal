@@ -1,0 +1,33 @@
+﻿MAINTENANCE IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.7.2 - Controlled Maintenance
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC controls maintenance tools, personnel, and activities on CUI systems.
+
+2. VENDOR MAINTENANCE PROCESS
+Pre-approval: Camille Odom approves vendor before access is granted
+Escort: Terrell Banks physically or remotely accompanies all vendor maintenance
+Tool Inspection: Vendor tools scanned for malware before use
+Post-maintenance: System security checks performed by Terrell Banks
+
+3. VENDOR MAINTENANCE LOG (FY2026)
+Date       | Vendor           | Scope               | Escorted By | Duration
+2026-03-10 | Network Vendor A | Switch firmware upg  | Terrell Banks        | 45 min
+2026-05-20 | HP Support       | Laptop hardware fix  | Terrell Banks        | 1 hr
+2026-06-05 | ISP Tech         | Fiber connection fix | Terrell Banks        | 30 min
+
+Remote maintenance sessions: 1 (HP Support - remote diag)
+  Session recorded: Yes (Azure Bastion session log)
+  Monitored by: Terrell Banks throughout
+
+4. VENDOR TOOL INSPECTION
+Date: 2026-05-20 | Vendor: HP Support | Tool: HP Diagnostic USB
+Scan: Run by Terrell Banks with Windows Defender before use
+Result: Clean. No malware detected.
+
+5. CONCLUSION
+Money Straight Talk LLC controls all maintenance activities with pre-approval, escort, and logging per control 3.7.2.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

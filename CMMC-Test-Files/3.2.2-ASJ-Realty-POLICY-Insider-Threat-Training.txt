@@ -1,0 +1,26 @@
+﻿AWARENESS AND TRAINING POLICY
+Organization: ASJ Realty
+Control: 3.2.2 - Insider Threat Awareness Training
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy ensures ASJ Realty trains personnel to recognize and report potential indicators of insider threat, per NIST SP 800-171 Rev. 2 control 3.2.2.
+
+2. SCOPE
+All ASJ Realty personnel with access to CUI systems or facilities.
+
+3. REQUIREMENTS
+a. Insider threat awareness training is completed annually by all personnel.
+b. Training covers behavioral indicators, reporting channels, and non-retaliation protections.
+c. Personnel are trained on the ASJ Realty anonymous reporting mechanism.
+d. Training records are maintained for 3 years.
+e. Anthony James receives quarterly insider threat awareness briefings.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, administers insider threat training. Anthony James oversees the insider threat program.
+
+5. ENFORCEMENT
+Failure to complete insider threat training results in CUI access suspension.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

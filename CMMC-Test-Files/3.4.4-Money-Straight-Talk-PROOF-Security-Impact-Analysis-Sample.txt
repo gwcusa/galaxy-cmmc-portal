@@ -1,0 +1,59 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+SECURITY IMPACT ANALYSIS - SAMPLE CHANGE RECORDS
+Evidence for CMMC Control 3.4.4
+================================================================
+Report Date:    July 23, 2026
+Prepared By:    Terrell Banks
+================================================================
+
+CHG-2026-061 - Security Impact Analysis
+-------------------------------------------------
+Change:       Enable Windows Defender Credential Guard on
+              all MST workstations
+Date:         June 15, 2026
+Analyzed By:  Terrell Banks
+
+Affected Systems: MST-WS-001 through MST-WS-004
+Affected Controls: IA (credential protection), SI (malware)
+
+Security Impact Assessment:
+  Positive Impacts:
+    - Prevents credential theft (Pass-the-Hash attacks)
+    - Isolates LSASS in virtualization-based security container
+    - Reduces risk from credential-dumping malware
+  Potential Negative Impacts:
+    - Some legacy authentication protocols may fail
+      (Kerberos unconstrained delegation - not used at MST)
+    - Requires TPM 2.0 (all MST devices have TPM 2.0 - verified)
+    - Performance overhead: minimal (<2% per Microsoft docs)
+  Rollback Plan: Disable via GPO if critical issues arise
+  New Attack Surface Introduced: NONE
+  Recommendation: APPROVE
+
+Approval: Camille Odom - June 15, 2026 - APPROVED
+Implemented: June 16, 2026 - SUCCESS
+
+CHG-2026-072 - Security Impact Analysis
+-------------------------------------------------
+Change:       Allow contractor guest user access to
+              SharePoint project site (one specific site)
+Date:         July 7, 2026
+Analyzed By:  Terrell Banks
+
+Security Impact Assessment:
+  Positive: Enables collaboration with authorized contractor
+  Negative: External user gains read access to project docs
+  CUI Risk: Project site contains CUI - HIGH RISK
+  Compensating Controls Required:
+    - Limit to specific non-CUI project folder only
+    - Guest access expires in 30 days
+    - DLP policy blocks CUI download by guests
+  Recommendation: APPROVE WITH RESTRICTIONS
+
+Approval: Camille Odom - July 7, 2026 - APPROVED with limits
+Implemented: July 8, 2026 - Guest access to non-CUI folder only.
+
+================================================================
+Certified: Camille Odom - July 23, 2026
+================================================================

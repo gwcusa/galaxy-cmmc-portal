@@ -1,0 +1,53 @@
+================================================================
+ASJ REALTY
+AUDIT LOGGING FAILURE ALERT POLICY
+================================================================
+Document ID:    POL-AU-004
+Version:        1.0
+Effective Date: May 25, 2026
+Review Date:    May 25, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy ensures that ASJ Realty is alerted immediately
+when audit logging processes fail, so that logging gaps are
+minimized and responded to promptly.
+
+2. AUDIT FAILURE SCENARIOS AND ALERTS
+The following audit failure conditions generate immediate alerts:
+
+  a) Log Forwarding Failure
+     - If any device stops forwarding logs to Microsoft Sentinel
+       for more than 15 minutes, Sentinel generates an alert
+       emailed to Sandra Okonkwo.
+
+  b) Log Volume Anomaly
+     - If a data connector reports zero events for a period
+       when events should be flowing, an alert is triggered.
+
+  c) Agent Health Failure
+     - If the Log Analytics agent (AMA) on any device reports
+       a health issue, an alert is triggered within 5 minutes.
+
+  d) Disk Full - Log Partition
+     - If the log storage partition on any server reaches 80%
+       capacity, an alert is sent to Sandra Okonkwo.
+
+3. RESPONSE PROCEDURE
+  Upon receiving an audit failure alert, Sandra Okonkwo must:
+    - Acknowledge the alert within 2 hours during business hours
+    - Investigate and restore logging within 4 hours
+    - If logging cannot be restored, report to Anthony James
+      and restrict system access until logging is restored
+    - Document the outage and resolution in the IT log
+
+4. LOG RETENTION DURING OUTAGE
+  Local Windows Event Logs are retained for 7 days on each
+  device, providing a buffer if SIEM forwarding fails.
+
+================================================================
+Approved: Anthony James           05/25/2026
+Prepared: Sandra Okonkwo          05/23/2026
+================================================================

@@ -1,0 +1,51 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+ACCESS RESTRICTIONS FOR SYSTEM CHANGES POLICY
+================================================================
+Document ID:    POL-CM-005
+Version:        1.0
+Effective Date: May 5, 2026
+Review Date:    May 5, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy defines and enforces physical and logical access
+restrictions associated with changes to organizational systems,
+ensuring only authorized individuals can implement changes.
+
+2. LOGICAL ACCESS RESTRICTIONS
+
+2.1 Production Systems
+  Only Nathan Cruz may implement changes to production systems.
+  Victor Osei may authorize changes but does not implement them.
+  No other staff have write access to production system configs.
+
+2.2 Change Implementation Accounts
+  Production changes are implemented using the admin account
+  (adm_ncruz) only, not the standard daily-use account (ncruz).
+  Admin account sessions are logged.
+
+2.3 Code/Configuration Repository
+  The IT configuration repository (Git on Azure DevOps) has:
+    - Write access: Nathan Cruz only
+    - Read access: Victor Osei
+    - Branch protection: No direct commits to main branch
+      (all changes via pull request, approved by Victor Osei)
+
+3. PHYSICAL ACCESS RESTRICTIONS
+  Server room access (where physical changes occur) is
+  restricted to Nathan Cruz only via keypad lock.
+  The access log is reviewed quarterly.
+
+4. CHANGE WINDOW RESTRICTIONS
+  Production changes (except emergencies) are implemented
+  during the approved maintenance window: Saturdays 2-6 AM.
+  All other times require emergency change authorization from
+  Victor Osei before implementation.
+
+================================================================
+Approved: Victor Osei            05/05/2026
+Prepared: Nathan Cruz            05/02/2026
+================================================================

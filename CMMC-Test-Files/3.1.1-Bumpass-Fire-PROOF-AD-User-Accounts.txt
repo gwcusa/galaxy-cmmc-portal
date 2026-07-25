@@ -1,0 +1,25 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.1 - Authorized User Access
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+This document demonstrates that Bumpass Fire & Rescue limits CUI system access to authorized users and devices.
+
+2. AUTHORIZED USER LIST (CUI Systems - Domain: bumpassfire.org)
+- Randy Bowles (Fire Chief) - Full CUI read/write
+- Mike Sadler (IT Coordinator) - Admin and CUI access
+- 3 additional staff - reviewed and confirmed active
+- Accounts disabled Q2 2026: 2 (terminations processed within 24 hours)
+
+3. QUARTERLY REVIEW RECORD
+Date: 2026-06-28  |  Reviewer: Mike Sadler
+Result: All active accounts verified as authorized. No unauthorized accounts found.
+
+4. PRIMARY SYSTEM
+Workstation: BFR-WS-001  |  Account: m.sadler@bumpassfire.org  |  Authorization: Documented in asset register
+
+5. CONCLUSION
+Bumpass Fire & Rescue maintains and reviews authorized user lists per control 3.1.1. Provisioning and deprovisioning controls are operational.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

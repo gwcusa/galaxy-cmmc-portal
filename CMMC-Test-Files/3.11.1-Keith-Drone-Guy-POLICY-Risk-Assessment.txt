@@ -1,0 +1,51 @@
+================================================================
+KEITH THE DRONE GUY LLC
+RISK ASSESSMENT POLICY
+================================================================
+Document ID:    POL-RA-001
+Version:        1.0
+Effective Date: March 5, 2026
+Review Date:    March 5, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy requires periodic risk assessments of KDG
+organizational operations, assets, and personnel to identify
+and respond to information security risks.
+
+2. RISK ASSESSMENT FREQUENCY
+  - Formal risk assessment: annually (each March)
+  - Ad-hoc assessment: after any significant incident,
+    major infrastructure change, or new CUI contract award
+
+3. RISK ASSESSMENT SCOPE
+Each assessment covers:
+  - All systems that store, process, or transmit CUI
+  - Personnel with access to CUI systems
+  - Physical facilities housing CUI systems
+  - Third-party connections and service providers
+
+4. RISK ASSESSMENT METHODOLOGY
+KDG uses a simplified risk framework based on NIST SP 800-30:
+  Step 1: Identify threat sources and threat events
+  Step 2: Determine likelihood of each threat event
+  Step 3: Determine impact of each threat event
+  Step 4: Calculate risk = Likelihood x Impact
+  Step 5: Prioritize risks and identify mitigations
+  Step 6: Document in Risk Register
+
+5. RISK REGISTER
+  Risks are tracked in the KDG Risk Register
+  (SharePoint: IT/Risk-Register.xlsx).
+  Each risk includes: description, likelihood, impact,
+  risk level, owner, mitigation, and target resolution date.
+
+6. REVIEW AND ACCEPTANCE
+  Keith Merritt reviews and accepts the risk register annually.
+  Risks rated HIGH require mitigation plan within 30 days.
+
+================================================================
+Approved: Keith Merritt           03/05/2026
+================================================================

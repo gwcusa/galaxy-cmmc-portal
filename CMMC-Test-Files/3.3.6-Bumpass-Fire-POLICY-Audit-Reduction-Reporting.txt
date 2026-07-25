@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.3.6 - Audit Reduction and Report Generation
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to provide audit reduction and report generation capabilities that support on-demand analysis and reporting without altering the original audit records, per NIST SP 800-171 Rev. 2 control 3.3.6.
+
+2. SCOPE
+All Bumpass Fire & Rescue audit log sources and SIEM infrastructure.
+
+3. REQUIREMENTS
+a. A SIEM is deployed capable of filtering, sorting, and summarizing audit records.
+b. Reports are generated without altering original log records.
+c. Mike Sadler can produce audit reports on demand for specific users, timeframes, or events.
+d. Audit reduction tools operate on copies, not originals.
+e. Report generation capability is tested quarterly.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, maintains audit reduction and reporting capabilities.
+
+5. ENFORCEMENT
+Audit reduction tools must not modify original log data under any circumstances.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

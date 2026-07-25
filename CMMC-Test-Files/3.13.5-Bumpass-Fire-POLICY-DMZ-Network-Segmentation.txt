@@ -1,0 +1,54 @@
+================================================================
+BUMPASS FIRE & RESCUE
+DMZ AND NETWORK SEGMENTATION POLICY
+================================================================
+Document ID:    POL-SC-005
+Version:        1.0
+Effective Date: June 1, 2026
+Review Date:    June 1, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy implements subnetworks for publicly accessible
+system components that are physically or logically separated
+from internal networks containing CUI.
+
+2. NETWORK SEGMENTATION DESIGN
+
+2.1 Internal Network (CUI Zone)
+  VLAN 10 - 192.168.10.0/24
+  - CUI workstations and servers
+  - Domain controllers
+  - NAS with CUI data
+  - No direct internet access (all internet via proxy/firewall)
+
+2.2 Guest Network (Public Zone)
+  VLAN 20 - 192.168.20.0/24
+  - Visitor WiFi
+  - Internet access only
+  - NO access to VLAN 10 (CUI zone)
+  - Firewall rule: DENY VLAN 20 -> VLAN 10 (explicit)
+
+2.3 IoT / Physical Security Zone
+  VLAN 30 - 192.168.30.0/24
+  - Security cameras
+  - Smart locks and access control hardware
+  - Internet access to vendor cloud only (limited ports)
+  - NO access to VLAN 10 or VLAN 20
+
+2.4 No Public-Facing Servers
+  BFR does not host any publicly accessible web servers or
+  services on-premises. The public website is externally
+  hosted (SaaS). Therefore, no DMZ is required for servers.
+  Public-facing content managed by vendor (no CUI).
+
+3. FIREWALL ENFORCEMENT
+  Cisco ASA controls inter-VLAN routing.
+  VLANs are separate broadcast domains (Cisco Meraki switches).
+
+================================================================
+Approved: Chief Randy Bowles        06/01/2026
+Prepared: Mike Sadler               05/29/2026
+================================================================

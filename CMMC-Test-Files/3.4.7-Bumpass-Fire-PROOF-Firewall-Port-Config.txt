@@ -1,0 +1,49 @@
+================================================================
+BUMPASS FIRE & RESCUE
+FIREWALL PORT AND PROTOCOL RESTRICTION AUDIT
+Evidence for CMMC Control 3.4.7
+================================================================
+Report Date:    July 24, 2026
+Prepared By:    Mike Sadler, IT Administrator
+Device:         Cisco ASA 5506-X (BFR-FW-001)
+================================================================
+
+OUTBOUND FIREWALL RULES (show access-list BFR-OUTBOUND excerpt)
+-------------------------------------------------
+access-list BFR-OUTBOUND extended permit tcp any any eq 443
+access-list BFR-OUTBOUND extended permit tcp any any eq 80
+access-list BFR-OUTBOUND extended permit udp any any eq 53
+access-list BFR-OUTBOUND extended permit tcp any any eq 636
+access-list BFR-OUTBOUND extended permit udp any any eq 500
+access-list BFR-OUTBOUND extended permit udp any any eq 4500
+access-list BFR-OUTBOUND extended deny ip any any log
+! Default deny - all other outbound traffic blocked and logged
+
+INBOUND FIREWALL RULES
+-------------------------------------------------
+access-list BFR-INBOUND extended permit udp any host [VPN-IP] eq 500
+access-list BFR-INBOUND extended permit udp any host [VPN-IP] eq 4500
+access-list BFR-INBOUND extended deny ip any any log
+! Only VPN traffic allowed inbound
+
+DISABLED PROTOCOLS (GPO: BFR-Protocol-Restrictions)
+-------------------------------------------------
+SMBv1:              DISABLED (Set-SmbServerConfiguration -EnableSMB1Protocol False)
+TLS 1.0:            DISABLED (registry: SCHANNEL\Protocols)
+TLS 1.1:            DISABLED (registry: SCHANNEL\Protocols)
+SSLv3:              DISABLED (registry: SCHANNEL\Protocols)
+LLMNR:              DISABLED (GPO: Turn off multicast name resolution)
+NetBIOS over TCP:   DISABLED (DHCP scope option 001 = 2)
+
+OPTIONAL WINDOWS FEATURES REMOVED (Get-WindowsOptionalFeature)
+-------------------------------------------------
+Feature                          State
+-------------------------------  --------
+SMB1Protocol                     Disabled
+Internet-Explorer-Optional       Disabled (removed via GPO)
+WorkFolders-Client               Disabled
+WindowsGames                     Disabled
+
+================================================================
+Certified: Mike Sadler - July 24, 2026
+================================================================

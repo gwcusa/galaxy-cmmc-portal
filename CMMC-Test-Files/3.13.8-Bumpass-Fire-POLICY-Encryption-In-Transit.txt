@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.13.8 - Encryption of CUI in Transit
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to implement cryptographic mechanisms to prevent unauthorized disclosure of CUI during transmission, per NIST SP 800-171 Rev. 2 control 3.13.8.
+
+2. SCOPE
+All CUI transmitted across Bumpass Fire & Rescue networks and to/from external parties.
+
+3. REQUIREMENTS
+a. All CUI in transit is encrypted with TLS 1.2 or higher.
+b. Weak protocols (SSL, TLS 1.0, TLS 1.1) and weak cipher suites are disabled.
+c. VPN traffic uses AES-256 minimum.
+d. Email containing CUI uses TLS enforcement or S/MIME encryption.
+e. Encryption configuration is reviewed quarterly.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures and verifies all CUI transmission encryption.
+
+5. ENFORCEMENT
+Unencrypted CUI transmission is a critical security violation.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

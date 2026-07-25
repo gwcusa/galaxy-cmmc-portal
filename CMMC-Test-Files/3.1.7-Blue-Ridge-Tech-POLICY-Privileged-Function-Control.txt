@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.7 - Privileged Function Execution Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy prevents non-privileged users at Blue Ridge Technology Solutions LLC from executing privileged functions and captures all privileged function executions in audit logs, per NIST SP 800-171 Rev. 2 control 3.1.7.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC information systems and personnel.
+
+3. REQUIREMENTS
+a. Non-privileged accounts are technically blocked from executing privileged functions.
+b. All privileged function executions are captured in audit logs.
+c. Audit logs of privileged activity are reviewed by Nathan Cruz monthly.
+d. Attempts by non-privileged users to escalate privileges generate security alerts.
+e. Windows UAC and Azure AD RBAC enforce privilege boundaries.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, configures and monitors privileged function controls.
+
+5. ENFORCEMENT
+Unauthorized privilege escalation attempts are investigated as security incidents.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

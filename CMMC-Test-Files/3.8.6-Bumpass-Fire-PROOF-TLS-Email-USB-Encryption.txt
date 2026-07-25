@@ -1,0 +1,55 @@
+================================================================
+BUMPASS FIRE & RESCUE
+CUI TRANSIT ENCRYPTION VERIFICATION REPORT
+Evidence for CMMC Control 3.8.6
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Mike Sadler, IT Administrator
+================================================================
+
+EMAIL ENCRYPTION (M365 - Exchange Online)
+-------------------------------------------------
+TLS Enforcement Policy:
+  Connector: "Require TLS inbound to BFR"
+  Require TLS: YES (reject unencrypted connections)
+  TLS version minimum: TLS 1.2
+  Status: ACTIVE
+
+Sensitivity Label "CUI" - Email Encryption:
+  Label: CUI - Confidential
+  Encryption: Applied when "CUI" label added to email
+  Rights: Recipients cannot forward or print CUI emails
+  Method: Microsoft AIP / IRM (AES-256)
+  Status: ACTIVE
+
+TLS Message Trace (July 2026 - outbound CUI emails):
+  Date: July 8 | Recipient: CO@gov.mil | TLS: TLS 1.3 COMPLIANT
+  Date: July 15 | Recipient: prime@contractor.com | TLS: TLS 1.2 COMPLIANT
+  No unencrypted outbound emails found.
+
+USB DRIVE ENCRYPTION
+-------------------------------------------------
+BFR-USB-01 (Kingston IronKey D300S):
+  Hardware encryption: AES-256 XTS
+  FIPS 140-2 Level 3 certified
+  PIN: Set and known only to Mike Sadler
+  Status: ENCRYPTED
+
+BFR-USB-02 (Kingston IronKey D300S):
+  Hardware encryption: AES-256 XTS
+  FIPS 140-2 Level 3 certified
+  PIN: Set and known only to Chief Bowles
+  Status: ENCRYPTED
+
+LAPTOP TRANSIT ENCRYPTION
+-------------------------------------------------
+BFR-LT-001: BitLocker AES-256 - ACTIVE (verified July 25, 2026)
+  Pre-boot PIN: YES (required)
+  Recovery key: Azure AD
+
+VPN TRANSIT ENCRYPTION - Confirmed (see POL-AC-013 evidence)
+IKEv2 / AES-256-GCM - All remote sessions encrypted.
+
+================================================================
+Certified: Mike Sadler - July 25, 2026
+================================================================

@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Money Straight Talk LLC
+Control: 3.13.14 - Voice over IP
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to protect the authenticity of communications sessions for VoIP and other session-based communications, per NIST SP 800-171 Rev. 2 control 3.13.14.
+
+2. SCOPE
+All VoIP and collaboration communications at Money Straight Talk LLC involving CUI discussion.
+
+3. REQUIREMENTS
+a. VoIP communications use encrypted channels (TLS/SRTP minimum).
+b. Microsoft Teams is the approved VoIP and collaboration platform for CUI discussions.
+c. Unapproved VoIP applications may not be used for CUI-related communications.
+d. Meeting recordings involving CUI require explicit consent from all participants.
+e. Teams meeting settings are configured to prevent unauthorized guest access.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, configures and manages Teams VoIP security settings.
+
+5. ENFORCEMENT
+Use of unapproved VoIP for CUI discussions is a policy violation and security incident.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

@@ -1,0 +1,58 @@
+================================================================
+ASJ REALTY
+ATTACK DETECTION AND MONITORING POLICY
+================================================================
+Document ID:    POL-SI-006
+Version:        1.0
+Effective Date: July 10, 2026
+Review Date:    July 10, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy requires ASJ Realty to monitor information systems
+to detect attacks and indicators of potential attacks.
+
+2. MONITORING TOOLS AND TECHNIQUES
+
+2.1 Microsoft Sentinel (SIEM)
+  - Centralized log aggregation from all ASJ systems
+  - Analytic rules detect attack patterns:
+    * Brute force / credential stuffing
+    * Lateral movement indicators
+    * Privilege escalation followed by data access
+    * Data exfiltration (large download events)
+    * Malware command-and-control (C2) communication
+    * Impossible travel / impossible access patterns
+
+2.2 Microsoft Defender for Endpoint (EDR)
+  - Behavioral detection on all endpoints
+  - Attack surface reduction (ASR) rules active
+  - Automated investigation and response (AIR)
+  - Detects: ransomware behavior, fileless attacks,
+    living-off-the-land techniques, injection attacks
+
+2.3 Azure AD Identity Protection
+  - Risk-based detections: leaked credentials, anonymous IP,
+    malware-linked IP, impossible travel, suspicious browser
+
+2.4 Network-Level Detection
+  - Cisco Meraki IDS/IPS: network intrusion signatures
+  - Cisco Umbrella: DNS anomaly detection
+
+3. ALERT RESPONSE
+  Alerts are categorized by severity:
+    High/Critical: Sandra Okonkwo responds within 2 hours
+    Medium: investigated next business day
+    Low: reviewed weekly
+  Confirmed attacks trigger the ASJ IR Plan (POL-IR-001).
+
+4. THREAT INTELLIGENCE
+  Microsoft Sentinel integrates Microsoft Threat Intelligence
+  to correlate against known IOCs automatically.
+
+================================================================
+Approved: Anthony James           07/10/2026
+Prepared: Sandra Okonkwo          07/08/2026
+================================================================

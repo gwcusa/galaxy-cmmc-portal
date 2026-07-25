@@ -1,0 +1,84 @@
+================================================================
+BUMPASS VOLUNTEER FIRE & RESCUE DEPARTMENT
+LEAST PRIVILEGE ACCESS POLICY
+================================================================
+Document ID:    POL-IT-003
+Version:        1.4
+Effective Date: March 1, 2026
+Review Date:    March 1, 2027
+Owner:          IT Coordinator, Derek Holt
+Approved By:    Fire Chief, Raymond Stubbs
+================================================================
+
+1. PURPOSE
+Bumpass Fire & Rescue handles sensitive federal grant data,
+personnel records, and emergency communications systems covered
+under CUI. This policy ensures all personnel access only the
+minimum information and system capabilities required to perform
+their job duties.
+
+2. SCOPE
+Applies to all firefighters, EMTs, administrative staff,
+volunteers, and any contractors accessing department systems
+including the CAD (Computer-Aided Dispatch) system, records
+management system (RMS), and grant administration portal.
+
+3. LEAST PRIVILEGE REQUIREMENTS
+
+3.1 Role Definitions
+The following access roles are defined for department systems:
+
+  ROLE: Firefighter/EMT
+  - Read access to incident reports for own station
+  - No access to personnel records or financial data
+  - CAD: Respond/Update own calls only
+
+  ROLE: Station Captain
+  - Read/write access to incident reports for own station
+  - Read access to personnel records for own crew
+  - CAD: Full access for assigned station
+
+  ROLE: Administrative Staff
+  - Access to grant portal and financial systems only
+  - No access to CAD dispatch functions
+  - Read-only access to incident statistics
+
+  ROLE: IT Coordinator
+  - Full system administration access
+  - Maintains separate standard user account for daily tasks
+  - Admin account used only for administrative functions
+
+  ROLE: Fire Chief
+  - Read access to all systems
+  - Approve access change requests
+
+3.2 Privileged Accounts
+- Privileged accounts are limited to the IT Coordinator only
+- A separate non-privileged account is used for email and
+  daily non-administrative tasks
+- Privileged sessions are logged and reviewed monthly
+
+3.3 Access Review
+- Access roles are reviewed every 6 months
+- Any role not used in 60 days is flagged for removal
+- New roles require Chief approval before creation
+
+3.4 Separation
+- No single user may have both financial approval AND
+  payment processing rights
+- Dispatch and personnel records access cannot be combined
+  in any single non-IT account
+
+4. ENFORCEMENT
+Violations result in immediate account suspension pending
+review by the Fire Chief and IT Coordinator.
+
+5. REVIEW HISTORY
+v1.0 - 2024-09-01  Initial policy
+v1.2 - 2025-03-01  Added CAD role definitions
+v1.4 - 2026-03-01  Updated privileged account requirements
+
+================================================================
+Approved: Raymond Stubbs, Fire Chief       03/01/2026
+Prepared: Derek Holt, IT Coordinator       02/28/2026
+================================================================

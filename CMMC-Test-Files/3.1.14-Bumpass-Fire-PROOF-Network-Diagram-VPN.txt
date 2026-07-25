@@ -1,0 +1,35 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.14 - Managed Access Control Points for Remote Access
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that all Bumpass Fire & Rescue remote access is routed through managed access control points.
+
+2. NETWORK ARCHITECTURE
+Remote Access Gateway: Azure VPN Gateway (managed by Mike Sadler)
+Firewall: Azure NSG + On-premises Firewall
+
+Inbound rules for CUI systems:
+- Allow: Source = VPN subnet (10.0.1.0/24) to CUI VLAN (10.0.2.0/24)
+- Deny: All other inbound traffic to CUI systems
+
+Split Tunneling: DISABLED on all VPN profiles
+All remote traffic including internet traffic routes through Bumpass Fire & Rescue gateway when VPN is active.
+
+3. NETWORK DIAGRAM SUMMARY
+[Internet] -> [VPN Gateway - managed by Mike Sadler] -> [CUI Systems]
+Direct path from internet to CUI systems: BLOCKED by NSG rules
+
+4. FIREWALL RULE AUDIT
+Date: 2026-06-15  |  Auditor: Mike Sadler
+Result: No direct internet-to-CUI rules found. VPN gateway is sole ingress path.
+
+5. SYSTEM DETAILS
+Remote Workstation: BFR-WS-001  |  User: m.sadler@bumpassfire.org
+VPN Profile: Bumpass Fire & Rescue-FullTunnel | Split Tunnel: No
+
+6. CONCLUSION
+All Bumpass Fire & Rescue remote access routes through managed access control points per control 3.1.14.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

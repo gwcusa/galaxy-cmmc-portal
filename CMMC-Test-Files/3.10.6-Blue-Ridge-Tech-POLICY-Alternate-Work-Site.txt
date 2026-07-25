@@ -1,0 +1,50 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+ALTERNATE WORK SITE CUI SAFEGUARDING POLICY
+================================================================
+Document ID:    POL-PE-006
+Version:        1.0
+Effective Date: May 30, 2026
+Review Date:    May 30, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy enforces CUI safeguarding measures when BRTS
+employees work from alternate locations (home offices, client
+sites, hotels, etc.).
+
+2. APPROVED ALTERNATE WORK SITES
+BRTS staff may work remotely from:
+  - Personal home offices (approved by Nathan Cruz/Victor Osei)
+  - Client sites (under client supervision)
+Not permitted: public locations (coffee shops, airports, libraries)
+unless VPN is active and no CUI is displayed on-screen in public.
+
+3. HOME OFFICE REQUIREMENTS
+For staff approved to handle CUI from home:
+  a) Dedicated work area with door that can be closed
+     (CUI work cannot be done in open shared family spaces)
+  b) Private WiFi network (no public/shared WiFi for CUI)
+  c) VPN required for all company system access
+  d) Screen privacy filter recommended if screen visible
+     from windows or common areas
+  e) Paper CUI must be stored in locked drawer when not in use
+  f) Paper CUI must be shredded on-site (cross-cut) or
+     returned to the office for secure shredding
+
+4. TECHNICAL SAFEGUARDS AT ALTERNATE SITES
+  - All CUI access over encrypted VPN (enforced)
+  - Conditional Access blocks unencrypted or non-Intune access
+  - Microsoft Defender for Endpoint active on all remote devices
+  - Automatic screen lock after 10 minutes inactivity
+
+5. REMOTE WORK AGREEMENT
+  Staff approved for remote CUI work sign the BRTS Remote Work
+  and CUI Agreement annually.
+
+================================================================
+Approved: Victor Osei            05/30/2026
+Prepared: Nathan Cruz            05/28/2026
+================================================================

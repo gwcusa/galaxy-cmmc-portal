@@ -1,0 +1,34 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.3.9 - Audit Management Access
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC limits audit log management to a restricted set of privileged users.
+
+2. AUDIT MANAGEMENT RBAC
+Platform: Microsoft Sentinel + Log Analytics (tenant: keithdroney.com)
+
+Role Assignments (Sentinel Workspace):
+Name          | Role                       | Access Level
+Keith Merritt          | Sentinel Contributor       | Configure analytics, manage data connectors
+Keith Merritt         | Sentinel Reader            | View dashboards and incidents only
+All others    | No Sentinel access         | None
+
+Azure Policy: AuditManagement-Keith the Drone Guy LLC
+- Blocks assignment of Sentinel Contributor or higher to non-approved accounts
+- Alert fires to Keith Merritt@keithdroney.com if any new Sentinel admin role is assigned
+
+3. CONFIGURATION CHANGE LOG (FY2026)
+Date: 2026-03-15 - Keith Merritt added new alert rule for after-hours admin logon
+Date: 2026-05-10 - Keith Merritt adjusted brute force alert threshold from 10 to 5 attempts
+Both changes: Documented in IT change log. No unauthorized changes detected.
+
+4. QUARTERLY ACCESS REVIEW
+Date: 2026-07-01  |  Reviewer: Keith Merritt
+Result: Keith Merritt only user with management access to Sentinel. All other users confirmed read-only or no access.
+
+5. CONCLUSION
+Keith the Drone Guy LLC restricts audit log management to Keith Merritt only with monitored RBAC per control 3.3.9.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

@@ -1,0 +1,34 @@
+﻿AWARENESS AND TRAINING IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.2.3 - Insider Threat Reporting
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty trains personnel to report insider threat indicators and maintains reporting mechanisms.
+
+2. REPORTING MECHANISMS
+Primary: Direct report to Anthony James (Anthony James@asjrealty.com)
+Secondary: Anonymous tip email (security-reports@asjrealty.com) - managed by Sandra Okonkwo
+Physical: Drop-box in office (sealed, reviewed weekly by Anthony James)
+
+Reporting channel communicated via:
+- Annual training module
+- Printed poster in break room
+- New-hire orientation packet
+
+3. TRAINING CONTENT (Reporting Module)
+Covered in KnowBe4 module "Insider Threat Reporting Procedures" (20 min):
+- What constitutes a reportable concern
+- How to submit a report (anonymous and named options)
+- What happens after a report is submitted
+- Non-retaliation guarantee
+
+4. REPORT LOG (FY2026)
+Reports received: 1 (anonymous tip - 2026-04-15)
+Nature: Unusual after-hours file access concern
+Resolution: Sandra Okonkwo reviewed audit logs; confirmed authorized scheduled backup. No threat found.
+
+5. CONCLUSION
+ASJ Realty maintains active insider threat reporting mechanisms and trains all personnel per control 3.2.3.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

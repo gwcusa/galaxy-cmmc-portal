@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.1.13 - Remote Access Encryption
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to employ cryptographic mechanisms to protect the confidentiality of remote access sessions, per NIST SP 800-171 Rev. 2 control 3.1.13.
+
+2. SCOPE
+All remote access connections to Keith the Drone Guy LLC CUI systems.
+
+3. REQUIREMENTS
+a. All remote access sessions use TLS 1.2 or higher encryption.
+b. VPN connections use AES-256 encryption minimum.
+c. Weak cipher suites (RC4, DES, 3DES, TLS 1.0, TLS 1.1) are disabled.
+d. Remote desktop sessions require NLA and TLS encryption.
+e. Keith Merritt reviews VPN and TLS cipher configurations quarterly.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, configures and maintains encryption settings for remote access.
+
+5. ENFORCEMENT
+Unencrypted remote access connections are blocked and reported.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

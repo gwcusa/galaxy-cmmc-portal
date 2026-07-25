@@ -1,0 +1,39 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.5.3 - Multifactor Authentication
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty requires and enforces MFA for all CUI system access.
+
+2. CONDITIONAL ACCESS POLICY
+Policy Name: MFA-Required-All-ASJ Realty
+Tenant: asjrealty.com
+Target: All users
+Target Apps: All cloud apps (Microsoft 365, SharePoint, Exchange, Teams, Azure Portal)
+Condition: Any network location, any device
+Grant Control: Require MFA
+
+Exclude: Emergency break-glass account (separate policy with hardware key requirement)
+
+3. MFA FACTORS IN USE
+Factor 1: Password (something you know)
+Factor 2: Microsoft Authenticator App (something you have)
+  - Push notification (tap to approve)
+  - TOTP 6-digit code (backup)
+  - Number matching enabled (anti-MFA fatigue)
+
+4. MFA ENFORCEMENT VERIFICATION
+Date: 2026-07-01  |  Tester: Sandra Okonkwo
+Test: Attempt SharePoint CUI login with only password (no MFA)
+Result: BLOCKED - "This resource requires additional authentication"
+MFA prompt received on Authenticator App. PASS.
+
+5. MFA ENROLLMENT
+All 5 ASJ Realty users enrolled: 100%
+Last enrollment: 2026-01-20 (new staff)
+
+6. CONCLUSION
+ASJ Realty enforces MFA on all CUI access via Conditional Access per control 3.5.3.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

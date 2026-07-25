@@ -1,0 +1,49 @@
+================================================================
+ASJ REALTY
+MICROSOFT SENTINEL - AUDIT MANAGEMENT RBAC AUDIT
+Evidence for CMMC Control 3.3.9
+================================================================
+Report Date:    July 23, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+Azure Tenant:   asjrealty.onmicrosoft.com
+================================================================
+
+SENTINEL WORKSPACE ROLE ASSIGNMENTS
+-------------------------------------------------
+Workspace: ASJR-Sentinel-EastUS
+
+User/Group                Role                     Scope
+------------------------  -----------------------  ---------------
+sokonkwo@asjrealty.com    Microsoft Sentinel        Workspace
+                          Contributor
+ajames@asjrealty.com      Microsoft Sentinel        Workspace
+                          Reader
+All other ASJR users      No Sentinel assignment   N/A
+
+Total users with Sentinel Contributor: 1 (Sandra Okonkwo)
+Total users with any Sentinel access: 2
+
+AUDIT CONFIGURATION CHANGE LOG (Azure Activity Log)
+-------------------------------------------------
+DATE         USER          ACTION                    RESULT
+-----------  ----------    ------------------------  --------
+06/10/2026   sokonkwo      Updated retention to 365d  Success
+07/01/2026   sokonkwo      Added new alert rule       Success
+07/01/2026   sokonkwo      Modified KQL query         Success
+
+No audit configuration changes by: ajames or any other user.
+All changes made by authorized audit administrator only.
+
+QUARTERLY ACCESS REVIEW - July 1, 2026
+-------------------------------------------------
+Sandra Okonkwo reviewed and certified:
+"Only Sandra Okonkwo and Anthony James have access to the
+audit management system. This is appropriate and correct.
+Anthony James has read-only access as emergency backup.
+No changes to access are needed."
+Signed: Sandra Okonkwo - 07/01/2026
+Reviewed by: Anthony James - 07/01/2026
+
+================================================================
+Certified: Sandra Okonkwo - July 23, 2026
+================================================================

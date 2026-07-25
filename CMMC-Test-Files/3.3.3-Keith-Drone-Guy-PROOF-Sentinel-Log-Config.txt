@@ -1,0 +1,32 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.3.3 - Audit Event Review, Analysis, and Reporting
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC regularly reviews and analyzes audit logs for suspicious activity.
+
+2. REVIEW PROCESS
+Tool: Microsoft Sentinel (workspace: Keith the Drone Guy LLC-Sentinel)
+Schedule: Weekly automated workbook review by Keith Merritt + continuous alert monitoring
+
+Sentinel Alert Rules Active:
+- Impossible travel (sign-in from 2 distant locations within short window)
+- Brute force detection (>5 failed logins in 5 min)
+- Suspicious file access (bulk download >50 CUI files in 1 hour)
+- After-hours admin activity (admin sign-in 10pm-6am)
+
+3. WEEKLY REVIEW LOG (June 2026)
+Week of 2026-06-02: No anomalies. 0 alerts fired.
+Week of 2026-06-09: 1 impossible travel alert - k.merritt@keithdroney.com - Investigated: VPN location mismatch (false positive). Closed.
+Week of 2026-06-16: No anomalies.
+Week of 2026-06-23: No anomalies.
+
+4. MONTHLY SUMMARY REPORT (June 2026)
+Distributed to: Keith Merritt  |  Date: 2026-07-03
+Events reviewed: 12,450  |  Alerts triggered: 1  |  Incidents: 0  |  False positives: 1
+
+5. CONCLUSION
+Keith the Drone Guy LLC reviews audit logs weekly with automated and manual analysis per control 3.3.3.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

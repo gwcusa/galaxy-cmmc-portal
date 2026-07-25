@@ -1,0 +1,36 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.5.2 - User Authentication
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC authenticates the identity of all users before granting CUI system access.
+
+2. AUTHENTICATION CONFIGURATION
+Platform: Azure Active Directory (tenant: moneystraighttalk.com)
+Authentication Methods Enabled:
+- Password (minimum 14 characters, complexity enforced)
+- Microsoft Authenticator (TOTP/push notification)
+- FIDO2 Security Key (optional - Terrell Banks only)
+
+MFA Required: Yes (Conditional Access policy: MFA-Required-All-Money Straight Talk LLC)
+Applied to: All users accessing CUI resources (M365, SharePoint, VPN)
+
+3. MFA ENROLLMENT STATUS (2026-07-01)
+Total Users: 5  |  MFA Enabled: 5 (100%)
+
+User              | MFA Method             | Status
+Camille Odom@moneystraighttalk.com       | Authenticator App      | Active
+Terrell Banks@moneystraighttalk.com        | Authenticator App      | Active
+staff1@moneystraighttalk.com      | Authenticator App      | Active
+staff2@moneystraighttalk.com      | Authenticator App      | Active
+svc-backup@moneystraighttalk.com  | Certificate (service)  | Active
+
+4. RECENT AUTHENTICATION LOG (sample - June 2026)
+Date: 2026-06-15 | User: t.banks@moneystraighttalk.com | Method: Password+MFA | Result: Success | Device: MST-WS-001
+Date: 2026-06-15 | User: unknown     | Method: Password     | Result: Blocked | Reason: MFA not satisfied
+
+5. CONCLUSION
+Money Straight Talk LLC requires and verifies user authentication with MFA before granting CUI access per control 3.5.2.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

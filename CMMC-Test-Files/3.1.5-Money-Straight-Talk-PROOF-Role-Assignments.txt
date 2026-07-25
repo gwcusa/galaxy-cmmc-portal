@@ -1,0 +1,30 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.1.5 - Principle of Least Privilege
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC employs least privilege principles across CUI systems.
+
+2. PRIVILEGED ACCOUNT INVENTORY
+Platform: Azure AD / Microsoft 365 (moneystraighttalk.com)
+Global Admin: Terrell Banks (1 account, used only for admin tasks; separate standard account for daily work)
+SharePoint Admin: Terrell Banks only
+Security Admin: Terrell Banks only
+Standard Users: All other staff - no admin roles assigned
+
+Azure AD PIM: Privileged Identity Management enabled for Global Admin role.
+Activation requires MFA and business justification; max duration 8 hours.
+
+3. QUARTERLY REVIEW
+Date: 2026-06-30  |  Reviewer: Terrell Banks
+Result: 0 unnecessary privileged accounts found. 1 temporary access grant expired and was removed.
+
+4. SYSTEM DETAILS
+Workstation: MST-WS-001  |  Daily Account: t.banks@moneystraighttalk.com (Standard User)
+Admin Account: t.banks-adm@moneystraighttalk.com (Privileged, PIM-gated)
+
+5. CONCLUSION
+Money Straight Talk LLC applies least privilege via PIM-gated admin roles and quarterly access reviews per control 3.1.5.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

@@ -1,0 +1,39 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.13.4 - Shared Resource Protection
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue prevents unauthorized information transfer via shared resources.
+
+2. VIRTUALIZATION ISOLATION
+Platform: Azure (tenant: bumpassfire.org)
+CUI virtual resources: Isolated in dedicated resource group with NSG
+VM isolation: Hyper-V hypervisor provides hardware-level isolation between VMs
+
+Windows 11 Endpoints (BFR-WS-001, WS-002):
+- Virtualization-Based Security (VBS): Enabled
+- Credential Guard: Enabled (protects credential data from userspace isolation bypass)
+- Kernel DMA Protection: Enabled
+
+3. SESSION ISOLATION
+Temp directories: Cleared at logoff (GPO: ClearTempOnLogoff-Bumpass Fire & Rescue)
+Browser: Microsoft Edge - separate session containers per security zone
+Printer: Print Spooler restricted to Mike Sadler-managed printer; spool files cleared post-job
+
+4. MEMORY PROTECTION
+GPO: ASLR (Address Space Layout Randomization): Enabled
+DEP (Data Execution Prevention): Enabled for all programs
+Kernel Isolation: Enabled via VBS
+
+5. QUARTERLY ISOLATION REVIEW
+Date: 2026-06-30  |  Reviewer: Mike Sadler
+VBS status on BFR-WS-001: Enabled (confirmed in System Information > Device Security)
+Credential Guard: Running
+Temp clearing GPO: Applied and effective
+Result: All shared resource protections operational.
+
+6. CONCLUSION
+Bumpass Fire & Rescue protects shared resources via VBS, Credential Guard, and session isolation policies per control 3.13.4.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

@@ -1,0 +1,26 @@
+﻿SECURITY ASSESSMENT POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.12.4 - System Security Plan
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to develop, document, and periodically update System Security Plans (SSPs) that describe the system boundary, security requirements, and security controls, per NIST SP 800-171 Rev. 2 control 3.12.4.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC information systems that process, store, or transmit CUI.
+
+3. REQUIREMENTS
+a. An SSP is maintained that documents the CUI system boundary, users, and controls.
+b. The SSP describes all 110 NIST SP 800-171 Rev. 2 controls and their implementation status.
+c. The SSP is reviewed and updated at least annually.
+d. Victor Osei approves the SSP.
+e. The SSP is protected from unauthorized access.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, authors and maintains the SSP. Victor Osei reviews and approves it annually.
+
+5. ENFORCEMENT
+An outdated SSP (>1 year old) is treated as a security compliance finding.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

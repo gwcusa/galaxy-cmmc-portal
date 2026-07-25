@@ -1,0 +1,41 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.13.14 - Voice over IP
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC protects VoIP/collaboration sessions from unauthorized access.
+
+2. TEAMS VoIP CONFIGURATION
+Platform: Microsoft Teams (tenant: keithdroney.com)
+Encryption: SRTP (Secure Real-time Transport Protocol) for audio/video
+Signaling: TLS 1.2+ for all session signaling
+Media relay: Microsoft-managed media relay servers (SRTP encrypted)
+
+3. TEAMS SECURITY POLICIES
+Teams Admin Center Settings (tenant: keithdroney.com):
+- Anonymous users can join meetings: DISABLED
+- External participants can give/request control: DISABLED
+- Allow cloud recording: Restricted (only Keith Merritt and Keith Merritt may record)
+- Lobby: All external users held in lobby until admitted by organizer
+- Meeting chat for anonymous users: DISABLED
+
+4. UNAPPROVED VoIP BLOCKING
+Blocked by Defender for Endpoint (network indicator list):
+- Zoom (consumer): Not blocked but policy prohibits for CUI conversations
+- Discord: BLOCKED (network indicator)
+- WhatsApp Web: BLOCKED (DLP policy)
+Approved: Microsoft Teams only for CUI discussions
+
+5. TEAMS MEETING ENCRYPTION
+Mode: End-to-end encryption available for 1:1 calls (enabled by policy)
+Group meetings: Microsoft 365-managed encryption (AES-256)
+
+6. VoIP COMPLIANCE REVIEW
+Date: 2026-06-30  |  Reviewer: Keith Merritt
+All Teams security settings confirmed in place. No unapproved VoIP usage detected in DLP or Defender logs.
+
+7. CONCLUSION
+Keith the Drone Guy LLC uses Microsoft Teams with SRTP/TLS encryption and guest restrictions for all CUI-related VoIP sessions per control 3.13.14.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

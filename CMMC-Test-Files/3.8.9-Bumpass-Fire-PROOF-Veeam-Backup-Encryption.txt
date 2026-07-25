@@ -1,0 +1,40 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.8.9 - CUI Backup Protection
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue protects the confidentiality of CUI in backup storage.
+
+2. BACKUP ARCHITECTURE
+Primary Backup: Microsoft 365 Backup (Exchange, SharePoint, OneDrive)
+- Encryption: AES-256 at rest (Microsoft managed)
+- Geo-redundancy: Active (LRS + GRS replication)
+- Access: Mike Sadler only (Backup Admin role in M365)
+- Retention: 30 days granular + 1 year archive
+
+Secondary Backup: External encrypted HDD (KI-BACKUP-01)
+- Encryption: VeraCrypt AES-256 + SHA-512
+- Key stored: Azure Key Vault (access: Mike Sadler only)
+- Physical location: Locked cabinet, Mike Sadler's office
+- Backup frequency: Monthly full backup
+
+3. BACKUP ENCRYPTION VERIFICATION
+Date: 2026-06-30  |  Verifier: Mike Sadler
+M365 Backup: Microsoft Compliance Center confirms AES-256 at rest for all content
+External HDD: VeraCrypt volume header verified. Decryption attempted with test key - successful.
+
+4. ACCESS CONTROL
+M365 Backup Admin: Mike Sadler only
+External HDD: Physical key held by Mike Sadler; spare with Randy Bowles in sealed envelope (emergency)
+Key Vault access: Mike Sadler only (Reader); audit log enabled
+
+5. BACKUP RESTORATION TEST
+Date: 2026-05-15  |  Tester: Mike Sadler
+Test: Restored 3 CUI documents from M365 Backup
+Result: Successful restore. Data integrity verified. Encryption maintained post-restore.
+
+6. CONCLUSION
+Bumpass Fire & Rescue protects CUI backups with AES-256 encryption and access controls per control 3.8.9.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

@@ -1,0 +1,31 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.15 - Remote Privileged Command Authorization
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC authorizes and documents remote execution of privileged commands.
+
+2. REMOTE PRIVILEGED ACCESS PROCESS
+Ticketing System: IT Helpdesk (ServiceDesk Plus / Freshservice)
+Authorization Workflow:
+1. Keith Merritt submits change request with scope, justification, and duration
+2. Keith Merritt approves change request before session begins
+3. Remote session recorded via Azure Bastion session recording
+4. Post-session: Keith Merritt updates ticket with actions taken
+
+3. PRIVILEGED REMOTE SESSION LOG (June 2026)
+Ticket     | Date       | Authorizer    | Task                         | Duration
+CHG-2024   | 2026-06-08 | Keith Merritt         | Intune policy push - all APs | 1h 20m
+CHG-2025   | 2026-06-22 | Keith Merritt         | Azure AD config update       | 45m
+
+All sessions recorded in Azure Bastion session archive.
+
+4. SYSTEM DETAILS
+Remote Admin Workstation: KDG-WS-001  |  Admin Account: k.merritt@keithdroney.com
+Session Recording: Azure Bastion - Enabled
+
+5. CONCLUSION
+Keith the Drone Guy LLC authorizes and documents all remote privileged command executions per control 3.1.15.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

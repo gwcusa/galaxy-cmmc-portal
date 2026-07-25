@@ -1,0 +1,31 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.1.15 - Remote Privileged Command Authorization
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty authorizes and documents remote execution of privileged commands.
+
+2. REMOTE PRIVILEGED ACCESS PROCESS
+Ticketing System: IT Helpdesk (ServiceDesk Plus / Freshservice)
+Authorization Workflow:
+1. Sandra Okonkwo submits change request with scope, justification, and duration
+2. Anthony James approves change request before session begins
+3. Remote session recorded via Azure Bastion session recording
+4. Post-session: Sandra Okonkwo updates ticket with actions taken
+
+3. PRIVILEGED REMOTE SESSION LOG (June 2026)
+Ticket     | Date       | Authorizer    | Task                         | Duration
+CHG-2024   | 2026-06-08 | Anthony James         | Intune policy push - all APs | 1h 20m
+CHG-2025   | 2026-06-22 | Anthony James         | Azure AD config update       | 45m
+
+All sessions recorded in Azure Bastion session archive.
+
+4. SYSTEM DETAILS
+Remote Admin Workstation: ASJ-WS-001  |  Admin Account: s.okonkwo@asjrealty.com
+Session Recording: Azure Bastion - Enabled
+
+5. CONCLUSION
+ASJ Realty authorizes and documents all remote privileged command executions per control 3.1.15.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

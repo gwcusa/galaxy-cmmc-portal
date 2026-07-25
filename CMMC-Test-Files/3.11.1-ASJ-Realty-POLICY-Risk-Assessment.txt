@@ -1,0 +1,26 @@
+﻿RISK ASSESSMENT POLICY
+Organization: ASJ Realty
+Control: 3.11.1 - Risk Assessment
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to periodically assess the risk to organizational operations from the operation of information systems that process, store, or transmit CUI, per NIST SP 800-171 Rev. 2 control 3.11.1.
+
+2. SCOPE
+All ASJ Realty information systems and processes involving CUI.
+
+3. REQUIREMENTS
+a. A formal risk assessment is conducted at least annually.
+b. The risk assessment identifies threats, vulnerabilities, likelihood, and impact.
+c. Risks are documented in a Risk Register maintained by Sandra Okonkwo.
+d. Anthony James reviews and approves the risk assessment findings.
+e. Risk assessment results drive remediation priorities.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, conducts the risk assessment. Anthony James reviews and approves results.
+
+5. ENFORCEMENT
+Failure to complete annual risk assessment is reported to Anthony James as a compliance gap.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

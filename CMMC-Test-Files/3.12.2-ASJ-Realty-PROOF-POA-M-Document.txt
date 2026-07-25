@@ -1,0 +1,58 @@
+================================================================
+ASJ REALTY
+PLAN OF ACTION AND MILESTONES (POA&M) - CURRENT
+Evidence for CMMC Control 3.12.2
+================================================================
+Document Date:  July 25, 2026
+Maintained By:  Sandra Okonkwo
+Last Reviewed:  July 1, 2026 (Anthony James)
+================================================================
+
+POA&M ITEMS - ACTIVE
+-------------------------------------------------
+ITEM #1
+Control:        3.13.2 (Security Engineering Principles)
+Weakness:       Security engineering principles not formally
+                documented in system design documentation.
+Risk Level:     Low
+Planned Action: Develop System Architecture Document capturing
+                security engineering decisions (defense in depth,
+                least privilege, fail-safe defaults).
+Owner:          Sandra Okonkwo
+Target Date:    September 30, 2026
+Milestone 1:    Draft outline - August 1, 2026 (ON TRACK)
+Milestone 2:    First draft - September 1, 2026
+Milestone 3:    Final approval - September 30, 2026
+Status:         IN PROGRESS (milestone 1 met)
+
+ITEM #2
+Control:        3.3.6 (Audit Reduction and Reporting)
+Weakness:       Scheduled audit reduction report not automated;
+                currently generated manually on-demand only.
+Risk Level:     Low
+Planned Action: Configure Sentinel scheduled workbook to auto-generate
+                weekly summary report and email to Sandra Okonkwo.
+Owner:          Sandra Okonkwo
+Target Date:    August 31, 2026
+Milestone 1:    Research Sentinel report automation - July 15 (DONE)
+Milestone 2:    Configure and test - August 31, 2026
+Status:         IN PROGRESS
+
+CLOSED POA&M ITEMS (last 6 months)
+-------------------------------------------------
+ITEM C-01 (Closed April 15, 2026)
+Control:    3.5.3 (MFA)
+Weakness:   MFA not enforced for one legacy application.
+Action:     Migrated app to Azure AD SSO with MFA.
+Evidence:   Conditional Access policy verified. Closed.
+
+ITEM C-02 (Closed May 30, 2026)
+Control:    3.8.1 (Media Protection)
+Weakness:   USB drive inventory not formally documented.
+Action:     Created Media Inventory Register in SharePoint.
+Evidence:   Register verified with physical audit. Closed.
+
+================================================================
+Reviewed: Anthony James - July 1, 2026
+Maintained: Sandra Okonkwo - July 25, 2026
+================================================================

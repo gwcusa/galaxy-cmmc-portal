@@ -1,0 +1,43 @@
+﻿SECURITY ASSESSMENT IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.12.4 - System Security Plan
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC maintains a current System Security Plan.
+
+2. SSP DOCUMENT DETAILS
+Document: Money Straight Talk LLC System Security Plan v2.0
+Location: SharePoint/IT-Docs/Security-Assessments/SSP.docx (restricted access)
+Version: 2.0  |  Last Updated: 2026-04-01  |  Next Review: 2027-04-01
+
+3. SSP CONTENTS SUMMARY
+Section 1: System Identification
+  - Organization: Money Straight Talk LLC
+  - System Name: Money Straight Talk LLC CUI Processing Environment
+  - System Owner: Camille Odom, CEO
+  - IT Point of Contact: Terrell Banks, Systems Admin
+
+Section 2: System Description
+  - Boundary: Microsoft 365 tenant (moneystraighttalk.com), endpoints (MST-WS-001, WS-002), VPN, network
+
+Section 3: Security Control Implementation
+  - All 110 NIST SP 800-171 Rev. 2 controls documented
+  - Status: 108 Implemented, 2 In Progress (POA&M items)
+
+Section 4: POA&M Reference
+  - Links to current POA&M document
+
+4. SSP APPROVAL
+Approved by: Camille Odom, CEO
+Date: 2026-04-10
+Next approval due: 2027-04-10
+
+5. SSP ACCESS CONTROL
+Permissions: Terrell Banks (edit), Camille Odom (read/approve), External assessors (read on request)
+No other access granted.
+
+6. CONCLUSION
+Money Straight Talk LLC maintains an approved, current SSP covering all 110 CMMC controls per control 3.12.4.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

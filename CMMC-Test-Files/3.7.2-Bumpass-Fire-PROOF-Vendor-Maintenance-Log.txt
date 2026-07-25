@@ -1,0 +1,48 @@
+================================================================
+BUMPASS FIRE & RESCUE
+VENDOR MAINTENANCE LOG - 2026
+Evidence for CMMC Control 3.7.2
+================================================================
+Report Period:  January 1 - July 25, 2026
+Maintained By:  Mike Sadler, IT Administrator
+================================================================
+
+VENDOR MAINTENANCE VISITS - 2026
+-------------------------------------------------
+VISIT #1 - February 18, 2026
+Vendor:       Roanoke Tech Solutions LLC
+Personnel:    Dave Albright (field technician)
+Purpose:      Replace failed UPS battery - server room
+Agreement:    Signed BFR Vendor Access Agreement 02/16/2026
+Escorted By:  Mike Sadler (present entire visit)
+Tools Used:   Vendor's replacement UPS battery (inspected)
+              No software tools used
+Systems Affected: APC UPS unit - no servers powered off
+Outcome:      Battery replaced successfully. UPS tested OK.
+
+VISIT #2 - April 3, 2026
+Vendor:       Cisco SmartNet (TAC remote support)
+Personnel:    Cisco TAC Engineer (remote session)
+Purpose:      Diagnose ASA VPN config issue
+Agreement:    Cisco SmartNet contract (covers remote support)
+Remote Session: Granted via temporary read-only console access
+Observed By:  Mike Sadler (monitored entire session in real time)
+Duration:     45 minutes
+Systems Affected: Cisco ASA 5506-X (read-only diagnostic)
+No changes made during session (issue resolved via config guidance
+provided by TAC; Mike implemented the fix himself)
+Outcome:      VPN authentication issue resolved.
+
+VISIT #3 - June 12, 2026
+Vendor:       Dell ProSupport (on-site hardware repair)
+Personnel:    Marco Torres (Dell technician)
+Purpose:      Replace failed NIC on BFR-SRV-001
+Agreement:    Dell ProSupport contract + BFR Vendor Agreement (signed)
+Escorted By:  Mike Sadler
+Tools Used:   Dell-supplied replacement NIC (inspected - sealed box)
+USB diagnostic boot media: Scanned with Defender before use - CLEAN
+Outcome:      NIC replaced. Server back online within 2 hours.
+
+================================================================
+Certified: Mike Sadler - July 25, 2026
+================================================================

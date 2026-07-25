@@ -1,0 +1,54 @@
+================================================================
+BUMPASS FIRE & RESCUE — IT SYSTEMS
+USER ROLE ASSIGNMENT REPORT
+Evidence for CMMC Control 3.1.5
+================================================================
+Report Date:   July 10, 2026
+Prepared By:   Derek Holt, IT Coordinator
+System:        RMS + CAD + Grant Portal
+================================================================
+
+CURRENT USER ROLE ASSIGNMENTS
+-------------------------------------------------
+NAME                   ROLE                    CAD    RMS    GRANTS  FINANCE
+--------------------   --------------------    ----   ----   ------  -------
+Raymond Stubbs         Fire Chief              R      R      R       R
+Derek Holt             IT Admin                FULL   FULL   FULL    FULL
+Derek Holt (std)       Standard User           --     R      --      --
+Karen Doyle            Admin Staff             --     R      R       R/W
+Mike Jessup            Station 1 Captain       R/W    R/W    --      --
+Tony Barrera           Firefighter/EMT         R      R      --      --
+Luis Pena              Firefighter/EMT         R      R      --      --
+Beth Cranford          Firefighter/EMT         R      R      --      --
+Volunteer-001          Volunteer               R      --     --      --
+Volunteer-002          Volunteer               R      --     --      --
+
+LEGEND: R=Read, R/W=Read/Write, FULL=Full Admin, --=No Access
+
+PRIVILEGED ACCOUNT AUDIT
+-------------------------------------------------
+Admin Account:         derek.holt.admin@bumpassfire.org
+Standard Account:      derek.holt@bumpassfire.org
+Last Admin Login:      July 9, 2026 — Server patch application
+Last Standard Login:   July 10, 2026 — Email, daily operations
+Admin Session Log:     Maintained in Syslog server (30-day retention)
+
+SEPARATION OF DUTIES VERIFICATION
+-------------------------------------------------
+Financial Approval (Karen Doyle) and Payment Processing are
+split between Karen Doyle (approval) and Fire Chief Stubbs
+(authorization). No single account holds both rights. VERIFIED.
+
+ACCOUNTS WITH EXCESSIVE PRIVILEGE — FLAGGED FOR REVIEW
+-------------------------------------------------
+No accounts flagged at this time.
+
+LAST ACCESS REVIEW
+-------------------------------------------------
+Date Completed:     June 15, 2026
+Conducted By:       Derek Holt + Raymond Stubbs
+Changes Made:       Volunteer-003 removed (inactive 90 days)
+                    Beth Cranford added as new hire
+Next Review Due:    December 15, 2026
+
+================================================================

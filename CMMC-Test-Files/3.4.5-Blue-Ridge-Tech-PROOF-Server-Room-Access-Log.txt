@@ -1,0 +1,45 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+SERVER ROOM PHYSICAL ACCESS LOG AND CHANGE ACCESS AUDIT
+Evidence for CMMC Control 3.4.5
+================================================================
+Report Period:  May 1 - July 23, 2026
+Prepared By:    Nathan Cruz
+Server Room:    Suite 140B (keypad + camera secured)
+================================================================
+
+SERVER ROOM PHYSICAL ACCESS LOG (keypad entries)
+-------------------------------------------------
+DATE/TIME              USER          PURPOSE
+---------------------  -----------   ---------------------------------
+05/03/2026 09:15 AM    Nathan Cruz   Server check (planned - CHG-036)
+05/17/2026 02:00 AM    Nathan Cruz   Maintenance window - patch servers
+06/01/2026 10:00 AM    Nathan Cruz   Network switch firmware upgrade
+06/21/2026 02:00 AM    Nathan Cruz   Add disk to BRTS-SRV-002
+07/05/2026 09:30 AM    Nathan Cruz   Inspect UPS battery (no config change)
+07/19/2026 02:00 AM    Nathan Cruz   July patch cycle
+
+Total server room accesses: 6
+Unauthorized accesses: 0
+Non-Nathan accesses: 0 (Victor Osei does not have keypad code)
+
+PRODUCTION SYSTEM CHANGE ACCESS (Audit Log)
+-------------------------------------------------
+All production changes implemented using: adm_ncruz account
+Standard account (ncruz) not used for any production changes.
+
+Admin account logons to production servers (July 2026):
+07/19/2026 02:03 AM  adm_ncruz  BRTS-SRV-001  Patch implementation
+07/19/2026 02:45 AM  adm_ncruz  BRTS-SRV-002  Patch implementation
+
+AZURE DEVOPS - CONFIG REPOSITORY ACCESS
+-------------------------------------------------
+Repository: brts-itconfig
+Write access: ncruz (Nathan Cruz) only
+Pull requests requiring approval: 2 in this period
+  PR-42: Approved by Victor Osei - 06/01/2026
+  PR-47: Approved by Victor Osei - 07/10/2026
+
+================================================================
+Certified: Nathan Cruz - July 23, 2026
+================================================================

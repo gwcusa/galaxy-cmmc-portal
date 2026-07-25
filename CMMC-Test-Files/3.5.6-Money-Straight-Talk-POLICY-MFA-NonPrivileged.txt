@@ -1,0 +1,49 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+MULTI-FACTOR AUTHENTICATION FOR ALL USERS POLICY
+================================================================
+Document ID:    POL-IA-006
+Version:        1.0
+Effective Date: January 30, 2026
+Review Date:    January 30, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy requires multi-factor authentication for network
+access to MST systems by both privileged and non-privileged
+accounts.
+
+2. MFA REQUIREMENT - ALL USERS
+  MFA is required for all MST users when accessing:
+    - Microsoft 365 (email, Teams, SharePoint, OneDrive)
+    - Azure AD-protected resources
+    - VPN (remote access to company network)
+    - Any cloud-based application integrated with Azure AD SSO
+
+3. ACCEPTABLE MFA METHODS
+  - Microsoft Authenticator push notification (recommended)
+  - TOTP authenticator code (backup method)
+  - SMS text message: NOT permitted (SIM swap risk)
+  - Voice call: NOT permitted
+  - Email OTP: NOT permitted
+
+4. MFA ENROLLMENT
+  - All new employees must enroll MFA before their first logon
+    to company systems (Terrell Banks sets up during onboarding)
+  - MFA enrollment is confirmed in the MST User Checklist
+
+5. MFA EXCEPTIONS
+  - No MFA exceptions are permitted for users with access to CUI
+  - Break-glass account: uses FIDO2 hardware key only
+
+6. MONITORING
+  Terrell Banks reviews MFA registration monthly.
+  Any user found without MFA is immediately reported to
+  Camille Odom and MFA is enforced before further access.
+
+================================================================
+Approved: Camille Odom           01/30/2026
+Prepared: Terrell Banks          01/28/2026
+================================================================

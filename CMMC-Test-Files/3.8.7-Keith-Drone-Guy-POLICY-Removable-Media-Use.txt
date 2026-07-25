@@ -1,0 +1,50 @@
+================================================================
+KEITH THE DRONE GUY LLC
+REMOVABLE MEDIA USE CONTROL POLICY
+================================================================
+Document ID:    POL-MP-007
+Version:        1.0
+Effective Date: March 20, 2026
+Review Date:    March 20, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy controls the use of removable media on KDG system
+components to prevent unauthorized data exfiltration and
+introduction of malware.
+
+2. APPROVED REMOVABLE MEDIA
+Only the following removable media may be used on KDG systems:
+  - KDG-issued Kingston IronKey USB drives (encrypted)
+    Currently: USB-001 (Keith), USB-002 (Dana)
+  - KDG-issued SD cards for drone data collection (KDG-SD-001
+    through KDG-SD-004) - scanned when brought inside
+
+3. PROHIBITED MEDIA
+  - Personal USB flash drives: PROHIBITED
+  - Unknown/unidentified USB devices: PROHIBITED
+  - USB devices found in parking lots or common areas:
+    PROHIBITED (potential BadUSB attack vector)
+  - CD/DVD drives: Not installed on any KDG system
+
+4. TECHNICAL ENFORCEMENT
+  - Microsoft Defender Application Control policy restricts
+    USB access (Device Control rules via Intune)
+  - Only approved device hardware IDs are whitelisted
+  - All other USB storage devices generate a blocked event
+
+5. DRONE SD CARDS
+  - SD cards from drones are connected to the dedicated
+    KDG-WS-001 (drone data workstation) only
+  - Defender scans SD card upon insertion automatically
+  - After data transfer, SD cards are formatted (no CUI stored)
+
+6. VIOLATION
+  Inserting unauthorized removable media is a policy violation
+  subject to disciplinary action.
+
+================================================================
+Approved: Keith Merritt           03/20/2026
+================================================================

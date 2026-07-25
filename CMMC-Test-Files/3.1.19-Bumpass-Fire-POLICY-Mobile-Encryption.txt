@@ -1,0 +1,27 @@
+﻿ACCESS CONTROL POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.1.19 - CUI Encryption on Mobile Devices
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to encrypt CUI on mobile devices and mobile computing platforms, per NIST SP 800-171 Rev. 2 control 3.1.19.
+
+2. SCOPE
+All Bumpass Fire & Rescue mobile devices and portable computing platforms that store or transmit CUI.
+
+3. REQUIREMENTS
+a. All mobile devices storing CUI must enable full-device encryption.
+b. Windows laptops use BitLocker with TPM (AES-256).
+c. iOS devices use hardware AES encryption (enabled by default with passcode).
+d. Android devices enable full-disk encryption.
+e. Encryption status is verified through Intune compliance reports.
+f. Non-encrypted devices are blocked from CUI access until remediated.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, enforces encryption requirements via Intune compliance policies.
+
+5. ENFORCEMENT
+Non-compliant unencrypted devices are quarantined from CUI access within 2 hours.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

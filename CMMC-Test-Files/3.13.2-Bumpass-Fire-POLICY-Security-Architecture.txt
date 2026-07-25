@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.13.2 - Security Architecture
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to employ architectural designs, software development techniques, and systems engineering principles that promote security as part of the CUI environment, per NIST SP 800-171 Rev. 2 control 3.13.2.
+
+2. SCOPE
+All Bumpass Fire & Rescue system design decisions affecting CUI systems.
+
+3. REQUIREMENTS
+a. CUI systems follow a defense-in-depth architecture.
+b. Security is considered from the initial design phase of any new system.
+c. The CUI environment architecture is documented and maintained.
+d. Vendor solutions are evaluated for security before deployment.
+e. Security architecture is reviewed annually or after significant changes.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, designs and documents CUI system architecture with security as a core principle.
+
+5. ENFORCEMENT
+New systems without security architecture review may not process CUI.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

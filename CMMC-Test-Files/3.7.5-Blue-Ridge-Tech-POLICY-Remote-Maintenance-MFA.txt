@@ -1,0 +1,48 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+REMOTE MAINTENANCE MFA REQUIREMENT POLICY
+================================================================
+Document ID:    POL-MA-005
+Version:        1.0
+Effective Date: May 15, 2026
+Review Date:    May 15, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy requires multi-factor authentication to establish
+remote maintenance sessions on BRTS systems, preventing
+unauthorized remote access under the guise of maintenance.
+
+2. REQUIREMENT
+All remote maintenance sessions - whether performed by BRTS
+internal IT staff or external vendors - must be established
+using MFA before the session is allowed to proceed.
+
+3. INTERNAL REMOTE MAINTENANCE (Nathan Cruz)
+  - Remote sessions to BRTS servers initiated via VPN
+  - VPN requires Azure AD authentication + MFA (Authenticator)
+  - After VPN: RDP or SSH with domain credentials (Kerberos)
+  - Admin account (adm_ncruz) used for privileged remote tasks
+  - All admin remote sessions logged in Event Log + Sentinel
+
+4. EXTERNAL VENDOR REMOTE MAINTENANCE
+  - External vendors are issued temporary VPN credentials
+    for the duration of the maintenance window only
+  - VPN credentials include MFA requirement (Authenticator
+    app set up on a KDG-controlled device, or TOTP shared
+    via secure channel)
+  - Vendor sessions observed in real time by Nathan Cruz
+    via session shadowing or screen sharing
+  - Vendor credentials are revoked immediately upon session end
+
+5. PROHIBITED REMOTE MAINTENANCE METHODS
+  - Direct RDP exposed to internet without VPN: PROHIBITED
+  - Remote maintenance without MFA: PROHIBITED
+  - Consumer remote tools (TeamViewer, AnyDesk) without MFA: PROHIBITED
+
+================================================================
+Approved: Victor Osei            05/15/2026
+Prepared: Nathan Cruz            05/13/2026
+================================================================

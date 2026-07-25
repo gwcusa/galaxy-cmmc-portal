@@ -1,0 +1,51 @@
+================================================================
+BUMPASS FIRE & RESCUE
+REMOTE ACCESS ENCRYPTION POLICY
+================================================================
+Document ID:    POL-AC-013
+Version:        1.0
+Effective Date: March 20, 2026
+Review Date:    March 20, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy requires that cryptographic mechanisms protect
+the confidentiality of remote access sessions to BFR systems.
+
+2. APPROVED ENCRYPTION STANDARDS
+
+2.1 VPN
+  - Protocol: IPSec IKEv2 (primary) or TLS 1.3 (DTLS)
+  - Client: Cisco AnyConnect
+  - Encryption: AES-256-GCM
+  - Authentication: Certificate + MFA (Azure AD)
+  - Minimum TLS version for DTLS: 1.2
+
+2.2 Remote Desktop (RDP)
+  - Network Level Authentication (NLA): REQUIRED
+  - Encryption Level: High (128-bit or better)
+  - RDP only accessible through VPN — not exposed externally
+  - TLS 1.2 or 1.3 required for RDP transport
+
+2.3 Web Applications (HTTPS)
+  - All web-based access requires TLS 1.2 minimum (TLS 1.3 preferred)
+  - HTTP access is blocked and redirected to HTTPS
+  - HSTS enforced on all company web portals
+
+3. PROHIBITED
+  - PPTP and L2TP without IPSec: PROHIBITED
+  - Telnet: PROHIBITED
+  - Unencrypted HTTP for CUI applications: PROHIBITED
+  - SSLv3, TLS 1.0, TLS 1.1: PROHIBITED (disabled on all servers)
+
+4. ENFORCEMENT
+  VPN encryption settings are configured on the ASA firewall
+  and cannot be changed by end users. HTTPS is enforced by
+  reverse proxy (Cloudflare WAF).
+
+================================================================
+Approved: Chief Randy Bowles        03/20/2026
+Prepared: Mike Sadler               03/18/2026
+================================================================

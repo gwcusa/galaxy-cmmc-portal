@@ -1,0 +1,53 @@
+================================================================
+KEITH THE DRONE GUY LLC
+GROUP POLICY — LOGON BANNER CONFIGURATION
+Evidence for CMMC Control 3.1.9
+================================================================
+Report Date:    July 17, 2026
+Prepared By:    Keith Merritt, IT Lead
+================================================================
+
+GPO NAME: KDG-Security-Banner
+Applied To: Domain Computers (all workstations and servers)
+
+CONFIGURED SETTINGS
+-------------------------------------------------
+Policy Path:
+  Computer Configuration > Windows Settings > Security Settings
+  > Local Policies > Security Options
+
+Setting: Interactive logon: Message title for users attempting to log on
+Value: "AUTHORIZED USERS ONLY — CONTROLLED SYSTEM"
+
+Setting: Interactive logon: Message text for users attempting to log on
+Value:
+"THIS IS A PRIVATE COMPUTER SYSTEM. Use is restricted to
+authorized personnel only. All activity on this system
+is monitored and recorded. Unauthorized use is prohibited
+and may be subject to criminal prosecution under applicable
+laws. By logging in, you acknowledge that you have no
+expectation of privacy on this system and consent to
+monitoring. This system may contain Controlled Unclassified
+Information (CUI). Handle CUI in accordance with company
+policy and applicable federal regulations."
+
+VERIFICATION
+-------------------------------------------------
+GPO Status:          ENABLED
+Link Status:         Linked to domain root (applies to all OUs)
+Last Applied:        July 1, 2026 (confirmed via gpresult)
+
+SCREENSHOT DESCRIPTION (taken July 17, 2026):
+  KDG-WS-001 and KDG-WS-002 both display the banner
+  text above before Windows login credentials are entered.
+  Banner appears on lock screen and fresh boot login.
+
+VPN BANNER (Cisco AnyConnect Pre-Login Message):
+  Configured via AnyConnect profile XML:
+  <BannerText>AUTHORIZED USERS ONLY. This VPN is for
+  authorized Keith the Drone Guy LLC personnel only.
+  CUI handling rules apply. All sessions are logged.</BannerText>
+
+================================================================
+Certified: Keith Merritt — July 17, 2026
+================================================================

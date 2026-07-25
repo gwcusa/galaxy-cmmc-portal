@@ -1,0 +1,39 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.4.9 - User-Installed Software Control
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue controls user-installed software on CUI endpoints.
+
+2. STANDARD USER RIGHTS
+Platform: Intune / Azure AD (tenant: bumpassfire.org)
+Policy: All CUI endpoint users configured as Standard Users (no local admin rights)
+Verified: m.sadler@bumpassfire.org on BFR-WS-001 - Local admin: No
+
+Software installation without admin rights: Blocked by Windows security architecture.
+Intune: Company Portal app provides managed software deployment by Mike Sadler.
+
+3. MONTHLY SOFTWARE AUDIT REPORT
+Tool: Intune - Discovered Apps Report
+Date: 2026-07-01  |  Auditor: Mike Sadler
+
+Endpoints Scanned: 4
+Approved software found: 8 per device (as expected)
+Unapproved software found: 0
+
+Previous month violation (2026-06-01): Spotify installed via Microsoft Store by Staff-2
+Action: Mike Sadler removed via Intune remote uninstall. Microsoft Store access restricted.
+
+4. SOFTWARE INVENTORY SNAPSHOT (2026-07-01)
+App                           | Version      | Publisher      | Approved
+Microsoft 365 Apps             | 2402.17328   | Microsoft      | Yes
+Windows Defender              | 4.18.24030   | Microsoft      | Yes
+GlobalProtect VPN             | 6.2.1        | Palo Alto      | Yes
+Intune Management Extension   | 1.43.203.0   | Microsoft      | Yes
+Adobe Acrobat Reader DC       | 23.8.20555   | Adobe          | Yes
+
+5. CONCLUSION
+Bumpass Fire & Rescue prevents user software installation via Standard User policy and conducts monthly audits per control 3.4.9.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

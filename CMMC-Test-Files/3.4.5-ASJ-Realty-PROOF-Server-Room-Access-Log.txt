@@ -1,0 +1,36 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.4.5 - Access Restrictions for Configuration Changes
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty enforces access restrictions for configuration changes to CUI systems.
+
+2. PHYSICAL ACCESS RESTRICTIONS
+Server Room / Network Closet:
+- Location: Secured room with electronic keypad lock
+- Authorized personnel: Sandra Okonkwo only (key code known only to Sandra Okonkwo and Anthony James for emergencies)
+- Access log: Electronic access log reviewed monthly by Sandra Okonkwo
+- Visitor access: Requires Sandra Okonkwo escort
+
+Physical Access Log (June 2026):
+Date       | Time   | User  | Purpose
+2026-06-03 | 09:15  | Sandra Okonkwo  | Switch firmware update
+2026-06-15 | 14:30  | Sandra Okonkwo  | Cable management and inspection
+
+3. LOGICAL ACCESS RESTRICTIONS
+Intune Admin: Sandra Okonkwo only (Global Admin, PIM-gated)
+Azure AD: Sandra Okonkwo only can modify device configurations
+GPO: Sandra Okonkwo only has GPO Edit permissions in AD
+Sentinel: Sandra Okonkwo has Contributor (config); Anthony James has Reader only
+
+Conditional Access: Configuration console access blocked from non-compliant devices.
+
+4. UNAUTHORIZED CHANGE DETECTION
+Sentinel Rule: "UnauthorizedConfigChange" - alerts if non-Sandra Okonkwo user makes Intune or Azure AD configuration changes.
+Last triggered: Never (FY2026)
+
+5. CONCLUSION
+ASJ Realty enforces physical and logical access restrictions for configuration changes per control 3.4.5.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

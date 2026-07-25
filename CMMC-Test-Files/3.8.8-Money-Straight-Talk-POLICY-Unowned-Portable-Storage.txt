@@ -1,0 +1,51 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+PROHIBITION ON UNOWNED PORTABLE STORAGE POLICY
+================================================================
+Document ID:    POL-MP-008
+Version:        1.0
+Effective Date: February 15, 2026
+Review Date:    February 15, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy prohibits the use of portable storage devices
+that have no identifiable owner at MST, reducing the risk
+of malware introduction and unauthorized data exfiltration.
+
+2. IDENTIFIABLE OWNER REQUIREMENT
+A portable storage device is considered to have an identifiable
+owner if it meets ALL of the following:
+  a) It appears on the MST Approved Media Inventory
+  b) It has a physical label with the asset ID and owner name
+  c) It is assigned to a specific authorized MST employee
+
+3. PROHIBITED DEVICES
+The following portable storage devices may NOT be used
+on any MST information system:
+  - USB drives without an MST asset label
+  - USB drives found in common areas (lobby, parking lot,
+    breakroom, conference rooms, restrooms)
+  - USB drives received as promotional gifts or freebies
+  - Any storage device of unknown or uncertain origin
+  - USB devices brought in by visitors or contractors
+    (contractors use DoD SAFE or SharePoint instead)
+
+4. FOUND MEDIA PROCEDURE
+  If a staff member finds an unidentified USB device:
+    1. Do NOT insert it into any company device
+    2. Bring it to Terrell Banks
+    3. Terrell will isolate, examine (in sandbox if needed),
+       and dispose of the device
+    4. Document in the Incident Register
+
+5. TECHNICAL CONTROL
+  Intune Device Control blocks all USB devices not in the
+  approved device hardware ID list.
+
+================================================================
+Approved: Camille Odom           02/15/2026
+Prepared: Terrell Banks          02/13/2026
+================================================================

@@ -1,0 +1,61 @@
+================================================================
+BUMPASS FIRE & RESCUE
+FIPS CRYPTOGRAPHY - CONFIGURATION VERIFICATION
+Evidence for CMMC Control 3.13.11
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Mike Sadler, IT Administrator
+================================================================
+
+GPO SETTING - FIPS MODE (BFR-FIPS-Policy)
+-------------------------------------------------
+Policy Path: Computer Configuration > Windows Settings >
+  Security Settings > Local Policies > Security Options
+Setting: System cryptography: Use FIPS compliant algorithms
+         for encryption, hashing, and signing
+Value:   ENABLED
+
+Applied To: All BFR domain computers
+GPO Link:   bfr.local (domain root)
+Last Applied: July 9, 2026 (Patch Tuesday GPO refresh)
+
+VERIFICATION PER DEVICE
+-------------------------------------------------
+BFR-WS-001: HKLM\SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy
+  Enabled = 1  (FIPS mode ON)
+BFR-WS-002: Enabled = 1
+BFR-WS-003: Enabled = 1
+BFR-LT-001: Enabled = 1
+BFR-SRV-001: Enabled = 1
+BFR-SRV-002: Enabled = 1
+
+All 6 devices: FIPS mode ENABLED. COMPLIANT.
+
+TLS CIPHER SUITE VERIFICATION (BFR-SRV-001)
+-------------------------------------------------
+Command: Get-TlsCipherSuite | Where-Object {.Name -like "*RC4*" -or .Name -like "*DES*" -or .Name -like "*NULL*"}
+Result: No output (no non-FIPS cipher suites enabled)
+
+Active FIPS cipher suites:
+  TLS_AES_256_GCM_SHA384 (TLS 1.3)
+  TLS_AES_128_GCM_SHA256 (TLS 1.3)
+  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (TLS 1.2)
+  TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (TLS 1.2)
+
+BITLOCKER FIPS MODE
+-------------------------------------------------
+With FIPS policy enabled, BitLocker uses AES-256 in XTS or CBC
+mode (FIPS-approved). Verified on BFR-SRV-001:
+  manage-bde -status C:
+  Encryption Method: XTS-AES 256
+
+KINGSTON IRONKEY USB DRIVES
+-------------------------------------------------
+Model: IronKey D300S
+FIPS Certification: FIPS 140-2 Level 3 (Certificate #3339)
+Algorithms: AES-256 XTS (hardware)
+Status: FIPS validated hardware. COMPLIANT.
+
+================================================================
+Certified: Mike Sadler - July 25, 2026
+================================================================

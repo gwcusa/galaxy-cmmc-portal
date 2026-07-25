@@ -1,0 +1,62 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+SECURITY ARCHITECTURE DOCUMENTATION
+Evidence for CMMC Control 3.13.2
+================================================================
+Document Date:  July 25, 2026
+Prepared By:    Terrell Banks
+================================================================
+
+MST SECURITY ARCHITECTURE OVERVIEW
+-------------------------------------------------
+
+INTERNET
+    |
+    v
+[Meraki MX67 - Perimeter Firewall / IDS]
+    |   - Default deny inbound
+    |   - IPS enabled (prevention mode)
+    |   - URL filtering (Umbrella DNS)
+    |
+    +---> [VLAN 10 - Corporate Network (192.168.10.0/24)]
+    |       |
+    |       +-- MST-WS-001 through MST-WS-004 (Workstations)
+    |       +-- MST-LT-001, MST-LT-002 (Laptops)
+    |       +-- NAS (192.168.10.10) - CUI Storage
+    |       +-- MST-DC-01 (Domain Controller)
+    |
+    +---> [VLAN 20 - Guest Network (192.168.20.0/24)]
+    |       Internet only - no corp resource access
+    |
+    +---> [Azure Cloud (via encrypted VPN or HTTPS)]
+            - Azure AD (Identity)
+            - M365 (Email, SharePoint, Teams)
+            - Azure VMs (mst-vm-prod-001, mst-vm-prod-002)
+            - Azure Blob (Backup storage)
+            - Microsoft Sentinel (SIEM/monitoring)
+
+SECURITY LAYERS IMPLEMENTED
+-------------------------------------------------
+Perimeter:    Meraki MX67 firewall, IDS, URL filtering
+DNS:          Cisco Umbrella (malicious domain blocking)
+Network:      VLAN segmentation (Corp / Guest / Cloud)
+Endpoint:     Defender for Endpoint (EDR), BitLocker, Intune
+Identity:     Azure AD, MFA, PIM, Conditional Access
+Data:         DLP policies, Sensitivity labels, BitLocker
+Monitoring:   Microsoft Sentinel, Defender alerts, audit logs
+
+LEAST PRIVILEGE VERIFICATION
+-------------------------------------------------
+Standard users: No local admin (confirmed via Intune)
+CUI access: Restricted AD group (4 of 6 staff - appropriate)
+Admin rights: PIM-activated JIT (Terrell Banks only)
+
+FAIL-SAFE DEFAULTS VERIFICATION
+-------------------------------------------------
+Firewall default: DENY all (confirmed)
+Software default: Block all (WDAC audit mode - moving to enforce)
+Network access default: DENY (CA blocks non-compliant devices)
+
+================================================================
+Certified: Terrell Banks - July 25, 2026
+================================================================

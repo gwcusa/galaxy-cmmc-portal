@@ -1,0 +1,26 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.10.4 - Physical Access Audit Logging
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to maintain audit logs of physical access to CUI facilities, per NIST SP 800-171 Rev. 2 control 3.10.4.
+
+2. SCOPE
+All physical access points to Bumpass Fire & Rescue CUI facilities.
+
+3. REQUIREMENTS
+a. Physical access logs record each entry and exit from CUI areas.
+b. Logs include: individual identity, date, time, and access point.
+c. Physical access logs are reviewed monthly by Mike Sadler.
+d. Anomalous physical access (after hours, weekends, unknown individuals) generates immediate review.
+e. Physical access logs are retained for 1 year.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, maintains and reviews physical access logs.
+
+5. ENFORCEMENT
+Unauthorized physical access detected in logs is treated as a security incident.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

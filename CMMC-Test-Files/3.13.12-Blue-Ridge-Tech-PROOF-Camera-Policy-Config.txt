@@ -1,0 +1,40 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.13.12 - Collaborative Computing Devices
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC controls collaborative computing devices to prevent unauthorized remote activation.
+
+2. CAMERA AND MICROPHONE CONTROLS
+
+Group Policy - Camera Control:
+GPO: CollaborativeDevice-Blue Ridge Technology Solutions LLC
+Setting: Allow applications to access the camera
+Path: Computer Configuration > Policies > Windows Settings > Security Settings > Application Control
+Status: Camera accessible ONLY to approved apps (Microsoft Teams). All others blocked.
+
+Physical Controls:
+BRTS-WS-001: Logitech C920 webcam with physical privacy shutter (shutter closed when not in meeting)
+WS-002: Built-in laptop camera - Physical privacy cover installed (manufacturer's physical switch)
+
+3. MICROPHONE CONTROLS
+Microphone access restricted to Microsoft Teams only via GPO (Intune app permission policy)
+Microsoft Teams settings: Camera and microphone require user to manually enable in each meeting
+
+4. SMART SPEAKER PROHIBITION
+Policy statement: No smart speakers (Amazon Echo, Google Home) or always-on voice assistants permitted in CUI work areas.
+Attestation signed by: All personnel (stored in HR file)
+
+5. SCREEN SHARING CONTROLS
+Screen sharing disabled by default in Microsoft Teams (host must enable per meeting)
+Screen sharing requires: Presenter role explicitly assigned by meeting organizer
+
+6. CAMERA LED INDICATOR VERIFICATION
+Test: 2026-06-30  |  Tester: Nathan Cruz
+Result: Camera LED activates on BRTS-WS-001 when Teams meeting is joined. LED off at all other times. PASS.
+
+7. CONCLUSION
+Blue Ridge Technology Solutions LLC controls collaborative devices via GPO restrictions, physical privacy covers, and user-consent-only activation per control 3.13.12.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

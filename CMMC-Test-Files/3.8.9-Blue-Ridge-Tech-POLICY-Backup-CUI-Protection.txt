@@ -1,0 +1,51 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+BACKUP CUI CONFIDENTIALITY PROTECTION POLICY
+================================================================
+Document ID:    POL-MP-009
+Version:        1.0
+Effective Date: May 25, 2026
+Review Date:    May 25, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy protects the confidentiality of CUI in backup
+copies stored at alternate locations or in the cloud.
+
+2. BACKUP ENCRYPTION REQUIREMENTS
+
+2.1 On-Site Backup (Veeam)
+  - All Veeam backup files are encrypted using AES-256
+  - Encryption enabled at the Veeam Backup Job level
+  - Encryption password stored in Azure Key Vault
+    (access: Nathan Cruz only)
+
+2.2 Off-Site / Cloud Backup (Azure Blob Storage)
+  - Backup data is transferred to Azure Blob Storage (West US 2)
+    for geographic redundancy
+  - Azure Blob Storage is encrypted at rest (SSE with
+    customer-managed key in Azure Key Vault)
+  - Data is encrypted in transit (HTTPS/TLS 1.2+)
+  - Access restricted to: Nathan Cruz only (RBAC)
+
+2.3 Backup Media (if applicable)
+  - If backup data is ever written to physical media for
+    off-site transport, the media must be encrypted
+    (BitLocker To Go or equivalent) before transport
+
+3. BACKUP STORAGE LOCATION SECURITY
+  - Azure (cloud): physically secured by Microsoft
+    (SOC 2 Type II, FedRAMP compliant data centers)
+  - On-site backup server: locked server room (keypad access)
+
+4. BACKUP ACCESS CONTROL
+  - Only Nathan Cruz has access to backup files/repositories
+  - Restoration requires Change Request and Victor Osei approval
+    (except P1 emergencies)
+
+================================================================
+Approved: Victor Osei            05/25/2026
+Prepared: Nathan Cruz            05/23/2026
+================================================================

@@ -1,0 +1,31 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.10 - Session Lock with Pattern-Hiding Display
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC enforces session lock with pattern-hiding displays after inactivity.
+
+2. SCREEN LOCK CONFIGURATION
+Windows Endpoints:
+GPO Name: ScreenLock-Blue Ridge Technology Solutions LLC-Baseline
+- Screen saver: Enabled (Blank screensaver - pattern-hiding)
+- Screen saver timeout: 900 seconds (15 minutes)
+- Password on resume: Required
+- User override: Disabled (policy enforced)
+
+Intune Configuration Profile: ScreenLock-Blue Ridge Technology Solutions LLC
+- Max inactivity: 15 minutes
+- Require password: Yes
+- Applied to: All enrolled devices (Domain: blueridgetech.com)
+
+3. COMPLIANCE REPORT
+Intune Device Compliance - Screen Lock Check: 2026-07-01
+Total Devices: 6  |  Compliant: 6  |  Non-Compliant: 0
+
+Workstation BRTS-WS-001 - Account n.cruz@blueridgetech.com: COMPLIANT
+
+4. CONCLUSION
+All Blue Ridge Technology Solutions LLC endpoints enforce session lock with pattern-hiding display per control 3.1.10.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

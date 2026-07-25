@@ -1,0 +1,32 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.21 - Portable Storage on External Systems
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC limits portable storage use on external systems via technical and policy controls.
+
+2. USB DEVICE CONTROL CONFIGURATION
+Solution: Microsoft Intune Device Control
+Policy Name: USBBlock-CUI-Keith the Drone Guy LLC
+Applied to: All Intune-enrolled Windows endpoints (domain: keithdroney.com)
+
+Configuration:
+- Default USB storage: BLOCK
+- Allowed exceptions: IT-approved USB drives (allowlisted by hardware ID)
+- Approved devices: 2 encrypted USB drives (Kingston IronKey D300S, SN: KI-001, KI-002)
+- Non-allowlisted USB: Blocked + Event ID 4663 logged to Microsoft Sentinel
+
+3. APPROVED PORTABLE STORAGE REGISTER
+Device         | Owner  | Encrypted | Registered  | Last Audit
+KI-001 (32GB)  | Keith Merritt   | Yes (256-AES) | 2026-01-10 | 2026-06-30
+KI-002 (32GB)  | Keith Merritt  | Yes (256-AES) | 2026-01-10 | 2026-06-30
+
+4. USB BLOCK EVENT LOG (June 2026)
+Date: 2026-06-14 - User: Staff-2 - Device: Generic USB drive - Action: BLOCKED
+Reviewed by Keith Merritt: Confirmed personal drive, not approved. User reminded of policy.
+
+5. CONCLUSION
+Keith the Drone Guy LLC blocks unauthorized portable storage on CUI endpoints and maintains an approved device register per control 3.1.21.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

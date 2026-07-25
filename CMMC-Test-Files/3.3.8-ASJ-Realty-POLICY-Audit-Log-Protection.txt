@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: ASJ Realty
+Control: 3.3.8 - Audit Log Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy protects ASJ Realty audit information and tools from unauthorized access, modification, and deletion, per NIST SP 800-171 Rev. 2 control 3.3.8.
+
+2. SCOPE
+All ASJ Realty audit records, logging infrastructure, and audit management tools.
+
+3. REQUIREMENTS
+a. Audit logs are stored in a system where operational users cannot delete or modify records.
+b. Access to raw audit log data is restricted to Sandra Okonkwo and authorized assessors.
+c. Audit log storage uses append-only or immutable storage mechanisms.
+d. Backup copies of audit logs are stored separately from production systems.
+e. Log access attempts are themselves logged.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, manages audit log access controls and immutability settings.
+
+5. ENFORCEMENT
+Any modification or deletion of audit records is treated as a security incident.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

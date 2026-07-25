@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.1.6 - Use of Non-Privileged Accounts
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC personnel to use non-privileged accounts when accessing non-security functions, per NIST SP 800-171 Rev. 2 control 3.1.6.
+
+2. SCOPE
+All Keith the Drone Guy LLC personnel who hold or have access to administrative or privileged accounts.
+
+3. REQUIREMENTS
+a. Users with administrative accounts must maintain separate standard accounts for daily work.
+b. Email, web browsing, and productivity applications must be used via non-privileged accounts.
+c. Privileged accounts shall not be used to access social media or personal email.
+d. Keith Merritt shall enforce dual-account policy through technical controls where feasible.
+e. Compliance with this policy is verified during quarterly access reviews.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, maintains dual-account configurations. Keith Merritt enforces the policy organizationally.
+
+5. ENFORCEMENT
+Using a privileged account for non-administrative tasks is a policy violation subject to corrective action.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

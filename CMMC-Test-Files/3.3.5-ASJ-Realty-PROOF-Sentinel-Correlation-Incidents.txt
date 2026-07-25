@@ -1,0 +1,39 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.3.5 - Audit Log Correlation and Analysis
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty correlates audit records across multiple sources in a centralized SIEM.
+
+2. SIEM CORRELATION CONFIGURATION
+Platform: Microsoft Sentinel
+Workspace: ASJ Realty-Sentinel (tenant: asjrealty.com)
+
+Data Connectors Active:
+- Azure Active Directory
+- Microsoft 365 (Exchange, SharePoint, Teams)
+- Windows Security Events (via Azure Monitor Agent on ASJ-WS-001)
+- Microsoft Defender for Endpoint
+- Azure Activity
+
+Active Correlation Rules (Scheduled Analytics):
+- Multi-Source Brute Force: Correlates Azure AD failed logins + Windows Event 4625 + Defender alert
+- Lateral Movement: Correlates Windows logon events across multiple hosts
+- Data Exfiltration: Correlates large file downloads + USB events + email attachments
+- Privilege Escalation: Correlates role changes + after-hours admin logon
+
+3. CORRELATION INCIDENT LOG (Q2 2026)
+Date: 2026-05-28 - Rule: Multi-Source Brute Force - Fired on 6 failed logins across Azure AD and Windows
+Investigation: User forgot new password post-reset. False positive. Account unlocked by Sandra Okonkwo.
+Date: 2026-06-09 - Rule: Data Exfiltration - Large SharePoint download by s.okonkwo@asjrealty.com
+Investigation: Authorized batch download for offline backup. Confirmed with Anthony James. Closed.
+
+4. QUARTERLY RULE REVIEW
+Date: 2026-07-01  |  Reviewer: Sandra Okonkwo
+Result: All 4 rules confirmed operational. 1 threshold tuning applied to reduce false positives.
+
+5. CONCLUSION
+ASJ Realty correlates audit logs from multiple sources using Sentinel analytics per control 3.3.5.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

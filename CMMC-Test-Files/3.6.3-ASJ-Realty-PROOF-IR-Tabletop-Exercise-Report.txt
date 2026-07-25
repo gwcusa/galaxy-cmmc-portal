@@ -1,0 +1,37 @@
+﻿INCIDENT RESPONSE IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.6.3 - Incident Response Testing
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty tests its incident response capability annually.
+
+2. TABLETOP EXERCISE REPORT
+Exercise Date: 2026-04-15
+Facilitator: Sandra Okonkwo
+Participants: Anthony James (Office Manager), Sandra Okonkwo (IT Director), Staff-1
+Duration: 2 hours
+
+Scenario:
+"A ASJ Realty employee receives a spear-phishing email impersonating the DoD contracting officer.
+The employee clicks the link, enters credentials on a fake portal, and unknowingly grants
+an attacker access to their Microsoft 365 account."
+
+3. EXERCISE WALKTHROUGH RESULTS
+Phase              | Action Taken                          | Pass/Fail
+Detection          | Sentinel alert fired on suspicious login | Pass
+Containment        | Account disabled within 15 minutes   | Pass
+Communication      | Anthony James notified within 30 minutes     | Pass
+Evidence Collection | Logs exported from Sentinel           | Pass
+Eradication        | Password reset, MFA re-enrolled       | Pass
+US-CERT Reporting  | Criteria evaluated - not required     | Pass (no CUI exfil confirmed)
+Recovery           | Account restored, monitoring enhanced | Pass
+
+4. GAPS IDENTIFIED
+Gap 1: No out-of-band contact method if email system compromised
+Remediation: Cell phone list added to IRP | Completed: 2026-05-01 | Owner: Sandra Okonkwo
+
+5. CONCLUSION
+ASJ Realty completed annual IR tabletop exercise with documented results and gap remediation per control 3.6.3.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

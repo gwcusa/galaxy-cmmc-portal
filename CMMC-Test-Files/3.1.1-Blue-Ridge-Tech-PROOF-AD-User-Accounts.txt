@@ -1,0 +1,25 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.1 - Authorized User Access
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+This document demonstrates that Blue Ridge Technology Solutions LLC limits CUI system access to authorized users and devices.
+
+2. AUTHORIZED USER LIST (CUI Systems - Domain: blueridgetech.com)
+- Victor Osei (Director of Operations) - Full CUI read/write
+- Nathan Cruz (IT Manager) - Admin and CUI access
+- 3 additional staff - reviewed and confirmed active
+- Accounts disabled Q2 2026: 2 (terminations processed within 24 hours)
+
+3. QUARTERLY REVIEW RECORD
+Date: 2026-06-28  |  Reviewer: Nathan Cruz
+Result: All active accounts verified as authorized. No unauthorized accounts found.
+
+4. PRIMARY SYSTEM
+Workstation: BRTS-WS-001  |  Account: n.cruz@blueridgetech.com  |  Authorization: Documented in asset register
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC maintains and reviews authorized user lists per control 3.1.1. Provisioning and deprovisioning controls are operational.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

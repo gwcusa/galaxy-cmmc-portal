@@ -1,0 +1,38 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.10.2 - Physical Monitoring
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC monitors the physical CUI facility with cameras and alarms.
+
+2. SECURITY CAMERA SYSTEM
+System: Reolink 8-Camera NVR System (managed by Nathan Cruz)
+Cameras:
+- Camera 1: Main entrance (exterior facing)
+- Camera 2: CUI office area entry
+- Camera 3: Server/IT closet (interior)
+- Camera 4: Break room / secondary entrance
+
+Footage Retention: 30 days (local NVR storage - 4TB)
+Remote Monitoring: Nathan Cruz via encrypted Reolink app
+
+3. ALARM SYSTEM
+Provider: ADT Business Security
+Coverage: All doors and windows; motion sensor in CUI area
+Armed: Automatically 7pm-7am on weekdays; all day on weekends/holidays
+Alarm Response: ADT central station + Victor Osei and Nathan Cruz mobile alert
+Response Time: Nathan Cruz arrives within 15 minutes (confirmed in last test)
+
+4. MONTHLY REVIEW
+Date: 2026-07-05  |  Reviewer: Nathan Cruz
+Camera status: All 4 cameras operational. No footage gaps.
+Alarm test: 2026-06-28 - tested with ADT. Response time: 8 minutes. PASS.
+
+5. ALARM EVENT LOG (FY2026)
+2026-03-22: Motion alarm triggered at 11pm. Nathan Cruz and ADT responded. Cause: HVAC movement. False alarm.
+
+6. CONCLUSION
+Blue Ridge Technology Solutions LLC monitors CUI facilities with 4-camera NVR system and ADT alarm per control 3.10.2.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

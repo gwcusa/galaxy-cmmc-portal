@@ -1,0 +1,36 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.3.6 - Audit Reduction and Report Generation
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC provides audit reduction and report generation without altering original records.
+
+2. AUDIT REDUCTION TOOLS
+Platform: Microsoft Sentinel + Log Analytics (tenant: blueridgetech.com)
+
+Capabilities:
+- KQL (Kusto Query Language) for real-time log filtering and analysis
+- Sentinel Workbooks for pre-built security dashboards
+- Log Analytics query editor for ad-hoc investigation
+- Export to CSV/Excel for offline analysis
+
+Original records: Stored immutably in Log Analytics workspace. KQL queries operate on indexed copies and do not modify source records.
+
+3. STANDARD REPORTS CONFIGURED
+Workbook: "Blue Ridge Technology Solutions LLC Security Overview" (refreshed daily)
+- Failed logins (last 7 days)
+- File access by user
+- Admin activity summary
+- Alert trend
+
+4. ON-DEMAND REPORT TEST
+Date: 2026-06-25  |  Requester: Victor Osei  |  Tester: Nathan Cruz
+Request: "Show all CUI file access by n.cruz@blueridgetech.com in June 2026"
+KQL executed: SecurityEvent + SharePoint logs joined on user
+Report delivered: 12 minutes  |  Original logs: Unaltered (confirmed via log count)
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC provides audit reduction and reporting via Sentinel without altering original records per control 3.3.6.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

@@ -1,0 +1,37 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.13.7 - Split Tunneling Prohibition
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty VPN connections do not use split tunneling.
+
+2. VPN CONFIGURATION
+VPN Solution: GlobalProtect (Palo Alto) / Azure VPN Gateway
+VPN Profile: ASJ Realty-FullTunnel (deployed via Intune)
+
+Split Tunnel Setting:
+- Split Tunneling: DISABLED
+- Route: 0.0.0.0/0 (all traffic routes through VPN tunnel)
+- Exclusions: None (no split tunnel exceptions)
+
+3. VPN PROFILE (Intune Configuration Profile)
+Profile Name: VPN-FullTunnel-ASJ Realty
+Configuration Type: VPN
+VPN Type: IKEv2
+Split Tunneling: Not configured (disabled by default in IKEv2 full-tunnel mode)
+Traffic Routing: All traffic via VPN gateway
+
+User Override: NOT PERMITTED (Intune-managed, locked configuration)
+
+4. FULL-TUNNEL VERIFICATION TEST
+Date: 2026-06-25  |  Tester: Sandra Okonkwo
+Test: Connected VPN on ASJ-WS-001. Checked external IP address at whatismyip.com.
+Without VPN: External IP = 71.44.x.x (home ISP)
+With VPN active: External IP = 40.76.x.x (ASJ Realty Azure gateway IP)
+Result: All internet traffic routing through ASJ Realty VPN gateway. No split tunnel. PASS.
+
+5. CONCLUSION
+ASJ Realty VPN routes all traffic through the ASJ Realty gateway with split tunneling disabled per control 3.13.7.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

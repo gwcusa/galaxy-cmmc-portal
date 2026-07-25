@@ -1,0 +1,27 @@
+﻿ACCESS CONTROL POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.5 - Principle of Least Privilege
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to employ the principle of least privilege, including for specific security functions and privileged accounts, per NIST SP 800-171 Rev. 2 control 3.1.5.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC personnel, contractors, and systems accessing CUI environments.
+
+3. REQUIREMENTS
+a. Users are granted the minimum access necessary to perform their job functions.
+b. Privileged accounts are used only for tasks requiring elevated permissions.
+c. Nathan Cruz reviews all privileged account assignments quarterly.
+d. Privileged access is revoked immediately when no longer operationally required.
+e. Just-in-time (JIT) privileged access is used where technically feasible.
+f. Default system accounts with excessive privileges are disabled or renamed.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, is responsible for implementing and reviewing access rights.
+
+5. ENFORCEMENT
+Violations including unauthorized privilege escalation are subject to termination.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

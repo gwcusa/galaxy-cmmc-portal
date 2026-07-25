@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.1.16 - Wireless Access Authorization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to authorize wireless access connections prior to allowing them, per NIST SP 800-171 Rev. 2 control 3.1.16.
+
+2. SCOPE
+All wireless access to Keith the Drone Guy LLC networks and systems that process or store CUI.
+
+3. REQUIREMENTS
+a. Wireless access points are registered and approved by Keith Merritt before deployment.
+b. Only authorized devices may connect to the Keith the Drone Guy LLC CUI wireless network.
+c. MAC address filtering and 802.1X authentication are used for CUI network WiFi.
+d. Guest wireless networks are isolated from CUI systems.
+e. Unauthorized wireless access points (rogue APs) are detected and blocked.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, manages wireless infrastructure and authorization processes.
+
+5. ENFORCEMENT
+Unauthorized wireless access points must be removed within 2 hours of detection.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

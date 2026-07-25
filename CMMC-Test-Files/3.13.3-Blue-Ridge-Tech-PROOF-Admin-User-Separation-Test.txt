@@ -1,0 +1,50 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+USER/MANAGEMENT SEPARATION VERIFICATION REPORT
+Evidence for CMMC Control 3.13.3
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Nathan Cruz, Lead Systems Engineer
+================================================================
+
+DUAL ACCOUNT VERIFICATION
+-------------------------------------------------
+Standard accounts (daily use): ncruz, vosei, jhartwell, rkimble, mjohnson
+Admin accounts: adm_ncruz, adm_vosei
+
+Standard account group membership (ncruz - example):
+  Domain Admins: NO
+  Enterprise Admins: NO
+  Local Administrators on workstations: NO
+  Access to Azure portal (admin roles): NO (Conditional Access blocks)
+  Access to Intune console: NO
+  Access to Meraki dashboard: NO
+
+Admin account restrictions (adm_ncruz):
+  Web browsing: BLOCKED (Conditional Access; no browser shortcuts)
+  Email access: BLOCKED (CA policy excludes adm_* from M365)
+  Internet access: BLOCKED (firewall rule for adm_* source)
+  Allowed on: DC01, DC02, BRTS-AdminWS-001 only (GPO logon rights)
+
+MANAGEMENT PORT ACCESS TEST (July 1, 2026)
+-------------------------------------------------
+From: BRTS-WS-OSEI (standard user workstation)
+Test: Attempt RDP to BRTS-SRV-001 using ncruz credentials
+
+Result: CONNECTION REFUSED (GPO: Allow logon through Remote
+  Desktop Services = Administrators only)
+Interpretation: Standard account cannot access server management
+  interface. COMPLIANT.
+
+Test: Attempt to access https://portal.azure.com using ncruz
+Result: Conditional Access BLOCKS: "You don't have access to
+  this resource. Sign in with an admin account."
+
+Test: Attempt to access Meraki dashboard from BRTS-WS-OSEI
+Result: BLOCKED by Meraki IP allow-list (BRTS-AdminWS-001 only)
+
+All tests: PASS - Management functionality separated from user.
+
+================================================================
+Certified: Nathan Cruz - July 25, 2026
+================================================================

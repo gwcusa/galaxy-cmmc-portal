@@ -1,0 +1,67 @@
+================================================================
+KEITH THE DRONE GUY LLC
+ENCRYPTION IN TRANSIT — CONFIGURATION VERIFICATION REPORT
+Evidence for CMMC Control 3.13.8
+================================================================
+Report Date:    July 9, 2026
+Prepared By:    Keith Anderson
+Tools Used:     SSL Labs Server Test, Meraki Dashboard,
+                M365 Admin Center, Nmap
+================================================================
+
+1. MICROSOFT 365 / SHAREPOINT — TLS CONFIGURATION
+-------------------------------------------------
+Service:           SharePoint Online (keiththedroneGuy.sharepoint.com)
+SSL Labs Grade:    A+
+Protocol Support:
+  TLS 1.3:         SUPPORTED (preferred)
+  TLS 1.2:         SUPPORTED
+  TLS 1.1:         DISABLED
+  TLS 1.0:         DISABLED
+  SSL 3.0:         DISABLED
+Certificate:       Microsoft Corporation — Valid through 2027
+HSTS:              YES — max-age=31536000; includeSubDomains
+Forward Secrecy:   YES (ECDHE)
+
+2. M365 MESSAGE ENCRYPTION — VERIFICATION
+-------------------------------------------------
+Feature:           Microsoft Purview Message Encryption
+Status:            ENABLED for all outbound CUI email
+Transport Rule:    "Encrypt CUI — Applies to all mail with
+                   sensitivity label 'CUI'"
+Rule Status:       ACTIVE
+Last Modified:     February 5, 2026 by Keith Anderson
+
+3. MERAKI VPN — ENCRYPTION SETTINGS
+-------------------------------------------------
+VPN Type:          Meraki Client VPN (IPsec/IKEv2)
+Encryption:        AES-256-CBC
+Authentication:    SHA2-256
+Diffie-Hellman:    Group 14 (2048-bit)
+Pre-Shared Key:    Rotated quarterly (last rotation: July 1, 2026)
+Split Tunnel:      DISABLED (all traffic through VPN)
+
+4. SFTP FILE TRANSFER — VERIFICATION
+-------------------------------------------------
+SFTP Server:       USDA Secure Drop (client-managed)
+Protocol:          SFTP (SSH v2)
+Cipher:            AES-256-CTR
+Key Exchange:      ecdh-sha2-nistp256
+Authentication:    Public key + password (2FA at server)
+Last Transfer:     July 7, 2026 — 14.3 GB aerial survey data
+Transfer Result:   SUCCESS — verified with SHA256 checksum
+
+5. INTERNAL NETWORK SCAN — UNENCRYPTED SERVICES CHECK
+-------------------------------------------------
+Scan Date:         July 9, 2026
+Scope:             All devices on 192.168.100.0/24
+Unencrypted HTTP (port 80) found:    0 services
+Unencrypted FTP (port 21) found:     0 services
+Telnet (port 23) found:              0 services
+Unencrypted SMTP (port 25) found:    0 (relay disabled)
+
+RESULT: No unencrypted transmission services detected.
+
+================================================================
+Verified by Keith Anderson — July 9, 2026
+================================================================

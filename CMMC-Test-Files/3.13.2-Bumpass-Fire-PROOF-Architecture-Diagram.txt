@@ -1,0 +1,36 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.13.2 - Security Architecture
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue employs defense-in-depth architectural design for CUI systems.
+
+2. SECURITY ARCHITECTURE OVERVIEW
+Document: Bumpass Fire & Rescue Security Architecture Diagram v1.3
+Location: SharePoint/IT-Docs/Architecture/
+Last Updated: 2026-04-01  |  Reviewed by: Randy Bowles
+
+Defense-in-Depth Layers Implemented:
+Layer 1: Identity - Azure AD with MFA, PIM, Conditional Access
+Layer 2: Device - Intune MDM, BitLocker, Defender, WDAC
+Layer 3: Network - Azure Firewall, NSG, VPN, IDPS, VLAN segmentation
+Layer 4: Application - SharePoint RBAC, DLP, sensitivity labels
+Layer 5: Data - AES-256 encryption at rest and in transit
+Layer 6: Monitoring - Sentinel SIEM, Secure Score, Defender for Endpoint
+
+3. ARCHITECTURE DIAGRAM SUMMARY
+[Users w/ MFA] -> [Conditional Access] -> [VPN] -> [Azure Firewall] -> [CUI VLAN]
+                                                                            |
+                                                              [M365 CUI Site (SharePoint)]
+                                                              [CUI Endpoints (BFR-WS-001, WS-002)]
+
+4. VENDOR SECURITY REVIEW (Q1 2026)
+New tool evaluated: Freshservice (ITSM)
+Security review: SOC 2 Type II certificate reviewed. Data stored in US region.
+Approved by: Randy Bowles  |  Date: 2026-01-10
+
+5. CONCLUSION
+Bumpass Fire & Rescue implements documented defense-in-depth security architecture for the CUI environment per control 3.13.2.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

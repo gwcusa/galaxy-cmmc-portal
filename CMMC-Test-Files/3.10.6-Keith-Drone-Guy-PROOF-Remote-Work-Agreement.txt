@@ -1,0 +1,41 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.10.6 - Alternate Work Site Security
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC enforces security controls at alternate (remote) work sites.
+
+2. REMOTE WORK AGREEMENT
+Document: Keith the Drone Guy LLC Remote Work Security Agreement v1.2
+Signed by all remote-capable staff. Stored in SharePoint/HR-Docs/Remote-Work/
+
+Agreement Requirements Acknowledgment:
+a. Dedicated, lockable home office workspace
+b. Use Keith the Drone Guy LLC-issued or approved encrypted device only
+c. Connect via VPN before accessing any Keith the Drone Guy LLC CUI resource
+d. No printing of CUI at home without prior approval
+e. Secure disposal of any printed CUI (cross-cut shredder)
+
+3. SIGNED AGREEMENT RECORD
+Name          | Role         | Signed      | Review Due
+Keith Merritt         | Owner-Operator       | 2026-01-15  | 2027-01-15
+Keith Merritt          | Owner-Operator        | 2026-01-15  | 2027-01-15
+Staff-1       | Analyst      | 2026-01-22  | 2027-01-22
+
+4. ANNUAL REMOTE SECURITY REVIEW
+Date: 2026-06-15  |  Reviewer: Keith Merritt
+Method: Self-assessment questionnaire + Keith Merritt spot-check call
+Staff-1: Home office secured (door lock, VPN confirmed active, device encrypted)
+Keith Merritt: Home office secured, VPN in use
+
+Results: All remote workers compliant. 0 findings.
+
+5. VPN ENFORCEMENT
+Conditional Access: CUI resources inaccessible without VPN (all traffic routes through Keith the Drone Guy LLC gateway)
+VPN Usage Confirmed: Remote logins verified in Azure AD sign-in logs.
+
+6. CONCLUSION
+Keith the Drone Guy LLC enforces remote work security via signed agreements and annual reviews per control 3.10.6.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

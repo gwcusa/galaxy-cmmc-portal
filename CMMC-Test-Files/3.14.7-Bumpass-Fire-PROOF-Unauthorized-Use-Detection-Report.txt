@@ -1,0 +1,61 @@
+================================================================
+BUMPASS FIRE & RESCUE
+UNAUTHORIZED USE DETECTION - MONITORING REPORT
+Evidence for CMMC Control 3.14.7
+================================================================
+Report Period:  July 1-25, 2026
+Prepared By:    Mike Sadler, IT Administrator
+Source:         Microsoft Sentinel + Intune + Event Logs
+================================================================
+
+USER BEHAVIOR ANALYTICS - JULY 2026
+-------------------------------------------------
+UEBA Anomalies detected: 3
+  - All 3 investigated
+  - 3 confirmed false positives (legitimate after-hours work)
+  - 0 confirmed unauthorized use
+
+ANOMALY DETAILS
+-------------------------------------------------
+Event 1 (July 8, 2026)
+Type: After-hours access + data access
+User: kNguyen (Dispatcher)
+Details: Login at 11:45 PM, accessed dispatch records
+Investigation: Kim Nguyen confirmed she was covering a late shift
+  for a sick colleague. Authorized. Documented in shift log.
+Result: FALSE POSITIVE - Closed.
+
+Event 2 (July 16, 2026)
+Type: Access to data outside normal role pattern
+User: apiece (Aaron Pierce - Firefighter)
+Details: Accessed a shared drive folder (Admin-Budget) not
+  previously in his access history
+Investigation: Aaron stated he needed a contact list from the folder.
+  Review: He had READ access (correct per AD group) but had
+  never accessed it before. No CUI in that folder.
+Result: FALSE POSITIVE - Normal curiosity access. No policy violation.
+  Reviewed: His access level is still appropriate.
+
+Event 3 (July 22, 2026)
+Type: Simultaneous logins from two IPs
+User: msadler (Mike Sadler)
+Details: Login from office IP and VPN IP at same time
+Investigation: Mike Sadler was at office with direct connection
+  AND had VPN open to test a configuration. Legitimate.
+Result: FALSE POSITIVE - Closed.
+
+DISABLED ACCOUNT ATTEMPTS: 0 (no former employee login attempts)
+SERVICE ACCOUNT INTERACTIVE LOGINS: 0 (all blocked by GPO)
+UNAPPROVED SOFTWARE DETECTED: 1 (July 24 - see CM monitoring)
+
+SOFTWARE INVENTORY REVIEW (July 2026)
+-------------------------------------------------
+Devices scanned: 6
+Unapproved software found: 1 item (BFR-WS-002 - rThomas)
+  App: TeamViewer Host (unauthorized remote access tool)
+  Action: Removed immediately by Mike Sadler 07/24/2026
+  User counseled. No external connections made (log checked).
+
+================================================================
+Certified: Chief Randy Bowles - July 25, 2026
+================================================================

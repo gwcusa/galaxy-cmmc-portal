@@ -1,0 +1,33 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.13.1 - Network Boundary Protection
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue monitors and controls communications at CUI network boundaries.
+
+2. BOUNDARY PROTECTION ARCHITECTURE
+Perimeter Firewall: Azure Firewall (managed by Mike Sadler)
+IPS/IDS: Azure Firewall IDPS (enabled in Alert+Deny mode)
+Network Segmentation: CUI VLAN (10.0.2.0/24) isolated from public internet
+
+3. FIREWALL RULE SUMMARY
+Zone             | Direction  | Action     | Protocol/Port
+Internet         | Inbound    | DENY ALL   | All (default deny)
+VPN Gateway      | Inbound    | ALLOW      | UDP 500, 4500 (IKEv2)
+CUI VLAN         | Outbound   | ALLOW      | TCP 443 (HTTPS to approved M365 endpoints)
+CUI VLAN         | Outbound   | ALLOW      | UDP 53 (DNS to Mike Sadler-managed resolver)
+CUI VLAN         | Outbound   | DENY ALL   | All others
+
+4. IPS ALERT LOG (June 2026)
+Date: 2026-06-12 - Alert: Port scan from 185.220.x.x - Action: BLOCKED by IDPS
+Date: 2026-06-25 - Alert: Outbound connection attempt to known-bad IP - Action: BLOCKED
+
+5. QUARTERLY RULE REVIEW
+Date: 2026-06-30  |  Reviewer: Mike Sadler
+Result: 2 legacy rules removed. All remaining rules confirmed active and necessary.
+
+6. CONCLUSION
+Bumpass Fire & Rescue protects CUI network boundaries with Azure Firewall + IDPS and quarterly rule reviews per control 3.13.1.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

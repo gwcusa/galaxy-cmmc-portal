@@ -1,0 +1,38 @@
+================================================================
+KEITH THE DRONE GUY LLC
+SECURITY AWARENESS TRAINING RECORDS - INSIDER THREAT MODULE
+Evidence for CMMC Control 3.2.3
+================================================================
+Report Date:    July 21, 2026
+Prepared By:    Keith Merritt
+Platform:       KnowBe4 Security Awareness Training
+================================================================
+
+INSIDER THREAT AWARENESS MODULE (AT-003-2026)
+Deadline: March 31, 2026
+
+NAME              ROLE               COMPLETED     SCORE
+----------------  ----------------   -----------   ------
+Keith Merritt     Owner / IT Lead    03/01/2026    100%
+Dana Flowers      Operations Lead    03/15/2026    95%
+Ricky Singh       Field Technician   03/28/2026    90%
+
+Completion: 3/3 (100%) - All staff completed by deadline.
+
+Q3 TEAM MEETING - INSIDER THREAT DISCUSSION
+Date: July 8, 2026
+Attendees: Keith Merritt, Dana Flowers, Ricky Singh
+Topics Covered:
+  - Review of recent insider threat incidents in the news
+  - Discussion of specific behavioral indicators
+  - Q&A: staff confirmed understanding of reporting process
+  - Reminder: unusual data access should be reported same day
+Meeting minutes on file: KDG-Meetings/2026-07-08-Q3.docx
+
+PHISHING TEST RESULTS - Q2 2026
+Sent: May 10, 2026 | Emails: 3 | Clicked: 0 | Reported: 3
+100% of staff recognized and reported the simulated phish.
+
+================================================================
+Certified: Keith Merritt - July 21, 2026
+================================================================

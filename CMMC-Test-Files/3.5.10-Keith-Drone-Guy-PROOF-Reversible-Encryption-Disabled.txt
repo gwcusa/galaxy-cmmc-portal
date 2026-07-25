@@ -1,0 +1,39 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.5.10 - Cryptographic Password Storage
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC stores and transmits passwords using cryptographic protection only.
+
+2. PASSWORD STORAGE CONFIGURATION
+Platform: Azure AD + Windows AD (tenant: keithdroney.com)
+
+Azure AD:
+- Passwords hashed using Microsoft's proprietary strong hash algorithm (PBKDF2 variant)
+- Microsoft SOC 2 Type II certified - no plaintext storage confirmed
+- Reversible encryption: Not available (Azure AD does not offer reversible password storage)
+
+Windows Active Directory:
+- Password hashing: NTLM v2 hash (domain functional level 2016)
+- Reversible encryption: DISABLED (GPO: ReversibleEncryptionDisabled-Keith the Drone Guy LLC)
+  Setting: "Store password using reversible encryption" = DISABLED
+  Verified: HKLM\System\CurrentControlSet\Services\NetLogon\Parameters
+
+3. VERIFICATION
+Date: 2026-06-30  |  Verifier: Keith Merritt
+Tool: LGPO / Get-ADDefaultDomainPasswordPolicy
+ReversibleEncryptionEnabled: False
+Result: PASS - Reversible encryption confirmed disabled.
+
+Password transmission: All auth traffic uses Kerberos + TLS. No cleartext observed.
+
+4. PLAINTEXT PASSWORD SEARCH
+Scan tool: Microsoft Defender for Identity
+Last scan: 2026-07-01
+Plaintext passwords in traffic: 0 detected
+
+5. CONCLUSION
+Keith the Drone Guy LLC stores and transmits passwords with cryptographic protection only per control 3.5.10.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

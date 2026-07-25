@@ -1,0 +1,54 @@
+================================================================
+ASJ REALTY
+SESSION AUTHENTICITY - EMAIL AND TLS CONFIGURATION AUDIT
+Evidence for CMMC Control 3.13.15
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+================================================================
+
+EMAIL AUTHENTICATION - DNS RECORDS (asjrealty.com)
+-------------------------------------------------
+SPF Record:
+  v=spf1 include:spf.protection.outlook.com -all
+  Syntax: VALID | Policy: Hard fail (-all) | Status: ACTIVE
+  Test (mxtoolbox.com - July 25): PASS
+
+DKIM Record:
+  selector1._domainkey.asjrealty.com:
+  v=DKIM1; k=rsa; p=[2048-bit public key]
+  selector2._domainkey.asjrealty.com: [rotation key]
+  Status: ENABLED in M365 Admin Center | Test: PASS
+
+DMARC Record:
+  _dmarc.asjrealty.com:
+  v=DMARC1; p=reject; rua=mailto:dmarc@asjrealty.com; pct=100
+  Policy: REJECT (spoofed emails outright rejected)
+  Reporting: Aggregate reports to dmarc@asjrealty.com
+  Status: ACTIVE
+
+DMARC REPORT SUMMARY (July 2026 - from dmarcian.com)
+-------------------------------------------------
+Emails aligned (legitimate): 98%
+Emails failing SPF only:    1% (forwarding scenarios)
+Emails failing DKIM:        0%
+Emails rejected (spoofed):  2% (15 blocked spoof attempts this month)
+
+TLS SERVER CERTIFICATE (mail.protection.outlook.com)
+-------------------------------------------------
+Certificate: Microsoft issued (DigiCert)
+TLS version: TLS 1.3 (preferred) / TLS 1.2 (fallback)
+HSTS: Enforced on web portals (portal.asjrealty.com)
+Certificate error bypass: BLOCKED by Conditional Access
+  (devices cannot connect to M365 with invalid certs)
+
+KERBEROS MUTUAL AUTH VERIFICATION
+-------------------------------------------------
+Test (July 1, 2026): klist on ASJ-WS-001
+  Cached ticket for krbtgt/ASJREALTY (KDC ticket - valid)
+  Service ticket for ldap/dc01.asjrealty.local (mutual auth)
+  Result: Kerberos mutual authentication ACTIVE. COMPLIANT.
+
+================================================================
+Certified: Sandra Okonkwo - July 25, 2026
+================================================================

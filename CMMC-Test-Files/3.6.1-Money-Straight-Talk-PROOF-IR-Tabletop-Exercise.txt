@@ -1,0 +1,74 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+INCIDENT RESPONSE TABLETOP EXERCISE — AFTER ACTION REPORT
+Evidence for CMMC Control 3.6.1
+================================================================
+Exercise ID:       EX-2026-01
+Exercise Date:     March 12, 2026
+Duration:          2.5 hours (9:00 AM – 11:30 AM EST)
+Facilitator:       Terrell Banks
+Participants:      Camille Odom, Terrell Banks, Angela Price
+Location:          MST Conference Room / Teams (hybrid)
+================================================================
+
+EXERCISE SCENARIO
+-------------------------------------------------
+Scenario Title: "Phishing to Ransomware"
+
+Description: An employee (Angela Price, simulated) receives a
+phishing email appearing to be from a DoD contracting officer.
+She clicks a malicious link and unknowingly installs ransomware.
+The next morning, three workstations are encrypted and a ransom
+note appears on screen. CUI files on the shared drive may be
+at risk.
+
+EXERCISE OBJECTIVES
+-------------------------------------------------
+1. Test activation of the Incident Response Team (IRT)
+2. Test containment procedures for ransomware
+3. Test CUI breach notification procedures
+4. Identify gaps in current IR capability
+
+EXERCISE TIMELINE (Simulated)
+-------------------------------------------------
+T+0:00   Alert from Azure Sentinel — unusual encryption activity
+T+0:15   Terrell Banks reviews alert, confirms ransomware
+T+0:20   Camille Odom notified via phone (IRT activated)
+T+0:35   Affected workstations isolated from network
+T+0:50   CUI exposure assessed — 2 files potentially exfiltrated
+T+1:10   DoD contracting officer notification drafted
+T+1:30   US-CERT reporting process reviewed (72-hour clock starts)
+T+2:00   Recovery from Azure Backup initiated (simulation)
+T+2:30   Exercise wrap-up and debrief
+
+FINDINGS AND OBSERVATIONS
+-------------------------------------------------
+STRENGTH: IRT was activated within 20 minutes — meets objective
+STRENGTH: Network isolation procedure worked correctly
+STRENGTH: Backup restoration process well understood
+
+GAP IDENTIFIED: After-hours contact list was outdated — Camille's
+  personal cell was wrong. ACTION: Update contact list by 3/19.
+GAP IDENTIFIED: US-CERT reporting URL was not bookmarked — staff
+  needed to search for it. ACTION: Add to IR bookmark folder.
+GAP IDENTIFIED: No designated out-of-band communication method
+  if email is compromised. ACTION: Establish Signal group for IRT.
+
+ACTION ITEMS
+-------------------------------------------------
+1. Update IRT contact list             Owner: Terrell   Due: 03/19/2026  CLOSED
+2. Bookmark US-CERT reporting portal   Owner: Terrell   Due: 03/19/2026  CLOSED
+3. Create Signal group for IRT         Owner: Terrell   Due: 03/26/2026  CLOSED
+
+OVERALL ASSESSMENT
+-------------------------------------------------
+The exercise demonstrated a functioning incident response
+capability. Core procedures are understood by all participants.
+Three gaps were identified and all have been remediated.
+
+Next Tabletop Exercise Scheduled: March 2027
+
+================================================================
+Report Prepared By: Terrell Banks         03/17/2026
+Approved By:        Camille Odom          03/18/2026
+================================================================

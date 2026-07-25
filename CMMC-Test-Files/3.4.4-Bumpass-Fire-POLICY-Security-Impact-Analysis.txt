@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.4.4 - Security Impact Analysis
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to analyze the security impact of changes prior to implementation, per NIST SP 800-171 Rev. 2 control 3.4.4.
+
+2. SCOPE
+All planned changes to Bumpass Fire & Rescue CUI systems.
+
+3. REQUIREMENTS
+a. Each change request includes a security impact assessment section.
+b. Mike Sadler assesses potential security impacts before approving any change.
+c. High-risk changes require additional review and testing.
+d. Security impacts that cannot be mitigated result in change rejection.
+e. Security impact assessments are documented and retained with change records.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, performs security impact assessments. Randy Bowles reviews high-risk assessments.
+
+5. ENFORCEMENT
+Changes submitted without a security impact assessment are automatically rejected.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

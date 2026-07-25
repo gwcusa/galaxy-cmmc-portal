@@ -1,0 +1,44 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.13.11 - FIPS-Validated Cryptography
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC enables FIPS 140-2 validated cryptography on CUI endpoints.
+
+2. FIPS MODE CONFIGURATION
+Group Policy Object: FIPS-Mode-Enforcement-Keith the Drone Guy LLC
+GPO Path: Computer Configuration > Windows Settings > Security Settings > Local Policies > Security Options
+Setting: "System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing"
+Value: Enabled
+
+GPO linked to: CUI-Computers OU (contains KDG-WS-001, WS-002)
+
+3. FIPS MODE VERIFICATION
+Endpoint: KDG-WS-001
+Registry key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy
+Value: Enabled = 1
+
+Endpoint: WS-002
+Registry key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy
+Value: Enabled = 1
+
+4. GPO APPLICATION STATUS
+GPO Report run: 2026-06-30  |  Tool: gpresult /H on KDG-WS-001
+Result: FIPS-Mode-Enforcement-Keith the Drone Guy LLC GPO applied. FIPS mode: ACTIVE. PASS.
+
+5. FIPS-VALIDATED MODULES IN USE
+BitLocker: Uses AES-128 (FIPS 140-2 validated, Module #1752)
+Windows TLS: Uses TLS 1.2/1.3 with FIPS-approved cipher suites
+Azure services: FIPS 140-2 Level 1 or higher for all M365 cryptographic operations
+
+6. PROHIBITED ALGORITHMS STATUS
+MD5: Disabled for CUI operations (allowed only for non-security checksums in FIPS mode)
+RC4: Disabled system-wide
+DES/3DES: Disabled system-wide
+SHA-1: Disabled for TLS; not used for CUI signatures
+
+7. CONCLUSION
+Keith the Drone Guy LLC enforces FIPS 140-2 validated cryptography on all CUI endpoints via GPO per control 3.13.11.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

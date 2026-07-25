@@ -1,0 +1,49 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+MICROSOFT SENTINEL - AUDIT LOG CONFIGURATION REPORT
+Evidence for CMMC Control 3.3.3
+================================================================
+Report Date:    July 22, 2026
+Prepared By:    Nathan Cruz
+Workspace:      BRTS-Sentinel-East-US
+================================================================
+
+DATA CONNECTORS - ACTIVE LOG SOURCES
+-------------------------------------------------
+CONNECTOR                    STATUS    EVENTS LAST 24H
+--------------------------   -------   ---------------
+Windows Security Events       ACTIVE    4,821
+Azure Active Directory        ACTIVE    1,203
+Azure Activity                ACTIVE    87
+Microsoft 365 Defender        ACTIVE    342
+Syslog (Linux servers)        ACTIVE    156
+Cisco ASA Firewall            ACTIVE    2,104
+
+LOGGED EVENT CATEGORIES (Windows Security Events)
+-------------------------------------------------
+Category                    Event IDs Collected
+--------------------------  ---------------------------------
+Logon/Logoff                4624, 4625, 4634, 4647, 4648
+Account Management          4720, 4722, 4723, 4724, 4725,
+                            4726, 4738, 4740, 4767
+Privilege Use               4672, 4673, 4674
+Object Access               4656, 4663, 4664 (CUI folders)
+Policy Change               4703, 4704, 4706, 4719, 4739
+System Events               4608, 4609, 4616, 6005, 6006
+Process Creation            4688 (command line logging ON)
+Network Connections         5156, 5158 (Windows Firewall)
+
+ANNUAL REVIEW - April 2026
+-------------------------------------------------
+Date: April 22, 2026
+Reviewer: Nathan Cruz
+Changes made: Added Event ID 4688 (Process Creation) following
+  an industry advisory recommending process logging for
+  ransomware detection. Change approved by Victor Osei 04/22/2026.
+  Implemented 04/23/2026.
+
+Previous review: April 2025 - no changes made.
+
+================================================================
+Certified: Nathan Cruz - July 22, 2026
+================================================================

@@ -1,0 +1,56 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+SECURITY ARCHITECTURE AND ENGINEERING POLICY
+================================================================
+Document ID:    POL-SC-002
+Version:        1.0
+Effective Date: March 1, 2026
+Review Date:    March 1, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy requires the employment of architectural designs,
+software development techniques, and systems engineering
+principles that promote security throughout MST systems.
+
+2. SECURITY ARCHITECTURE PRINCIPLES
+MST systems are designed with the following principles:
+
+  2.1 Defense in Depth
+    Multiple layers of security controls:
+      Layer 1: Perimeter (firewall, IDS)
+      Layer 2: Network (VLAN segmentation, Umbrella DNS)
+      Layer 3: Endpoint (Defender, EDR, patching)
+      Layer 4: Identity (Azure AD, MFA, PIM)
+      Layer 5: Data (BitLocker, DLP, sensitivity labels)
+      Layer 6: Monitoring (Sentinel, audit logs)
+
+  2.2 Least Privilege
+    Users and processes receive minimum permissions needed.
+    Admin rights require justification and JIT elevation.
+
+  2.3 Fail-Safe Defaults
+    Default configurations deny access. Allow-listing approach
+    for software and network access.
+
+  2.4 Economy of Mechanism
+    Simple, well-understood security mechanisms preferred
+    over complex, difficult-to-audit ones.
+
+  2.5 Separation of Duties
+    No single person can unilaterally perform sensitive actions.
+
+3. NEW SYSTEM ACQUISITION
+  All new technology acquisitions are reviewed by Terrell Banks
+  for security implications before purchase.
+
+4. DOCUMENTATION
+  Architecture decisions are documented in the MST System
+  Security Plan (SSP - POL-CA-004).
+
+================================================================
+Approved: Camille Odom           03/01/2026
+Prepared: Terrell Banks          02/27/2026
+================================================================

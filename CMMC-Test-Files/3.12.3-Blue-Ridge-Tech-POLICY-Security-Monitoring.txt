@@ -1,0 +1,26 @@
+﻿SECURITY ASSESSMENT POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.12.3 - Security Control Monitoring
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to monitor security controls on an ongoing basis to ensure their continued effectiveness, per NIST SP 800-171 Rev. 2 control 3.12.3.
+
+2. SCOPE
+All security controls implemented in Blue Ridge Technology Solutions LLC CUI systems.
+
+3. REQUIREMENTS
+a. Security controls are continuously monitored through automated tools and periodic reviews.
+b. Microsoft Sentinel provides continuous monitoring of security events.
+c. Nathan Cruz conducts weekly security dashboard reviews.
+d. Monthly security posture reports are provided to Victor Osei.
+e. Control effectiveness degradation triggers immediate review and remediation.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, monitors and reports on security control effectiveness continuously.
+
+5. ENFORCEMENT
+Degraded security controls are treated as priority incidents requiring same-day remediation.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

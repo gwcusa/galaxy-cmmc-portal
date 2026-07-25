@@ -1,0 +1,50 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+NETWORK SESSION TERMINATION POLICY
+================================================================
+Document ID:    POL-SC-009
+Version:        1.0
+Effective Date: June 10, 2026
+Review Date:    June 10, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy requires that network connections associated with
+communications sessions are terminated after a defined period
+of inactivity to reduce the risk of session hijacking.
+
+2. SESSION TERMINATION SETTINGS
+
+2.1 VPN Sessions
+  Idle timeout: 60 minutes (connection dropped if no traffic)
+  Max session time: 480 minutes (8 hours max, then re-auth)
+
+2.2 RDP / Remote Desktop
+  Idle disconnect: 30 minutes (GPO setting)
+  Session limit: 4 hours (GPO setting)
+
+2.3 Web Application Sessions (M365 / Azure AD)
+  Sign-in frequency: 8 hours (Conditional Access)
+  Persistent browser sessions: NOT allowed for CUI apps
+  (users must re-authenticate after 8 hours or browser restart)
+
+2.4 SSH Connections (Servers)
+  SSH idle timeout: 10 minutes
+  Config: ClientAliveInterval 300 / ClientAliveCountMax 2
+  (after 2 missed keepalives = 10 min, connection drops)
+
+2.5 TCP Connection Timeouts (Firewall)
+  Meraki MX: stateful TCP timeout = 3600 seconds (1 hour)
+  UDP flow timeout = 300 seconds (5 minutes)
+  Idle connections removed from state table after timeout
+
+3. EXCEPTION PROCESS
+  Any system requiring longer session timeouts must be approved
+  by Nathan Cruz with documented business justification.
+
+================================================================
+Approved: Victor Osei            06/10/2026
+Prepared: Nathan Cruz            06/08/2026
+================================================================

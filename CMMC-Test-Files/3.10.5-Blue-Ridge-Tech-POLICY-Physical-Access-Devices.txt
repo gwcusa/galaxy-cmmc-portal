@@ -1,0 +1,26 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.10.5 - Physical Access Device Management
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to control and manage physical access devices (keys, key cards, PINs), per NIST SP 800-171 Rev. 2 control 3.10.5.
+
+2. SCOPE
+All physical access devices used to access Blue Ridge Technology Solutions LLC CUI facilities.
+
+3. REQUIREMENTS
+a. A register of all physical access devices (keys, PINs, badges) is maintained.
+b. Physical access devices are issued only to authorized personnel.
+c. Lost or stolen access devices are reported and deactivated within 2 hours.
+d. Access PINs are changed quarterly or upon compromise.
+e. Access devices are collected upon personnel termination.
+
+4. RESPONSIBILITY
+Victor Osei, Director of Operations, approves access device issuance. Nathan Cruz maintains the access device register.
+
+5. ENFORCEMENT
+Unreported loss of physical access devices is a policy violation.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

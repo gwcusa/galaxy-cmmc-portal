@@ -1,0 +1,39 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.3.5 - Audit Log Correlation and Analysis
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC correlates audit records across multiple sources in a centralized SIEM.
+
+2. SIEM CORRELATION CONFIGURATION
+Platform: Microsoft Sentinel
+Workspace: Blue Ridge Technology Solutions LLC-Sentinel (tenant: blueridgetech.com)
+
+Data Connectors Active:
+- Azure Active Directory
+- Microsoft 365 (Exchange, SharePoint, Teams)
+- Windows Security Events (via Azure Monitor Agent on BRTS-WS-001)
+- Microsoft Defender for Endpoint
+- Azure Activity
+
+Active Correlation Rules (Scheduled Analytics):
+- Multi-Source Brute Force: Correlates Azure AD failed logins + Windows Event 4625 + Defender alert
+- Lateral Movement: Correlates Windows logon events across multiple hosts
+- Data Exfiltration: Correlates large file downloads + USB events + email attachments
+- Privilege Escalation: Correlates role changes + after-hours admin logon
+
+3. CORRELATION INCIDENT LOG (Q2 2026)
+Date: 2026-05-28 - Rule: Multi-Source Brute Force - Fired on 6 failed logins across Azure AD and Windows
+Investigation: User forgot new password post-reset. False positive. Account unlocked by Nathan Cruz.
+Date: 2026-06-09 - Rule: Data Exfiltration - Large SharePoint download by n.cruz@blueridgetech.com
+Investigation: Authorized batch download for offline backup. Confirmed with Victor Osei. Closed.
+
+4. QUARTERLY RULE REVIEW
+Date: 2026-07-01  |  Reviewer: Nathan Cruz
+Result: All 4 rules confirmed operational. 1 threshold tuning applied to reduce false positives.
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC correlates audit logs from multiple sources using Sentinel analytics per control 3.3.5.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

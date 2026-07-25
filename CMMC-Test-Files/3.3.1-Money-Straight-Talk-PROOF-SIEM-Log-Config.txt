@@ -1,0 +1,61 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+AZURE SENTINEL — AUDIT LOGGING CONFIGURATION EXPORT
+Evidence for CMMC Control 3.3.1
+================================================================
+Exported:       July 11, 2026 — 10:05 AM EST
+Exported By:    Terrell Banks, Systems Administrator
+Workspace:      MST-Sentinel-Prod
+Subscription:   Azure Commercial — moneystalk-prod
+================================================================
+
+DATA CONNECTORS — ACTIVE
+-------------------------------------------------
+Connector                           Status    Last Log Received
+--------------------------------    ------    -------------------
+Microsoft 365 Defender              Active    07/11/2026 10:03 AM
+Azure Active Directory              Active    07/11/2026 10:04 AM
+Azure Activity                      Active    07/11/2026 10:02 AM
+Microsoft Defender for Endpoint     Active    07/11/2026 09:58 AM
+Windows Security Events (All)       Active    07/11/2026 10:01 AM
+Azure Firewall                      Active    07/11/2026 10:00 AM
+Cisco Meraki (VPN)                  Active    07/11/2026 09:55 AM
+
+EVENTS LOGGED — LAST 30 DAYS (Sample)
+-------------------------------------------------
+Date/Time (EST)         Event Type                  User/Source
+-------------------     -------------------------   -----------------
+07/10/2026 08:14 AM     Successful Login            camille.odom
+07/10/2026 08:17 AM     File Access (CUI Share)     terrell.banks
+07/09/2026 11:42 PM     Login Outside Hours [ALERT] terrell.banks *
+07/09/2026 11:43 PM     Alert Acknowledged          terrell.banks
+07/08/2026 03:15 PM     Password Reset              angela.price
+07/07/2026 09:00 AM     VPN Connect                 remote.user.01
+07/05/2026 02:30 PM     Failed Login (x5) [ALERT]   UNKNOWN — locked
+07/05/2026 02:31 PM     Account Locked              ext.user.attempt
+
+* 07/09 after-hours login: Terrell Banks confirmed working late,
+  alert acknowledged and documented in incident log INF-2026-019.
+
+LOG RETENTION SETTINGS
+-------------------------------------------------
+Retention Tier     Duration    Storage
+--------------     --------    ---------------------------
+Hot (Sentinel)     90 days     Azure Log Analytics
+Cold (Archive)     1 year      Azure Blob Storage (LRS)
+Total Coverage:    15 months
+
+ACCESS CONTROLS ON LOG STORAGE
+-------------------------------------------------
+Role                    User              Access Level
+--------------------    ------------      ----------------
+Log Administrator       Terrell Banks     Read/Write/Config
+Executive Reviewer      Camille Odom      Read Only
+All Other Users         N/A               No Access
+
+ALERT RULES ACTIVE: 8
+INCIDENTS LAST 30 DAYS: 2 (both investigated and closed)
+
+================================================================
+Report certified accurate by Terrell Banks — 07/11/2026
+================================================================

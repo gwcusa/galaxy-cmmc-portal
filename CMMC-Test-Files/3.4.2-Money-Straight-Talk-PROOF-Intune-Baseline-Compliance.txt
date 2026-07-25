@@ -1,0 +1,36 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.4.2 - Security Configuration Baselines
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC establishes and enforces security configuration baselines for CUI systems.
+
+2. BASELINE CONFIGURATION PROFILES
+Platform: Microsoft Intune (tenant: moneystraighttalk.com)
+Reference: CIS Benchmark for Windows 11 (v2.0.0)
+
+Active Configuration Profiles:
+Profile Name                     | Type              | Applied To       | Status
+Windows11-Security-Baseline      | Security Baseline | All Windows PCs  | Active
+BitLocker-Enforcement            | Endpoint Security | All Windows PCs  | Active
+Defender-AV-Config               | Antivirus         | All Windows PCs  | Active
+Firewall-Baseline                | Firewall          | All Windows PCs  | Active
+Mobile-Security-Baseline         | Device Config     | iOS + Android    | Active
+
+3. COMPLIANCE REPORT (2026-07-01)
+Total Managed Devices: 6
+Compliant: 6 (100%)
+Non-Compliant: 0
+
+Device MST-WS-001 (t.banks@moneystraighttalk.com): All profiles applied - COMPLIANT
+
+4. BASELINE DEVIATION HISTORY
+Q1 2026: 0 deviations
+Q2 2026: 1 deviation (MST-WS-001 - Defender real-time protection temporarily disabled for troubleshooting)
+Resolution: Re-enabled by Terrell Banks within 2 hours. Documented in change log.
+
+5. CONCLUSION
+Money Straight Talk LLC enforces security configuration baselines via Intune on all CUI endpoints per control 3.4.2.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

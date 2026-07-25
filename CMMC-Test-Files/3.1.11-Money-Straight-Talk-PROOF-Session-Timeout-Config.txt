@@ -1,0 +1,37 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.1.11 - Automatic Session Termination
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC automatically terminates sessions after defined inactivity periods.
+
+2. SESSION TIMEOUT CONFIGURATIONS
+
+Windows Endpoints (Interactive Sessions):
+GPO: SessionTimeout-Money Straight Talk LLC
+- Interactive session idle limit: 60 minutes
+- Disconnected session limit: 60 minutes
+
+Microsoft 365 / Azure AD:
+- Persistent browser session: Disabled
+- Sign-in frequency: 8 hours (Conditional Access policy: SignInFreq-Money Straight Talk LLC)
+- Re-authentication required: Yes (includes MFA prompt)
+
+SharePoint / CUI Portal:
+- Session timeout: 30 minutes idle
+- Token lifetime: 1 hour max
+
+VPN (GlobalProtect):
+- Max session duration: 8 hours
+- Idle timeout: 60 minutes
+
+3. VERIFICATION
+Date: 2026-06-25  |  Tested by: Terrell Banks
+Test: Opened SharePoint CUI session on MST-WS-001 (t.banks@moneystraighttalk.com), left idle 35 minutes.
+Result: Session expired after 30 minutes. Full re-authentication required. PASS.
+
+4. CONCLUSION
+Money Straight Talk LLC enforces automatic session termination across all CUI-connected systems per control 3.1.11.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

@@ -1,0 +1,52 @@
+================================================================
+ASJ REALTY
+PLAN OF ACTION AND MILESTONES (POA&M) POLICY
+================================================================
+Document ID:    POL-CA-002
+Version:        1.0
+Effective Date: July 1, 2026
+Review Date:    July 1, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy establishes requirements for developing and
+implementing Plans of Action and Milestones (POA&M) to
+correct deficiencies in security controls and reduce
+or eliminate vulnerabilities.
+
+2. POA&M REQUIREMENT
+A POA&M must be created for every security control deficiency
+identified through:
+  - Annual security control assessments
+  - Vulnerability scans
+  - Incident investigations
+  - Audits or inspections
+
+3. POA&M CONTENTS
+Each POA&M item must include:
+  a) Control reference (e.g., 3.1.1, 3.5.3)
+  b) Weakness or deficiency description
+  c) Current risk level (Critical/High/Medium/Low)
+  d) Planned mitigation/corrective action
+  e) Assigned owner
+  f) Target completion date
+  g) Resources required (budget, staff)
+  h) Milestone schedule (intermediate steps for multi-month items)
+  i) Current status (Open / In Progress / Closed)
+
+4. POA&M REVIEW
+  - Sandra Okonkwo reviews open POA&M items monthly
+  - Anthony James reviews the POA&M quarterly
+  - All POA&M items must have a target date no more than
+    12 months after identification (critical: 30 days)
+  - Closed items are retained with evidence of completion
+
+5. STORAGE
+  POA&M document maintained in SharePoint: IT/CMMC/POA&M.xlsx
+
+================================================================
+Approved: Anthony James           07/01/2026
+Prepared: Sandra Okonkwo          06/28/2026
+================================================================

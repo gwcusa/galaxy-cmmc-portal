@@ -1,0 +1,51 @@
+================================================================
+ASJ REALTY
+REMOTE ACCESS MONITORING AND CONTROL POLICY
+================================================================
+Document ID:    POL-AC-012
+Version:        1.1
+Effective Date: May 15, 2026
+Review Date:    May 15, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy establishes requirements for monitoring and
+controlling remote access to ASJ Realty systems to prevent
+unauthorized access and detect anomalous activity.
+
+2. APPROVED REMOTE ACCESS METHODS
+  - VPN (Cisco AnyConnect) to company network
+  - Azure AD-authenticated access to M365 (SharePoint, Teams)
+  - Remote Desktop (RDP) through VPN only — not directly exposed
+
+3. UNAUTHORIZED METHODS
+  - Direct RDP exposure to the internet: PROHIBITED
+  - Consumer remote tools (TeamViewer, AnyDesk, etc.): PROHIBITED
+  - Personal devices without Intune enrollment: PROHIBITED
+
+4. MONITORING REQUIREMENTS
+
+4.1 VPN Session Logging
+  All VPN connections log: user, source IP, start time,
+  end time, bytes transferred. Logs retained 1 year.
+
+4.2 Azure AD Sign-In Logs
+  All Azure AD sign-ins are logged and retained 90 days
+  in Azure AD (extended 1 year via Log Analytics workspace).
+
+4.3 Alerting
+  - Sign-in from new country/region: ALERT
+  - Sign-in from anonymous proxy: BLOCK + ALERT
+  - Multiple failed sign-ins followed by success: ALERT
+  - Impossible travel (two logins from different countries
+    within impossible timeframe): BLOCK + ALERT
+
+5. REVIEW
+  Sandra Okonkwo reviews VPN and Azure AD sign-in logs weekly.
+
+================================================================
+Approved: Anthony James           05/15/2026
+Prepared: Sandra Okonkwo          05/13/2026
+================================================================

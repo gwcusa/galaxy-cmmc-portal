@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: ASJ Realty
+Control: 3.4.8 - Application Allowlisting
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to apply deny-by-default and allow-by-exception policies to prevent use of unauthorized software, per NIST SP 800-171 Rev. 2 control 3.4.8.
+
+2. SCOPE
+All ASJ Realty CUI endpoints and servers.
+
+3. REQUIREMENTS
+a. Only approved applications may execute on CUI endpoints.
+b. Application allowlisting is enforced via Windows Defender Application Control (WDAC).
+c. All new software requests require review and approval by Sandra Okonkwo and Anthony James.
+d. The approved application list is reviewed and updated quarterly.
+e. Attempts to execute unapproved software generate security alerts.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, creates and maintains the application allowlist and WDAC policy.
+
+5. ENFORCEMENT
+Execution of unapproved software is blocked automatically and generates an alert.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

@@ -1,0 +1,51 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+SYSTEM CLOCK SYNCHRONIZATION - CONFIGURATION AUDIT
+Evidence for CMMC Control 3.3.7
+================================================================
+Report Date:    July 22, 2026
+Prepared By:    Terrell Banks, Systems Administrator
+================================================================
+
+DOMAIN CONTROLLER NTP CONFIG (w32tm /query /configuration)
+-------------------------------------------------
+Computer: MST-DC-01
+NtpServer: time.windows.com,0x8 pool.ntp.org,0x8
+Type: NTP
+Enabled: 1
+EventLogFlags: 0
+MaxPosPhaseCorrection: 48 (seconds max correction)
+UpdateInterval: 360 (every 6 minutes check)
+
+Current clock offset: +0.1234567 seconds
+Sync status: SYNCHRONIZED
+
+DOMAIN MEMBER NTP STATUS
+-------------------------------------------------
+Device          Last Sync       Offset     Source       Status
+--------------  -----------     -------    ----------   -------
+MST-WS-001      07/22 06:00     +0.012s    MST-DC-01    SYNC OK
+MST-WS-002      07/22 06:00     -0.008s    MST-DC-01    SYNC OK
+MST-WS-003      07/22 06:00     +0.015s    MST-DC-01    SYNC OK
+MST-WS-004      07/22 06:00     +0.003s    MST-DC-01    SYNC OK
+MST-LT-001      07/22 07:15     +0.019s    MST-DC-01    SYNC OK
+MST-LT-002      07/22 07:10     -0.011s    MST-DC-01    SYNC OK
+
+AZURE RESOURCES
+-------------------------------------------------
+mst-vm-prod-001: Time source = Azure Hyper-V host (ms accuracy)
+mst-vm-prod-002: Time source = Azure Hyper-V host (ms accuracy)
+
+Maximum offset across all systems: 0.019 seconds
+Policy allows: up to 300 seconds (5 minutes) drift
+Result: ALL SYSTEMS IN COMPLIANCE
+
+GPO ENFORCING NTP
+-------------------------------------------------
+GPO: MST-NTP-Policy
+Setting: W32tm NtpServer = dc01.moneystalk.local
+Applied To: All MST domain computers
+
+================================================================
+Certified: Terrell Banks - July 22, 2026
+================================================================

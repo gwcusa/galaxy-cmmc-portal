@@ -1,0 +1,50 @@
+================================================================
+KEITH THE DRONE GUY LLC
+AUDIT REDUCTION AND REPORT GENERATION POLICY
+================================================================
+Document ID:    POL-AU-006
+Version:        1.0
+Effective Date: February 15, 2026
+Review Date:    February 15, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy describes how Keith the Drone Guy LLC reduces
+and reports audit data to support analysis without altering
+the original audit records.
+
+2. AUDIT REDUCTION
+  Raw audit logs are voluminous and require reduction for
+  practical review. KDG uses the following tools for audit
+  reduction (summarizing without altering originals):
+    - Microsoft Sentinel workbooks (pre-built dashboards)
+    - KQL (Kusto Query Language) queries to filter relevant events
+    - Log Analytics saved queries for recurring review tasks
+
+  Audit reduction produces summaries and reports only.
+  Original logs remain intact and unmodified in Azure
+  Log Analytics.
+
+3. REPORT GENERATION
+  The following reports are generated on a scheduled basis:
+    - Weekly Security Summary: failed logons, after-hours access,
+      CUI file access (generated every Monday for prior week)
+    - Monthly Executive Summary: incidents, phishing results,
+      training status (generated first Monday of each month)
+    - On-Demand Incident Reports: generated as needed during
+      incident investigation
+
+4. REPORT STORAGE
+  Reports are stored in SharePoint: IT/Audit-Reports/
+  Reports are retained for 3 years.
+
+5. ORIGINAL LOG PROTECTION
+  Original logs in Azure Log Analytics may not be modified,
+  deleted, or exported except by Keith Merritt, and only for
+  authorized incident investigation purposes.
+
+================================================================
+Approved: Keith Merritt           02/15/2026
+================================================================

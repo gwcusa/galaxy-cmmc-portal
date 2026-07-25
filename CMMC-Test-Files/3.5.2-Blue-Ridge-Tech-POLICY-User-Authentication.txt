@@ -1,0 +1,26 @@
+﻿IDENTIFICATION AND AUTHENTICATION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.5.2 - User Authentication
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to authenticate the identities of users, processes, and devices before granting access to CUI systems, per NIST SP 800-171 Rev. 2 control 3.5.2.
+
+2. SCOPE
+All access to Blue Ridge Technology Solutions LLC CUI systems and resources.
+
+3. REQUIREMENTS
+a. All CUI system access requires successful authentication before access is granted.
+b. Authentication is enforced via Azure AD with MFA for all accounts.
+c. Passwords must meet complexity requirements as defined in policy 3.5.7.
+d. Device authentication uses certificate-based enrollment via Intune.
+e. Failed authentication attempts are logged and monitored.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, configures and maintains authentication controls.
+
+5. ENFORCEMENT
+Unauthenticated access to CUI systems is technically blocked and generates security alerts.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

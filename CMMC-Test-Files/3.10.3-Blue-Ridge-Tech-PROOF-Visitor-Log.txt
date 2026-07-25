@@ -1,0 +1,33 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.10.3 - Visitor Escort and Monitoring
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC escorts and monitors all visitors in CUI areas.
+
+2. VISITOR LOG (FY2026 - Recent Entries)
+Date       | Visitor Name    | Organization    | Purpose        | Escort  | In     | Out    | CUI Area
+2026-03-15 | James Cooper    | Acme Consulting | IT audit       | Nathan Cruz    | 10:00  | 12:30  | Yes - escorted
+2026-05-10 | Sara Dennis     | ISP Tech        | Fiber repair   | Nathan Cruz    | 14:00  | 15:00  | No (comms closet only)
+2026-06-05 | Maria Torres    | HR Consultant   | HR meeting     | Victor Osei   | 09:00  | 10:30  | No (meeting room only)
+
+Visitor log location: Front desk binder + digital backup (SharePoint/IT-Docs/Visitor-Log.xlsx)
+Unescorted CUI area incidents: 0
+
+3. VISITOR ESCORT PROCEDURE
+Upon arrival: Visitor signs in, receives visitor badge
+Escort begins: Victor Osei or Nathan Cruz meets visitor at reception
+During visit: Escort maintains line of sight at all times in CUI areas
+CUI systems: Screens locked or turned away from visitor view
+Departure: Visitor signs out, visitor badge returned
+
+4. VISITOR BADGE PROGRAM
+Badges: "VISITOR" lanyard badges (red)
+Badge inventory: 3 badges available at reception
+Returned: Verified at sign-out
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC escorts all visitors in CUI areas and maintains a signed visitor log per control 3.10.3.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

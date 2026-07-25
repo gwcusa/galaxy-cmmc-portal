@@ -1,0 +1,33 @@
+﻿SECURITY ASSESSMENT IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.12.1 - Security Control Assessment
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC assesses security controls periodically to determine effectiveness.
+
+2. ANNUAL SECURITY ASSESSMENT
+Date: 2026-03-01 to 2026-03-31
+Methodology: NIST SP 800-171A (assessment procedures)
+Assessor: Keith Merritt (self-assessment) + external review by CyberSec Partners LLC
+
+Assessment Scope: All 110 NIST SP 800-171 Rev. 2 controls
+
+3. SECURITY ASSESSMENT REPORT SUMMARY
+Total Controls Assessed: 110
+Satisfied: 108 (98.2%)
+Other Than Satisfied: 2 (added to POA&M)
+
+Finding 1: 3.12.2 - POA&M not updated since Q4 2025. Remediated 2026-04-01.
+Finding 2: 3.3.6 - Audit reduction report not generated last quarter. Remediated 2026-04-05.
+
+4. ASSESSMENT REPORT
+Document: Keith the Drone Guy LLC SAR-2026.docx
+Location: SharePoint/IT-Docs/Security-Assessments/
+Reviewed by: Keith Merritt  |  Date: 2026-04-10
+Status: Approved - residual findings remediated
+
+5. CONCLUSION
+Keith the Drone Guy LLC conducts annual security control assessments with documented findings and remediation per control 3.12.1.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

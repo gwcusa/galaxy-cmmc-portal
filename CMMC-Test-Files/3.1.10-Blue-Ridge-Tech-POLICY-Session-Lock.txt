@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.10 - Session Lock with Pattern-Hiding Display
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to employ session lock with pattern-hiding displays after a period of inactivity, per NIST SP 800-171 Rev. 2 control 3.1.10.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC endpoints and remote sessions used to access CUI systems.
+
+3. REQUIREMENTS
+a. Screen lock activates after 15 minutes of user inactivity.
+b. Screen lock uses a pattern-hiding screensaver (not a transparent or clear display).
+c. Password is required to unlock any locked session.
+d. Screen lock settings are enforced via Group Policy and Intune.
+e. Users may not configure screen lock settings beyond policy minimums.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, configures and enforces screen lock via MDM and Group Policy.
+
+5. ENFORCEMENT
+Tampering with screen lock settings constitutes a policy violation.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

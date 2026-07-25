@@ -1,0 +1,26 @@
+﻿SYSTEM AND INFORMATION INTEGRITY POLICY
+Organization: Money Straight Talk LLC
+Control: 3.14.5 - System and File Scanning
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to perform periodic scans of information systems and real-time scans of files from external sources as files are downloaded, opened, or executed, per NIST SP 800-171 Rev. 2 control 3.14.5.
+
+2. SCOPE
+All Money Straight Talk LLC CUI endpoints and files.
+
+3. REQUIREMENTS
+a. Real-time scanning is enabled on all CUI endpoints (files scanned on access).
+b. Weekly full-disk scans are scheduled on all CUI workstations.
+c. Files downloaded from email or internet are scanned before execution.
+d. Scan results are reviewed by Terrell Banks weekly.
+e. Scan history is retained for 90 days.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, configures and monitors scanning on all CUI systems.
+
+5. ENFORCEMENT
+Endpoints with scanning disabled are isolated from CUI until remediated.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

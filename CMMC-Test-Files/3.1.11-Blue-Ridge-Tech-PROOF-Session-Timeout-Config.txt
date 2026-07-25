@@ -1,0 +1,47 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+SESSION TERMINATION CONFIGURATION AUDIT
+Evidence for CMMC Control 3.1.11
+================================================================
+Report Date:    July 18, 2026
+Prepared By:    Nathan Cruz, Lead Systems Engineer
+================================================================
+
+RDP SESSION TIMEOUT — GPO: BRTS-RDP-Timeout
+-------------------------------------------------
+Policy Path: Computer Configuration > Administrative Templates
+  > Windows Components > Remote Desktop Services > RDS Session Host
+  > Session Time Limits
+
+  Set time limit for disconnected sessions: 30 minutes (ENABLED)
+  Set time limit for idle Remote Desktop Services sessions: 30 min
+  Set time limit for active but idle RDS sessions: 4 hours
+  End session when time limits are reached: ENABLED
+
+Applied To: BRTS-SRV-001, BRTS-SRV-002
+
+VPN SESSION TIMEOUT — Cisco ASA Configuration
+-------------------------------------------------
+group-policy BRTS-Employees attributes
+  vpn-idle-timeout 60          ! 60 minutes idle
+  vpn-session-timeout 480      ! 8 hours max per session
+  vpn-simultaneous-logins 1    ! one session per user
+
+End-of-day forced disconnect:
+  ASA scheduled job: disconnect all active sessions at 18:00 Mon-Fri
+  Saturday disconnect: 14:00
+
+AZURE AD TOKEN LIFETIME — Conditional Access
+-------------------------------------------------
+Sign-in frequency policy: "BRTS-Signin-Frequency"
+  Every 8 hours, users must re-authenticate on CUI apps
+  Persistent browser session: NOT ALLOWED on CUI-tagged apps
+
+MICROSOFT DEFENDER FOR IDENTITY
+-------------------------------------------------
+Alert rule: Anomalous logon behavior -> terminate session
+Response: Session revoked via Azure AD revoke-sign-in-sessions
+
+================================================================
+Certified: Nathan Cruz — July 18, 2026
+================================================================

@@ -1,0 +1,58 @@
+================================================================
+KEITH THE DRONE GUY LLC
+SECURITY ALERT MONITORING - SUBSCRIPTION AND RESPONSE LOG
+Evidence for CMMC Control 3.14.3
+================================================================
+Report Period:  Q2 2026 (April 1 - June 30, 2026)
+Prepared By:    Keith Merritt
+================================================================
+
+ACTIVE ALERT SUBSCRIPTIONS
+-------------------------------------------------
+Source                     Method         Subscriber
+-------------------------  -------------  ---------------
+CISA KEV                   Email list     kmerritt@kdgllc.com
+US-CERT Alerts             Email list     kmerritt@kdgllc.com
+MSRC Security Updates      RSS feed       IT-RSS-Aggregator
+Microsoft Sentinel         Email + Teams  kmerritt@kdgllc.com
+Microsoft Defender XDR     Email + Portal kmerritt@kdgllc.com
+Cisco Meraki Advisories    Email          kmerritt@kdgllc.com
+
+ADVISORY AND ALERT RESPONSE LOG - Q2 2026
+-------------------------------------------------
+DATE         SOURCE    ALERT                           ACTION TAKEN
+-----------  --------  ------------------------------  ----------------
+04/09/2026   MSRC      Patch Tuesday - 3 critical RCE  Patched same day
+             Windows patches (CVE-2026-xxxx x3)
+             Applicability: YES (all KDG Windows devices)
+
+04/21/2026   CISA KEV  CVE-2026-1122 (Outlook vuln)   Patched 04/22/2026
+             added to KEV catalog
+             Applicability: YES (Outlook on all devices)
+             Response: 18 hours. WITHIN SLA.
+
+05/14/2026   MSRC      Patch Tuesday - 1 critical,     Patched same day
+             4 important patches
+             All applicable. Deployed via Intune.
+
+05/28/2026   Sentinel  Suspicious PowerShell detected  Investigated same
+             on KDG-LT-001                             day. False positive
+                                                       (IT script). Closed.
+
+06/11/2026   MSRC      Patch Tuesday patches            Patched June 11
+             2 High severity - applicable
+
+06/18/2026   Cisco     Meraki MX firmware advisory     Updated firmware
+             (CVE for older firmware version)          June 20, 2026
+
+SENTINEL ALERT REVIEW (Q2 2026)
+-------------------------------------------------
+Total alerts received:    14
+Investigated:             14 (100%)
+True positives:           3 (patched/remediated)
+False positives:          11 (documented and closed)
+Average response time:    2.4 hours during business hours
+
+================================================================
+Certified: Keith Merritt - June 30, 2026
+================================================================

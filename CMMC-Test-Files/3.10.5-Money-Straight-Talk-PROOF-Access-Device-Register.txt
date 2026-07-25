@@ -1,0 +1,50 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+PHYSICAL ACCESS DEVICE REGISTER - CURRENT
+Evidence for CMMC Control 3.10.5
+================================================================
+Register Date:  July 25, 2026
+Maintained By:  Terrell Banks, Systems Administrator
+Last Audit:     July 1, 2026
+================================================================
+
+KEY FOB INVENTORY
+-------------------------------------------------
+FOB ID   ASSIGNED TO       DATE ISSUED  STATUS    LAST CONFIRMED
+-------  ----------------  -----------  --------  ---------------
+FOB-001  Camille Odom      01/10/2026   ACTIVE    07/01/2026
+FOB-002  Terrell Banks     01/10/2026   ACTIVE    07/01/2026
+FOB-003  Angela Price      01/10/2026   ACTIVE    07/01/2026
+FOB-004  Jerome Williams   01/10/2026   ACTIVE    07/01/2026
+FOB-005  (Spare)           01/10/2026   STORED    07/01/2026 (in safe)
+
+All 5 fobs accounted for. No lost or unreturned fobs.
+
+SERVER ROOM KEYPAD
+-------------------------------------------------
+Code holders:   Terrell Banks, Camille Odom
+Code last changed: January 10, 2026 (initial setup)
+Next change:    If any holder leaves MST, change within 24 hours.
+Unauthorized access attempts in July: 0
+
+FILING CABINET KEYS (Paper CUI)
+-------------------------------------------------
+Key holders:    Terrell Banks (primary), Camille Odom (backup)
+Spare key:      In office safe (combination: Camille only)
+
+TERMINATION EVENTS - 2026
+-------------------------------------------------
+No employee terminations in 2026 to date.
+
+QUARTERLY AUDIT - July 1, 2026
+-------------------------------------------------
+Auditor: Terrell Banks
+All 5 fobs confirmed - physical verification completed.
+Spare fob verified in safe. Server room code confirmed active.
+Filing cabinet keys verified with both holders.
+Finding: No discrepancies. All devices accounted for.
+Certified by: Camille Odom - 07/01/2026
+
+================================================================
+Certified: Terrell Banks - July 25, 2026
+================================================================

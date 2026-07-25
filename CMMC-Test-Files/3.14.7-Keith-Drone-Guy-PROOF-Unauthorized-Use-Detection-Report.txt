@@ -1,0 +1,44 @@
+﻿SYSTEM AND INFORMATION INTEGRITY IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.14.7 - Unauthorized Use Detection
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC identifies and responds to unauthorized use of CUI systems.
+
+2. UNAUTHORIZED USE DETECTION CAPABILITIES
+
+Microsoft Sentinel - User Entity Behavior Analytics (UEBA):
+Status: Enabled
+Scope: All Azure AD accounts in keithdroney.com
+Baselines: Established from 90 days of behavioral data
+Detections: Access outside normal hours, new app access, impossible travel, mass downloads
+
+Microsoft Defender for Cloud Apps (MCAS):
+Status: Connected to M365 tenant
+Monitoring: All SharePoint, Teams, Exchange access
+Anomaly detection: Enabled (unusually large download, activity from anonymous IP, etc.)
+
+3. USER MONITORING CONSENT
+System use banner displayed at Windows login on KDG-WS-001 and WS-002:
+Banner text: "This system is the property of Keith the Drone Guy LLC. Authorized use only. All activity is monitored and logged. By continuing you consent to monitoring."
+GPO: LoginBanner-Keith the Drone Guy LLC  |  Verified: 2026-06-30
+
+4. UNAUTHORIZED USE DETECTION LOG (FY2026)
+Date       | Event                           | System     | User Account | Action
+2026-04-22 | Off-hours SharePoint access 2am | SharePoint | k.merritt@keithdroney.com  | Investigated, Keith Merritt confirmed authorized (late night work)
+2026-05-15 | Large file download (2.3GB)     | OneDrive   | Staff-2      | Investigated - Q1 report export, authorized
+
+Confirmed unauthorized use incidents: 0
+
+5. INVESTIGATION PROCEDURE
+All UEBA/MCAS alerts are:
+a. Triaged within 4 hours
+b. Documented in incident log
+c. Escalated to Keith Merritt if confirmed unauthorized
+d. Account suspended immediately on confirmed unauthorized access
+
+6. CONCLUSION
+Keith the Drone Guy LLC uses Sentinel UEBA and Microsoft Defender for Cloud Apps to continuously detect unauthorized system use with 0 confirmed incidents in FY2026 per control 3.14.7.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

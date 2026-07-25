@@ -1,0 +1,33 @@
+﻿MAINTENANCE IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.7.6 - Maintenance Personnel Supervision
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC supervises maintenance personnel who lack CUI access authorization.
+
+2. SUPERVISION PROTOCOL
+Step 1: Terrell Banks escorts maintenance personnel to work area
+Step 2: CUI-sensitive systems are locked or screens faced away during maintenance
+Step 3: Terrell Banks remains in the same room throughout the maintenance activity
+Step 4: Terrell Banks verifies all tools and materials brought in and taken out
+Step 5: Post-maintenance: Terrell Banks inspects area before maintenance personnel leave
+
+3. MAINTENANCE SUPERVISION LOG (FY2026)
+Date       | Vendor       | Scope          | Supervised By | Unattended? | Notes
+2026-03-10 | Network-A    | Switch maint   | Terrell Banks          | No          | Full escort
+2026-05-20 | HP Support   | Laptop repair  | Terrell Banks          | No          | CUI screen covered
+2026-06-05 | ISP Tech     | Fiber repair   | Terrell Banks          | No          | Restricted to comms closet (no CUI)
+
+4. SYSTEM LOCKOUT PROCEDURE (when escort not possible)
+If Terrell Banks must leave area: All CUI systems shut down or screens locked + privacy filter on.
+This situation has not arisen in FY2026 - Terrell Banks maintained constant supervision.
+
+5. SECURITY CAMERA COVERAGE
+Office area with CUI systems is covered by security camera.
+Footage retained 30 days. Reviewed by Terrell Banks after each maintenance visit for anomalies.
+
+6. CONCLUSION
+Money Straight Talk LLC maintains constant supervision of all unauthorized maintenance personnel per control 3.7.6.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

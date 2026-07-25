@@ -1,0 +1,46 @@
+================================================================
+KEITH THE DRONE GUY LLC
+PHYSICAL ACCESS LOG - JULY 2026
+Evidence for CMMC Control 3.10.4
+================================================================
+Log Period:     July 1-25, 2026
+Prepared By:    Keith Merritt (downloaded from alarm controller)
+================================================================
+
+MAIN OFFICE KEY FOB ACCESS LOG - JULY 2026
+-------------------------------------------------
+DATE       TIME     USER           DOOR           RESULT
+---------  -------  -------------  -----------    -------
+07/01/26   08:05   Keith Merritt  Main Entry     GRANTED
+07/01/26   08:07   Dana Flowers   Main Entry     GRANTED
+07/01/26   17:32   Dana Flowers   Main Exit      (door held)
+07/01/26   17:45   Keith Merritt  Main Exit      (door held)
+07/02/26   08:10   Keith Merritt  Main Entry     GRANTED
+[...entries continue for all business days - excerpt shown...]
+07/21/26   20:15   Keith Merritt  Main Entry     GRANTED (after-hours)
+07/21/26   22:30   Keith Merritt  Main Exit      (door held)
+  Note: Keith confirmed working late on client report. Normal.
+
+07/18/26   (weekend) Unknown fob  Main Entry     DENIED (expired badge)
+  Investigation: Former contract worker - badge was not deactivated.
+  Action: Badge deactivated immediately. Keith verified no entry gained.
+
+IT CLOSET KEYPAD LOG - JULY 2026
+-------------------------------------------------
+DATE       TIME     CODE Used    RESULT
+---------  -------  -----------  ---------
+07/09/26   10:30   kmerritt     GRANTED (Patch work)
+07/16/26   09:15   kmerritt     GRANTED (Hardware check)
+07/21/26   20:30   kmerritt     GRANTED (After-hours work)
+
+Unauthorized IT closet access attempts: 0
+
+MONTHLY REVIEW NOTES - July 25, 2026
+-------------------------------------------------
+All access entries accounted for.
+Expired badge incident (07/18): Remediated. Deactivated.
+No unauthorized physical access confirmed.
+
+================================================================
+Certified: Keith Merritt - July 25, 2026
+================================================================

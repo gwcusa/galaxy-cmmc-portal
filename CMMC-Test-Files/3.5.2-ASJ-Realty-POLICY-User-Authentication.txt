@@ -1,0 +1,53 @@
+================================================================
+ASJ REALTY
+USER AUTHENTICATION POLICY
+================================================================
+Document ID:    POL-IA-002
+Version:        1.1
+Effective Date: May 1, 2026
+Review Date:    May 1, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy establishes authentication requirements for
+verifying the identity of users, processes, and devices
+before granting access to ASJ Realty systems.
+
+2. AUTHENTICATION METHODS
+
+2.1 Standard Users - Azure AD / M365
+  - Username + password (complexity per POL-IA-003)
+  - Multi-factor authentication (MFA) required for all users
+    (Microsoft Authenticator app - push notification)
+  - Passwordless authentication: enabled as option (FIDO2 key
+    or Authenticator app number matching)
+
+2.2 Workstation Local Logon
+  - Domain credentials required (Kerberos authentication)
+  - BitLocker PIN required at pre-boot (for laptops)
+
+2.3 VPN
+  - Azure AD SAML authentication (username + MFA)
+  - Machine certificate verification (device must be enrolled)
+
+2.4 Processes / Service Accounts
+  - Service accounts authenticate using managed service account
+    credentials (gMSA) where supported, or strong passwords
+    stored in Azure Key Vault
+
+3. PASSWORD REQUIREMENTS
+  - Minimum 12 characters
+  - Complexity: uppercase, lowercase, number, special character
+  - Password expiration: 365 days
+  - History: last 12 passwords prohibited
+
+4. FAILED AUTHENTICATION
+  - After 5 failed attempts: account locked 30 minutes
+  - Anomalous authentication patterns generate SIEM alerts
+
+================================================================
+Approved: Anthony James           05/01/2026
+Prepared: Sandra Okonkwo          04/28/2026
+================================================================

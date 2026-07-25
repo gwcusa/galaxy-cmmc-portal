@@ -1,0 +1,26 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.10.3 - Visitor Escort and Monitoring
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to escort visitors and monitor visitor activity in CUI areas, per NIST SP 800-171 Rev. 2 control 3.10.3.
+
+2. SCOPE
+All visitors (non-Keith the Drone Guy LLC employees) entering CUI facilities.
+
+3. REQUIREMENTS
+a. All visitors are signed in via the visitor log before entering CUI areas.
+b. Visitors are escorted by authorized Keith the Drone Guy LLC personnel at all times in CUI areas.
+c. Visitors are never left unattended with CUI systems or documents.
+d. Visitor log records name, organization, purpose, escort, entry/exit times.
+e. Visitor log is retained for 1 year.
+
+4. RESPONSIBILITY
+Keith Merritt or Keith Merritt escorts all visitors in CUI areas. Keith Merritt maintains visitor log.
+
+5. ENFORCEMENT
+Unescorted visitors in CUI areas are a security incident.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

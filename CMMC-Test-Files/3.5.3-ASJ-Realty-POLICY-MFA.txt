@@ -1,0 +1,26 @@
+﻿IDENTIFICATION AND AUTHENTICATION POLICY
+Organization: ASJ Realty
+Control: 3.5.3 - Multifactor Authentication
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to use multifactor authentication for local and network access to privileged accounts and network access to non-privileged accounts, per NIST SP 800-171 Rev. 2 control 3.5.3.
+
+2. SCOPE
+All ASJ Realty personnel accessing CUI systems locally or remotely.
+
+3. REQUIREMENTS
+a. MFA is required for all network access to CUI systems.
+b. MFA is required for local logon to privileged accounts.
+c. MFA uses at least two factors from: something you know, something you have, something you are.
+d. MFA enrollment is completed within 24 hours of account provisioning.
+e. MFA bypass is prohibited except during documented disaster recovery scenarios.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, enforces MFA through Conditional Access policies.
+
+5. ENFORCEMENT
+Access without MFA is technically blocked by Conditional Access.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

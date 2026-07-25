@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.1.7 - Privileged Function Execution Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy prevents non-privileged users at Bumpass Fire & Rescue from executing privileged functions and captures all privileged function executions in audit logs, per NIST SP 800-171 Rev. 2 control 3.1.7.
+
+2. SCOPE
+All Bumpass Fire & Rescue information systems and personnel.
+
+3. REQUIREMENTS
+a. Non-privileged accounts are technically blocked from executing privileged functions.
+b. All privileged function executions are captured in audit logs.
+c. Audit logs of privileged activity are reviewed by Mike Sadler monthly.
+d. Attempts by non-privileged users to escalate privileges generate security alerts.
+e. Windows UAC and Azure AD RBAC enforce privilege boundaries.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures and monitors privileged function controls.
+
+5. ENFORCEMENT
+Unauthorized privilege escalation attempts are investigated as security incidents.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

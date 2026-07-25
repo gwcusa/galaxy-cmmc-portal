@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.13.11 - FIPS-Validated Cryptography
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to employ FIPS-validated cryptography when protecting CUI, per NIST SP 800-171 Rev. 2 control 3.13.11.
+
+2. SCOPE
+All cryptographic functions protecting CUI at Blue Ridge Technology Solutions LLC.
+
+3. REQUIREMENTS
+a. FIPS 140-2 mode is enabled on all endpoints processing CUI.
+b. Only FIPS-validated cryptographic modules are used for CUI protection.
+c. Non-FIPS algorithms (MD5, RC4, DES, 3DES, SHA-1) are prohibited for CUI protection.
+d. FIPS mode is enforced via Group Policy.
+e. FIPS compliance is verified quarterly.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, enables and maintains FIPS mode on all CUI systems.
+
+5. ENFORCEMENT
+Systems with FIPS mode disabled must be remediated within 24 hours.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

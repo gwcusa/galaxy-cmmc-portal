@@ -1,0 +1,54 @@
+================================================================
+ASJ REALTY
+CUI ON PUBLICLY ACCESSIBLE SYSTEMS POLICY
+================================================================
+Document ID:    POL-AC-022
+Version:        1.0
+Effective Date: June 1, 2026
+Review Date:    June 1, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy controls CUI posted or processed on publicly
+accessible information systems (websites, public portals,
+social media, public listing platforms).
+
+2. POLICY STATEMENT
+  CUI must NOT be posted, published, or processed on any
+  publicly accessible system without review and authorization.
+
+3. ASJ REALTY PUBLIC SYSTEMS
+  The following systems are considered publicly accessible:
+    - ASJ Realty website (www.asjrealty.com)
+    - Zillow, Realtor.com, and MLS listing platforms
+    - Facebook, Instagram, LinkedIn company pages
+    - Yelp and Google Business Profile
+
+4. CUI PROHIBITION ON PUBLIC SYSTEMS
+  The following information must NEVER appear on public systems:
+    - Contract details or CUI from DoD/federal clients
+    - Personnel information beyond names/roles
+    - Security configurations or network information
+    - Client PII beyond what clients have consented to publish
+    - Any data marked as CUI, FOUO, or Sensitive
+
+5. REVIEW PROCESS
+  - Any content posted to public platforms must be reviewed by
+    Sandra Okonkwo before posting if it involves contract info
+  - Annual review of all public-facing content for accidental
+    CUI disclosure (Sandra Okonkwo, each January)
+  - Employees are trained that CUI cannot appear in listing
+    descriptions, social media posts, or website content
+
+6. INCIDENT RESPONSE
+  If CUI is discovered on a public platform:
+    - Remove content immediately
+    - Report to Anthony James within 1 hour
+    - Document incident per POL-IR-001
+
+================================================================
+Approved: Anthony James           06/01/2026
+Prepared: Sandra Okonkwo          05/30/2026
+================================================================

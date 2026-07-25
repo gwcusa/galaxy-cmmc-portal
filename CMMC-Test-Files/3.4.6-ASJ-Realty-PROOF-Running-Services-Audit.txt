@@ -1,0 +1,52 @@
+================================================================
+ASJ REALTY
+RUNNING SERVICES AND ENABLED FEATURES AUDIT
+Evidence for CMMC Control 3.4.6
+================================================================
+Report Date:    July 23, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+Sample Device:  ASJ-WS-001 (representative of all workstations)
+================================================================
+
+RUNNING SERVICES ON ASJ-WS-001 (Get-Service | Where Status -eq Running)
+-------------------------------------------------
+Service Name              Display Name                  Required?
+------------------------  ----------------------------  ---------
+wuauserv                  Windows Update                YES
+WinDefend                 Windows Defender Antivirus    YES
+MpsSvc                    Windows Defender Firewall     YES
+Spooler                   Print Spooler                 YES (print)
+wscsvc                    Security Center               YES
+LanmanWorkstation         Workstation                   YES
+W32Time                   Windows Time                  YES
+CryptSvc                  Cryptographic Services        YES
+DPS                       Diagnostic Policy             YES
+EventLog                  Windows Event Log             YES
+gpsvc                     Group Policy Client           YES
+SamSs                     Security Accounts Manager     YES
+Schedule                  Task Scheduler                YES
+SENS                      System Event Notification     YES
+WSearch                   Windows Search                YES (needed)
+
+SERVICES CONFIRMED DISABLED
+-------------------------------------------------
+RemoteRegistry            Remote Registry               DISABLED
+TlntSvr                   Telnet                        NOT INSTALLED
+ftpsvc                    FTP Service                   NOT INSTALLED
+W3SVC                     IIS World Wide Web            NOT INSTALLED
+WinRM                     Windows Remote Management     DISABLED (WS)
+Bluetooth Support Service Bluetooth Support             DISABLED
+
+SMBv1 STATUS:
+Get-WindowsOptionalFeature -Online -FeatureName SMB1Protocol
+State: Disabled
+
+INTUNE QUARTERLY CHECK - July 1, 2026
+-------------------------------------------------
+All 4 workstations and 2 laptops checked.
+Non-essential services running: 0 found on any device.
+Result: COMPLIANT
+
+================================================================
+Certified: Sandra Okonkwo - July 23, 2026
+================================================================

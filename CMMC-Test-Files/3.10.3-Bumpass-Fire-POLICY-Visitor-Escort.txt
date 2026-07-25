@@ -1,0 +1,55 @@
+================================================================
+BUMPASS FIRE & RESCUE
+VISITOR ESCORT AND MONITORING POLICY
+================================================================
+Document ID:    POL-PE-003
+Version:        1.0
+Effective Date: May 10, 2026
+Review Date:    May 10, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy establishes requirements for escorting visitors
+and monitoring their activity within BFR facilities.
+
+2. VISITOR DEFINITION
+A visitor is any person who is not an active BFR employee
+or authorized contractor with permanent access. This includes:
+  - Vendors and service technicians
+  - Government inspectors and auditors
+  - Media and journalists
+  - Family members of staff
+  - Job applicants
+
+3. VISITOR CHECK-IN
+  All visitors must:
+    a) Check in at the main reception desk
+    b) Provide government-issued photo ID
+    c) Sign the Visitor Log (paper, at reception)
+    d) Receive a "VISITOR" badge
+    e) State their purpose and the staff member they are visiting
+
+4. ESCORT REQUIREMENTS
+  - Visitors must be escorted by a BFR employee at all times
+  - Visitors are NOT permitted unescorted in:
+    * Server room / IT areas
+    * Records rooms containing CUI
+    * Dispatch center
+    * Command staff offices
+  - The escorting employee is responsible for visitor behavior
+
+5. VISITOR ACTIVITY MONITORING
+  - Visitors are covered by BFR security cameras
+  - Escort must remain in visual contact at all times in
+    sensitive areas
+
+6. VISITOR DEPARTURE
+  Visitor badge is collected and Visitor Log updated with
+  departure time upon exit.
+
+================================================================
+Approved: Chief Randy Bowles        05/10/2026
+Prepared: Mike Sadler               05/08/2026
+================================================================

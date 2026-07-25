@@ -1,0 +1,47 @@
+================================================================
+KEITH THE DRONE GUY LLC
+NETWORK BOUNDARY PROTECTION POLICY
+================================================================
+Document ID:    POL-SC-001
+Version:        1.0
+Effective Date: March 30, 2026
+Review Date:    March 30, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy requires monitoring, controlling, and protecting
+organizational communications at external boundaries and
+key internal boundaries.
+
+2. EXTERNAL BOUNDARY PROTECTION
+  - Cisco Meraki MX68 serves as the external boundary device
+    (firewall, IDS/IPS, and VPN gateway)
+  - All internet traffic flows through the MX68
+  - Default deny-all inbound rule (only VPN traffic allowed in)
+  - Outbound traffic filtered by URL category (Meraki Content
+    Filtering: blocks malicious sites, adult content, etc.)
+  - Meraki Threat Prevention: IPS/IDS signatures (updated daily)
+
+3. INTERNAL BOUNDARY PROTECTION
+  - VLANs segment the internal network:
+    VLAN 10: Corporate (CUI workstations)
+    VLAN 20: Guest (internet only, isolated)
+    VLAN 30: IoT devices (isolated)
+  - Inter-VLAN routing controlled by Meraki firewall rules
+  - Guest VLAN has no access to Corporate VLAN
+
+4. MONITORING
+  - Meraki Security Center: logs all IPS/IDS events
+  - DNS content filtering: Cisco Umbrella (blocks malicious DNS)
+  - Traffic anomalies forwarded to Microsoft Sentinel
+
+5. MANAGEMENT TRAFFIC
+  - Out-of-band management where possible
+  - Meraki dashboard accessible only from VPN or
+    registered admin MAC/IP
+
+================================================================
+Approved: Keith Merritt           03/30/2026
+================================================================

@@ -1,0 +1,36 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.8.2 - CUI Media Access Control
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty limits access to CUI media to authorized users only.
+
+2. CUI DIGITAL MEDIA ACCESS CONTROLS
+SharePoint CUI Site (asjrealty.com):
+Site URL: https://asjrealty.com/sites/CUI
+Permissions:
+- Owners: Sandra Okonkwo (full control)
+- Members: Anthony James (read/write), staff1 (read only), staff2 (read only)
+- External sharing: Disabled
+- Anonymous access: Disabled
+- Inheritance broken from public sites
+
+OneDrive CUI Folders:
+Synced only to compliant, enrolled devices. External sharing disabled at tenant level.
+
+3. QUARTERLY PERMISSION REVIEW
+Date: 2026-06-30  |  Reviewer: Sandra Okonkwo
+SharePoint CUI permissions reviewed: All authorized. No unexpected users found.
+OneDrive sharing report: 0 external shares of CUI content.
+
+4. ACCESS LOG SAMPLE (SharePoint CUI - June 2026)
+Date       | User          | Action        | File
+2026-06-05 | s.okonkwo@asjrealty.com   | FileAccessed  | DFARS-Compliance-Q2.docx
+2026-06-12 | Anthony James@asjrealty.com   | FileAccessed  | Contract-CUI-001.pdf
+2026-06-18 | Unknown ext.  | FileAccess    | BLOCKED (external sharing disabled)
+
+5. CONCLUSION
+ASJ Realty restricts CUI digital media access to authorized users via SharePoint RBAC per control 3.8.2.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

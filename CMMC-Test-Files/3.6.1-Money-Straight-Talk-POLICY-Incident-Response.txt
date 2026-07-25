@@ -1,0 +1,76 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+INCIDENT RESPONSE POLICY AND PLAN
+================================================================
+Document ID:    POL-IR-001
+Version:        1.3
+Effective Date: April 1, 2026
+Review Date:    April 1, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy establishes Money Straight Talk's capability to
+prepare for, detect, contain, recover from, and report
+cybersecurity incidents affecting company systems and CUI
+under our Department of Defense financial education contracts.
+
+2. INCIDENT CATEGORIES
+Category 1 — LOW: Unsuccessful phishing attempt, minor policy
+             violation, single failed login event
+Category 2 — MEDIUM: Malware detected (contained), account
+             compromise (single non-admin), data loss minor
+Category 3 — HIGH: Active ransomware, CUI breach, multiple
+             accounts compromised, system-wide outage
+
+3. INCIDENT RESPONSE PHASES
+
+3.1 PREPARATION
+  - Incident Response Team (IRT):
+      Lead:    Terrell Banks (Systems Administrator)
+      Backup:  Camille Odom (Managing Director)
+  - Contact list maintained in secure SharePoint folder
+  - IR tools pre-staged: forensic USB, backup credentials,
+    out-of-band communication list
+  - Annual tabletop exercise conducted each March
+
+3.2 DETECTION AND ANALYSIS
+  - Incidents detected via Azure Sentinel alerts, user reports,
+    or vendor notifications
+  - All potential incidents logged in IR Tracker (SharePoint)
+    within 1 hour of detection
+  - Severity assigned by Terrell Banks within 2 hours
+
+3.3 CONTAINMENT
+  - Cat 1: Monitor and document. No isolation required.
+  - Cat 2: Isolate affected device from network immediately.
+           Preserve logs before any remediation.
+  - Cat 3: Isolate all affected systems. Notify Camille Odom
+           immediately. Consider engaging IR vendor (Coalfire).
+
+3.4 RECOVERY
+  - Restore from last clean backup (Azure Backup)
+  - Verify system integrity before reconnecting to network
+  - Document all recovery actions in IR ticket
+
+3.5 POST-INCIDENT REVIEW
+  - After-action report completed within 5 business days
+  - Lessons learned shared with all staff
+  - Policy/procedure updates made as needed
+
+4. REPORTING REQUIREMENTS
+  - Cat 3 incidents involving CUI must be reported to
+    US-CERT (CISA) within 72 hours
+  - DoD contracting officer notified within 72 hours for
+    any CUI-related incident
+  - Internal management notified immediately for Cat 2+
+
+5. TESTING
+  Tabletop exercise conducted annually each March.
+  Last exercise: March 12, 2026 (see Exercise Report EX-2026-01)
+
+================================================================
+Approved: Camille Odom            04/01/2026
+Prepared: Terrell Banks           03/30/2026
+================================================================

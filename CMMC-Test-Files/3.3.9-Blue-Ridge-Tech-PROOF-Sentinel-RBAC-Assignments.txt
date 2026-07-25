@@ -1,0 +1,34 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.3.9 - Audit Management Access
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC limits audit log management to a restricted set of privileged users.
+
+2. AUDIT MANAGEMENT RBAC
+Platform: Microsoft Sentinel + Log Analytics (tenant: blueridgetech.com)
+
+Role Assignments (Sentinel Workspace):
+Name          | Role                       | Access Level
+Nathan Cruz          | Sentinel Contributor       | Configure analytics, manage data connectors
+Victor Osei         | Sentinel Reader            | View dashboards and incidents only
+All others    | No Sentinel access         | None
+
+Azure Policy: AuditManagement-Blue Ridge Technology Solutions LLC
+- Blocks assignment of Sentinel Contributor or higher to non-approved accounts
+- Alert fires to Victor Osei@blueridgetech.com if any new Sentinel admin role is assigned
+
+3. CONFIGURATION CHANGE LOG (FY2026)
+Date: 2026-03-15 - Nathan Cruz added new alert rule for after-hours admin logon
+Date: 2026-05-10 - Nathan Cruz adjusted brute force alert threshold from 10 to 5 attempts
+Both changes: Documented in IT change log. No unauthorized changes detected.
+
+4. QUARTERLY ACCESS REVIEW
+Date: 2026-07-01  |  Reviewer: Victor Osei
+Result: Nathan Cruz only user with management access to Sentinel. All other users confirmed read-only or no access.
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC restricts audit log management to Nathan Cruz only with monitored RBAC per control 3.3.9.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

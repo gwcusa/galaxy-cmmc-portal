@@ -1,0 +1,50 @@
+================================================================
+ASJ REALTY
+MICROSOFT SENTINEL - AUDIT FAILURE ALERT CONFIGURATION
+Evidence for CMMC Control 3.3.4
+================================================================
+Report Date:    July 22, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+Workspace:      ASJR-Sentinel-EastUS
+================================================================
+
+CONFIGURED ALERT RULES FOR AUDIT FAILURES
+-------------------------------------------------
+Alert Rule: "Heartbeat Missing - Log Agent Down"
+  Query: Heartbeat | summarize LastHeartbeat = max(TimeGenerated)
+         by Computer | where LastHeartbeat < ago(15m)
+  Frequency: Every 5 minutes
+  Threshold: 1 or more results
+  Action: Email alert to sokonkwo@asjrealty.com
+  Severity: High
+  Status: ENABLED
+
+Alert Rule: "Data Connector Zero Events"
+  Query: SecurityEvent | where TimeGenerated > ago(1h)
+         | summarize count() | where count_ == 0
+  Frequency: Every 60 minutes
+  Action: Email alert to sokonkwo@asjrealty.com
+  Severity: Medium
+  Status: ENABLED
+
+Alert Rule: "Log Disk > 80% Full"
+  Query: Perf | where CounterName == "% Free Space"
+         and ObjectName == "LogicalDisk" and CounterValue < 20
+  Frequency: Every 15 minutes
+  Action: Email + Teams alert
+  Status: ENABLED
+
+ALERT HISTORY - Last 90 Days
+-------------------------------------------------
+Date: May 3, 2026
+Alert: "Heartbeat Missing - Log Agent Down"
+Device: ASJ-WS-003
+Root Cause: AMA agent crashed after Windows update
+Resolution: Agent restarted by Sandra Okonkwo - restored in 45 min
+Logging gap: 35 minutes (local logs preserved - no data lost)
+
+No other audit failure alerts in last 90 days.
+
+================================================================
+Certified: Sandra Okonkwo - July 22, 2026
+================================================================

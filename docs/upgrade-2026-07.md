@@ -50,3 +50,13 @@ floor −203).
 
 `npm test` — SPRS scoring rules, catalog integrity (110 requirements, 17
 Level 1 practices, 320 assessment objectives), upload validation.
+
+## CMMC Test Files (completed 2026-07-25)
+
+`CMMC-Test-Files/` now contains the complete 1,101-file synthetic evidence
+corpus for testing and demos. All 110 NIST SP 800-171 Rev 2 controls × 5
+companies × 2 files (POLICY + PROOF) = 1,100 content files + 1 index.
+
+Each file is pre-populated with company-specific personnel, domains, and
+workstation names. Use these for upload testing, AI review pipeline testing,
+and client demo walkthroughs. Do not use in production or submit to a C3PAO.

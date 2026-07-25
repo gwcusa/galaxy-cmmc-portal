@@ -1,0 +1,48 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+AUDIT LOG PROTECTION POLICY
+================================================================
+Document ID:    POL-AU-008
+Version:        1.0
+Effective Date: May 1, 2026
+Review Date:    May 1, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy protects audit information and audit tools from
+unauthorized access, modification, and deletion.
+
+2. LOG STORAGE AND ACCESS CONTROL
+
+2.1 Central SIEM (Microsoft Sentinel)
+  - Logs are stored in Azure Log Analytics workspace
+  - RBAC roles assigned:
+    Nathan Cruz: Sentinel Contributor (can query, configure)
+    Victor Osei: Sentinel Reader (read-only)
+    All others: No access to Sentinel workspace
+  - No user can delete logs from Azure Log Analytics
+    (immutable storage mode enabled)
+  - Workspace deletion requires Azure subscription-level access
+    which is held only by Nathan Cruz and protected by PIM
+
+2.2 Local Audit Logs (Windows Event Log)
+  - Event Log service cannot be stopped (GPO: deny service stop)
+  - Log size: 512MB per log (Security, System, Application)
+  - Event log NTFS ACL: SYSTEM and Administrators only
+  - Users and standard accounts cannot read Security event log
+
+2.3 Audit Tools
+  - Sentinel workbooks and KQL queries stored in Azure
+  - Access to Sentinel configuration restricted to Nathan Cruz
+  - Changes to audit configuration require Change Request
+
+3. INTEGRITY MONITORING
+  - Any change to audit configuration alerts Nathan Cruz
+  - Deletion of logs (if somehow possible) generates a P1 alert
+
+================================================================
+Approved: Victor Osei            05/01/2026
+Prepared: Nathan Cruz            04/28/2026
+================================================================

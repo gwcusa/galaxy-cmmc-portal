@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Money Straight Talk LLC
+Control: 3.1.8 - Unsuccessful Logon Attempt Limits
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy limits unsuccessful logon attempts at Money Straight Talk LLC to protect against brute-force attacks, per NIST SP 800-171 Rev. 2 control 3.1.8.
+
+2. SCOPE
+All Money Straight Talk LLC systems and devices that authenticate users with CUI system access.
+
+3. REQUIREMENTS
+a. Accounts are locked after 5 consecutive failed logon attempts.
+b. Lockout duration is 30 minutes or until manually unlocked by Terrell Banks.
+c. Account lockout thresholds are enforced via Group Policy and Azure AD.
+d. Lockout events generate a security alert reviewed by Terrell Banks.
+e. Failed logon attempts are retained in audit logs for 90 days.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, configures and monitors account lockout settings.
+
+5. ENFORCEMENT
+Tampering with lockout configurations is a security policy violation.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

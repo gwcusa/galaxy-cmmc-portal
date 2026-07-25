@@ -1,0 +1,35 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.5.5 - MFA for Privileged Accounts
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty requires MFA for all privileged account network access.
+
+2. PRIVILEGED ACCOUNT MFA CONFIGURATION
+Tenant: asjrealty.com
+Privileged Roles in Scope: Global Admin, SharePoint Admin, Security Admin, Intune Admin
+
+Conditional Access Policy: MFA-Privileged-Accounts-ASJ Realty
+- Target: Users with Global Admin or Security Admin role
+- Condition: Any location, any device, any app
+- Grant Control: Require MFA + Compliant Device
+- Session: Sign-in frequency every 1 hour (no persistent sessions)
+
+Azure AD PIM:
+- All privileged roles are eligible (not permanently active)
+- Activation requires: MFA verification + business justification
+- Max activation: 8 hours
+
+3. PIM ACTIVATION LOG (June 2026)
+Date        | User      | Role         | MFA Used | Duration | Justification
+2026-06-05  | Sandra Okonkwo      | Global Admin | Yes      | 2h       | Intune policy update
+2026-06-12  | Sandra Okonkwo      | Security Admin | Yes    | 1h       | Sentinel rule update
+2026-06-20  | Sandra Okonkwo      | Global Admin | Yes      | 45m      | User account change
+
+MFA failures on privileged accounts: 0
+
+4. CONCLUSION
+ASJ Realty enforces MFA on all privileged account activations and network access via PIM and Conditional Access per control 3.5.5.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

@@ -1,0 +1,40 @@
+﻿INCIDENT RESPONSE IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.6.1 - Incident Response Capability
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue maintains an operational incident response capability.
+
+2. INCIDENT RESPONSE PLAN (IRP)
+Document: Bumpass Fire & Rescue Incident Response Plan v2.1
+Location: SharePoint/IT-Docs/Security/IRP.docx
+Last Updated: 2026-01-10 | Approved by: Randy Bowles
+
+IRP Sections:
+1. Purpose and Scope
+2. Incident Classification (Low/Medium/High/Critical)
+3. Roles and Responsibilities (Mike Sadler = IR Lead, Randy Bowles = Executive Sponsor)
+4. Detection and Reporting (1-hour reporting window)
+5. Containment, Eradication, Recovery procedures
+6. Post-incident review process
+7. US-CERT reporting requirements (within 1 hour for CUI incidents)
+
+3. ANNUAL TABLETOP EXERCISE
+Date: 2026-04-15
+Scenario: Phishing email leading to credential compromise of staff account
+Participants: Randy Bowles, Mike Sadler, Staff-1
+Duration: 2 hours
+Outcome: All procedures followed. 1 gap identified (no out-of-band communication plan).
+Gap Remediation: Personal cell phone contact list added to IRP (completed 2026-05-01).
+
+4. IR CONTACTS
+- Mike Sadler: Mike Sadler@bumpassfire.org / cell on file
+- Randy Bowles: Randy Bowles@bumpassfire.org / cell on file
+- US-CERT: https://us-cert.cisa.gov/report
+- Cyber Insurance Hotline: On file in IRP
+
+5. CONCLUSION
+Bumpass Fire & Rescue maintains a documented, tested, and operational incident response capability per control 3.6.1.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

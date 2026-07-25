@@ -1,0 +1,49 @@
+================================================================
+KEITH THE DRONE GUY LLC
+APPLICATION ALLOW-LISTING POLICY
+================================================================
+Document ID:    POL-CM-008
+Version:        1.0
+Effective Date: March 1, 2026
+Review Date:    March 1, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy applies a deny-by-exception (allow-list) approach
+to prevent unauthorized software from executing on KDG systems.
+
+2. POLICY STATEMENT
+Only software on the KDG Approved Software List (ASL) may
+execute on company-managed systems. All other software is
+denied by default.
+
+3. APPROVED SOFTWARE LIST (current)
+  - Microsoft 365 Apps (Word, Excel, Outlook, Teams, etc.)
+  - Microsoft Edge (browser)
+  - Adobe Acrobat Reader DC
+  - AutoCAD (licensed)
+  - Cisco AnyConnect Secure Mobility Client
+  - Microsoft Intune Management Extension
+  - Windows Defender (built-in)
+  - KnowBe4 Phisher+ Agent
+  - DJI FlightHub 2 (drone management)
+  - Skydio Connect (drone operations)
+  - FileZilla (SFTP only - for DoD SAFE transfers)
+
+4. DENY-BY-EXCEPTION PROCESS
+  Any software not on the ASL requires:
+    a) Business justification from the requesting staff member
+    b) Security review by Keith Merritt
+    c) Approval before installation
+    d) Addition to the ASL if approved long-term
+
+5. ENFORCEMENT
+  Microsoft Defender Application Control (WDAC) policy
+  enforces allow-listing in audit mode (transitioning to
+  enforce mode by September 2026).
+
+================================================================
+Approved: Keith Merritt           03/01/2026
+================================================================

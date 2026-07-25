@@ -1,0 +1,26 @@
+﻿SECURITY ASSESSMENT POLICY
+Organization: Money Straight Talk LLC
+Control: 3.12.4 - System Security Plan
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to develop, document, and periodically update System Security Plans (SSPs) that describe the system boundary, security requirements, and security controls, per NIST SP 800-171 Rev. 2 control 3.12.4.
+
+2. SCOPE
+All Money Straight Talk LLC information systems that process, store, or transmit CUI.
+
+3. REQUIREMENTS
+a. An SSP is maintained that documents the CUI system boundary, users, and controls.
+b. The SSP describes all 110 NIST SP 800-171 Rev. 2 controls and their implementation status.
+c. The SSP is reviewed and updated at least annually.
+d. Camille Odom approves the SSP.
+e. The SSP is protected from unauthorized access.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, authors and maintains the SSP. Camille Odom reviews and approves it annually.
+
+5. ENFORCEMENT
+An outdated SSP (>1 year old) is treated as a security compliance finding.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

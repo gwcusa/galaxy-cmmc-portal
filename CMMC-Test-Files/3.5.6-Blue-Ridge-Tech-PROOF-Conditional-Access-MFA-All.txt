@@ -1,0 +1,36 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.5.6 - MFA for Non-Privileged Accounts
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC requires MFA for all standard user accounts accessing CUI systems over the network.
+
+2. CONDITIONAL ACCESS POLICY (Non-Privileged Users)
+Policy Name: MFA-All-Users-Blue Ridge Technology Solutions LLC
+Tenant: blueridgetech.com
+Target: All users (includes non-privileged standard accounts)
+Apps: All cloud apps
+Condition: All network access (any location, any device)
+Grant Control: Require MFA
+
+This policy covers standard accounts in addition to privileged accounts (control 3.5.5).
+
+3. MFA ENROLLMENT STATUS
+Non-Privileged Standard Accounts:
+User            | Role         | MFA Method             | Enrolled    | Status
+staff1@blueridgetech.com    | Analyst      | Authenticator App      | 2026-01-22  | Active
+staff2@blueridgetech.com    | Coordinator  | Authenticator App      | 2026-02-01  | Active
+Victor Osei@blueridgetech.com     | Director of Operations       | Authenticator App      | 2026-01-20  | Active
+
+Non-Privileged MFA Compliance: 3/3 (100%)
+
+4. MONTHLY AUDIT
+Date: 2026-07-01  |  Auditor: Nathan Cruz
+All standard accounts verified MFA-enrolled and policy-compliant.
+MFA disabled for any account: 0
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC requires and enforces MFA for all non-privileged user accounts via Conditional Access per control 3.5.6.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

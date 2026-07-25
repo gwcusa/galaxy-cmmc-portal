@@ -1,0 +1,39 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.13.13 - Mobile Code
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue controls mobile code on CUI endpoints.
+
+2. OFFICE MACRO CONFIGURATION
+GPO/Intune Policy: OfficeMacro-Control-Bumpass Fire & Rescue
+Settings applied:
+- Block macros from files downloaded from the Internet: Enabled
+- Disable all macros except digitally signed macros: Enabled
+- Require macros to be signed by a trusted publisher: Enabled
+Trusted location: SharePoint site ("Bumpass Fire & Rescue CUI" site library only)
+
+3. BROWSER (MICROSOFT EDGE) CONFIGURATION
+Intune Configuration Profile: EdgeHardening-Bumpass Fire & Rescue
+Key settings:
+- JavaScript from Restricted Sites: Blocked
+- ActiveX: Disabled (not supported in Edge)
+- Enhanced Security Mode: Enabled
+- SmartScreen: Enabled (blocks known malicious scripts)
+- WebAssembly: Restricted to trusted sites
+
+4. MACRO EXECUTION LOG (Q2 2026)
+Blocked macro attempts: 4 (all from email attachments originating from external sources)
+Allowed macro executions: 0 (no trusted-location macros executed this quarter)
+No unsigned macros executed.
+
+5. CONFIGURATION VERIFICATION
+Date: 2026-06-30  |  Tool: Intune device compliance report
+BFR-WS-001 - OfficeMacro-Control-Bumpass Fire & Rescue: Compliant
+BFR-WS-001 - EdgeHardening-Bumpass Fire & Rescue: Compliant
+
+6. CONCLUSION
+Bumpass Fire & Rescue blocks unsigned macros and controls browser-based mobile code execution via Intune/GPO per control 3.13.13.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

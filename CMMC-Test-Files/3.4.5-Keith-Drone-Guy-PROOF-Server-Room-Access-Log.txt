@@ -1,0 +1,36 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.4.5 - Access Restrictions for Configuration Changes
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC enforces access restrictions for configuration changes to CUI systems.
+
+2. PHYSICAL ACCESS RESTRICTIONS
+Server Room / Network Closet:
+- Location: Secured room with electronic keypad lock
+- Authorized personnel: Keith Merritt only (key code known only to Keith Merritt and Keith Merritt for emergencies)
+- Access log: Electronic access log reviewed monthly by Keith Merritt
+- Visitor access: Requires Keith Merritt escort
+
+Physical Access Log (June 2026):
+Date       | Time   | User  | Purpose
+2026-06-03 | 09:15  | Keith Merritt  | Switch firmware update
+2026-06-15 | 14:30  | Keith Merritt  | Cable management and inspection
+
+3. LOGICAL ACCESS RESTRICTIONS
+Intune Admin: Keith Merritt only (Global Admin, PIM-gated)
+Azure AD: Keith Merritt only can modify device configurations
+GPO: Keith Merritt only has GPO Edit permissions in AD
+Sentinel: Keith Merritt has Contributor (config); Keith Merritt has Reader only
+
+Conditional Access: Configuration console access blocked from non-compliant devices.
+
+4. UNAUTHORIZED CHANGE DETECTION
+Sentinel Rule: "UnauthorizedConfigChange" - alerts if non-Keith Merritt user makes Intune or Azure AD configuration changes.
+Last triggered: Never (FY2026)
+
+5. CONCLUSION
+Keith the Drone Guy LLC enforces physical and logical access restrictions for configuration changes per control 3.4.5.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

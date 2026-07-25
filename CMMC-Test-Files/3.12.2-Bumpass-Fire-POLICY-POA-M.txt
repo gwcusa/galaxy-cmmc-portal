@@ -1,0 +1,26 @@
+﻿SECURITY ASSESSMENT POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.12.2 - Plan of Action and Milestones
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to develop and implement plans of action to correct deficiencies and reduce vulnerabilities in CUI systems, per NIST SP 800-171 Rev. 2 control 3.12.2.
+
+2. SCOPE
+All identified deficiencies in Bumpass Fire & Rescue CUI system security controls.
+
+3. REQUIREMENTS
+a. A POA&M is maintained for all identified security control deficiencies.
+b. Each POA&M entry includes: finding, remediation plan, responsible party, and milestone dates.
+c. POA&M is reviewed and updated quarterly.
+d. Completed items are marked closed with evidence of remediation.
+e. Randy Bowles approves the POA&M quarterly and accepts residual risk.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, maintains the POA&M. Randy Bowles reviews and approves it quarterly.
+
+5. ENFORCEMENT
+Overdue POA&M items without approved extensions are escalated immediately to Randy Bowles.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

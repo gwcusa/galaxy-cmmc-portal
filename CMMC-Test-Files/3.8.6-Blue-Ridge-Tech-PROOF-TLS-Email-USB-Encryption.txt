@@ -1,0 +1,35 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.8.6 - CUI Encryption in Transit
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC encrypts CUI during all forms of transmission.
+
+2. NETWORK TRANSMISSION ENCRYPTION
+Email (Exchange Online / blueridgetech.com):
+- TLS enforced for all outbound email (Exchange Transport Rule: RequireTLS)
+- S/MIME certificates: Deployed to Nathan Cruz and Victor Osei accounts for external CUI email
+- DLP policy blocks unencrypted CUI email to external recipients
+
+Web/Application Traffic:
+- All SharePoint CUI access: HTTPS (TLS 1.3)
+- VPN: AES-256-GCM (IKEv2)
+- All Blue Ridge Technology Solutions LLC web services: TLS 1.2 minimum (verified by SSL Labs)
+
+3. PORTABLE MEDIA ENCRYPTION
+CUI USB Drives: Kingston IronKey D300S (hardware AES-256-XTS)
+PIN required to access. FIPS 140-2 Level 3 certified.
+Encrypted: Yes. Data inaccessible without PIN.
+
+4. QUARTERLY ENCRYPTION REVIEW
+Date: 2026-06-30  |  Reviewer: Nathan Cruz
+TLS configuration: All services A or A+ (SSL Labs)
+Email TLS: RequireTLS rule active, no bypasses
+USB encryption: Both IronKeys operational and PIN-protected
+Result: All CUI transit encryption controls operational
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC encrypts all CUI in transit via TLS, S/MIME, and hardware-encrypted USB per control 3.8.6.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

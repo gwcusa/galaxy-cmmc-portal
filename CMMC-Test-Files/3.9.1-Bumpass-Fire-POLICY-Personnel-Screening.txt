@@ -1,0 +1,26 @@
+﻿PERSONNEL SECURITY POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.9.1 - Personnel Screening
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy establishes Bumpass Fire & Rescue's requirements for screening individuals prior to granting access to CUI systems, per NIST SP 800-171 Rev. 2 control 3.9.1.
+
+2. SCOPE
+All Bumpass Fire & Rescue employees, contractors, and other personnel who will have access to CUI.
+
+3. REQUIREMENTS
+a. All personnel with CUI access must complete a background check before access is granted.
+b. Background check includes: criminal history, employment verification, and reference checks.
+c. Results are reviewed and approved by Randy Bowles before CUI access is granted.
+d. Contractors with CUI access must provide evidence of background screening by their employer.
+e. Background check results are retained in a secure personnel file for 5 years.
+
+4. RESPONSIBILITY
+Randy Bowles, Fire Chief, reviews and approves background check results. Mike Sadler grants CUI access only after approval.
+
+5. ENFORCEMENT
+No individual may receive CUI access without a completed and approved background check.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

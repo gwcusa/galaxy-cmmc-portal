@@ -1,0 +1,35 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.3.8 - Audit Log Protection
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty protects audit logs from unauthorized modification or deletion.
+
+2. LOG PROTECTION CONTROLS
+Platform: Microsoft Sentinel + Log Analytics (tenant: asjrealty.com)
+
+Immutability: Log Analytics workspace configured with 90-day immutability lock.
+Records cannot be deleted or modified by any user during retention period.
+
+Access Control (RBAC):
+- Log Analytics Reader: Anthony James (read-only - for review/audit)
+- Log Analytics Contributor: Sandra Okonkwo (query and configure, cannot delete logs)
+- Log Analytics Data Purge: Not assigned to any ASJ Realty user
+- Owner: Azure Subscription admin (break-glass account, MFA + PAM required)
+
+Backup: Logs exported to Azure Blob Storage (GRS redundancy)
+Blob container: cui-logs-backup-asjrealty.com | Access: Sandra Okonkwo only | Soft delete: 30 days
+
+3. ACCESS AUDIT
+Log access itself is audited via Azure Activity Log.
+Azure Activity Log: Immutable, managed by Microsoft.
+
+4. ACCESS REVIEW
+Date: 2026-06-30  |  Reviewer: Sandra Okonkwo
+Result: 0 unauthorized users with log access. RBAC assignments confirmed.
+
+5. CONCLUSION
+ASJ Realty protects audit logs via RBAC, immutable storage, and geo-redundant backup per control 3.3.8.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

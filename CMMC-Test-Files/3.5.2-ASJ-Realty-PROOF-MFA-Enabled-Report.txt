@@ -1,0 +1,50 @@
+================================================================
+ASJ REALTY
+AZURE AD - MFA REGISTRATION AND AUTHENTICATION STATUS
+Evidence for CMMC Control 3.5.2
+================================================================
+Report Date:    July 24, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+Tenant:         asjrealty.onmicrosoft.com
+================================================================
+
+MFA REGISTRATION STATUS - ALL USERS
+-------------------------------------------------
+USER                      MFA METHOD           STATUS
+------------------------  -------------------  --------
+ajames@asjrealty.com      MS Authenticator     REGISTERED
+sokonkwo@asjrealty.com    MS Authenticator     REGISTERED
+rthomas@asjrealty.com     MS Authenticator     REGISTERED
+dcollins@asjrealty.com    MS Authenticator     REGISTERED
+mwhite@asjrealty.com      MS Authenticator     REGISTERED
+lbrown@asjrealty.com      MS Authenticator     REGISTERED
+
+Total users: 6 | MFA registered: 6 (100%)
+
+CONDITIONAL ACCESS POLICY: "Require MFA for All Users"
+-------------------------------------------------
+Policy Status:    ACTIVE
+Target:           All users, all cloud apps
+Condition:        Any sign-in (no trusted location exceptions)
+Grant Control:    Require MFA
+Exclusions:       svc-* accounts (service accounts only)
+
+AUTHENTICATION LOG SAMPLE - July 2026
+-------------------------------------------------
+DATE         USER        MFA METHOD      RESULT
+-----------  ----------  --------------  --------
+07/14/2026   sokonkwo    Push notify     SUCCESS
+07/14/2026   ajames      Push notify     SUCCESS
+07/15/2026   rthomas     Push notify     SUCCESS
+07/15/2026   dcollins    Push notify     SUCCESS
+07/16/2026   mwhite      Push notify     MFA DENIED (user denied push)
+             mwhite      Push notify     SUCCESS (2nd attempt)
+Note: mwhite received unexpected MFA push on 7/16 and denied it.
+User contacted IT. Sandra confirmed no unauthorized access attempt.
+Incident logged and closed.
+
+MFA BYPASS ATTEMPTS: 0
+
+================================================================
+Certified: Sandra Okonkwo - July 24, 2026
+================================================================

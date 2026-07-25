@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Money Straight Talk LLC
+Control: 3.1.18 - Mobile Device Connection Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy controls the connection of mobile devices to Money Straight Talk LLC systems and CUI networks, per NIST SP 800-171 Rev. 2 control 3.1.18.
+
+2. SCOPE
+All mobile devices (smartphones, tablets, laptops) connecting to Money Straight Talk LLC CUI systems.
+
+3. REQUIREMENTS
+a. All mobile devices connecting to Money Straight Talk LLC CUI resources must be enrolled in Intune MDM.
+b. Non-enrolled personal devices may not access CUI systems or networks.
+c. Mobile devices must meet compliance requirements (encrypted, PIN-locked, current OS).
+d. Terrell Banks approves mobile device enrollment requests from staff.
+e. Lost or stolen devices are remotely wiped within 4 hours of report.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, manages the MDM solution and mobile device compliance.
+
+5. ENFORCEMENT
+Unenrolled mobile devices detected on CUI networks are blocked and reported.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

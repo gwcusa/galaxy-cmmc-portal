@@ -1,0 +1,41 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.10.6 - Alternate Work Site Security
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty enforces security controls at alternate (remote) work sites.
+
+2. REMOTE WORK AGREEMENT
+Document: ASJ Realty Remote Work Security Agreement v1.2
+Signed by all remote-capable staff. Stored in SharePoint/HR-Docs/Remote-Work/
+
+Agreement Requirements Acknowledgment:
+a. Dedicated, lockable home office workspace
+b. Use ASJ Realty-issued or approved encrypted device only
+c. Connect via VPN before accessing any ASJ Realty CUI resource
+d. No printing of CUI at home without prior approval
+e. Secure disposal of any printed CUI (cross-cut shredder)
+
+3. SIGNED AGREEMENT RECORD
+Name          | Role         | Signed      | Review Due
+Anthony James         | Office Manager       | 2026-01-15  | 2027-01-15
+Sandra Okonkwo          | IT Director        | 2026-01-15  | 2027-01-15
+Staff-1       | Analyst      | 2026-01-22  | 2027-01-22
+
+4. ANNUAL REMOTE SECURITY REVIEW
+Date: 2026-06-15  |  Reviewer: Sandra Okonkwo
+Method: Self-assessment questionnaire + Sandra Okonkwo spot-check call
+Staff-1: Home office secured (door lock, VPN confirmed active, device encrypted)
+Anthony James: Home office secured, VPN in use
+
+Results: All remote workers compliant. 0 findings.
+
+5. VPN ENFORCEMENT
+Conditional Access: CUI resources inaccessible without VPN (all traffic routes through ASJ Realty gateway)
+VPN Usage Confirmed: Remote logins verified in Azure AD sign-in logs.
+
+6. CONCLUSION
+ASJ Realty enforces remote work security via signed agreements and annual reviews per control 3.10.6.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

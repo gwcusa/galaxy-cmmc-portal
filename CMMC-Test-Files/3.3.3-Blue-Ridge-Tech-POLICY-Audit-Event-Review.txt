@@ -1,0 +1,50 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+AUDIT EVENT REVIEW AND UPDATE POLICY
+================================================================
+Document ID:    POL-AU-003
+Version:        1.0
+Effective Date: April 25, 2026
+Review Date:    April 25, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy establishes requirements for reviewing and
+updating the set of events logged by BRTS information systems
+to ensure appropriate audit coverage.
+
+2. LOGGED EVENTS (CURRENT SET)
+The following event categories are currently logged:
+  - Logon/logoff events (success and failure)
+  - Account management (create, modify, delete, lock)
+  - Privilege use (escalation, role activation)
+  - Object access (CUI files and folders)
+  - Policy changes (security policy modifications)
+  - System events (startup, shutdown, service start/stop)
+  - Process creation (Event ID 4688)
+  - Network connections to/from sensitive systems
+
+3. REVIEW PROCESS
+  The logged event set is reviewed:
+    a) Annually (each April, by Nathan Cruz)
+    b) After any security incident
+    c) After significant infrastructure changes
+    d) When new systems are added to scope
+
+4. UPDATE PROCEDURE
+  Changes to the logged event set require:
+    - Documentation in the Audit Configuration Change Log
+    - Approval from Victor Osei (for reductions to event set)
+    - No approval required for adding new event categories
+    - Changes implemented within 30 days of approval
+
+5. SIEM COVERAGE
+  All logged events are forwarded to Microsoft Sentinel.
+  Any gap in log forwarding generates an alert.
+
+================================================================
+Approved: Victor Osei            04/25/2026
+Prepared: Nathan Cruz            04/22/2026
+================================================================

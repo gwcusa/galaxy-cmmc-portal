@@ -1,0 +1,26 @@
+﻿MAINTENANCE POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.7.1 - System Maintenance
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy establishes Blue Ridge Technology Solutions LLC's requirements for performing maintenance on information systems, per NIST SP 800-171 Rev. 2 control 3.7.1.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC hardware and software systems that process, store, or transmit CUI.
+
+3. REQUIREMENTS
+a. Maintenance activities are scheduled and documented in advance.
+b. Security patches are applied within 30 days of release (critical: 72 hours).
+c. Maintenance windows are communicated to Victor Osei before scheduled downtime.
+d. Post-maintenance verification confirms system functionality and security settings.
+e. All maintenance activities are logged with date, type, and personnel involved.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, schedules and performs all system maintenance.
+
+5. ENFORCEMENT
+Overdue patches trigger automated alerts and escalation to Victor Osei after 30 days.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

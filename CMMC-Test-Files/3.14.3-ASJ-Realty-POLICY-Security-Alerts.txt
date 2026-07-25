@@ -1,0 +1,26 @@
+﻿SYSTEM AND INFORMATION INTEGRITY POLICY
+Organization: ASJ Realty
+Control: 3.14.3 - Security Alerts and Advisories
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to monitor security alerts and advisories from authoritative sources and take appropriate actions, per NIST SP 800-171 Rev. 2 control 3.14.3.
+
+2. SCOPE
+All security threat intelligence and advisory monitoring for ASJ Realty CUI systems.
+
+3. REQUIREMENTS
+a. Sandra Okonkwo subscribes to US-CERT/CISA alerts and advisories.
+b. Microsoft Security Response Center (MSRC) advisories are monitored for M365 and Windows.
+c. Relevant alerts are reviewed within 24 hours of receipt.
+d. Emergency/critical advisories trigger immediate response per the Incident Response Plan.
+e. Advisory responses are logged.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, monitors security alerts and coordinates response.
+
+5. ENFORCEMENT
+Failure to respond to critical advisories within 24 hours is escalated to Anthony James.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

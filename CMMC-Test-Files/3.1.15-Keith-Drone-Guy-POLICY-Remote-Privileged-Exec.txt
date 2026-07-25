@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.1.15 - Remote Privileged Command Authorization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy authorizes remote execution of privileged commands and security-relevant information access via remote access only for documented operational needs, per NIST SP 800-171 Rev. 2 control 3.1.15.
+
+2. SCOPE
+All Keith the Drone Guy LLC personnel who execute privileged administrative commands remotely.
+
+3. REQUIREMENTS
+a. Remote privileged command execution requires a documented service ticket or change request.
+b. All remote privileged sessions are recorded and reviewed.
+c. Keith Merritt authorizes remote privileged access requests in advance.
+d. Emergency remote privileged access requires after-action documentation within 24 hours.
+e. Remote privileged access is audited monthly by Keith Merritt.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, executes privileged commands remotely only under documented authorization.
+
+5. ENFORCEMENT
+Unauthorized remote privileged command execution is an immediate security incident.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

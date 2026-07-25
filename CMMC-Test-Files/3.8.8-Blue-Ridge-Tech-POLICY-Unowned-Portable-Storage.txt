@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.8.8 - Unowned Portable Storage Prohibition
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy prohibits the use of portable storage devices when such devices have no identifiable owner, per NIST SP 800-171 Rev. 2 control 3.8.8.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC CUI endpoints and removable storage found in or around Blue Ridge Technology Solutions LLC facilities.
+
+3. REQUIREMENTS
+a. Unidentified or ownerless portable storage devices found in Blue Ridge Technology Solutions LLC facilities are quarantined and reported to Nathan Cruz.
+b. Found storage devices are never connected to Blue Ridge Technology Solutions LLC systems without malware scanning and approval.
+c. The approved media register identifies the owner of every authorized device.
+d. Personnel are trained not to connect found USB drives or storage devices.
+e. Intune device control ensures only allowlisted devices connect to CUI endpoints.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, enforces the no-unowned-media policy and trains personnel.
+
+5. ENFORCEMENT
+Connecting an unowned device to a CUI endpoint is a security incident.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

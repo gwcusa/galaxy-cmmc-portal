@@ -1,0 +1,39 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.13.13 - Mobile Code
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC controls mobile code on CUI endpoints.
+
+2. OFFICE MACRO CONFIGURATION
+GPO/Intune Policy: OfficeMacro-Control-Blue Ridge Technology Solutions LLC
+Settings applied:
+- Block macros from files downloaded from the Internet: Enabled
+- Disable all macros except digitally signed macros: Enabled
+- Require macros to be signed by a trusted publisher: Enabled
+Trusted location: SharePoint site ("Blue Ridge Technology Solutions LLC CUI" site library only)
+
+3. BROWSER (MICROSOFT EDGE) CONFIGURATION
+Intune Configuration Profile: EdgeHardening-Blue Ridge Technology Solutions LLC
+Key settings:
+- JavaScript from Restricted Sites: Blocked
+- ActiveX: Disabled (not supported in Edge)
+- Enhanced Security Mode: Enabled
+- SmartScreen: Enabled (blocks known malicious scripts)
+- WebAssembly: Restricted to trusted sites
+
+4. MACRO EXECUTION LOG (Q2 2026)
+Blocked macro attempts: 4 (all from email attachments originating from external sources)
+Allowed macro executions: 0 (no trusted-location macros executed this quarter)
+No unsigned macros executed.
+
+5. CONFIGURATION VERIFICATION
+Date: 2026-06-30  |  Tool: Intune device compliance report
+BRTS-WS-001 - OfficeMacro-Control-Blue Ridge Technology Solutions LLC: Compliant
+BRTS-WS-001 - EdgeHardening-Blue Ridge Technology Solutions LLC: Compliant
+
+6. CONCLUSION
+Blue Ridge Technology Solutions LLC blocks unsigned macros and controls browser-based mobile code execution via Intune/GPO per control 3.13.13.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

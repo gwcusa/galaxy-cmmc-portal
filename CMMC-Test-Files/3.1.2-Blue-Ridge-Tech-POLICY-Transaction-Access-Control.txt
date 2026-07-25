@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.2 - Transaction and Function Access Limits
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy limits Blue Ridge Technology Solutions LLC system access to the types of transactions and functions that authorized users are permitted to execute, per NIST SP 800-171 Rev. 2 control 3.1.2.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC information systems and users who access CUI or CUI-supporting systems.
+
+3. REQUIREMENTS
+a. User accounts are assigned roles that restrict access to only required functions.
+b. Role assignments are documented and reviewed semi-annually by Nathan Cruz.
+c. No user shall have access beyond what is required for their job function.
+d. Administrative roles are restricted to personnel with a documented operational need.
+e. Role changes require written approval before implementation.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, manages role assignments. Victor Osei approves elevated access requests.
+
+5. ENFORCEMENT
+Unauthorized function access is treated as a policy violation subject to disciplinary action.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

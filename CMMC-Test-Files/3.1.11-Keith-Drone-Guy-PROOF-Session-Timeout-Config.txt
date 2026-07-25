@@ -1,0 +1,37 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.11 - Automatic Session Termination
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC automatically terminates sessions after defined inactivity periods.
+
+2. SESSION TIMEOUT CONFIGURATIONS
+
+Windows Endpoints (Interactive Sessions):
+GPO: SessionTimeout-Keith the Drone Guy LLC
+- Interactive session idle limit: 60 minutes
+- Disconnected session limit: 60 minutes
+
+Microsoft 365 / Azure AD:
+- Persistent browser session: Disabled
+- Sign-in frequency: 8 hours (Conditional Access policy: SignInFreq-Keith the Drone Guy LLC)
+- Re-authentication required: Yes (includes MFA prompt)
+
+SharePoint / CUI Portal:
+- Session timeout: 30 minutes idle
+- Token lifetime: 1 hour max
+
+VPN (GlobalProtect):
+- Max session duration: 8 hours
+- Idle timeout: 60 minutes
+
+3. VERIFICATION
+Date: 2026-06-25  |  Tested by: Keith Merritt
+Test: Opened SharePoint CUI session on KDG-WS-001 (k.merritt@keithdroney.com), left idle 35 minutes.
+Result: Session expired after 30 minutes. Full re-authentication required. PASS.
+
+4. CONCLUSION
+Keith the Drone Guy LLC enforces automatic session termination across all CUI-connected systems per control 3.1.11.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

@@ -1,0 +1,45 @@
+================================================================
+ASJ REALTY
+PERSONNEL SCREENING COMPLETION RECORDS
+Evidence for CMMC Control 3.9.1
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+Background Check Provider: HireRight (hireright.com)
+================================================================
+
+CURRENT STAFF - SCREENING STATUS
+-------------------------------------------------
+EMPLOYEE          POSITION              SCREENING DATE  RESULT   CUI ACCESS?
+----------------  --------------------  --------------  -------  -----------
+Anthony James     Principal Broker      (prior to 2020)  PASS    YES
+Sandra Okonkwo    IT Coordinator        03/10/2022       PASS    YES
+Raymond Thomas    Sales Agent           07/01/2026       PASS    YES
+Diana Collins     Operations Manager    11/15/2023       PASS    YES
+Michael White     Sales Agent           06/01/2025       PASS    YES
+Lydia Brown       Administrative Asst.  02/10/2026       PASS    YES
+
+All 6 current staff: Screened before CUI access granted.
+
+SCREENING COMPONENTS COMPLETED (Standard for all staff)
+-------------------------------------------------
+Component                   Status
+--------------------------  --------
+Criminal background check   COMPLETE (all 6)
+Identity verification       COMPLETE (all 6)
+Reference check (2+)        COMPLETE (all 6)
+Employment history (5yr)    COMPLETE (all 6)
+
+MOST RECENT NEW HIRE - Raymond Thomas (hired 07/01/2026)
+-------------------------------------------------
+Screening ordered:  June 20, 2026
+Results received:   June 28, 2026
+Result:             PASS (no adverse findings)
+CUI access granted: July 1, 2026 (first day, after results confirmed)
+Approved by:        Anthony James - June 29, 2026
+
+HireRight Order IDs on file in HR (not listed here for privacy).
+
+================================================================
+Certified: Anthony James (reviewing authority) - July 25, 2026
+================================================================

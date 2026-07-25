@@ -1,0 +1,46 @@
+================================================================
+BUMPASS FIRE & RESCUE
+GROUP POLICY — ACCOUNT LOCKOUT CONFIGURATION
+Evidence for CMMC Control 3.1.8
+================================================================
+Report Date:    July 17, 2026
+Prepared By:    Mike Sadler, IT Administrator
+Domain:         bfr.local
+GPO Name:       BFR-Account-Lockout-Policy
+================================================================
+
+GPO SETTINGS — ACCOUNT LOCKOUT POLICY
+-------------------------------------------------
+Account lockout threshold:     5 invalid logon attempts
+Account lockout duration:      30 minutes
+Reset lockout counter after:   30 minutes
+
+VERIFICATION — gpresult output excerpt (DC01):
+-------------------------------------------------
+Computer Configuration > Windows Settings > Security Settings
+  > Account Policies > Account Lockout Policy
+    Account lockout duration: 30 minutes
+    Account lockout threshold: 5 invalid logon attempts
+    Reset account lockout counter after: 30 minutes
+
+AZURE AD SMART LOCKOUT SETTINGS
+-------------------------------------------------
+Smart Lockout Threshold:       10 failed attempts (cloud)
+Lockout Duration:              60 seconds (increases with
+                               repeat failures)
+Status:                        ENABLED
+
+ACCOUNT LOCKOUT EVENTS — Event ID 4740 (July 2026)
+-------------------------------------------------
+DATE         ACCOUNT        LOCKED ON         REASON
+-----------  -------------  ----------------  --------------------
+07/08/2026   rthomas_bfr   BFR-WS-THOMAS     5 bad passwords
+             (User forgot password after returning from PTO)
+             Unlocked by Mike Sadler at 09:45 after identity
+             verified via phone.
+
+No other lockout events in July 2026.
+
+================================================================
+Certified: Mike Sadler, IT Administrator — July 17, 2026
+================================================================

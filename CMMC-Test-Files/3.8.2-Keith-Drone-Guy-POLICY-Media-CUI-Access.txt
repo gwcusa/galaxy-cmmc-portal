@@ -1,0 +1,50 @@
+================================================================
+KEITH THE DRONE GUY LLC
+MEDIA CUI ACCESS CONTROL POLICY
+================================================================
+Document ID:    POL-MP-002
+Version:        1.0
+Effective Date: March 15, 2026
+Review Date:    March 15, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy limits access to CUI on system media to only
+authorized users at Keith the Drone Guy LLC.
+
+2. DIGITAL MEDIA ACCESS CONTROL
+
+2.1 Network Storage (NAS)
+  - CUI share (\\NAS\CUI-Projects\) requires:
+    * Domain authentication (AD credentials)
+    * Membership in KDG-CUI-Users AD group
+  - Currently authorized: Keith Merritt, Dana Flowers
+  - Ricky Singh: NOT in CUI-Users group (no CUI role)
+
+2.2 Portable Storage
+  - Encrypted USB drives (Kingston IronKey) accessed
+    with a PIN known only to the assigned user
+  - USB-001 (Keith Merritt PIN): Keith only
+  - USB-002 (Dana Flowers PIN): Dana only
+
+2.3 Cloud Storage (OneDrive/SharePoint CUI folder)
+  - CUI SharePoint site: restricted to Keith and Dana
+  - Site permissions reviewed monthly by Keith Merritt
+  - Conditional Access: requires Intune-enrolled device
+
+3. PAPER MEDIA ACCESS
+  - Locked cabinet holding paper CUI:
+    Keith Merritt has the key
+    Dana Flowers has a spare key (for business continuity)
+  - No other staff have access to the cabinet
+
+4. ACCESS REVIEW
+  Keith Merritt reviews the CUI-Users AD group and SharePoint
+  site permissions monthly. Any unauthorized access detected
+  is reported as an incident per POL-IR-001.
+
+================================================================
+Approved: Keith Merritt           03/15/2026
+================================================================

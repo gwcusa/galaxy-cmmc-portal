@@ -1,0 +1,35 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.1.17 - Wireless Access Authentication and Encryption
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC protects wireless CUI network access with strong authentication and encryption.
+
+2. WIRELESS ENCRYPTION CONFIGURATION
+CUI SSID: CUI-Money Straight Talk LLC
+Security Mode: WPA3-Enterprise (802.1X)
+Encryption: AES-CCMP 256-bit
+Authentication: Certificate-based EAP-TLS
+RADIUS Server: NPS on moneystraighttalk.com
+
+Disabled protocols: WEP, TKIP, WPA-Personal on CUI SSID
+
+Guest SSID: Guest-Money Straight Talk LLC
+Security Mode: WPA3-SAE (Personal - internet only, no CUI access)
+VLAN: Guest VLAN 20 (firewall-isolated)
+
+3. CERTIFICATE CONFIGURATION
+Issued by: Money Straight Talk LLC Internal CA (moneystraighttalk.com)
+Certificate Template: WiFi-Client-Auth
+Auto-enrollment: Via Intune SCEP profile
+Expiry: 1 year | Auto-renewal enabled
+
+4. QUARTERLY REVIEW
+Date: 2026-06-30  |  Reviewer: Terrell Banks
+Result: All APs confirmed WPA3/AES. No deprecated protocols active.
+
+5. CONCLUSION
+Money Straight Talk LLC protects wireless CUI network with WPA3-Enterprise and certificate-based 802.1X per control 3.1.17.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

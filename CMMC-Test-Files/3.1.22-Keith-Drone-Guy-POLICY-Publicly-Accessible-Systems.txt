@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.1.22 - CUI on Publicly Accessible Systems
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy controls CUI posted or processed on publicly accessible Keith the Drone Guy LLC systems, per NIST SP 800-171 Rev. 2 control 3.1.22.
+
+2. SCOPE
+All Keith the Drone Guy LLC publicly accessible systems including websites, social media, and public-facing portals.
+
+3. REQUIREMENTS
+a. CUI is prohibited from being posted on any publicly accessible system.
+b. Keith Merritt must review and approve all content before it is published publicly.
+c. Keith Merritt conducts quarterly scans of public-facing systems for inadvertent CUI exposure.
+d. Discovered CUI on public systems is removed within 2 hours and reported to management.
+e. Staff are trained annually on CUI handling and prohibition of public posting.
+
+4. RESPONSIBILITY
+Keith Merritt scans public systems. Keith Merritt approves public content. All staff are responsible for not posting CUI.
+
+5. ENFORCEMENT
+Posting CUI to publicly accessible systems is a serious policy violation subject to immediate investigation.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

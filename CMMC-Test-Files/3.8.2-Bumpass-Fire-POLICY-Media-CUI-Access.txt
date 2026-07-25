@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.8.2 - CUI Media Access Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy limits access to CUI on digital and physical media to authorized users, per NIST SP 800-171 Rev. 2 control 3.8.2.
+
+2. SCOPE
+All digital and physical media containing CUI at Bumpass Fire & Rescue.
+
+3. REQUIREMENTS
+a. Access to CUI media is restricted to personnel with documented CUI access authorization.
+b. File and share permissions restrict CUI access to authorized accounts only.
+c. CUI network shares require authentication and are not publicly accessible.
+d. Physical CUI media is stored in locked locations inaccessible to unauthorized personnel.
+e. Access to CUI media is logged and reviewed quarterly.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures access permissions for digital CUI media.
+
+5. ENFORCEMENT
+Unauthorized access to CUI media is a security incident requiring immediate investigation.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

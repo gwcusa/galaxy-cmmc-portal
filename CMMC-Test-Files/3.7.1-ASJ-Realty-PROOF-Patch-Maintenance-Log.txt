@@ -1,0 +1,49 @@
+================================================================
+ASJ REALTY
+SYSTEM MAINTENANCE LOG - Q2 2026
+Evidence for CMMC Control 3.7.1
+================================================================
+Report Period:  April 1 - June 30, 2026
+Maintained By:  Sandra Okonkwo, IT Coordinator
+================================================================
+
+MONTHLY PATCH CYCLE - Q2 2026
+-------------------------------------------------
+APRIL 2026 PATCH CYCLE (April 9, 2026)
+Systems Updated:   ASJ-WS-001, ASJ-WS-002, ASJ-WS-003,
+                   ASJ-WS-004, ASJ-LT-001, ASJ-LT-002
+Updates Applied:   KB5036893 (Cumulative), KB5036919 (Security)
+Result:            All 6 devices patched successfully
+Duration:          Completed by 10:30 AM with automatic restarts
+Performed By:      Intune Windows Update for Business (automated)
+Logged By:         Sandra Okonkwo
+
+MAY 2026 PATCH CYCLE (May 14, 2026)
+Systems Updated:   All 6 devices
+Updates Applied:   KB5037853, KB5037770
+Result:            5 of 6 devices: SUCCESS
+                   ASJ-WS-002: Failed (low disk space)
+                   Action: Disk cleanup performed 05/15 - repatched
+Performed By:      Automated + manual follow-up (Sandra)
+
+JUNE 2026 PATCH CYCLE (June 11, 2026)
+Systems Updated:   All 6 devices
+Result:            All 6 devices patched successfully
+
+EMERGENCY MAINTENANCE
+-------------------------------------------------
+May 22, 2026 - EMERGENCY PATCH
+Vulnerability: CVE-2026-XXXX (critical - printer driver RCE)
+Action:        Patched all devices within 48 hours of disclosure
+Outcome:       All devices patched by May 24, 2026
+
+HARDWARE INSPECTION - Q2 (April 15, 2026)
+-------------------------------------------------
+Inspected: All workstations and laptops
+Findings:  ASJ-WS-003 cooling fan making noise
+Action:    Fan replaced April 22, 2026 (local IT supplier)
+All other hardware: No issues found
+
+================================================================
+Certified: Sandra Okonkwo - June 30, 2026
+================================================================

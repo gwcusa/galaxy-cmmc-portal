@@ -1,0 +1,53 @@
+================================================================
+BUMPASS FIRE & RESCUE
+FIPS-VALIDATED CRYPTOGRAPHY POLICY
+================================================================
+Document ID:    POL-SC-011
+Version:        1.0
+Effective Date: June 10, 2026
+Review Date:    June 10, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy requires the use of FIPS 140-2 or FIPS 140-3
+validated cryptographic modules when protecting the
+confidentiality of CUI.
+
+2. FIPS MODE REQUIREMENTS
+  All systems processing CUI must use FIPS-validated
+  cryptography for:
+    - Encryption of data at rest (BitLocker with FIPS mode)
+    - Encryption of data in transit (TLS 1.2+ with
+      FIPS-approved cipher suites)
+    - VPN encryption (AES-256, SHA-256/384)
+    - Authentication (Kerberos with AES-256)
+
+3. FIPS MODE ENABLEMENT
+  Windows FIPS compliance mode is enabled via Group Policy:
+    Computer Config > Windows Settings > Security Settings >
+    Local Policies > Security Options:
+    "System cryptography: Use FIPS compliant algorithms
+    for encryption, hashing, and signing" = ENABLED
+
+  Effect: Windows enforces only FIPS-approved algorithms
+  for TLS (disables RC4, MD5, DES, 3DES-112).
+
+4. APPROVED CRYPTOGRAPHIC ALGORITHMS
+  Approved for CUI protection:
+    Symmetric: AES-128, AES-256
+    Hashing: SHA-256, SHA-384, SHA-512
+    Asymmetric: RSA-2048+, ECDSA P-256+
+    Key agreement: ECDH, DH-2048+
+  Prohibited:
+    DES, 3DES, RC4, MD5, SHA-1 (for new implementations)
+
+5. HARDWARE
+  Kingston IronKey USB drives: FIPS 140-2 Level 3 certified.
+  Windows BitLocker: uses FIPS-validated AES (Windows FIPS mode).
+
+================================================================
+Approved: Chief Randy Bowles        06/10/2026
+Prepared: Mike Sadler               06/08/2026
+================================================================

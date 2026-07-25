@@ -1,0 +1,52 @@
+================================================================
+KEITH THE DRONE GUY LLC
+PRIVACY AND SECURITY NOTICE POLICY
+================================================================
+Document ID:    POL-AC-009
+Version:        1.0
+Effective Date: January 20, 2026
+Review Date:    January 20, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy ensures that privacy and security notices
+consistent with CUI rules are displayed to users before
+they log in to systems that process, store, or transmit CUI.
+
+2. REQUIRED NOTICES
+
+2.1 System Login Banner
+  All company workstations and servers display the following
+  banner at login (before authentication):
+
+  "THIS IS A PRIVATE COMPUTER SYSTEM. Use is restricted to
+  authorized personnel only. All activity on this system
+  is monitored and recorded. Unauthorized use is prohibited
+  and may be subject to criminal prosecution under applicable
+  laws. By logging in, you acknowledge that you have no
+  expectation of privacy on this system and consent to
+  monitoring. This system may contain Controlled Unclassified
+  Information (CUI). Handle CUI in accordance with company
+  policy and applicable federal regulations."
+
+2.2 Remote Access / VPN Banner
+  VPN connections display an equivalent notice prior to
+  authentication completion.
+
+2.3 Annual Acknowledgment
+  All staff review and sign the CUI Handling Agreement
+  annually, which incorporates CUI privacy and handling
+  requirements per 32 CFR Part 2002.
+
+3. IMPLEMENTATION
+  Windows logon banner is enforced via GPO:
+    Computer Config > Windows Settings > Security Settings
+    > Local Policies > Security Options:
+    Interactive logon: Message title for users attempting to log on
+    Interactive logon: Message text for users attempting to log on
+
+================================================================
+Approved: Keith Merritt           01/20/2026
+================================================================

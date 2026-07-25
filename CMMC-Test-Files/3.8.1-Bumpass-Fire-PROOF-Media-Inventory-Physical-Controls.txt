@@ -1,0 +1,46 @@
+================================================================
+BUMPASS FIRE & RESCUE
+MEDIA INVENTORY AND PHYSICAL SECURITY VERIFICATION
+Evidence for CMMC Control 3.8.1
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Mike Sadler, IT Administrator
+================================================================
+
+DIGITAL MEDIA INVENTORY - July 25, 2026
+-------------------------------------------------
+MEDIA ID    TYPE              CAPACITY  OWNER/ASSIGNED  LOCATION        ENC?
+----------  ----------------  --------  --------------  --------------  ----
+BFR-USB-01  Kingston IronKey  64 GB     Mike Sadler     IT Cabinet      YES
+BFR-USB-02  Kingston IronKey  64 GB     Randy Bowles    Chief's Office  YES
+BFR-USB-03  Kingston IronKey  32 GB     (unassigned)    IT Cabinet      YES
+BFR-SRV-01-D1  Server HDD    2 TB      BFR-SRV-001     Server Room     YES(BitL)
+BFR-SRV-02-D1  Server SSD    500 GB    BFR-SRV-002     Server Room     YES(BitL)
+BFR-WS-001-D1  WS SSD        512 GB    BFR-WS-001      Station 1       YES(BitL)
+BFR-WS-002-D1  WS SSD        512 GB    BFR-WS-002      Station 1       YES(BitL)
+BFR-WS-003-D1  WS SSD        512 GB    BFR-WS-003      Admin Office    YES(BitL)
+BFR-LT-001-D1  Laptop SSD    512 GB    BFR-LT-001      Admin Office    YES(BitL)
+
+All removable USB media: ACCOUNTED FOR (3 of 3)
+All fixed media: ACCOUNTED FOR in physical location
+
+PHYSICAL SECURITY VERIFICATION
+-------------------------------------------------
+Server Room (DC-01 rack):
+  Lock type:   Electronic keypad
+  Access:      Mike Sadler only
+  Last audit:  July 1, 2026 - no unauthorized access detected
+  Camera:      Yes (Lorex IP camera recording 24/7)
+
+Admin Office filing cabinet (paper CUI):
+  Lock type:   Combination lock
+  Combo held:  Chief Bowles and Mike Sadler
+  Contents:    DoD contract docs (3 folders, labeled CUI)
+  Last audit:  July 1, 2026 - contents verified
+
+QUARTERLY INVENTORY RECONCILIATION - July 1, 2026
+All media accounted for. No discrepancies.
+
+================================================================
+Certified: Mike Sadler - July 25, 2026
+================================================================

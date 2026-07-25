@@ -1,0 +1,36 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.4.2 - Security Configuration Baselines
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC establishes and enforces security configuration baselines for CUI systems.
+
+2. BASELINE CONFIGURATION PROFILES
+Platform: Microsoft Intune (tenant: keithdroney.com)
+Reference: CIS Benchmark for Windows 11 (v2.0.0)
+
+Active Configuration Profiles:
+Profile Name                     | Type              | Applied To       | Status
+Windows11-Security-Baseline      | Security Baseline | All Windows PCs  | Active
+BitLocker-Enforcement            | Endpoint Security | All Windows PCs  | Active
+Defender-AV-Config               | Antivirus         | All Windows PCs  | Active
+Firewall-Baseline                | Firewall          | All Windows PCs  | Active
+Mobile-Security-Baseline         | Device Config     | iOS + Android    | Active
+
+3. COMPLIANCE REPORT (2026-07-01)
+Total Managed Devices: 6
+Compliant: 6 (100%)
+Non-Compliant: 0
+
+Device KDG-WS-001 (k.merritt@keithdroney.com): All profiles applied - COMPLIANT
+
+4. BASELINE DEVIATION HISTORY
+Q1 2026: 0 deviations
+Q2 2026: 1 deviation (KDG-WS-001 - Defender real-time protection temporarily disabled for troubleshooting)
+Resolution: Re-enabled by Keith Merritt within 2 hours. Documented in change log.
+
+5. CONCLUSION
+Keith the Drone Guy LLC enforces security configuration baselines via Intune on all CUI endpoints per control 3.4.2.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

@@ -1,0 +1,49 @@
+================================================================
+KEITH THE DRONE GUY LLC
+SECURITY AWARENESS TRAINING — COMPLETION REPORT
+Evidence for CMMC Control 3.2.1
+================================================================
+Platform:       KnowBe4
+Report Period:  January 2026 Annual Training Cycle
+Generated:      February 5, 2026
+Prepared By:    Keith Anderson
+================================================================
+
+TRAINING COMPLETION STATUS — ALL PERSONNEL
+-------------------------------------------------
+NAME                    ROLE              COMPLETED     SCORE   CERT#
+--------------------    --------------    ----------    -----   ----------
+Keith Anderson          Owner/Pilot       01/12/2026    98%     KB4-2026-001
+Marcus Riley            Subcontractor     01/18/2026    95%     KB4-2026-002
+Donna Frye              Admin (PT)        01/22/2026    100%    KB4-2026-003
+Jalen Booker            Subcontractor     01/29/2026    92%     KB4-2026-004
+
+COMPLETION RATE: 4 of 4 personnel (100%)
+
+PHISHING SIMULATION RESULTS — Q1 2026
+-------------------------------------------------
+Campaign Name:      "Urgent Invoice" Simulation
+Date Sent:          March 15, 2026
+Recipients:         4
+Clicked Link:       0
+Reported as Phish:  3 (Keith, Marcus, Jalen)
+Did Not Report:     1 (Donna Frye — no action taken, no click)
+
+Campaign Name:      "Delivery Notification" Simulation
+Date Sent:          June 10, 2026
+Recipients:         4
+Clicked Link:       1 (Donna Frye — required remedial training)
+Remedial Training:  Donna Frye — completed June 14, 2026
+
+SIGNED ACKNOWLEDGMENT FORMS ON FILE
+-------------------------------------------------
+Keith Anderson      Signed: 01/12/2026
+Marcus Riley        Signed: 01/18/2026
+Donna Frye          Signed: 01/22/2026
+Jalen Booker        Signed: 01/29/2026
+
+Training records stored in: SharePoint > Security > Training Records > 2026
+
+================================================================
+Next Annual Training Due: January 31, 2027
+================================================================

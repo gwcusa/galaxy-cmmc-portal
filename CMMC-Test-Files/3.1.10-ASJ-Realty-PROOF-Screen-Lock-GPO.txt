@@ -1,0 +1,31 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.1.10 - Session Lock with Pattern-Hiding Display
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty enforces session lock with pattern-hiding displays after inactivity.
+
+2. SCREEN LOCK CONFIGURATION
+Windows Endpoints:
+GPO Name: ScreenLock-ASJ Realty-Baseline
+- Screen saver: Enabled (Blank screensaver - pattern-hiding)
+- Screen saver timeout: 900 seconds (15 minutes)
+- Password on resume: Required
+- User override: Disabled (policy enforced)
+
+Intune Configuration Profile: ScreenLock-ASJ Realty
+- Max inactivity: 15 minutes
+- Require password: Yes
+- Applied to: All enrolled devices (Domain: asjrealty.com)
+
+3. COMPLIANCE REPORT
+Intune Device Compliance - Screen Lock Check: 2026-07-01
+Total Devices: 6  |  Compliant: 6  |  Non-Compliant: 0
+
+Workstation ASJ-WS-001 - Account s.okonkwo@asjrealty.com: COMPLIANT
+
+4. CONCLUSION
+All ASJ Realty endpoints enforce session lock with pattern-hiding display per control 3.1.10.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

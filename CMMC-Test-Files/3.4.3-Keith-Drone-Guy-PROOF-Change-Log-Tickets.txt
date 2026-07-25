@@ -1,0 +1,57 @@
+================================================================
+KEITH THE DRONE GUY LLC
+IT CHANGE LOG - Q2 2026 (April - June 2026)
+Evidence for CMMC Control 3.4.3
+================================================================
+Report Date:    July 23, 2026
+Prepared By:    Keith Merritt
+================================================================
+
+CHANGE LOG - Q2 2026
+-------------------------------------------------
+CHG-2026-031 | April 8, 2026
+Type:         Normal
+Description:  Install Adobe Acrobat Pro on KDG-LT-001
+Requested By: Keith Merritt
+Reviewed By:  Keith Merritt (self - standard install)
+Approved By:  Dana Flowers (per policy - Keith implementing)
+Implemented:  April 8, 2026
+Outcome:      SUCCESS
+
+CHG-2026-032 | April 12, 2026
+Type:         Standard (Monthly Patch Tuesday)
+Description:  Apply Windows cumulative updates - April 2026
+              KB5036893 applied to KDG-LT-001, KDG-LT-002,
+              KDG-WS-001 (servers updated in separate cycle)
+Approved:     Pre-approved (Standard Change)
+Implemented:  April 12, 2026
+Outcome:      SUCCESS - all 3 devices patched, no reboots needed
+
+CHG-2026-038 | May 3, 2026
+Type:         Normal
+Description:  Update Cisco Meraki MX68 firmware from 18.1.2
+              to 18.2.1 (security fixes)
+Requested By: Keith Merritt
+Approved By:  Dana Flowers
+Implemented:  May 3, 2026 (maintenance window: 2 AM)
+Outcome:      SUCCESS - brief 3-minute outage during update
+
+CHG-2026-045 | May 14, 2026
+Type:         Standard (Monthly Patch Tuesday)
+Description:  May 2026 Windows updates
+Outcome:      SUCCESS
+
+CHG-2026-052 | June 11, 2026
+Type:         Normal
+Description:  Add new Intune conditional access policy
+              requiring compliant device for SharePoint CUI
+Requested By: Keith Merritt
+Impact:       Security improvement (no downtime expected)
+Approved By:  Dana Flowers
+Outcome:      SUCCESS - 3 devices immediately compliant
+
+Total Q2 changes: 8 (5 standard, 3 normal, 0 emergency)
+
+================================================================
+Certified: Keith Merritt - July 23, 2026
+================================================================

@@ -1,0 +1,54 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+SECURITY CONTROL ASSESSMENT POLICY
+================================================================
+Document ID:    POL-CA-001
+Version:        1.0
+Effective Date: June 1, 2026
+Review Date:    June 1, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy requires periodic assessment of security controls
+to determine their effectiveness in protecting CUI.
+
+2. ASSESSMENT FREQUENCY
+  - Annual internal assessment: each May
+  - Third-party assessment: every 3 years (or as required for
+    contract compliance)
+  - After significant system changes or incidents
+
+3. ASSESSMENT SCOPE
+  All 110 NIST SP 800-171 controls applicable to BRTS are
+  assessed against current implementation evidence.
+
+4. ASSESSMENT METHODS
+  a) Document review: verify policies and procedures exist
+     and are current
+  b) Interview: confirm staff understand and follow procedures
+  c) Testing: verify technical controls are active
+     (e.g., test MFA, test account lockout, test DLP)
+
+5. ASSESSORS
+  - Internal assessment: Nathan Cruz (primary), Victor Osei (review)
+  - Third-party assessment: qualified C3PAO or independent
+    CMMC assessor
+
+6. ASSESSMENT DOCUMENTATION
+  Findings are documented in the BRTS Assessment Report.
+  The report includes:
+    - Control status (Implemented, Partially, Not Implemented)
+    - Evidence reviewed
+    - Gaps identified
+    - Corrective action required
+
+7. DEFICIENCY RESOLUTION
+  Gaps identified are logged in the Plan of Action and
+  Milestones (POA&M) and resolved per POL-CA-002.
+
+================================================================
+Approved: Victor Osei            06/01/2026
+Prepared: Nathan Cruz            05/29/2026
+================================================================

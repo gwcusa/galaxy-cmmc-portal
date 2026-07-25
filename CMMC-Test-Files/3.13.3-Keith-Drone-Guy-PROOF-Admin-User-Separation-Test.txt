@@ -1,0 +1,35 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.13.3 - Security Function Separation
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC separates user functionality from system management functionality.
+
+2. SEPARATION IMPLEMENTATION
+Azure AD Roles:
+- Standard Users: No admin role. Access to SharePoint, Teams, Exchange only.
+- Keith Merritt Admin Account: Global Admin (PIM-gated). Used ONLY for admin tasks.
+- Keith Merritt: Security Reader (read-only on security dashboards). No config access.
+
+Management Portals Accessible Only to Keith Merritt:
+- Azure Portal (portal.azure.com): Blocked by Conditional Access for non-admin accounts
+- Microsoft 365 Admin Center: Blocked for non-admin accounts
+- Intune Admin Center: Blocked for non-admin accounts
+- Sentinel: Read-only for Keith Merritt, Contributor for Keith Merritt
+
+3. TECHNICAL ENFORCEMENT
+Conditional Access Policy: AdminPortal-RestrictedAccess
+- Target: Access to Azure Portal, M365 Admin, Intune Admin
+- Require: Global Admin or Intune Admin role (enforced by AAD RBAC)
+- Standard users attempting access: BLOCKED with "You don't have permission" message
+
+4. SEPARATION TEST
+Date: 2026-06-20  |  Tester: Keith Merritt
+Test: Attempted to access Azure Portal with Staff-1 standard account (keithdroney.com)
+Result: Access BLOCKED. "You need permission to access this." PASS.
+
+5. CONCLUSION
+Keith the Drone Guy LLC separates user and management functions via RBAC and Conditional Access per control 3.13.3.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

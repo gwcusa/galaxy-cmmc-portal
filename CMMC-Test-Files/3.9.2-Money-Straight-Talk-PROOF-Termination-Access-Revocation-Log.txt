@@ -1,0 +1,39 @@
+﻿PERSONNEL SECURITY IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.9.2 - Personnel Termination and Transfer
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC revokes CUI access and collects assets upon personnel termination.
+
+2. TERMINATION CHECKLIST (Template)
+Completed for each departure:
+[ ] Azure AD account disabled (within 24 hours)
+[ ] Email forwarding removed or set to Camille Odom
+[ ] MFA tokens removed
+[ ] VPN credentials revoked
+[ ] Physical access PIN deactivated
+[ ] Office keys collected
+[ ] Money Straight Talk LLC devices returned and inventoried
+[ ] CUI media collected and accounted for
+[ ] CUI confidentiality reminder provided (signed acknowledgment)
+[ ] Final access log reviewed for anomalies
+
+3. TERMINATION LOG (FY2026)
+Date       | Employee   | Role         | Checklist Done | Access Revoked Within
+2026-04-01 | Staff-3    | Admin Assist | Yes (complete) | 4 hours
+2026-06-15 | Vendor-B   | Contractor   | Yes (complete) | 2 hours
+
+Outstanding checklist items: 0
+
+4. SAMPLE: Staff-3 Departure (2026-04-01)
+Azure AD: Disabled 2026-04-01 13:30
+Physical PIN: Changed 2026-04-01 14:00
+Device: Laptop returned 2026-04-01 at exit interview
+CUI Media: N/A (no physical media assigned)
+Confidentiality acknowledgment: Signed and on file
+
+5. CONCLUSION
+Money Straight Talk LLC completes termination checklists within 24 hours including full CUI access revocation per control 3.9.2.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

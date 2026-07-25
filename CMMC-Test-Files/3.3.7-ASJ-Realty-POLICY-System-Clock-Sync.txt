@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: ASJ Realty
+Control: 3.3.7 - System Clock Synchronization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to provide a system capability that compares and synchronizes internal system clocks with an authoritative source, per NIST SP 800-171 Rev. 2 control 3.3.7.
+
+2. SCOPE
+All ASJ Realty information systems that generate audit records.
+
+3. REQUIREMENTS
+a. All systems synchronize clocks with an authoritative NTP time source.
+b. NTP source: time.windows.com or NIST time servers (time.nist.gov).
+c. Maximum clock drift is 1 second from authoritative source.
+d. NTP configuration is enforced via Group Policy on Windows endpoints.
+e. Sandra Okonkwo verifies clock synchronization quarterly.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, configures and verifies NTP synchronization on all systems.
+
+5. ENFORCEMENT
+Systems with clock drift exceeding 5 minutes are quarantined from CUI access.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

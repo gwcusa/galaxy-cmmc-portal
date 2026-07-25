@@ -1,0 +1,26 @@
+﻿AWARENESS AND TRAINING POLICY
+Organization: Money Straight Talk LLC
+Control: 3.2.1 - Security Awareness Training
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy ensures Money Straight Talk LLC provides security awareness training to personnel to make them aware of security risks associated with their activities and organizational policies, per NIST SP 800-171 Rev. 2 control 3.2.1.
+
+2. SCOPE
+All Money Straight Talk LLC personnel, contractors, and any individual with access to CUI systems.
+
+3. REQUIREMENTS
+a. All personnel complete security awareness training upon hire and annually thereafter.
+b. Training covers CUI handling, phishing recognition, password hygiene, and reporting.
+c. Training completion is documented and tracked by Terrell Banks.
+d. Personnel who do not complete training within 30 days of the due date have CUI access suspended.
+e. Training content is reviewed and updated annually.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, administers the training program. Camille Odom ensures organizational compliance.
+
+5. ENFORCEMENT
+CUI access is revoked for personnel with overdue training.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

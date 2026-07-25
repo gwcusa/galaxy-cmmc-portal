@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Money Straight Talk LLC
+Control: 3.1.9 - Privacy and Security Notices
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to provide privacy and security notices consistent with CUI rules at system logon, per NIST SP 800-171 Rev. 2 control 3.1.9.
+
+2. SCOPE
+All Money Straight Talk LLC information systems accessible by personnel or contractors.
+
+3. REQUIREMENTS
+a. A logon banner displaying privacy and security notices is displayed before authentication.
+b. The banner references CUI handling requirements and consent to monitoring.
+c. Terrell Banks reviews and updates banner text annually or upon regulatory change.
+d. Banner text is approved by Camille Odom before deployment.
+e. Banner is enforced via Group Policy and Azure AD Conditional Access.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, implements and maintains logon banners across all systems.
+
+5. ENFORCEMENT
+Systems without compliant logon banners must be remediated within 48 hours of identification.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

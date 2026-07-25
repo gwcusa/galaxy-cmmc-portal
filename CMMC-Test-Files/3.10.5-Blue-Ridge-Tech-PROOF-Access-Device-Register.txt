@@ -1,0 +1,36 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.10.5 - Physical Access Device Management
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC manages physical access devices for CUI facilities.
+
+2. ACCESS DEVICE REGISTER
+Location: SharePoint/IT-Docs/Physical-Access/AccessDevice-Register.xlsx
+Last Updated: 2026-07-01  |  Maintained by: Nathan Cruz
+
+Access Device Inventory:
+Device Type    | ID      | Issued To  | Date Issued | Status    | PIN/Code
+Office Key     | KEY-001 | Victor Osei      | 2025-09-01  | Active    | N/A
+Office Key     | KEY-002 | Nathan Cruz       | 2025-09-01  | Active    | N/A
+Office Key     | KEY-003 | Spare      | 2025-09-01  | Secured   | Locked in safe
+PIN (Suite 200)| PIN-001 | All staff  | 2026-04-01  | Active    | [Changed quarterly]
+Visitor Badges | VB-001-3| Visitors   | 2025-09-01  | Active    | N/A
+
+3. QUARTERLY PIN ROTATION
+PIN last changed: 2026-04-01  |  Next change due: 2026-07-01 (completed on schedule)
+Changed by: Nathan Cruz  |  Approved by: Victor Osei
+
+4. TERMINATED STAFF DEVICE COLLECTION
+Last termination: 2026-04-01 (Staff member)
+PIN removed: 2026-04-01 (same day, before staff left building)
+No physical key held by this staff member - N/A
+
+5. LOST/STOLEN DEVICES
+FY2026: 0 incidents
+
+6. CONCLUSION
+Blue Ridge Technology Solutions LLC maintains an access device register with quarterly PIN rotation and termination procedures per control 3.10.5.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

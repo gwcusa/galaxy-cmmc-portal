@@ -1,0 +1,32 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.22 - CUI on Publicly Accessible Systems
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue controls CUI on publicly accessible systems and conducts periodic reviews.
+
+2. PUBLIC-FACING SYSTEM INVENTORY
+System                          | URL/Platform          | CUI Allowed  | Content Approver
+Bumpass Fire & Rescue Website                 | bumpassfire.org                 | No           | Randy Bowles
+LinkedIn Company Page           | linkedin.com          | No           | Randy Bowles
+Government Contract Portal      | contractor-portal.gov | No           | Randy Bowles
+
+3. QUARTERLY CUI SCAN RESULTS
+Tool: Microsoft Purview Content Explorer + manual review
+Date: 2026-07-05  |  Reviewer: Mike Sadler
+
+Bumpass Fire & Rescue website (bumpassfire.org): Scanned 48 pages - CUI found: 0
+LinkedIn page: Reviewed 12 posts - CUI found: 0
+Contract portal profile: Reviewed - CUI found: 0
+
+Result: NO CUI found on any publicly accessible Bumpass Fire & Rescue system.
+
+4. CONTENT APPROVAL LOG (Last 3 Months)
+2026-05-10: Website case study approved by Randy Bowles - CUI review: Passed
+2026-06-15: LinkedIn post (drone footage) approved by Randy Bowles - No CUI
+
+5. CONCLUSION
+Bumpass Fire & Rescue conducts quarterly scans of public systems and maintains zero CUI exposure on publicly accessible platforms per control 3.1.22.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

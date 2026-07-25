@@ -1,0 +1,60 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+IT INCIDENT REGISTER - 2026 (Q1-Q2)
+Evidence for CMMC Control 3.6.2
+================================================================
+Register Date:  July 25, 2026
+Maintained By:  Terrell Banks
+Last Updated:   July 25, 2026
+================================================================
+
+INCIDENT LOG
+-------------------------------------------------
+INC-2026-001
+Date Discovered:  January 22, 2026 at 2:15 PM
+Date of Occurrence: January 22, 2026 at 10:30 AM
+Description:      Phishing email received by Angela Price.
+                  User clicked link (sandbox detonation page).
+Systems Affected: MST-WS-003 (Angela's workstation)
+CUI Involved:     NO
+Immediate Action: Blocked sender domain. Scanned WS-003
+                  (no malware found - link was a honeypot).
+Root Cause:       User clicked without verifying sender.
+Resolution:       Additional phishing training assigned to A. Price.
+Status:           CLOSED 01/23/2026
+
+INC-2026-002
+Date Discovered:  March 14, 2026 at 9:00 AM
+Date of Occurrence: March 14, 2026 (ongoing)
+Description:      MST-WS-004 (Jerome Williams) flagged by
+                  Defender - attempted connection to known C2 IP.
+Systems Affected: MST-WS-004
+CUI Involved:     POSSIBLE - Williams has CUI access
+Immediate Action: Isolated WS-004 from network. Ran full scan.
+Root Cause:       Malicious ad JavaScript on news website
+                  attempted to beacon to C2 (blocked by Defender).
+                  No actual compromise - Defender blocked the call.
+Resolution:       Browser ad-blocking extension deployed. WS-004
+                  reconnected after clean scan.
+CUI Reporting:    CUI not exfiltrated. Contracting Officer notified
+                  within 72 hours as precaution (email on file).
+Status:           CLOSED 03/15/2026
+
+INC-2026-003
+Date Discovered:  June 8, 2026 at 11:30 AM
+Date of Occurrence: June 8, 2026
+Description:      Jerome Williams reported laptop MST-LT-002
+                  missing after travel.
+Systems Affected: MST-LT-002 (contains CUI files)
+CUI Involved:     YES - Financial contract data on encrypted disk
+Immediate Action: BitLocker verified ACTIVE on MST-LT-002.
+                  Intune remote wipe initiated as precaution.
+Root Cause:       Laptop left in hotel room during checkout.
+                  Hotel recovered and shipped back (received 06/10).
+CUI Reporting:    DIBNet report filed 06/09/2026 (within 72 hrs).
+                  Laptop recovered with BitLocker intact. No breach.
+Status:           CLOSED 06/11/2026
+
+================================================================
+Certified: Camille Odom (reviewing official) - July 25, 2026
+================================================================

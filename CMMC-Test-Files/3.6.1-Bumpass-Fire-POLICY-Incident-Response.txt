@@ -1,0 +1,26 @@
+﻿INCIDENT RESPONSE POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.6.1 - Incident Response Capability
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy establishes Bumpass Fire & Rescue's capability to handle information security incidents, per NIST SP 800-171 Rev. 2 control 3.6.1.
+
+2. SCOPE
+All Bumpass Fire & Rescue information systems and personnel.
+
+3. REQUIREMENTS
+a. Bumpass Fire & Rescue maintains a documented Incident Response Plan (IRP).
+b. The IRP defines roles, responsibilities, and procedures for incident handling.
+c. Mike Sadler is the primary incident responder; Randy Bowles provides management escalation.
+d. The IRP is tested annually via tabletop exercise.
+e. Incident response contacts include US-CERT reporting capability for CUI-related incidents.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, leads incident response. Randy Bowles approves the IRP and provides executive escalation.
+
+5. ENFORCEMENT
+All personnel must report suspected security incidents to Mike Sadler within 1 hour of discovery.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

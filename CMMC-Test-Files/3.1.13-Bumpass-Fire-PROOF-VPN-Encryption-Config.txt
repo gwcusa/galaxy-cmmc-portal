@@ -1,0 +1,50 @@
+================================================================
+BUMPASS FIRE & RESCUE
+VPN AND REMOTE ACCESS ENCRYPTION CONFIGURATION AUDIT
+Evidence for CMMC Control 3.1.13
+================================================================
+Report Date:    July 18, 2026
+Prepared By:    Mike Sadler, IT Administrator
+System:         Cisco ASA 5506-X (BFR-FW-001)
+================================================================
+
+CISCO ASA VPN ENCRYPTION CONFIG (sanitized show run output)
+-------------------------------------------------
+crypto ikev2 policy 10
+  encryption aes-256-gcm
+  integrity sha256
+  group 14
+  prf sha256
+  lifetime seconds 86400
+
+tunnel-group BFR-Employees type remote-access
+tunnel-group BFR-Employees general-attributes
+  authentication-server-group Azure-AD-SAML
+  default-group-policy BFR-VPN-Policy
+
+group-policy BFR-VPN-Policy attributes
+  vpn-tunnel-protocol ikev2 ssl-client
+  split-tunnel-policy tunnelall   ! force all traffic through VPN
+
+ssl cipher tlsv1.2 custom "AES256-GCM-SHA384:AES128-GCM-SHA256"
+ssl cipher dtlsv1.2 custom "AES256-GCM-SHA384"
+
+! TLS 1.0 and 1.1 DISABLED
+! SSLv3 DISABLED
+
+RDP ENCRYPTION POLICY — GPO: BFR-RDP-Encryption
+-------------------------------------------------
+Security Layer: SSL (TLS)
+Encryption Level: High
+NLA Required: ENABLED (Set client connection encryption level: High)
+Minimum TLS: 1.2
+
+WEB APPLICATION ENCRYPTION (Cloudflare WAF)
+-------------------------------------------------
+HTTPS enforcement:  YES (HTTP 301 redirect to HTTPS)
+TLS versions:       TLS 1.2, 1.3 only (1.0 and 1.1 disabled)
+HSTS:               max-age=31536000; includeSubDomains
+
+================================================================
+Certified: Mike Sadler — July 18, 2026
+================================================================

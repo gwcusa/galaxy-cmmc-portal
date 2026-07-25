@@ -1,0 +1,36 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.5.2 - User Authentication
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC authenticates the identity of all users before granting CUI system access.
+
+2. AUTHENTICATION CONFIGURATION
+Platform: Azure Active Directory (tenant: keithdroney.com)
+Authentication Methods Enabled:
+- Password (minimum 14 characters, complexity enforced)
+- Microsoft Authenticator (TOTP/push notification)
+- FIDO2 Security Key (optional - Keith Merritt only)
+
+MFA Required: Yes (Conditional Access policy: MFA-Required-All-Keith the Drone Guy LLC)
+Applied to: All users accessing CUI resources (M365, SharePoint, VPN)
+
+3. MFA ENROLLMENT STATUS (2026-07-01)
+Total Users: 5  |  MFA Enabled: 5 (100%)
+
+User              | MFA Method             | Status
+Keith Merritt@keithdroney.com       | Authenticator App      | Active
+Keith Merritt@keithdroney.com        | Authenticator App      | Active
+staff1@keithdroney.com      | Authenticator App      | Active
+staff2@keithdroney.com      | Authenticator App      | Active
+svc-backup@keithdroney.com  | Certificate (service)  | Active
+
+4. RECENT AUTHENTICATION LOG (sample - June 2026)
+Date: 2026-06-15 | User: k.merritt@keithdroney.com | Method: Password+MFA | Result: Success | Device: KDG-WS-001
+Date: 2026-06-15 | User: unknown     | Method: Password     | Result: Blocked | Reason: MFA not satisfied
+
+5. CONCLUSION
+Keith the Drone Guy LLC requires and verifies user authentication with MFA before granting CUI access per control 3.5.2.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.1.20 - External System Connection Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to verify and control connections to external systems, per NIST SP 800-171 Rev. 2 control 3.1.20.
+
+2. SCOPE
+All Keith the Drone Guy LLC connections to systems, networks, or cloud services outside of direct organizational control.
+
+3. REQUIREMENTS
+a. External system connections require a documented Interconnection Security Agreement (ISA).
+b. Keith Merritt must approve all new external system connections before establishment.
+c. Keith Merritt maintains a register of all approved external connections.
+d. External connections are reviewed annually and when operational needs change.
+e. Connections to external systems are terminated when no longer operationally required.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, maintains the external connection register. Keith Merritt approves connections.
+
+5. ENFORCEMENT
+Unapproved external connections are blocked and investigated as security incidents.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

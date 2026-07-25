@@ -1,0 +1,40 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.3.2 - User Activity Audit Traceability
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue audit logs support individual user activity traceability.
+
+2. AUDIT RECORD FIELDS CAPTURED
+Source: Microsoft Sentinel / M365 Unified Audit Log
+
+Required fields per record:
+- UserPrincipalName (e.g., m.sadler@bumpassfire.org)
+- Timestamp (UTC)
+- Operation (e.g., FileAccessed, UserLoggedIn)
+- ClientIP
+- ResultStatus (Success/Failure)
+- TargetResource (file path or object name)
+- SessionId
+
+Sample Audit Record:
+  User: m.sadler@bumpassfire.org
+  Time: 2026-06-15T14:23:11Z
+  Op: FileAccessed
+  File: /CUI-Contracts/DFARS-Report-Q2.docx
+  IP: 10.0.2.45 (BFR-WS-001)
+  Result: Success
+
+3. TRACEABILITY TEST
+Date: 2026-06-30  |  Tester: Mike Sadler
+Scenario: Trace file access by m.sadler@bumpassfire.org on 2026-06-15
+Result: Full activity trail reconstructed in <5 minutes using KQL query in Sentinel. PASS.
+
+4. NO SHARED ACCOUNTS
+Verified: All Bumpass Fire & Rescue accounts are individual. Shared/generic accounts: 0.
+
+5. CONCLUSION
+Bumpass Fire & Rescue audit records fully support individual user activity traceability per control 3.3.2.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

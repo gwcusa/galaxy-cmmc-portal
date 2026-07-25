@@ -1,0 +1,51 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+WIRELESS ACCESS AUTHORIZATION POLICY
+================================================================
+Document ID:    POL-AC-016
+Version:        1.0
+Effective Date: April 20, 2026
+Review Date:    April 20, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy requires that wireless access to Blue Ridge
+Technology Solutions' network is authorized before users
+and devices are permitted to connect.
+
+2. WIRELESS NETWORK DESIGN
+
+2.1 Network Segmentation
+  Three wireless SSIDs are maintained:
+    a) BRTS-Corporate: Business network for managed devices only
+       - Access to: internal servers, NAS, internet
+       - Authentication: WPA3-Enterprise (802.1X/RADIUS)
+       - Requires: Intune-managed device + AD credentials
+    b) BRTS-Guest: Guest/visitor network
+       - Access to: internet only (isolated from corp network)
+       - Authentication: WPA2-Personal (rotated weekly)
+       - No access to: any company systems or CUI
+    c) BRTS-IoT: Security cameras, smart devices
+       - Isolated VLAN, no internet, no corp network access
+
+2.2 Authorization Process
+  - A device must be enrolled in Intune AND joined to the AD
+    domain before it is permitted on BRTS-Corporate
+  - 802.1X authentication validates both device cert and
+    user credentials against Azure AD
+
+3. PROHIBITED
+  - Personal (non-company) devices on BRTS-Corporate: PROHIBITED
+  - Rogue access points: PROHIBITED (scanned for monthly)
+  - WEP or WPA (first-gen): PROHIBITED
+
+4. GUEST AUTHORIZATION
+  Guests must request WiFi access from the receptionist.
+  Guest password is rotated every Monday by Nathan Cruz.
+
+================================================================
+Approved: Victor Osei            04/20/2026
+Prepared: Nathan Cruz            04/17/2026
+================================================================

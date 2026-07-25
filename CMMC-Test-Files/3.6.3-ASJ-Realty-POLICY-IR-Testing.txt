@@ -1,0 +1,26 @@
+﻿INCIDENT RESPONSE POLICY
+Organization: ASJ Realty
+Control: 3.6.3 - Incident Response Testing
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to test incident response capabilities to determine their effectiveness, per NIST SP 800-171 Rev. 2 control 3.6.3.
+
+2. SCOPE
+The ASJ Realty Incident Response Plan and all personnel with IR responsibilities.
+
+3. REQUIREMENTS
+a. An IR tabletop exercise is conducted annually.
+b. The exercise tests at least one realistic threat scenario relevant to ASJ Realty's environment.
+c. Exercise results are documented and reviewed by Anthony James.
+d. Identified gaps are tracked in a remediation plan.
+e. Remediation items are completed within 90 days of the exercise.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, designs and facilitates IR exercises. Anthony James participates and approves results.
+
+5. ENFORCEMENT
+Annual IR testing is mandatory; failure to test results in a security program finding.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

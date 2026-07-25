@@ -1,0 +1,48 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+PHYSICAL ACCESS DEVICE MANAGEMENT POLICY
+================================================================
+Document ID:    POL-PE-005
+Version:        1.0
+Effective Date: February 20, 2026
+Review Date:    February 20, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy establishes controls for managing physical access
+devices (keys, key fobs, access cards, lock combinations)
+used to control access to MST facilities and CUI areas.
+
+2. PHYSICAL ACCESS DEVICES INVENTORY
+MST uses the following physical access devices:
+  - Building key fobs (5 total): Camille Odom, Terrell Banks,
+    Angela Price, Jerome Williams, and one spare (locked safe)
+  - Server room keypad: Code known to Terrell Banks and
+    Camille Odom only
+  - Filing cabinet keys (paper CUI): Terrell Banks and
+    Camille Odom only
+
+3. ISSUANCE AND TRACKING
+  - All physical access devices are logged in the Physical
+    Access Device Register (SharePoint: IT/Physical-Access-Register)
+  - New device issuance requires Camille Odom approval
+  - Lost devices are reported immediately and the affected
+    lock or code is changed within 24 hours
+
+4. TERMINATION PROCEDURE
+  When an employee leaves MST:
+    - Key fob is collected on the employee's last day
+    - If fob cannot be collected: immediately deactivated
+    - All codes (server room, cabinet) are changed within
+      24 hours of termination
+
+5. AUDIT
+  Terrell Banks audits the physical access device inventory
+  quarterly and certifies all devices are accounted for.
+
+================================================================
+Approved: Camille Odom           02/20/2026
+Prepared: Terrell Banks          02/18/2026
+================================================================

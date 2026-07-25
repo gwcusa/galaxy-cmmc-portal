@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: ASJ Realty
+Control: 3.13.1 - Network Boundary Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to monitor, control, and protect communications at external and internal network boundaries, per NIST SP 800-171 Rev. 2 control 3.13.1.
+
+2. SCOPE
+All ASJ Realty network boundaries separating CUI systems from external networks.
+
+3. REQUIREMENTS
+a. Firewalls protect all network boundaries between CUI systems and external networks.
+b. Intrusion Prevention System (IPS) monitors traffic at network boundaries.
+c. Traffic is logged and reviewed for anomalies.
+d. Default-deny rules are in place; only approved traffic is allowed.
+e. Firewall rules are reviewed quarterly.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, manages all boundary protection devices and configurations.
+
+5. ENFORCEMENT
+Unauthorized network boundary changes are security incidents requiring immediate investigation.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

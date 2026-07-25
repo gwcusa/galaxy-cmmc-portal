@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Money Straight Talk LLC
+Control: 3.3.5 - Audit Log Correlation and Analysis
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to correlate audit record review, analysis, and reporting across organizational processes to gain situational awareness, per NIST SP 800-171 Rev. 2 control 3.3.5.
+
+2. SCOPE
+All Money Straight Talk LLC audit log sources and CUI systems.
+
+3. REQUIREMENTS
+a. Audit records from multiple sources are correlated in a centralized SIEM.
+b. Correlation rules detect multi-source attack patterns.
+c. Terrell Banks reviews correlation findings weekly.
+d. Cross-source incidents are escalated immediately to Camille Odom.
+e. Correlation rules are reviewed and updated quarterly.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, maintains and monitors the SIEM correlation infrastructure.
+
+5. ENFORCEMENT
+Gaps in log correlation coverage are remediated within 30 days of identification.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

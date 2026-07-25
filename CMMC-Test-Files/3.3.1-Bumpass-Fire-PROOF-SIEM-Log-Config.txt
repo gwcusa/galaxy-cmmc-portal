@@ -1,0 +1,34 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.3.1 - System Audit Logging
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue collects and retains audit logs from all CUI systems.
+
+2. LOG COLLECTION CONFIGURATION
+SIEM: Microsoft Sentinel (workspace: Bumpass Fire & Rescue-Sentinel)
+Tenant: bumpassfire.org
+
+Log Sources Connected:
+- Azure AD sign-in logs (all user authentication events)
+- Microsoft 365 Unified Audit Log (SharePoint, Exchange, Teams)
+- Windows Security Event Log from BFR-WS-001 (Event IDs 4624, 4625, 4634, 4648, 4720, 4726)
+- Azure Activity Log (resource changes)
+
+Retention: 90 days hot (Sentinel), 365 days cold (Log Analytics archive)
+
+3. LOGGING STATUS CHECK
+Date: 2026-07-01  |  Checker: Mike Sadler
+- Azure AD: Active | Last event: <1 min ago
+- M365 UAL: Active | Last event: <5 min ago
+- Windows Events: Active | BFR-WS-001 ingesting at 45 events/hr avg
+
+4. LOG ALERT: Logging Failure
+Alert configured: Sentinel alert "LogSource-Heartbeat" fires if any source goes silent >30 min.
+Last trigger: None in FY2026.
+
+5. CONCLUSION
+Bumpass Fire & Rescue collects and retains comprehensive audit logs from all CUI systems per control 3.3.1.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

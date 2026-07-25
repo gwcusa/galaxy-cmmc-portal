@@ -1,0 +1,41 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.4.4 - Security Impact Analysis
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty analyzes security impacts before implementing configuration changes.
+
+2. SECURITY IMPACT ANALYSIS TEMPLATE
+The Freshservice change request form requires:
+- Change Description
+- Systems Affected
+- Security Impact Rating (Low / Medium / High)
+- Potential Risks
+- Mitigation Controls
+- Rollback Plan
+- Reviewer: Sandra Okonkwo
+
+3. SAMPLE SECURITY IMPACT ANALYSIS
+Change: CHG-2026-042 - Windows 11 Feature Update Rollout
+
+Security Impact Rating: Medium
+Systems Affected: All CUI endpoints (ASJ-WS-001, WS-002)
+Potential Risks:
+  - Feature update may alter security settings or disable GPO controls
+  - Update process requires local admin - temporary privilege elevation
+Mitigation:
+  - Stage to 1 test device first and verify GPO compliance post-update
+  - Use Intune update ring with 7-day deferral to allow monitoring
+  - Run Intune compliance check after rollout
+Result: Update deployed after staging test. No GPO changes detected. Compliant.
+
+Approved by: Anthony James  |  Date: 2026-06-10
+
+4. IMPACT ASSESSMENT HISTORY (Q2 2026)
+4 changes assessed  |  High Risk: 0  |  Medium Risk: 2  |  Low Risk: 2  |  Rejected: 0
+
+5. CONCLUSION
+ASJ Realty requires and documents security impact analysis for all configuration changes per control 3.4.4.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

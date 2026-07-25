@@ -1,0 +1,38 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.4.8 - Application Allowlisting
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty enforces application allowlisting on CUI endpoints.
+
+2. WDAC POLICY CONFIGURATION
+Policy Name: CUI-AppControl-ASJ Realty
+Mode: Enforced (blocks unapproved executables)
+Deployment: Intune (applied to all Windows endpoints)
+
+Allowed Applications:
+- Microsoft 365 Apps (Word, Excel, Outlook, Teams)
+- Microsoft Edge
+- Windows Defender Antivirus
+- Intune Management Extension
+- GlobalProtect VPN
+- Adobe Acrobat Reader DC
+- 7-Zip
+- Notepad++
+
+Policy signed by: Sandra Okonkwo (code signing cert from internal CA)
+
+3. WDAC BLOCK EVENTS (June 2026)
+Date: 2026-06-07 - User: Staff-1 - App: VLC Media Player - BLOCKED
+Action: Sandra Okonkwo reviewed request. VLC not required for business. Denied. User notified.
+Date: 2026-06-19 - User: Anthony James - App: Adobe Acrobat Pro (trial) - BLOCKED
+Action: Sandra Okonkwo added Adobe Acrobat Reader (free) as alternative. Approved.
+
+4. APPROVED SOFTWARE REQUEST LOG
+Requests Q2 2026: 3  |  Approved: 2  |  Denied: 1
+
+5. CONCLUSION
+ASJ Realty enforces application allowlisting via WDAC on all CUI endpoints per control 3.4.8.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

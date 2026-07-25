@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.13.1 - Network Boundary Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to monitor, control, and protect communications at external and internal network boundaries, per NIST SP 800-171 Rev. 2 control 3.13.1.
+
+2. SCOPE
+All Bumpass Fire & Rescue network boundaries separating CUI systems from external networks.
+
+3. REQUIREMENTS
+a. Firewalls protect all network boundaries between CUI systems and external networks.
+b. Intrusion Prevention System (IPS) monitors traffic at network boundaries.
+c. Traffic is logged and reviewed for anomalies.
+d. Default-deny rules are in place; only approved traffic is allowed.
+e. Firewall rules are reviewed quarterly.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, manages all boundary protection devices and configurations.
+
+5. ENFORCEMENT
+Unauthorized network boundary changes are security incidents requiring immediate investigation.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: ASJ Realty
+Control: 3.13.13 - Mobile Code
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to control and monitor the use of mobile code, per NIST SP 800-171 Rev. 2 control 3.13.13.
+
+2. SCOPE
+All mobile code (JavaScript, Java applets, ActiveX, VBA macros, etc.) on ASJ Realty CUI systems.
+
+3. REQUIREMENTS
+a. JavaScript from untrusted sites is blocked by browser security zones.
+b. Unsigned Office macros are blocked via GPO.
+c. Only macros from approved, trusted locations (SharePoint) are permitted.
+d. ActiveX controls are disabled in browsers.
+e. Browser settings are enforced via Intune configuration profile.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, configures and enforces mobile code controls on CUI endpoints.
+
+5. ENFORCEMENT
+Unauthorized macro or mobile code execution is a critical security incident.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

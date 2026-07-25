@@ -1,0 +1,54 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+ACTIVE DIRECTORY - USER AND DEVICE INVENTORY AUDIT
+Evidence for CMMC Control 3.5.1
+================================================================
+Report Date:    July 24, 2026
+Prepared By:    Nathan Cruz
+Domain:         blueridgetech.local
+================================================================
+
+USER ACCOUNTS (Active)
+-------------------------------------------------
+USERNAME     FULL NAME         TITLE                   STATUS
+-----------  ----------------  ----------------------  --------
+ncruz        Nathan Cruz       Lead Systems Engineer   ACTIVE
+vosei        Victor Osei       President               ACTIVE
+jhartwell    James Hartwell    Systems Engineer        ACTIVE
+rkimble      Rachel Kimble     Help Desk Technician    ACTIVE
+mjohnson     Marcus Johnson    Help Desk Technician    ACTIVE
+
+Shared accounts: 0
+Generic accounts: 0
+Disabled accounts: 3 (former employees - accounts retained
+  90 days per policy then deleted)
+
+SERVICE ACCOUNTS
+-------------------------------------------------
+ACCOUNT          PURPOSE                  INTERACTIVE LOGON
+---------------  -----------------------  -----------------
+svc-backup       Veeam backup jobs        DISABLED
+svc-sentinel     Log Analytics collector  DISABLED
+svc-intune       Intune connector         DISABLED
+
+All service accounts: Interactive logon BLOCKED (GPO)
+
+DEVICE INVENTORY (Intune-Enrolled)
+-------------------------------------------------
+DEVICE NAME        OWNER/USER     OS              DEVICE ID (partial)
+-----------------  -----------    -----------     -------------------
+BRTS-WS-OSEI       V. Osei        Win 11 23H2     7a3f...e12b
+BRTS-WS-HARTWELL   J. Hartwell    Win 11 23H2     8c4d...f33c
+BRTS-WS-CRUZ       N. Cruz        Win 11 23H2     2e5a...a09d
+BRTS-WS-KIMBLE     R. Kimble      Win 11 23H2     9b1c...d44e
+BRTS-WS-JOHNSON    M. Johnson     Win 11 23H2     3f7b...c55f
+BRTS-LT-OSEI       V. Osei        Win 11 23H2     4a2e...b66a
+BRTS-LT-CRUZ       N. Cruz        Win 11 23H2     5c9d...e77b
+BRTS-SRV-001       (server)       WS 2022         6d0f...f88c
+BRTS-SRV-002       (server)       WS 2022         7e1a...g99d
+
+Total enrolled devices: 9 | Unenrolled personal devices: 0
+
+================================================================
+Certified: Nathan Cruz - July 24, 2026
+================================================================

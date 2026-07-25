@@ -1,0 +1,26 @@
+﻿SECURITY ASSESSMENT POLICY
+Organization: ASJ Realty
+Control: 3.12.4 - System Security Plan
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to develop, document, and periodically update System Security Plans (SSPs) that describe the system boundary, security requirements, and security controls, per NIST SP 800-171 Rev. 2 control 3.12.4.
+
+2. SCOPE
+All ASJ Realty information systems that process, store, or transmit CUI.
+
+3. REQUIREMENTS
+a. An SSP is maintained that documents the CUI system boundary, users, and controls.
+b. The SSP describes all 110 NIST SP 800-171 Rev. 2 controls and their implementation status.
+c. The SSP is reviewed and updated at least annually.
+d. Anthony James approves the SSP.
+e. The SSP is protected from unauthorized access.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, authors and maintains the SSP. Anthony James reviews and approves it annually.
+
+5. ENFORCEMENT
+An outdated SSP (>1 year old) is treated as a security compliance finding.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

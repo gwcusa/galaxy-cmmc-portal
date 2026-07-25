@@ -1,0 +1,70 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+PHYSICAL ACCESS CONTROL POLICY
+================================================================
+Document ID:    POL-PE-001
+Version:        2.0
+Effective Date: June 1, 2026
+Review Date:    June 1, 2027
+Owner:          Facilities & Security Manager, Donna Hartwell
+Approved By:    President, Victor Osei
+================================================================
+
+1. PURPOSE
+Blue Ridge Technology Solutions provides IT managed services
+to federal clients including defense contractors in the
+Charlottesville, VA area. This policy controls physical
+access to our office, server room, and all equipment
+processing Controlled Unclassified Information (CUI).
+
+2. SCOPE
+Applies to the primary office at 1420 Commerce Drive,
+Charlottesville, VA — including all work areas, the server
+room, storage closets, and any temporary workspace where CUI
+is processed.
+
+3. PHYSICAL ACCESS CONTROLS
+
+3.1 Building Entry
+  - Main entrance uses a key fob (HID ProxCard) system
+  - Key fobs are issued only to full-time employees
+  - Contractors and visitors are never issued a key fob
+  - Building access hours: 6:00 AM – 9:00 PM weekdays
+  - After-hours access requires manager approval in the
+    access system and is logged automatically
+
+3.2 Server Room Access
+  - Server room requires a secondary key fob + PIN code
+  - Only 3 personnel have server room access:
+      * Victor Osei (President)
+      * Donna Hartwell (Facilities Manager)
+      * Nathan Cruz (Lead Systems Engineer)
+  - Server room access is logged and reviewed weekly
+  - No visitors are ever permitted in the server room
+    without escort by an authorized individual
+
+3.3 CUI Work Area
+  - The CUI processing area (Office Suite B) is separated
+    from the general office by a keyed interior door
+  - Clean desk policy enforced — no CUI left unattended
+  - Door must be closed and locked when not occupied
+
+4. VISITOR MANAGEMENT
+  - All visitors sign in at the front desk with photo ID
+  - Visitors receive a dated visitor badge
+  - Visitors are escorted at all times by an employee
+  - Visitor log maintained at front desk and retained 1 year
+
+5. ACCESS DEVICE MANAGEMENT
+  - Lost key fobs must be reported immediately — deactivated
+    within 1 hour of report
+  - Key fobs are deactivated within 4 hours of termination
+  - Key fob inventory reviewed quarterly
+
+6. REVIEW
+Policy reviewed annually. Physical access log reviewed weekly.
+
+================================================================
+Approved: Victor Osei, President                    06/01/2026
+Prepared: Donna Hartwell, Facilities Manager        05/28/2026
+================================================================

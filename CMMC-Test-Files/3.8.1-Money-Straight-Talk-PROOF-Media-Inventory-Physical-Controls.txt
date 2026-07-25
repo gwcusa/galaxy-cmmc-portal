@@ -1,0 +1,33 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.8.1 - System Media Protection
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC protects physical and digital media containing CUI.
+
+2. PHYSICAL MEDIA STORAGE
+CUI Physical Media Location: Locked file cabinet in Terrell Banks's office
+Access: Terrell Banks (primary key), Camille Odom (spare key - emergency only)
+Last Access Log Review: 2026-06-30
+
+Physical Media Inventory:
+Item          | Label         | Contains CUI | Location        | Encrypted
+USB KI-001    | CUI-Media-01  | Yes          | Locked cabinet  | Yes (AES-256)
+USB KI-002    | CUI-Media-02  | Yes          | Locked cabinet  | Yes (AES-256)
+Backup HDD    | CUI-Backup-Q2 | Yes          | Locked cabinet  | Yes (VeraCrypt)
+
+3. DIGITAL MEDIA CONTROLS
+All CUI laptops: BitLocker enabled (AES-256-XTS)
+All CUI USB drives: Hardware-encrypted (Kingston IronKey D300S)
+Network drives (SharePoint): AES-256 at rest (Microsoft managed)
+
+4. QUARTERLY MEDIA REVIEW
+Date: 2026-06-30  |  Reviewer: Terrell Banks
+Physical media items: 3  |  All present and accounted for: Yes
+Labels current: Yes  |  Encryption verified: Yes
+
+5. CONCLUSION
+Money Straight Talk LLC protects CUI media through physical controls, inventory management, and encryption per control 3.8.1.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

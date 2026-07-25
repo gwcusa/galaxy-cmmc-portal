@@ -1,0 +1,26 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.10.4 - Physical Access Audit Logging
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to maintain audit logs of physical access to CUI facilities, per NIST SP 800-171 Rev. 2 control 3.10.4.
+
+2. SCOPE
+All physical access points to Blue Ridge Technology Solutions LLC CUI facilities.
+
+3. REQUIREMENTS
+a. Physical access logs record each entry and exit from CUI areas.
+b. Logs include: individual identity, date, time, and access point.
+c. Physical access logs are reviewed monthly by Nathan Cruz.
+d. Anomalous physical access (after hours, weekends, unknown individuals) generates immediate review.
+e. Physical access logs are retained for 1 year.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, maintains and reviews physical access logs.
+
+5. ENFORCEMENT
+Unauthorized physical access detected in logs is treated as a security incident.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

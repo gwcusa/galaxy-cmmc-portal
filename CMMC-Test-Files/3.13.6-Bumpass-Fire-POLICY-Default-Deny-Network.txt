@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.13.6 - Default-Deny Network Communications
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to deny network communications traffic by default and allow only by exception, per NIST SP 800-171 Rev. 2 control 3.13.6.
+
+2. SCOPE
+All Bumpass Fire & Rescue firewall and network access control configurations.
+
+3. REQUIREMENTS
+a. All firewall and network ACL default rules are DENY ALL.
+b. Specific allow rules must be documented and approved before implementation.
+c. Allow exceptions are reviewed quarterly and removed when no longer needed.
+d. Mike Sadler can demonstrate default-deny posture through firewall rule listing.
+e. Any traffic not matching an explicit allow rule is blocked and logged.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures and maintains default-deny network posture.
+
+5. ENFORCEMENT
+Any firewall configuration allowing traffic by default is a critical finding.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

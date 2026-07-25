@@ -1,0 +1,26 @@
+﻿SECURITY ASSESSMENT POLICY
+Organization: ASJ Realty
+Control: 3.12.1 - Security Control Assessment
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to periodically assess the security controls in systems to determine their effectiveness, per NIST SP 800-171 Rev. 2 control 3.12.1.
+
+2. SCOPE
+All security controls implemented in ASJ Realty CUI systems.
+
+3. REQUIREMENTS
+a. Security controls are assessed at least annually.
+b. Assessment may be self-assessment or conducted by an independent third party.
+c. Assessment results are documented in a Security Assessment Report (SAR).
+d. Findings from the assessment are tracked to remediation.
+e. Assessment results inform updates to the System Security Plan.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, coordinates security assessments. Anthony James reviews and accepts the SAR.
+
+5. ENFORCEMENT
+Gaps identified in security assessments are added to the POA&M and tracked to closure.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

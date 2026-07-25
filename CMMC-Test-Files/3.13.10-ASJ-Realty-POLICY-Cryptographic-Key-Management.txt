@@ -1,0 +1,54 @@
+================================================================
+ASJ REALTY
+CRYPTOGRAPHIC KEY MANAGEMENT POLICY
+================================================================
+Document ID:    POL-SC-010
+Version:        1.0
+Effective Date: July 5, 2026
+Review Date:    July 5, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy establishes requirements for generating, distributing,
+storing, retiring, and destroying cryptographic keys used to
+protect CUI at ASJ Realty.
+
+2. KEY MANAGEMENT REQUIREMENTS
+
+2.1 BitLocker Recovery Keys
+  - Generated automatically by Windows during BitLocker setup
+  - Escrowed to Azure AD (automatic - enforced by Intune)
+  - Access to retrieve: Sandra Okonkwo only (Azure AD admin)
+  - Never printed or stored in plaintext documents
+
+2.2 Azure Key Vault Keys (SharePoint / Azure Storage)
+  - Customer-managed keys stored in Azure Key Vault
+  - Vault name: asjr-keyvault (East US region)
+  - Key rotation: annually (each July 1)
+  - Access policy: Sandra Okonkwo only (Key Administrator role)
+  - Soft-delete and purge protection: ENABLED
+
+2.3 VPN Certificates / Pre-Shared Keys
+  - VPN certificates issued from internal CA (renewed annually)
+  - If PSKs are used: minimum 32 characters, stored in vault
+  - Certificate expiry monitored and renewed 30 days before expiry
+
+2.4 Email Encryption Keys (S/MIME or MIP)
+  - Microsoft Information Protection uses tenant-managed keys
+  - Key management delegated to Microsoft for standard tier
+
+3. KEY RETIREMENT AND DESTRUCTION
+  - Keys are retired when: compromised, expired, or no longer needed
+  - Retired keys are destroyed (Azure Key Vault: key deleted +
+    purge after soft-delete period)
+  - BitLocker key destruction: issue new recovery key, delete old
+
+4. AUDIT
+  Azure Key Vault logs all key operations. Reviewed quarterly.
+
+================================================================
+Approved: Anthony James           07/05/2026
+Prepared: Sandra Okonkwo          07/03/2026
+================================================================

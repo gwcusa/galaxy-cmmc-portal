@@ -1,0 +1,33 @@
+﻿PERSONNEL SECURITY IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.9.1 - Personnel Screening
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC screens personnel before granting CUI access.
+
+2. BACKGROUND CHECK PROCESS
+Provider: HireRight Background Screening
+Scope: Criminal history (7-year, national), employment verification (5 years), reference checks
+Processing Time: 3-5 business days
+Review: Keith Merritt reviews results before CUI access granted
+
+3. BACKGROUND CHECK RECORDS (On File)
+Name          | Title        | Check Date  | Provider  | Result  | Approved By | Access Granted
+Keith Merritt         | Owner-Operator       | 2025-08-15  | HireRight | Clear   | Board       | 2025-08-20
+Keith Merritt          | Owner-Operator        | 2025-08-15  | HireRight | Clear   | Keith Merritt       | 2025-08-20
+Staff-1       | Analyst      | 2026-01-18  | HireRight | Clear   | Keith Merritt       | 2026-01-22
+Staff-2       | Coordinator  | 2026-01-30  | HireRight | Clear   | Keith Merritt       | 2026-02-01
+
+4. CONTRACTOR SCREENING
+Contractor access: Contractors must provide employer background check attestation letter before access.
+Last contractor: Network Vendor A - Attestation received 2026-03-01. On file.
+
+5. RECORDS STORAGE
+Location: SharePoint/HR-Confidential/Background-Checks/ (access: Keith Merritt only)
+Retention: 5 years from employee departure
+
+6. CONCLUSION
+Keith the Drone Guy LLC completes and reviews background checks for all personnel before granting CUI access per control 3.9.1.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

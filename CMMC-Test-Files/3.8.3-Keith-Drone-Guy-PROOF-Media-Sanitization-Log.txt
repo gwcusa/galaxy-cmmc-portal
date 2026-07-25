@@ -1,0 +1,33 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.8.3 - Media Sanitization
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC sanitizes media before disposal or reuse.
+
+2. SANITIZATION STANDARD
+Reference: NIST SP 800-88 Rev. 1
+Methods Used:
+- HDDs: 1-pass overwrite with zeros (meets NIST Clear standard)
+- SSDs/NVMe: Manufacturer Secure Erase (NIST Purge standard)
+- Optical media: Physical destruction (shredding)
+- USB drives: DBAN or manufacturer secure erase
+
+3. MEDIA SANITIZATION LOG (FY2026)
+Date       | Device         | SN/ID     | Method          | Verified | Disposed/Reused
+2026-02-10 | HDD 1TB       | WD-XB2244 | 1-pass zeros    | Keith Merritt     | Donated (wiped)
+2026-04-15 | SSD 256GB     | SAM-1234  | Secure Erase    | Keith Merritt     | Reused (non-CUI)
+2026-06-01 | USB Drive 16GB | SanDisk   | DBAN 1-pass     | Keith Merritt     | Disposed
+
+4. CERTIFICATE OF DESTRUCTION
+For externally disposed HDD (WD-XB2244):
+Disposal Vendor: Certified e-Waste Inc.
+COD Reference: COD-2026-0042
+Date: 2026-02-12
+COD on file: Yes (SharePoint/IT-Docs/Media-Disposal/)
+
+5. CONCLUSION
+Keith the Drone Guy LLC sanitizes all media per NIST SP 800-88 standards with documented destruction records per control 3.8.3.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

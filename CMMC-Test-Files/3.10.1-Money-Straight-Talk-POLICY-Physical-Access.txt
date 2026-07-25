@@ -1,0 +1,26 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY
+Organization: Money Straight Talk LLC
+Control: 3.10.1 - Physical Access Authorization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy limits physical access to Money Straight Talk LLC CUI systems to authorized individuals, per NIST SP 800-171 Rev. 2 control 3.10.1.
+
+2. SCOPE
+All Money Straight Talk LLC facilities where CUI systems are located.
+
+3. REQUIREMENTS
+a. CUI system areas are access-controlled with electronic key card or coded entry.
+b. A list of authorized personnel with physical access is maintained by Camille Odom.
+c. The authorized access list is reviewed and updated quarterly.
+d. Visitors are not permitted unescorted access to CUI areas.
+e. Access rights are revoked within 24 hours of termination.
+
+4. RESPONSIBILITY
+Camille Odom, CEO, approves physical access authorizations. Terrell Banks maintains technical controls.
+
+5. ENFORCEMENT
+Unauthorized physical access to CUI areas is a security incident.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

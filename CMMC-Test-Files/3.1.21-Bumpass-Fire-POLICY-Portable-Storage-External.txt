@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.1.21 - Portable Storage on External Systems
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy limits the use of portable storage devices on external systems, per NIST SP 800-171 Rev. 2 control 3.1.21.
+
+2. SCOPE
+All Bumpass Fire & Rescue personnel who use portable storage devices (USB drives, external HDDs, SD cards) on non-Bumpass Fire & Rescue systems.
+
+3. REQUIREMENTS
+a. Bumpass Fire & Rescue-owned portable storage devices may not be connected to external (non-Bumpass Fire & Rescue) systems.
+b. Portable storage used on external systems may not subsequently be connected to CUI systems without approval and scanning.
+c. Personal portable storage devices are prohibited on Bumpass Fire & Rescue CUI endpoints.
+d. Intune device control policies block unauthorized USB storage on CUI endpoints.
+e. Any exemption requires written approval from Randy Bowles and is logged.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, enforces USB device control policies. Randy Bowles approves exceptions.
+
+5. ENFORCEMENT
+Violations of this policy are investigated and may result in disciplinary action.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: Money Straight Talk LLC
+Control: 3.4.3 - Configuration Change Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy establishes Money Straight Talk LLC's requirements for controlling and documenting changes to information system configurations, per NIST SP 800-171 Rev. 2 control 3.4.3.
+
+2. SCOPE
+All changes to hardware, software, and configuration of Money Straight Talk LLC CUI systems.
+
+3. REQUIREMENTS
+a. All configuration changes require a documented change request.
+b. Changes are reviewed and approved by Camille Odom before implementation.
+c. Emergency changes are documented within 24 hours of implementation.
+d. All changes are tested in a non-production environment when feasible.
+e. Change records are retained for 3 years.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, submits and implements change requests. Camille Odom approves changes.
+
+5. ENFORCEMENT
+Unauthorized changes are rolled back and investigated as security incidents.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

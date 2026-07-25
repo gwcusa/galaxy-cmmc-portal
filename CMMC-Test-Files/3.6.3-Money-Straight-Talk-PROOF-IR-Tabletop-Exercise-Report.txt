@@ -1,0 +1,37 @@
+﻿INCIDENT RESPONSE IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.6.3 - Incident Response Testing
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC tests its incident response capability annually.
+
+2. TABLETOP EXERCISE REPORT
+Exercise Date: 2026-04-15
+Facilitator: Terrell Banks
+Participants: Camille Odom (CEO), Terrell Banks (Systems Admin), Staff-1
+Duration: 2 hours
+
+Scenario:
+"A Money Straight Talk LLC employee receives a spear-phishing email impersonating the DoD contracting officer.
+The employee clicks the link, enters credentials on a fake portal, and unknowingly grants
+an attacker access to their Microsoft 365 account."
+
+3. EXERCISE WALKTHROUGH RESULTS
+Phase              | Action Taken                          | Pass/Fail
+Detection          | Sentinel alert fired on suspicious login | Pass
+Containment        | Account disabled within 15 minutes   | Pass
+Communication      | Camille Odom notified within 30 minutes     | Pass
+Evidence Collection | Logs exported from Sentinel           | Pass
+Eradication        | Password reset, MFA re-enrolled       | Pass
+US-CERT Reporting  | Criteria evaluated - not required     | Pass (no CUI exfil confirmed)
+Recovery           | Account restored, monitoring enhanced | Pass
+
+4. GAPS IDENTIFIED
+Gap 1: No out-of-band contact method if email system compromised
+Remediation: Cell phone list added to IRP | Completed: 2026-05-01 | Owner: Terrell Banks
+
+5. CONCLUSION
+Money Straight Talk LLC completed annual IR tabletop exercise with documented results and gap remediation per control 3.6.3.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

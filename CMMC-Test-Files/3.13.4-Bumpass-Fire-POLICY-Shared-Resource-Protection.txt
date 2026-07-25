@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.13.4 - Shared Resource Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to prevent unauthorized and unintended information transfer via shared system resources, per NIST SP 800-171 Rev. 2 control 3.13.4.
+
+2. SCOPE
+All Bumpass Fire & Rescue systems with shared resources (memory, storage, network) in the CUI environment.
+
+3. REQUIREMENTS
+a. Virtual machines and containers are isolated to prevent data leakage between workloads.
+b. Temporary storage is cleared between user sessions.
+c. Printer spooler directories are cleared after each job.
+d. Memory is overwritten or not re-used across security boundaries without clearing.
+e. Mike Sadler verifies isolation controls quarterly.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures and verifies shared resource isolation controls.
+
+5. ENFORCEMENT
+Shared resource isolation failures are treated as potential data leakage incidents.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

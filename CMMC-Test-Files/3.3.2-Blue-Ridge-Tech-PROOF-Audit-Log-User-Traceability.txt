@@ -1,0 +1,40 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.3.2 - User Activity Audit Traceability
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC audit logs support individual user activity traceability.
+
+2. AUDIT RECORD FIELDS CAPTURED
+Source: Microsoft Sentinel / M365 Unified Audit Log
+
+Required fields per record:
+- UserPrincipalName (e.g., n.cruz@blueridgetech.com)
+- Timestamp (UTC)
+- Operation (e.g., FileAccessed, UserLoggedIn)
+- ClientIP
+- ResultStatus (Success/Failure)
+- TargetResource (file path or object name)
+- SessionId
+
+Sample Audit Record:
+  User: n.cruz@blueridgetech.com
+  Time: 2026-06-15T14:23:11Z
+  Op: FileAccessed
+  File: /CUI-Contracts/DFARS-Report-Q2.docx
+  IP: 10.0.2.45 (BRTS-WS-001)
+  Result: Success
+
+3. TRACEABILITY TEST
+Date: 2026-06-30  |  Tester: Nathan Cruz
+Scenario: Trace file access by n.cruz@blueridgetech.com on 2026-06-15
+Result: Full activity trail reconstructed in <5 minutes using KQL query in Sentinel. PASS.
+
+4. NO SHARED ACCOUNTS
+Verified: All Blue Ridge Technology Solutions LLC accounts are individual. Shared/generic accounts: 0.
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC audit records fully support individual user activity traceability per control 3.3.2.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

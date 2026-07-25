@@ -1,0 +1,26 @@
+﻿MAINTENANCE POLICY
+Organization: Money Straight Talk LLC
+Control: 3.7.3 - Equipment Sanitization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to ensure that equipment removed for off-site maintenance is sanitized before release, per NIST SP 800-171 Rev. 2 control 3.7.3.
+
+2. SCOPE
+All Money Straight Talk LLC CUI system equipment that is removed from the facility for repair or maintenance.
+
+3. REQUIREMENTS
+a. All CUI data is removed from equipment before it leaves Money Straight Talk LLC custody.
+b. If data cannot be removed, the equipment is escorted and not left unattended.
+c. Sanitization follows NIST SP 800-88 Guidelines for Media Sanitization.
+d. Sanitization is documented in the equipment maintenance log.
+e. Equipment returning from off-site maintenance is inspected and re-scanned before reconnection.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, performs or verifies equipment sanitization before off-site release.
+
+5. ENFORCEMENT
+Equipment leaving the facility with CUI without sanitization is a security incident.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

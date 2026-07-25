@@ -1,0 +1,45 @@
+================================================================
+BUMPASS FIRE & RESCUE
+VISITOR LOG - JULY 2026
+Evidence for CMMC Control 3.10.3
+================================================================
+Log Period:     July 1-25, 2026
+Maintained By:  Front Desk / Kim Nguyen (Dispatcher)
+================================================================
+
+VISITOR LOG - JULY 2026
+-------------------------------------------------
+DATE       TIME IN  TIME OUT  VISITOR NAME        PURPOSE              ESCORT
+---------  -------  --------  ------------------  -------------------  ---------------
+07/02/26   09:00   11:30     Dave Albright        UPS maintenance      Mike Sadler
+           (Roanoke Tech Solutions - vendor badge)
+           Destination: Server room (escorted)
+           ID Verified: YES (driver's license)
+
+07/08/26   10:00   10:45     Maria Hernandez      State Fire Marshall  Chief Bowles
+           (State Fire Marshal Office)
+           Destination: Admin office, records review
+           ID Verified: YES (government credential)
+           Note: CUI folders were not accessed; fire code records only.
+
+07/10/26   14:00   14:30     Delivery (Amazon)    Package delivery     Kim Nguyen
+           Delivery person - escorted to lobby only.
+           Package scanned before acceptance.
+           ID: Not required (lobby delivery only)
+
+07/15/26   11:00   12:00     PT interview         Job applicant        Randy Bowles
+           Applicant name: [redacted in this copy per privacy]
+           Destination: Conference room only (not sensitive areas)
+           ID Verified: YES
+
+07/22/26   09:30   11:00     Marco Torres (Dell)  Server NIC repair    Mike Sadler
+           Destination: Server room (escorted continuously)
+           ID Verified: YES (Dell photo ID card)
+
+Total visitors July 2026: 5
+Unescorted visitors: 0
+Visitor badges returned: 5 of 5
+
+================================================================
+Certified: Kim Nguyen / Mike Sadler - July 25, 2026
+================================================================

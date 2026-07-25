@@ -1,0 +1,48 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+USER AND DEVICE IDENTIFICATION POLICY
+================================================================
+Document ID:    POL-IA-001
+Version:        1.0
+Effective Date: April 1, 2026
+Review Date:    April 1, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy ensures all users, processes acting on behalf of
+users, and devices are uniquely identified on BRTS systems.
+
+2. USER IDENTIFICATION
+  - Every human user has a unique, named Active Directory
+    account (e.g., ncruz, vosei, jhartwell)
+  - Shared or generic accounts are prohibited
+  - User accounts are tied to the individual by HR record
+    and are not transferable
+
+3. PROCESS IDENTIFICATION
+  - Service accounts are named by function (e.g., svc-backup,
+    svc-sentinel-collector)
+  - Service accounts are documented in the Service Account
+    Register (SharePoint: IT/ServiceAccounts.xlsx)
+  - Service accounts cannot be used for interactive logon
+
+4. DEVICE IDENTIFICATION
+  - All company devices are enrolled in Microsoft Intune
+  - Each device has a unique name (e.g., BRTS-WS-OSEI,
+    BRTS-LT-CRUZ) and unique Azure AD Device ID
+  - Devices present machine certificates for 802.1X WiFi
+    and Conditional Access identification
+  - Personal/BYOD devices are not permitted to access
+    company CUI systems
+
+5. REVIEW
+  Nathan Cruz reviews the user and device inventory
+  quarterly against HR records. Departed employees
+  have accounts disabled within 24 hours of separation.
+
+================================================================
+Approved: Victor Osei            04/01/2026
+Prepared: Nathan Cruz            03/28/2026
+================================================================

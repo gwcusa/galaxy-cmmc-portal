@@ -1,0 +1,52 @@
+================================================================
+BUMPASS FIRE & RESCUE
+SYSTEM MEDIA PROTECTION POLICY
+================================================================
+Document ID:    POL-MP-001
+Version:        1.0
+Effective Date: May 1, 2026
+Review Date:    May 1, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy establishes controls for physically protecting and
+securely storing system media (both paper and digital) that
+contains CUI at Bumpass Fire and Rescue.
+
+2. DIGITAL MEDIA PROTECTION
+
+2.1 Servers and Workstations
+  - All digital media (hard drives, SSDs) in servers and
+    workstations are physically secured within:
+    * Server room (locked, keypad access - Mike Sadler only)
+    * Locked workstations in secured building (alarm system)
+  - No removable drives or SSDs leave the server room without
+    logging and authorization
+
+2.2 Portable Storage
+  - BFR-issued USB drives (Kingston IronKey - encrypted):
+    stored in locked IT cabinet when not in use
+  - No unencrypted digital media containing CUI is permitted
+
+2.3 Mobile Devices
+  - Company iPhones stored in building or personally held
+    by assigned officer at all times
+
+3. PAPER MEDIA PROTECTION
+  - Paper documents containing CUI stored in locked
+    filing cabinet in the Chief's office (combination lock)
+  - Key/combo held by Chief Bowles and Mike Sadler
+  - Paper CUI is not left unattended on desks
+  - Clean desk policy: CUI papers locked away at end of day
+
+4. INVENTORY
+  Mike Sadler maintains a media inventory (SharePoint:
+  IT/Media-Inventory.xlsx) of all removable digital media.
+  Inventory is reconciled quarterly.
+
+================================================================
+Approved: Chief Randy Bowles        05/01/2026
+Prepared: Mike Sadler               04/29/2026
+================================================================

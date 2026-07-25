@@ -1,0 +1,51 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+USER ACTIVITY TRACEABILITY POLICY
+================================================================
+Document ID:    POL-AU-002
+Version:        1.0
+Effective Date: January 20, 2026
+Review Date:    January 20, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy ensures that all individual user actions on MST
+information systems can be uniquely traced to the user who
+performed them, supporting accountability and incident investigation.
+
+2. REQUIREMENTS
+
+2.1 Unique User Accounts
+  - Every user must have an individual, non-shared account
+  - Shared or generic accounts (admin, test, user1) are prohibited
+  - Service accounts are named by function and their use is
+    restricted to automated processes only
+
+2.2 Audit Logging
+  All systems log the following user-attributable events:
+    - Logon / logoff (with username, timestamp, source IP)
+    - File access, modification, deletion (with username)
+    - Privilege escalation (with username and method)
+    - Account creation, modification, deletion
+    - Security policy changes
+
+2.3 Log Integrity
+  - Logs are written to Microsoft Sentinel (cloud-based SIEM)
+  - Users cannot modify or delete their own audit logs
+  - Log storage: Azure Log Analytics (1-year retention)
+
+3. SHARED ACCOUNT PROHIBITION
+  No shared accounts are permitted. If a role requires
+  multiple people to perform a task, each person uses their
+  own account and the results are attributed to them.
+
+4. SERVICE ACCOUNTS
+  Service account activity is logged and reviewed monthly.
+  Humans do not log in interactively using service accounts.
+
+================================================================
+Approved: Camille Odom           01/20/2026
+Prepared: Terrell Banks          01/18/2026
+================================================================

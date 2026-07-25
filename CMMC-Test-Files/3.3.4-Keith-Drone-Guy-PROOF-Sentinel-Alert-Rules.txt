@@ -1,0 +1,36 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.3.4 - Audit Failure Alerting
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC alerts on audit logging failures.
+
+2. ALERT CONFIGURATION
+Platform: Microsoft Sentinel + Azure Monitor
+Tenant: keithdroney.com
+
+Alert Rules for Logging Failures:
+- Rule: "LogSource-Heartbeat-Windows" - Fires if KDG-WS-001 stops sending events >30 min
+- Rule: "M365-UAL-Heartbeat" - Fires if M365 audit log connector silent >30 min
+- Rule: "AzureAD-SignIn-Heartbeat" - Fires if Azure AD sign-in logs silent >30 min
+- Rule: "LogAnalytics-StorageAlert" - Fires if workspace >80% capacity
+
+Notification: Email to Keith Merritt@keithdroney.com + Teams channel "SecurityAlerts-Keith the Drone Guy LLC"
+Escalation: If unacknowledged >15 min, secondary alert sent to Keith Merritt@keithdroney.com
+
+3. ALERT TEST RECORD
+Test Date: 2026-06-10  |  Tester: Keith Merritt
+Method: Paused Windows event log connector temporarily
+Alert fired: 31 minutes after pause (within threshold)
+Alert received by Keith Merritt: 31m 02s
+Response time: 8 minutes (within 15-minute SLA)
+Result: PASS
+
+4. ALERT HISTORY (FY2026)
+Total logging failure alerts: 0 (no production failures in FY2026)
+
+5. CONCLUSION
+Keith the Drone Guy LLC has active alerting for audit logging failures with tested response times per control 3.3.4.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

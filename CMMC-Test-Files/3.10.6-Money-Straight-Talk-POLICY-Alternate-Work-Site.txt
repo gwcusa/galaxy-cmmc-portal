@@ -1,0 +1,26 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY
+Organization: Money Straight Talk LLC
+Control: 3.10.6 - Alternate Work Site Security
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy establishes security requirements for Money Straight Talk LLC personnel working at alternate work sites (e.g., home offices), per NIST SP 800-171 Rev. 2 control 3.10.6.
+
+2. SCOPE
+All Money Straight Talk LLC personnel who work remotely or from alternate sites with access to CUI.
+
+3. REQUIREMENTS
+a. Personnel must sign a remote work agreement before accessing CUI from alternate sites.
+b. Remote work environments must include: locked workspace, encrypted devices, VPN use.
+c. Printers at alternate sites may not be used to print CUI without explicit approval.
+d. CUI documents may not be left visible in unsecured home office areas.
+e. Terrell Banks conducts annual remote work security reviews for all remote-capable staff.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, provides remote work security guidance and Camille Odom approves alternate work arrangements.
+
+5. ENFORCEMENT
+Personnel working from unsecured alternate sites with CUI are in violation of this policy.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

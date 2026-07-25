@@ -1,0 +1,59 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+VOIP (MICROSOFT TEAMS) CONTROL VERIFICATION
+Evidence for CMMC Control 3.13.14
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Nathan Cruz, Lead Systems Engineer
+Platform:       Microsoft Teams (M365 E3)
+================================================================
+
+TEAMS VOICE CONFIGURATION
+-------------------------------------------------
+Teams Version:     Teams 2.0 (new client - July 2026)
+Calling Plan:      Microsoft 365 Business Voice
+Encryption:        SRTP (Secure Real-time Transport Protocol)
+                   All media streams encrypted AES-128 minimum
+Signaling:         TLS 1.2+ (SIP over TLS)
+Call Recording:    Disabled by Teams admin policy (prevents
+                   unauthorized recording of CUI discussions)
+
+TEAMS ADMIN POLICY - CALLING RESTRICTIONS
+-------------------------------------------------
+Policy: BRTS-Calling-Policy
+  International calling:    DISABLED (not a business need)
+  PSTN calling:             LIMITED to approved numbers
+  External Teams calling:   ALLOWED (encrypted Teams-to-Teams)
+  Anonymous caller join:    DISABLED
+  Recording by user:        DISABLED (admin-only recording)
+
+APPROVED VOIP ENFORCEMENT (Intune + CA)
+-------------------------------------------------
+Defender for Cloud Apps: Monitors for unapproved VoIP apps
+  Policy: Alert if users install Skype, Discord, Zoom
+          (note: Zoom approved for external-required meetings
+           only - CHG-2026-086)
+Apps blocked by Intune:
+  WhatsApp Desktop: Not in approved software list (blocked)
+  Discord:          Not in approved software list (blocked)
+  Cisco Webex:      Not in approved software list (blocked)
+
+CALL LOG AUDIT (July 2026 Sample)
+-------------------------------------------------
+Teams admin center call quality dashboard:
+  Total calls July 1-25:    143 calls
+  External PSTN calls:      12 (all to approved US numbers)
+  International calls:      0 (policy blocks international)
+  Poor quality calls:       3 (network jitter - resolved)
+  Suspicious call patterns: NONE detected
+
+ENCRYPTION VERIFICATION
+-------------------------------------------------
+Teams network test (July 1, 2026 - Nathan Cruz):
+  SRTP encryption confirmed active during test call.
+  Wireshark capture: Media packets encrypted (SRTP header visible,
+  payload unreadable). COMPLIANT.
+
+================================================================
+Certified: Nathan Cruz - July 25, 2026
+================================================================

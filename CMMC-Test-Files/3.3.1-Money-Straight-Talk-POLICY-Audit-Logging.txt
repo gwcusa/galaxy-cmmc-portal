@@ -1,0 +1,73 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+AUDIT LOGGING AND ACCOUNTABILITY POLICY
+================================================================
+Document ID:    POL-AU-001
+Version:        2.0
+Effective Date: April 1, 2026
+Review Date:    April 1, 2027
+Owner:          Systems Administrator, Terrell Banks
+Approved By:    Managing Director, Camille Odom
+================================================================
+
+1. PURPOSE
+Money Straight Talk LLC provides financial literacy consulting
+and manages CUI under Department of Defense financial education
+contracts. This policy ensures that all system activity is
+logged, retained, and available for review to detect and
+investigate unauthorized or suspicious activity.
+
+2. SCOPE
+Applies to all company servers, workstations, cloud platforms
+(Microsoft 365, Azure), and the client portal used to deliver
+financial education content under federal contracts.
+
+3. EVENTS TO BE LOGGED
+The following events are captured on all covered systems:
+
+  - Successful and failed login attempts
+  - Account creation, modification, and deletion
+  - Password changes and resets
+  - Privilege escalation events
+  - File access on CUI-designated shares
+  - System startup and shutdown
+  - Firewall allow/deny events
+  - VPN connection events (connect/disconnect)
+  - Software installation and removal
+  - Configuration changes to security settings
+
+4. LOG RETENTION
+- Security event logs retained for a minimum of 90 days online
+- Archived logs retained for 1 year in Azure Blob Storage (cold)
+- Logs are stored in a write-once, read-many configuration
+- Log storage access restricted to Terrell Banks and Camille Odom
+
+5. LOG REVIEW
+- Automated alerts configured for high-priority events
+  (see Section 6)
+- Weekly manual log review conducted by Terrell Banks
+- Monthly summary report delivered to Camille Odom
+- Anomalies reported to management within 4 hours of detection
+
+6. AUTOMATED ALERTING
+The following events trigger immediate email/SMS alerts:
+  - 5+ failed login attempts on any account within 10 minutes
+  - Any login outside business hours (8pm–6am EST)
+  - Any login from foreign IP addresses
+  - Audit log service stopped or paused
+  - CUI file share accessed by non-authorized account
+
+7. LOG INTEGRITY
+- Logs are forwarded in real time to Azure Sentinel SIEM
+- Local log tampering triggers an automatic alert
+- Log administrator access is limited to prevent self-audit
+
+8. RESPONSIBILITIES
+- Terrell Banks: Configure logging, review weekly, respond to alerts
+- Camille Odom: Receive monthly reports, approve log access changes
+- All staff: Report suspicious activity immediately
+
+================================================================
+Approved: Camille Odom            04/01/2026
+Prepared: Terrell Banks           03/28/2026
+================================================================

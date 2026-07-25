@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.13.6 - Default-Deny Network Communications
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to deny network communications traffic by default and allow only by exception, per NIST SP 800-171 Rev. 2 control 3.13.6.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC firewall and network access control configurations.
+
+3. REQUIREMENTS
+a. All firewall and network ACL default rules are DENY ALL.
+b. Specific allow rules must be documented and approved before implementation.
+c. Allow exceptions are reviewed quarterly and removed when no longer needed.
+d. Nathan Cruz can demonstrate default-deny posture through firewall rule listing.
+e. Any traffic not matching an explicit allow rule is blocked and logged.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, configures and maintains default-deny network posture.
+
+5. ENFORCEMENT
+Any firewall configuration allowing traffic by default is a critical finding.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

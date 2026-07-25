@@ -1,0 +1,49 @@
+================================================================
+ASJ REALTY
+WIRELESS ACCESS PROTECTION POLICY
+================================================================
+Document ID:    POL-AC-017
+Version:        1.0
+Effective Date: May 20, 2026
+Review Date:    May 20, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy requires that wireless access at ASJ Realty is
+protected using strong authentication and encryption to
+prevent unauthorized access and eavesdropping.
+
+2. ENCRYPTION REQUIREMENTS
+  - All corporate wireless networks must use WPA3-Enterprise
+    or, at minimum, WPA2-Enterprise (AES/CCMP encryption)
+  - WEP, WPA (TKIP), and WPA2-Personal (PSK) are prohibited
+    on any network that carries company or CUI data
+  - Guest networks may use WPA2-Personal with a minimum
+    16-character PSK rotated weekly
+
+3. AUTHENTICATION REQUIREMENTS
+  - Corporate SSID: 802.1X authentication required
+    (user credentials validated against Active Directory)
+  - Devices must present a valid machine certificate issued
+    by the company CA (via Intune SCEP profile)
+  - MFA is required for initial device enrollment but not
+    for each WiFi connection (certificate handles this)
+
+4. PROHIBITED CONFIGURATIONS
+  - Open (unencrypted) WiFi: PROHIBITED
+  - WEP encryption: PROHIBITED
+  - Default router/AP credentials: PROHIBITED
+  - SSID broadcasting on IoT/management networks: PROHIBITED
+    (SSIDs for management are hidden)
+
+5. ACCESS POINT SECURITY
+  - All APs managed via Meraki cloud dashboard
+  - AP admin access restricted to Sandra Okonkwo
+  - Firmware auto-updated within 7 days of release
+
+================================================================
+Approved: Anthony James           05/20/2026
+Prepared: Sandra Okonkwo          05/18/2026
+================================================================

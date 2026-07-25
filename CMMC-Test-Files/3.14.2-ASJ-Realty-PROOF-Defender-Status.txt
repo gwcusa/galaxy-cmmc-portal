@@ -1,0 +1,38 @@
+﻿SYSTEM AND INFORMATION INTEGRITY IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.14.2 - Malware Protection
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty deploys anti-malware on all CUI endpoints.
+
+2. ANTI-MALWARE DEPLOYMENT
+Tool: Microsoft Defender for Endpoint (Plan 2)
+Managed by: Microsoft Intune (tenant: asjrealty.com)
+Coverage: All CUI endpoints
+
+3. DEFENDER STATUS (July 1, 2026 - Intune Report)
+Device  | Real-Time Protection | Definitions Updated | Last Scan   | Status
+ASJ-WS-001    | ENABLED              | 2026-07-01 03:14    | 2026-07-01  | Clean
+WS-002  | ENABLED              | 2026-07-01 03:15    | 2026-07-01  | Clean
+
+Tamper Protection: ENABLED on all devices (prevents user from disabling Defender)
+
+4. EMAIL PROTECTION
+Microsoft Defender for Office 365 (tenant: asjrealty.com):
+- Safe Attachments: Enabled (all attachments sandboxed before delivery)
+- Safe Links: Enabled (URLs checked at time-of-click)
+- Anti-phishing: Enabled with impersonation protection for Sandra Okonkwo and Anthony James
+- Anti-malware: Enabled (auto-purge of quarantined email)
+
+5. MALWARE DETECTION LOG (Q2 2026)
+Date: 2026-05-14 - Threat: TrojanDownloader:HTML/Phish - Location: Email attachment - Action: Quarantined by Defender for O365
+Date: 2026-06-22 - Threat: PUA:Win32/Softcoupon - Location: ASJ-WS-001 - Action: Removed by Defender - User notified
+
+Total endpoint incidents: 1 (PUA, low severity, auto-remediated)
+Total email threats blocked: 23 (all quarantined)
+
+6. CONCLUSION
+ASJ Realty protects all CUI endpoints and email with Microsoft Defender, updated daily, with tamper protection enabled per control 3.14.2.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

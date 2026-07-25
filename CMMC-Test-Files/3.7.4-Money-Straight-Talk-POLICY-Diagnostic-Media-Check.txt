@@ -1,0 +1,50 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+DIAGNOSTIC PROGRAM MEDIA MALWARE CHECK POLICY
+================================================================
+Document ID:    POL-MA-004
+Version:        1.0
+Effective Date: February 5, 2026
+Review Date:    February 5, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy requires that media containing diagnostic programs
+used during system maintenance is checked for malicious code
+before use on MST systems.
+
+2. SCOPE
+Applies to any media containing diagnostic software brought
+into the MST environment for maintenance purposes, including:
+  - USB flash drives with bootable diagnostic tools
+  - External hard drives with system utilities
+  - Optical discs (CDs/DVDs) with diagnostic software
+  - Technician laptops connected to MST systems
+
+3. SCAN REQUIREMENT
+Before any diagnostic media is connected to or used on an
+MST system, Terrell Banks must:
+  a) Scan the media with Microsoft Defender for Endpoint
+     (or an equivalent up-to-date AV scanner)
+  b) If no USB port is available to scan, boot from the
+     media on an air-gapped test machine first
+  c) Document the scan result in the maintenance ticket
+
+4. VENDOR MEDIA
+  Vendor-supplied diagnostic media (from Dell, Microsoft, etc.)
+  from sealed, verified manufacturer packaging may be used
+  with reduced (but not eliminated) scanning - visual inspection
+  of packaging integrity plus one quick scan.
+
+5. FAILED SCAN
+  If a scan finds malicious code on diagnostic media:
+    - Do NOT use the media
+    - Confiscate the media and contact the vendor
+    - Document the incident and report to Camille Odom
+
+================================================================
+Approved: Camille Odom           02/05/2026
+Prepared: Terrell Banks          02/03/2026
+================================================================

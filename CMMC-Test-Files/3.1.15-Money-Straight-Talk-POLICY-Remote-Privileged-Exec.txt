@@ -1,0 +1,51 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+REMOTE PRIVILEGED COMMAND EXECUTION POLICY
+================================================================
+Document ID:    POL-AC-015
+Version:        1.0
+Effective Date: January 12, 2026
+Review Date:    January 12, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy restricts the remote execution of privileged
+commands to only those cases with documented operational need.
+
+2. POLICY STATEMENT
+Remote execution of privileged commands (commands requiring
+elevated or administrative rights) is authorized ONLY when:
+  a) There is a documented operational need (e.g., emergency
+     maintenance, after-hours system recovery), AND
+  b) The execution is performed through the approved VPN
+     remote access channel, AND
+  c) Camille Odom has provided written approval (email) before
+     the privileged remote session begins (except for P1
+     emergencies, where approval is obtained within 2 hours)
+
+3. PROCEDURE
+
+3.1 Planned Privileged Remote Work
+  - Terrell Banks submits a Change Request in the IT ticketing
+    system describing: what, why, when, and estimated duration
+  - Camille Odom approves the request
+  - Session is logged automatically via VPN + Windows audit log
+
+3.2 Emergency Privileged Remote Work (P1 Incidents)
+  - Terrell Banks documents the emergency in the ticket system
+  - Remote privileged work proceeds via VPN
+  - Approval from Camille Odom obtained within 2 hours
+  - All commands executed are noted in the ticket
+
+4. LOGGING
+  All remote privileged sessions are captured in:
+    - VPN gateway session log (connection records)
+    - Windows Security Event Log (Event IDs 4624, 4672, 4688)
+    - IT ticketing system (change records)
+
+================================================================
+Approved: Camille Odom           01/12/2026
+Prepared: Terrell Banks          01/10/2026
+================================================================

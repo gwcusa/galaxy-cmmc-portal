@@ -1,0 +1,33 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.8.7 - Removable Media Use Control
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC controls the use of removable media on CUI endpoints.
+
+2. DEVICE CONTROL CONFIGURATION
+Platform: Microsoft Intune Device Control (tenant: moneystraighttalk.com)
+Policy Name: USBDeviceControl-Money Straight Talk LLC
+Default Action: BLOCK all removable storage
+Allowed Exception: Allowlisted by Hardware ID
+
+Allowlisted Devices:
+- Kingston IronKey D300S (SN: KI-001) - HW ID: USB\VID_0951&PID_1667
+- Kingston IronKey D300S (SN: KI-002) - HW ID: USB\VID_0951&PID_1667
+- IT Backup Drive (SN: ITBK-001) - HW ID: [registered in Intune]
+
+3. APPROVED MEDIA REGISTER
+Device         | SN      | Owner  | Encrypted | Purpose          | Last Audit
+KI-001 (32GB)  | KI-001  | Terrell Banks   | Yes       | CUI transfer     | 2026-06-30
+KI-002 (32GB)  | KI-002  | Camille Odom  | Yes       | CUI backup       | 2026-06-30
+ITBK-001       | ITBK-001| Terrell Banks   | Yes       | IT backup (admin)| 2026-06-30
+
+4. BLOCK EVENT LOG (June 2026)
+Date: 2026-06-14 - Device: Generic USB (unregistered) - User: Staff-1 - Action: BLOCKED
+Event ID 6416 logged to Sentinel. Alert sent to Terrell Banks. Staff-1 reminded of policy.
+
+5. CONCLUSION
+Money Straight Talk LLC blocks unapproved removable media via Intune Device Control with an approved media register per control 3.8.7.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

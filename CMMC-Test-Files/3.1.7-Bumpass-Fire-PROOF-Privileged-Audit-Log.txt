@@ -1,0 +1,28 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.7 - Privileged Function Execution Control
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue prevents non-privileged users from executing privileged functions and audits all privileged activity.
+
+2. TECHNICAL CONTROLS
+- Windows UAC: Enabled at max level on all Bumpass Fire & Rescue endpoints (GPO: UAC-Enforce-Bumpass Fire & Rescue)
+- Azure AD RBAC: Standard users have no admin role assignments
+- Intune: Device compliance blocks software install without admin credentials
+- Microsoft Sentinel: Alert rule triggers on Event ID 4672 (Special Logon) for non-admin accounts
+
+3. PRIVILEGED FUNCTION AUDIT LOG (Excerpt - June 2026)
+Date        | User            | Action                    | Outcome
+2026-06-05  | m.sadler@bumpassfire.org     | Software install attempt  | Blocked (UAC)
+2026-06-12  | Mike Sadler@bumpassfire.org      | Azure AD role change      | Success (logged)
+2026-06-20  | Mike Sadler@bumpassfire.org      | Intune policy update      | Success (logged)
+
+4. MONTHLY REVIEW
+Date: 2026-07-02  |  Reviewer: Mike Sadler
+Result: 1 blocked non-admin install attempt. No unauthorized privilege escalation.
+
+5. CONCLUSION
+Bumpass Fire & Rescue enforces privileged function controls via UAC, RBAC, and monitored audit logs per control 3.1.7.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

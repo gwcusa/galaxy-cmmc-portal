@@ -1,0 +1,28 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.1.20 - External System Connection Control
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty verifies and controls all connections to external systems.
+
+2. APPROVED EXTERNAL CONNECTION REGISTER
+(Maintained by Sandra Okonkwo - Last Updated: 2026-07-01)
+
+Connection              | System/Service                  | ISA Date   | Approver   | Status
+Microsoft 365           | Azure AD, Exchange, SharePoint  | 2025-09-01 | Anthony James      | Active
+DoD Prime Contractor    | SFTP CUI Exchange Portal        | 2026-01-15 | Anthony James      | Active
+Background Check SVC    | HireRight (HR only, no CUI)     | 2025-11-01 | Anthony James      | Active
+
+3. ANNUAL REVIEW
+Date: 2026-06-30  |  Reviewer: Sandra Okonkwo  |  Approver: Anthony James
+Result: All 3 connections reviewed. 1 legacy FTP connection to retired vendor terminated. Register updated.
+
+4. NEW CONNECTION REQUEST LOG
+Date: 2026-05-12 | Requestor: Staff-1 | System: Personal Dropbox
+Decision: DENIED - non-approved cloud storage. User notified.
+
+5. CONCLUSION
+ASJ Realty maintains and reviews all external system connections with documented ISAs per control 3.1.20.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

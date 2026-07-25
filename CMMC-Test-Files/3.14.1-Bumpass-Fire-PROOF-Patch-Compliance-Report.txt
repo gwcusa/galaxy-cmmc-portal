@@ -1,0 +1,51 @@
+================================================================
+BUMPASS FIRE & RESCUE
+FLAW REMEDIATION - PATCH COMPLIANCE REPORT
+Evidence for CMMC Control 3.14.1
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Mike Sadler, IT Administrator
+Source:         Microsoft Intune + Defender Vulnerability Mgmt
+================================================================
+
+PATCH COMPLIANCE STATUS (July 25, 2026)
+-------------------------------------------------
+DEVICE         OS             LAST PATCH     CRITICAL OPEN  STATUS
+-----------    -----------    -----------    -------------  --------
+BFR-WS-001     Win 11 23H2   07/09/2026     0              CURRENT
+BFR-WS-002     Win 11 23H2   07/09/2026     0              CURRENT
+BFR-WS-003     Win 11 23H2   07/09/2026     0              CURRENT
+BFR-LT-001     Win 11 23H2   07/09/2026     0              CURRENT
+BFR-SRV-001    WS 2022        07/09/2026     0              CURRENT
+BFR-SRV-002    WS 2022        07/09/2026     0              CURRENT
+
+All devices current. 0 critical vulnerabilities open.
+
+VULNERABILITY TRACKING LOG - Q2 2026 SUMMARY
+-------------------------------------------------
+VULN ID   CVE              SEV       FOUND       PATCHED     DAYS
+--------  ---------------  --------  ----------  ----------  ------
+VL-031    CVE-2026-0099    Critical  04/01/2026  04/03/2026  2 days
+          (SLA: 72 hrs = 3 days - patched in 2 days. COMPLIANT)
+
+VL-032    CVE-2026-1234    High      04/15/2026  05/13/2026  28 days
+          (SLA: 30 days. COMPLIANT)
+
+VL-033    CVE-2026-2345    High      05/22/2026  06/11/2026  20 days
+          (SLA: 30 days. COMPLIANT)
+
+VL-034    CVE-2026-3399    Medium    06/10/2026  07/09/2026  29 days
+          (SLA: 90 days. COMPLIANT)
+
+EMERGENCY OUT-OF-BAND PATCH (April 3, 2026)
+-------------------------------------------------
+CVE-2026-0099 (PrintNightmare-type RCE - Critical 9.8)
+  Discovery: 04/01/2026 (CISA KEV alert)
+  Patch deployed: 04/03/2026 07:00 AM (all 6 devices)
+  Total time: 46 hours (within 72-hour SLA)
+
+SLA Compliance - Q2: 100% (all patches within required timeframes)
+
+================================================================
+Certified: Mike Sadler - July 25, 2026
+================================================================

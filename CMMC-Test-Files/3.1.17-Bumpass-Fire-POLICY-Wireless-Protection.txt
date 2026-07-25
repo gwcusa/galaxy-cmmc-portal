@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.1.17 - Wireless Access Authentication and Encryption
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to protect wireless access using authentication and encryption, per NIST SP 800-171 Rev. 2 control 3.1.17.
+
+2. SCOPE
+All Bumpass Fire & Rescue wireless networks that support access to CUI systems.
+
+3. REQUIREMENTS
+a. CUI wireless networks use WPA3-Enterprise (WPA2-Enterprise minimum) with 802.1X.
+b. Encryption uses AES-CCMP (128-bit minimum).
+c. WEP and TKIP are prohibited.
+d. Wireless authentication certificates are issued by the Bumpass Fire & Rescue internal PKI.
+e. Mike Sadler reviews wireless encryption configurations quarterly.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures and maintains wireless encryption and authentication.
+
+5. ENFORCEMENT
+Any wireless network in violation of these standards must be taken offline immediately.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

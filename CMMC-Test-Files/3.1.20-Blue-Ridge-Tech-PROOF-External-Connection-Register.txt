@@ -1,0 +1,28 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.20 - External System Connection Control
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC verifies and controls all connections to external systems.
+
+2. APPROVED EXTERNAL CONNECTION REGISTER
+(Maintained by Nathan Cruz - Last Updated: 2026-07-01)
+
+Connection              | System/Service                  | ISA Date   | Approver   | Status
+Microsoft 365           | Azure AD, Exchange, SharePoint  | 2025-09-01 | Victor Osei      | Active
+DoD Prime Contractor    | SFTP CUI Exchange Portal        | 2026-01-15 | Victor Osei      | Active
+Background Check SVC    | HireRight (HR only, no CUI)     | 2025-11-01 | Victor Osei      | Active
+
+3. ANNUAL REVIEW
+Date: 2026-06-30  |  Reviewer: Nathan Cruz  |  Approver: Victor Osei
+Result: All 3 connections reviewed. 1 legacy FTP connection to retired vendor terminated. Register updated.
+
+4. NEW CONNECTION REQUEST LOG
+Date: 2026-05-12 | Requestor: Staff-1 | System: Personal Dropbox
+Decision: DENIED - non-approved cloud storage. User notified.
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC maintains and reviews all external system connections with documented ISAs per control 3.1.20.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

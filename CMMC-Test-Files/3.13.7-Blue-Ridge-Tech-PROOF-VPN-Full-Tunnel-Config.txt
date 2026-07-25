@@ -1,0 +1,37 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.13.7 - Split Tunneling Prohibition
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC VPN connections do not use split tunneling.
+
+2. VPN CONFIGURATION
+VPN Solution: GlobalProtect (Palo Alto) / Azure VPN Gateway
+VPN Profile: Blue Ridge Technology Solutions LLC-FullTunnel (deployed via Intune)
+
+Split Tunnel Setting:
+- Split Tunneling: DISABLED
+- Route: 0.0.0.0/0 (all traffic routes through VPN tunnel)
+- Exclusions: None (no split tunnel exceptions)
+
+3. VPN PROFILE (Intune Configuration Profile)
+Profile Name: VPN-FullTunnel-Blue Ridge Technology Solutions LLC
+Configuration Type: VPN
+VPN Type: IKEv2
+Split Tunneling: Not configured (disabled by default in IKEv2 full-tunnel mode)
+Traffic Routing: All traffic via VPN gateway
+
+User Override: NOT PERMITTED (Intune-managed, locked configuration)
+
+4. FULL-TUNNEL VERIFICATION TEST
+Date: 2026-06-25  |  Tester: Nathan Cruz
+Test: Connected VPN on BRTS-WS-001. Checked external IP address at whatismyip.com.
+Without VPN: External IP = 71.44.x.x (home ISP)
+With VPN active: External IP = 40.76.x.x (Blue Ridge Technology Solutions LLC Azure gateway IP)
+Result: All internet traffic routing through Blue Ridge Technology Solutions LLC VPN gateway. No split tunnel. PASS.
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC VPN routes all traffic through the Blue Ridge Technology Solutions LLC gateway with split tunneling disabled per control 3.13.7.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

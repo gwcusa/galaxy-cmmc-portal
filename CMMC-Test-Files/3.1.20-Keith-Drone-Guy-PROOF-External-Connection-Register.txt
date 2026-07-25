@@ -1,0 +1,28 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.20 - External System Connection Control
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC verifies and controls all connections to external systems.
+
+2. APPROVED EXTERNAL CONNECTION REGISTER
+(Maintained by Keith Merritt - Last Updated: 2026-07-01)
+
+Connection              | System/Service                  | ISA Date   | Approver   | Status
+Microsoft 365           | Azure AD, Exchange, SharePoint  | 2025-09-01 | Keith Merritt      | Active
+DoD Prime Contractor    | SFTP CUI Exchange Portal        | 2026-01-15 | Keith Merritt      | Active
+Background Check SVC    | HireRight (HR only, no CUI)     | 2025-11-01 | Keith Merritt      | Active
+
+3. ANNUAL REVIEW
+Date: 2026-06-30  |  Reviewer: Keith Merritt  |  Approver: Keith Merritt
+Result: All 3 connections reviewed. 1 legacy FTP connection to retired vendor terminated. Register updated.
+
+4. NEW CONNECTION REQUEST LOG
+Date: 2026-05-12 | Requestor: Staff-1 | System: Personal Dropbox
+Decision: DENIED - non-approved cloud storage. User notified.
+
+5. CONCLUSION
+Keith the Drone Guy LLC maintains and reviews all external system connections with documented ISAs per control 3.1.20.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

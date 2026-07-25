@@ -1,0 +1,26 @@
+﻿INCIDENT RESPONSE POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.6.2 - Incident Tracking and Reporting
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to track, document, and report incidents to appropriate officials, per NIST SP 800-171 Rev. 2 control 3.6.2.
+
+2. SCOPE
+All Bumpass Fire & Rescue security incidents involving CUI systems or data.
+
+3. REQUIREMENTS
+a. All incidents are tracked in the IT helpdesk ticketing system.
+b. Incidents are classified by severity (Low/Medium/High/Critical).
+c. High and Critical incidents are reported to Randy Bowles within 1 hour.
+d. CUI-related incidents are reported to DoD/US-CERT as required.
+e. Incident records are retained for 3 years.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, tracks and documents all incidents. Randy Bowles receives escalation reports.
+
+5. ENFORCEMENT
+Failure to report a known incident is a policy violation subject to disciplinary action.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

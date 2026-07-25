@@ -1,0 +1,32 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.4.3 - Configuration Change Control
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty controls and documents all configuration changes to CUI systems.
+
+2. CHANGE MANAGEMENT PROCESS
+Ticketing: Freshservice (tenant: asjrealty.com)
+Workflow: Request > Review by Sandra Okonkwo > Approval by Anthony James > Implementation > Closure
+
+Change Categories:
+- Standard (pre-approved, low risk): Implement within 48 hours, document after
+- Normal (requires review): 5-business-day approval window
+- Emergency: Implement first, document and get retroactive approval within 24 hours
+
+3. CHANGE LOG (June 2026)
+CHG-2026-041 | 2026-06-03 | Intune AV policy update       | Approved: Anthony James | Status: Closed
+CHG-2026-042 | 2026-06-10 | Windows 11 update rollout     | Approved: Anthony James | Status: Closed
+CHG-2026-043 | 2026-06-22 | VPN certificate renewal       | Approved: Anthony James | Status: Closed
+CHG-2026-044 | 2026-06-28 | Sentinel alert rule addition  | Approved: Anthony James | Status: Closed
+
+Unauthorized changes detected: 0
+
+4. ROLLBACK PROCEDURE
+Each change request includes rollback plan. Last rollback executed: N/A (FY2026)
+
+5. CONCLUSION
+ASJ Realty tracks and approves all configuration changes via Freshservice change management per control 3.4.3.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

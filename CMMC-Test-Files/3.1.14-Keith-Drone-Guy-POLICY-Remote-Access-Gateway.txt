@@ -1,0 +1,44 @@
+================================================================
+KEITH THE DRONE GUY LLC
+REMOTE ACCESS CONTROL POINT POLICY
+================================================================
+Document ID:    POL-AC-014
+Version:        1.0
+Effective Date: January 25, 2026
+Review Date:    January 25, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy requires that all remote access to Keith the Drone
+Guy LLC systems is routed through a managed, monitored access
+control point rather than directly to individual systems.
+
+2. SINGLE ACCESS CONTROL POINT
+  All remote access must pass through the company VPN gateway:
+    Device: Cisco Meraki MX68 (primary)
+    Location: On-premises server room (collocated datacenter)
+    IP:       [Redacted - documented in IT topology diagram]
+
+3. PROHIBITED DIRECT ACCESS
+  - Direct internet-facing RDP to workstations: PROHIBITED
+  - Direct SSH to servers from internet: PROHIBITED
+  - Any remote access tool that bypasses the VPN gateway:
+    PROHIBITED (e.g., TeamViewer, LogMeIn, AnyDesk)
+
+4. PROCESS
+  - All staff must connect to VPN before accessing any
+    company system remotely
+  - The VPN gateway authenticates users via Azure AD MFA
+    before granting network access
+  - All remote sessions are logged at the gateway
+  - Only company-managed, Intune-enrolled devices may connect
+
+5. MONITORING
+  Gateway logs reviewed weekly by Keith Merritt.
+  Any direct-access attempts blocked by firewall are alerted.
+
+================================================================
+Approved: Keith Merritt           01/25/2026
+================================================================

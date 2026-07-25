@@ -1,0 +1,35 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.17 - Wireless Access Authentication and Encryption
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue protects wireless CUI network access with strong authentication and encryption.
+
+2. WIRELESS ENCRYPTION CONFIGURATION
+CUI SSID: CUI-Bumpass Fire & Rescue
+Security Mode: WPA3-Enterprise (802.1X)
+Encryption: AES-CCMP 256-bit
+Authentication: Certificate-based EAP-TLS
+RADIUS Server: NPS on bumpassfire.org
+
+Disabled protocols: WEP, TKIP, WPA-Personal on CUI SSID
+
+Guest SSID: Guest-Bumpass Fire & Rescue
+Security Mode: WPA3-SAE (Personal - internet only, no CUI access)
+VLAN: Guest VLAN 20 (firewall-isolated)
+
+3. CERTIFICATE CONFIGURATION
+Issued by: Bumpass Fire & Rescue Internal CA (bumpassfire.org)
+Certificate Template: WiFi-Client-Auth
+Auto-enrollment: Via Intune SCEP profile
+Expiry: 1 year | Auto-renewal enabled
+
+4. QUARTERLY REVIEW
+Date: 2026-06-30  |  Reviewer: Mike Sadler
+Result: All APs confirmed WPA3/AES. No deprecated protocols active.
+
+5. CONCLUSION
+Bumpass Fire & Rescue protects wireless CUI network with WPA3-Enterprise and certificate-based 802.1X per control 3.1.17.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

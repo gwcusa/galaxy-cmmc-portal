@@ -1,0 +1,32 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.3.3 - Audit Event Review, Analysis, and Reporting
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty regularly reviews and analyzes audit logs for suspicious activity.
+
+2. REVIEW PROCESS
+Tool: Microsoft Sentinel (workspace: ASJ Realty-Sentinel)
+Schedule: Weekly automated workbook review by Sandra Okonkwo + continuous alert monitoring
+
+Sentinel Alert Rules Active:
+- Impossible travel (sign-in from 2 distant locations within short window)
+- Brute force detection (>5 failed logins in 5 min)
+- Suspicious file access (bulk download >50 CUI files in 1 hour)
+- After-hours admin activity (admin sign-in 10pm-6am)
+
+3. WEEKLY REVIEW LOG (June 2026)
+Week of 2026-06-02: No anomalies. 0 alerts fired.
+Week of 2026-06-09: 1 impossible travel alert - s.okonkwo@asjrealty.com - Investigated: VPN location mismatch (false positive). Closed.
+Week of 2026-06-16: No anomalies.
+Week of 2026-06-23: No anomalies.
+
+4. MONTHLY SUMMARY REPORT (June 2026)
+Distributed to: Anthony James  |  Date: 2026-07-03
+Events reviewed: 12,450  |  Alerts triggered: 1  |  Incidents: 0  |  False positives: 1
+
+5. CONCLUSION
+ASJ Realty reviews audit logs weekly with automated and manual analysis per control 3.3.3.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

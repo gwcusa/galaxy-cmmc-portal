@@ -1,0 +1,41 @@
+================================================================
+ASJ REALTY
+VPN SESSION LOG — REMOTE ACCESS MONITORING REPORT
+Evidence for CMMC Control 3.1.12
+================================================================
+Report Period:  July 1–18, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+VPN System:     Cisco AnyConnect / ASA 5506-X
+================================================================
+
+VPN SESSION LOG — July 2026 (Excerpt)
+-------------------------------------------------
+DATE/TIME           USER        SRC IP         DURATION  BYTES IN  BYTES OUT
+------------------  ----------  -------------  --------  --------  ---------
+07/01/2026 07:55    sokonkwo    74.21.xxx.55   3h 12m    1.2 GB    890 MB
+07/01/2026 08:10    dcollins    98.44.xxx.12   7h 30m    2.1 GB    1.4 GB
+07/07/2026 08:02    sokonkwo    74.21.xxx.55   4h 05m    900 MB    600 MB
+07/09/2026 09:15    rthomas     68.91.xxx.88   2h 15m    400 MB    350 MB
+07/14/2026 08:00    sokonkwo    74.21.xxx.55   3h 45m    1.1 GB    750 MB
+07/16/2026 10:30    dcollins    98.44.xxx.12   5h 00m    1.8 GB    1.2 GB
+
+AZURE AD SIGN-IN ALERTS — July 2026
+-------------------------------------------------
+DATE         ALERT TYPE                    USER      ACTION
+-----------  ----------------------------  --------  --------
+07/08/2026   Sign-in from new IP           rthomas   ALLOWED
+             (user confirmed travel to Richmond VA — OK)
+
+No impossible travel, anonymous proxy, or foreign
+country alerts triggered in July 2026.
+
+BLOCKED SESSIONS
+-------------------------------------------------
+07/03/2026  Sign-in from Tor exit node detected — ajames
+            BLOCKED by Conditional Access (anonymous IP policy)
+            User contacted — confirmed was a test of VPN.
+            No actual incident.
+
+================================================================
+Certified: Sandra Okonkwo — July 18, 2026
+================================================================

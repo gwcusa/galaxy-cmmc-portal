@@ -1,0 +1,36 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.10.4 - Physical Access Audit Logging
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC logs and reviews physical access to CUI facilities.
+
+2. PHYSICAL ACCESS LOG SYSTEM
+Electronic keypad: Records timestamp and PIN used for each entry attempt
+Camera NVR: Timestamps every access event at door cameras
+Visitor Log: Manual sign-in binder at reception
+
+Combined log reviewed monthly by Terrell Banks for anomalies.
+
+3. PHYSICAL ACCESS LOG EXCERPT (June 2026)
+Date       | Time   | Individual    | Access Point        | Result
+2026-06-01 | 08:05  | Terrell Banks          | Suite 200 main entry | Granted
+2026-06-01 | 08:10  | Camille Odom         | Suite 200 main entry | Granted
+2026-06-01 | 17:30  | Terrell Banks          | Suite 200 exit       | Logged
+2026-06-15 | 22:43  | Unknown       | Suite 200 main entry | DENIED (wrong PIN)
+2026-06-15 | 22:43  | N/A           | Camera alert         | Alert sent to Terrell Banks
+
+4. AFTER-HOURS ACCESS REVIEW
+Alert at 22:43 on 2026-06-15: Failed entry attempt.
+Terrell Banks reviewed camera footage remotely via Reolink app. Unknown individual, appeared to try PIN.
+Police non-emergency reported. No breach. Camera footage retained.
+
+5. MONTHLY LOG REVIEW
+Date: 2026-07-05  |  Reviewer: Terrell Banks
+Authorized entries: 87  |  Denied attempts: 1 (investigated)  |  Anomalies: 1 (resolved)
+
+6. CONCLUSION
+Money Straight Talk LLC maintains electronic and manual physical access logs reviewed monthly per control 3.10.4.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

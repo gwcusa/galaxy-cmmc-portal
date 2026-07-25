@@ -1,0 +1,33 @@
+﻿MAINTENANCE IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.7.6 - Maintenance Personnel Supervision
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC supervises maintenance personnel who lack CUI access authorization.
+
+2. SUPERVISION PROTOCOL
+Step 1: Nathan Cruz escorts maintenance personnel to work area
+Step 2: CUI-sensitive systems are locked or screens faced away during maintenance
+Step 3: Nathan Cruz remains in the same room throughout the maintenance activity
+Step 4: Nathan Cruz verifies all tools and materials brought in and taken out
+Step 5: Post-maintenance: Nathan Cruz inspects area before maintenance personnel leave
+
+3. MAINTENANCE SUPERVISION LOG (FY2026)
+Date       | Vendor       | Scope          | Supervised By | Unattended? | Notes
+2026-03-10 | Network-A    | Switch maint   | Nathan Cruz          | No          | Full escort
+2026-05-20 | HP Support   | Laptop repair  | Nathan Cruz          | No          | CUI screen covered
+2026-06-05 | ISP Tech     | Fiber repair   | Nathan Cruz          | No          | Restricted to comms closet (no CUI)
+
+4. SYSTEM LOCKOUT PROCEDURE (when escort not possible)
+If Nathan Cruz must leave area: All CUI systems shut down or screens locked + privacy filter on.
+This situation has not arisen in FY2026 - Nathan Cruz maintained constant supervision.
+
+5. SECURITY CAMERA COVERAGE
+Office area with CUI systems is covered by security camera.
+Footage retained 30 days. Reviewed by Nathan Cruz after each maintenance visit for anomalies.
+
+6. CONCLUSION
+Blue Ridge Technology Solutions LLC maintains constant supervision of all unauthorized maintenance personnel per control 3.7.6.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

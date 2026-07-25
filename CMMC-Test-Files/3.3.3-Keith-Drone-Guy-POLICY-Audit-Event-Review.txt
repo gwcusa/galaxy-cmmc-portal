@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.3.3 - Audit Event Review, Analysis, and Reporting
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to review, analyze, and report audit logs to identify inappropriate or unusual activity, per NIST SP 800-171 Rev. 2 control 3.3.3.
+
+2. SCOPE
+All CUI system audit logs collected by Keith the Drone Guy LLC.
+
+3. REQUIREMENTS
+a. Audit logs are reviewed weekly by Keith Merritt for anomalous activity.
+b. Automated correlation rules detect and alert on suspicious patterns.
+c. Anomalies are investigated and documented within 24 hours.
+d. Monthly audit summary reports are provided to Keith Merritt.
+e. Review findings are retained for 1 year.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, conducts weekly log reviews and responds to alerts.
+
+5. ENFORCEMENT
+Failure to review logs per schedule is reported to Keith Merritt for corrective action.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

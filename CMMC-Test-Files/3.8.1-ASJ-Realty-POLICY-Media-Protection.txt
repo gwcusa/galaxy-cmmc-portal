@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: ASJ Realty
+Control: 3.8.1 - System Media Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy establishes ASJ Realty's requirements for protecting system media containing CUI, per NIST SP 800-171 Rev. 2 control 3.8.1.
+
+2. SCOPE
+All physical and digital media at ASJ Realty that contain or have contained CUI.
+
+3. REQUIREMENTS
+a. CUI media is stored in locked, access-controlled locations when not in use.
+b. Physical media inventory is maintained and reviewed quarterly.
+c. Only authorized personnel may access physical CUI media.
+d. Digital media (hard drives, USB drives) containing CUI is encrypted.
+e. Media is labeled with CUI designation when it contains CUI data.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, maintains the media inventory and enforces physical controls.
+
+5. ENFORCEMENT
+Unlabeled or unprotected CUI media is treated as a security finding.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

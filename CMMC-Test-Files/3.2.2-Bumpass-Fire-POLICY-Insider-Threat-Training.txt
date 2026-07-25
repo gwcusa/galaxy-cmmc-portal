@@ -1,0 +1,48 @@
+================================================================
+BUMPASS FIRE & RESCUE
+INSIDER THREAT AWARENESS TRAINING POLICY
+================================================================
+Document ID:    POL-AT-002
+Version:        1.0
+Effective Date: March 1, 2026
+Review Date:    March 1, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy ensures all BFR personnel receive training on
+recognizing and reporting potential insider threat indicators.
+
+2. REQUIRED TRAINING
+All personnel with access to CUI-related systems complete:
+  - Annual Insider Threat Awareness training (KnowBe4 module)
+  - Phishing simulation tests (quarterly)
+  - Social engineering awareness module (annual)
+
+3. TRAINING CONTENT
+The insider threat module covers:
+  - Definition and types of insider threats
+    (malicious, negligent, compromised)
+  - Behavioral indicators: unusual data access, after-hours
+    activity, large downloads, removable media use
+  - Social engineering tactics: pretexting, vishing, phishing
+  - Reporting procedures: who to contact, how to report
+    (email to Chief Bowles + Mike Sadler)
+  - Consequences of insider threat activity
+
+4. REPORTING
+Personnel who suspect insider threat activity must:
+  - Report immediately to Chief Randy Bowles
+  - Report to Mike Sadler for technical investigation
+  - Reports are confidential and protected from retaliation
+
+5. COMPLETION TRACKING
+Training completion tracked in KnowBe4 platform.
+Non-completers are escalated to the Chief within 7 days
+of the training deadline.
+
+================================================================
+Approved: Chief Randy Bowles        03/01/2026
+Prepared: Mike Sadler               02/26/2026
+================================================================

@@ -1,0 +1,55 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+USER AND MANAGEMENT FUNCTIONALITY SEPARATION POLICY
+================================================================
+Document ID:    POL-SC-003
+Version:        1.0
+Effective Date: June 5, 2026
+Review Date:    June 5, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy separates user functionality from system management
+functionality to prevent unauthorized modification of system
+configuration through normal user interfaces.
+
+2. SEPARATION MECHANISMS
+
+2.1 Account Separation (Dual Account Model)
+  IT staff maintain two accounts:
+    - Standard account (e.g., ncruz): daily user tasks
+    - Admin account (e.g., adm_ncruz): management functions only
+  See POL-AC-006 for full policy. This prevents management
+  functions from being accessible through the regular user
+  session/interface.
+
+2.2 Network Separation
+  Management traffic (SNMP, WinRM, SSH, HTTPS to admin consoles)
+  is restricted to the management VLAN (VLAN 99) or
+  the corporate VLAN with Meraki ACLs restricting which
+  source IPs can reach management ports.
+
+2.3 Server Management
+  Server management (RDP, server console) is only accessible:
+    - From the admin workstation (BRTS-AdminWS-001)
+    - After VPN connection (for remote)
+    - Using the adm_* account
+  Standard workstations cannot initiate RDP to servers.
+
+2.4 Application Administration vs. Use
+  Admin interfaces for applications (e.g., Azure portal,
+  Intune console, Meraki dashboard) are accessible only
+  through the admin account and MFA, not standard accounts.
+
+3. VERIFICATION
+  Nathan Cruz verifies separation quarterly by confirming:
+    - Standard accounts have no admin console access
+    - Management ports not reachable from user workstations
+    without admin credentials
+
+================================================================
+Approved: Victor Osei            06/05/2026
+Prepared: Nathan Cruz            06/03/2026
+================================================================

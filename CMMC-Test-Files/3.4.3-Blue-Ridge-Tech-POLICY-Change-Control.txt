@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.4.3 - Configuration Change Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy establishes Blue Ridge Technology Solutions LLC's requirements for controlling and documenting changes to information system configurations, per NIST SP 800-171 Rev. 2 control 3.4.3.
+
+2. SCOPE
+All changes to hardware, software, and configuration of Blue Ridge Technology Solutions LLC CUI systems.
+
+3. REQUIREMENTS
+a. All configuration changes require a documented change request.
+b. Changes are reviewed and approved by Victor Osei before implementation.
+c. Emergency changes are documented within 24 hours of implementation.
+d. All changes are tested in a non-production environment when feasible.
+e. Change records are retained for 3 years.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, submits and implements change requests. Victor Osei approves changes.
+
+5. ENFORCEMENT
+Unauthorized changes are rolled back and investigated as security incidents.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

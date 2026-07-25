@@ -1,0 +1,50 @@
+================================================================
+ASJ REALTY
+LEAST FUNCTIONALITY POLICY
+================================================================
+Document ID:    POL-CM-006
+Version:        1.0
+Effective Date: June 10, 2026
+Review Date:    June 10, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy requires that ASJ Realty information systems are
+configured to provide only essential capabilities, disabling
+or restricting unused functions, ports, protocols, and services.
+
+2. ESSENTIAL CAPABILITIES DEFINED
+Systems are configured to support only:
+  - Real estate transaction management (CRM)
+  - Microsoft 365 (email, Teams, SharePoint, OneDrive)
+  - Listing platform access (MLS, Zillow, Realtor.com)
+  - Financial/accounting software (QuickBooks)
+  - Video conferencing (Teams)
+
+3. DISABLED / RESTRICTED BY DEFAULT
+  - Bluetooth: Disabled on all workstations (not business need)
+  - Remote Registry: Disabled (service set to Manual)
+  - Print Spooler: Enabled only on designated print server
+  - Telnet client: Not installed
+  - FTP client: Not installed (SharePoint/SFTP used instead)
+  - Internet Information Services (IIS): Not installed
+    on any workstation or non-server system
+  - SMBv1: Disabled on all systems
+  - PowerShell remoting: Disabled on workstations (WinRM)
+  - Unused browser extensions: Removed via Intune
+
+4. SOFTWARE ALLOW-LIST
+  Only approved software may be installed. Sandra Okonkwo
+  maintains the approved software list and requests are
+  reviewed before approval.
+
+5. REVIEW
+  Sandra Okonkwo reviews running services on all systems
+  quarterly using Intune device compliance reports.
+
+================================================================
+Approved: Anthony James           06/10/2026
+Prepared: Sandra Okonkwo          06/08/2026
+================================================================

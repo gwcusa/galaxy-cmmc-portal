@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.1.11 - Automatic Session Termination
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to automatically terminate user sessions after a defined condition is met, per NIST SP 800-171 Rev. 2 control 3.1.11.
+
+2. SCOPE
+All Keith the Drone Guy LLC CUI systems, remote sessions, and web-based applications.
+
+3. REQUIREMENTS
+a. Interactive sessions terminate after 60 minutes of inactivity.
+b. Web application sessions expire after 30 minutes without activity.
+c. VPN sessions are terminated after 8 hours regardless of activity.
+d. Terminated sessions require full re-authentication including MFA.
+e. Session timeout settings are enforced by system configuration, not user preference.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, configures session timeout policies across all CUI-connected systems.
+
+5. ENFORCEMENT
+Systems without compliant session termination settings must be remediated within 72 hours.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

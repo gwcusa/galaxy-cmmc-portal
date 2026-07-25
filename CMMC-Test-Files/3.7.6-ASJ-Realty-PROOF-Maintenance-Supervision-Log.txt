@@ -1,0 +1,50 @@
+================================================================
+ASJ REALTY
+EXTERNAL MAINTENANCE SUPERVISION LOG - 2026
+Evidence for CMMC Control 3.7.6
+================================================================
+Log Maintained By:  Sandra Okonkwo, IT Coordinator
+Period:             January 1 - July 25, 2026
+================================================================
+
+SUPERVISED MAINTENANCE VISITS - 2026
+-------------------------------------------------
+VISIT #1 - February 10, 2026
+Vendor:           Cox Business (ISP)
+Technician:       Carlos Mendez (ID verified)
+Purpose:          Business internet line upgrade (fiber pull-through)
+Escorted By:      Sandra Okonkwo (continuous)
+Time In/Out:      9:00 AM - 12:30 PM
+Areas Accessed:   Wiring closet (no servers), exterior junction box
+CUI Systems Accessed: NONE (cabling work only)
+Observations:     No anomalous activity. Work completed as described.
+
+VISIT #2 - April 7, 2026
+Vendor:           HP (hardware warranty repair)
+Technician:       Tom Patterson (ID verified, HP cert on record)
+Purpose:          Replace laser printer fuser unit (ASJR-PR-002)
+Escorted By:      Sandra Okonkwo (continuous)
+Time In/Out:      10:00 AM - 11:15 AM
+Areas Accessed:   Main office (printer location only)
+Vendor NDA:       On file (HP ProSupport agreement)
+CUI Systems:      Printer - Sandra confirmed no print jobs with CUI
+                  were spooled during maintenance window.
+Observations:     No anomalous activity.
+
+VISIT #3 - June 25, 2026
+Vendor:           DataSafe LLC (copier maintenance contract)
+Technician:       Dwayne Harris (repeat vendor - NDA on file)
+Purpose:          Quarterly copier maintenance (toner + drum)
+Escorted By:      Sandra Okonkwo (periodic check-ins, 15 min)
+                  (Dwayne has signed NDA and has clean background check -
+                  reduced supervision per policy section 3.3)
+Time In/Out:      2:00 PM - 3:30 PM
+Observations:     Checked in at 2:00, 2:15, 2:30, 2:45, 3:00, 3:15, 3:30.
+                  All normal. Work completed. No issues.
+
+Total supervised visits: 3
+Unsupervised vendor access: 0
+
+================================================================
+Certified: Sandra Okonkwo - July 25, 2026
+================================================================

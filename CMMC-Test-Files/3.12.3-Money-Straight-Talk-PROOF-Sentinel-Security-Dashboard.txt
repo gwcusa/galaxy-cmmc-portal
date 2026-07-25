@@ -1,0 +1,39 @@
+﻿SECURITY ASSESSMENT IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.12.3 - Security Control Monitoring
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC monitors security controls on an ongoing basis.
+
+2. CONTINUOUS MONITORING TOOLS
+Platform: Microsoft Sentinel + Microsoft Secure Score
+Tenant: moneystraighttalk.com
+
+Microsoft Secure Score:
+Current Score: 87/100  |  Industry Average: 62/100
+Score Trend: Improved from 79 (Q1 2026) to 87 (Q2 2026)
+
+Microsoft Sentinel Workbook: "Money Straight Talk LLC Security Overview" (auto-refreshed daily)
+Metrics tracked:
+- MFA compliance: 100% (5/5 users)
+- Device compliance: 100% (6/6 devices)
+- Patch currency: 100%
+- Failed login attempts: 3 (last 30 days)
+- DLP policy violations: 1 (investigated, closed)
+
+3. WEEKLY DASHBOARD REVIEW
+Date: 2026-07-07  |  Reviewer: Terrell Banks
+All metrics within acceptable ranges. No degraded controls detected.
+
+4. MONTHLY SECURITY REPORT (June 2026)
+Delivered to: Camille Odom  |  Date: 2026-07-03
+Summary: All 110 CMMC controls operational. Secure Score: 87. 0 active incidents.
+
+5. CONTROL DEGRADATION ALERT (FY2026)
+Total alerts: 0 (no control degradation events in FY2026)
+
+6. CONCLUSION
+Money Straight Talk LLC monitors security controls continuously via Sentinel and Secure Score with weekly reviews per control 3.12.3.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

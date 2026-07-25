@@ -1,0 +1,32 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.22 - CUI on Publicly Accessible Systems
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC controls CUI on publicly accessible systems and conducts periodic reviews.
+
+2. PUBLIC-FACING SYSTEM INVENTORY
+System                          | URL/Platform          | CUI Allowed  | Content Approver
+Blue Ridge Technology Solutions LLC Website                 | blueridgetech.com                 | No           | Victor Osei
+LinkedIn Company Page           | linkedin.com          | No           | Victor Osei
+Government Contract Portal      | contractor-portal.gov | No           | Victor Osei
+
+3. QUARTERLY CUI SCAN RESULTS
+Tool: Microsoft Purview Content Explorer + manual review
+Date: 2026-07-05  |  Reviewer: Nathan Cruz
+
+Blue Ridge Technology Solutions LLC website (blueridgetech.com): Scanned 48 pages - CUI found: 0
+LinkedIn page: Reviewed 12 posts - CUI found: 0
+Contract portal profile: Reviewed - CUI found: 0
+
+Result: NO CUI found on any publicly accessible Blue Ridge Technology Solutions LLC system.
+
+4. CONTENT APPROVAL LOG (Last 3 Months)
+2026-05-10: Website case study approved by Victor Osei - CUI review: Passed
+2026-06-15: LinkedIn post (drone footage) approved by Victor Osei - No CUI
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC conducts quarterly scans of public systems and maintains zero CUI exposure on publicly accessible platforms per control 3.1.22.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.3.8 - Audit Log Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy protects Keith the Drone Guy LLC audit information and tools from unauthorized access, modification, and deletion, per NIST SP 800-171 Rev. 2 control 3.3.8.
+
+2. SCOPE
+All Keith the Drone Guy LLC audit records, logging infrastructure, and audit management tools.
+
+3. REQUIREMENTS
+a. Audit logs are stored in a system where operational users cannot delete or modify records.
+b. Access to raw audit log data is restricted to Keith Merritt and authorized assessors.
+c. Audit log storage uses append-only or immutable storage mechanisms.
+d. Backup copies of audit logs are stored separately from production systems.
+e. Log access attempts are themselves logged.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, manages audit log access controls and immutability settings.
+
+5. ENFORCEMENT
+Any modification or deletion of audit records is treated as a security incident.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

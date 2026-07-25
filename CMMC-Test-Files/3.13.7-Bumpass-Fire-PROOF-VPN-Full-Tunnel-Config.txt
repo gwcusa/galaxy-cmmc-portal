@@ -1,0 +1,37 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.13.7 - Split Tunneling Prohibition
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue VPN connections do not use split tunneling.
+
+2. VPN CONFIGURATION
+VPN Solution: GlobalProtect (Palo Alto) / Azure VPN Gateway
+VPN Profile: Bumpass Fire & Rescue-FullTunnel (deployed via Intune)
+
+Split Tunnel Setting:
+- Split Tunneling: DISABLED
+- Route: 0.0.0.0/0 (all traffic routes through VPN tunnel)
+- Exclusions: None (no split tunnel exceptions)
+
+3. VPN PROFILE (Intune Configuration Profile)
+Profile Name: VPN-FullTunnel-Bumpass Fire & Rescue
+Configuration Type: VPN
+VPN Type: IKEv2
+Split Tunneling: Not configured (disabled by default in IKEv2 full-tunnel mode)
+Traffic Routing: All traffic via VPN gateway
+
+User Override: NOT PERMITTED (Intune-managed, locked configuration)
+
+4. FULL-TUNNEL VERIFICATION TEST
+Date: 2026-06-25  |  Tester: Mike Sadler
+Test: Connected VPN on BFR-WS-001. Checked external IP address at whatismyip.com.
+Without VPN: External IP = 71.44.x.x (home ISP)
+With VPN active: External IP = 40.76.x.x (Bumpass Fire & Rescue Azure gateway IP)
+Result: All internet traffic routing through Bumpass Fire & Rescue VPN gateway. No split tunnel. PASS.
+
+5. CONCLUSION
+Bumpass Fire & Rescue VPN routes all traffic through the Bumpass Fire & Rescue gateway with split tunneling disabled per control 3.13.7.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

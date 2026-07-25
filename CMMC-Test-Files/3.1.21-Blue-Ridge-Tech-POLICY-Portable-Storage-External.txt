@@ -1,0 +1,50 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+PORTABLE STORAGE DEVICE USE ON EXTERNAL SYSTEMS POLICY
+================================================================
+Document ID:    POL-AC-021
+Version:        1.0
+Effective Date: May 1, 2026
+Review Date:    May 1, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy limits the use of company portable storage devices
+on external (non-company-owned) systems to prevent
+introduction of malware or unauthorized data exfiltration.
+
+2. POLICY STATEMENT
+  - Company portable storage devices (USB drives, external
+    hard drives) containing CUI must NOT be connected to
+    external systems (client systems, personal computers,
+    public computers, hotel business center computers, etc.)
+    without prior written authorization from Nathan Cruz.
+
+  - If a portable storage device must be used on an external
+    system for business necessity (e.g., delivering files to
+    a client site), it must:
+    a) Be scanned for malware before and after the connection
+    b) Contain only the minimum data necessary
+    c) Be reported to Nathan Cruz within 24 hours
+
+3. PERSONALLY OWNED STORAGE ON COMPANY SYSTEMS
+  Personally owned USB drives are prohibited on company
+  systems. Intune enforces USB device restrictions:
+  only approved BRTS-issued USB drives are permitted.
+
+4. DATA TRANSFER ALTERNATIVES
+  Preferred method for file exchange with external parties:
+    - DoD SAFE (for government clients)
+    - SharePoint external sharing (with guest access approval)
+    - Encrypted email attachment (files < 10MB)
+
+5. ENFORCEMENT
+  USB port access is controlled via Intune Device Control
+  Policy. Unauthorized USB insertions are blocked and logged.
+
+================================================================
+Approved: Victor Osei            05/01/2026
+Prepared: Nathan Cruz            04/28/2026
+================================================================

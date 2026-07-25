@@ -1,0 +1,62 @@
+================================================================
+BUMPASS FIRE & RESCUE — MICROSOFT 365 ADMIN CENTER
+MFA ENROLLMENT STATUS REPORT
+Evidence for CMMC Control 3.5.3
+================================================================
+Report Date:    July 10, 2026
+Exported By:    Derek Holt (IT Coordinator)
+Tenant:         bumpassfire.org
+MFA Provider:   Microsoft Authenticator (Azure AD MFA)
+================================================================
+
+USER MFA ENROLLMENT STATUS
+-------------------------------------------------
+DISPLAY NAME          UPN                           MFA STATUS    METHOD
+--------------------  ----------------------------  ----------    ----------------------
+Raymond Stubbs        r.stubbs@bumpassfire.org      ENABLED       Authenticator App
+Derek Holt            d.holt@bumpassfire.org        ENABLED       Authenticator App
+Karen Doyle           k.doyle@bumpassfire.org       ENABLED       Authenticator App
+Mike Jessup           m.jessup@bumpassfire.org      ENABLED       Authenticator App
+Tony Barrera          t.barrera@bumpassfire.org     ENABLED       Authenticator App
+Beth Cranford         b.cranford@bumpassfire.org    ENABLED       Authenticator App (new)
+Luis Pena             l.pena@bumpassfire.org        ENABLED       Authenticator App
+
+ENROLLMENT RATE: 7 of 7 accounts (100%)
+ACCOUNTS WITHOUT MFA: 0
+
+CONDITIONAL ACCESS POLICY — "Require MFA for All Users"
+-------------------------------------------------
+Policy Name:     CAP-001 Require MFA All Access
+Status:          ON (Enforced)
+Users:           All users
+Cloud Apps:      All cloud apps
+Conditions:      Any location, any device
+Grant Control:   Require multi-factor authentication
+Created:         April 30, 2026
+Last Modified:   April 30, 2026
+Modified By:     Derek Holt
+
+CONDITIONAL ACCESS POLICY — "Require MFA for Admins"
+-------------------------------------------------
+Policy Name:     CAP-002 Require MFA Admin Roles
+Status:          ON (Enforced)
+Users:           Directory roles: Global Admin, User Admin
+Cloud Apps:      All cloud apps
+Grant Control:   Require MFA + Compliant Device
+Created:         April 30, 2026
+
+MFA SIGN-IN LOG — LAST 7 DAYS (Sample)
+-------------------------------------------------
+Date/Time            User                Method           Result
+-------------------  ------------------  ---------------  --------
+07/10/2026 07:58 AM  r.stubbs            Authenticator    SUCCESS
+07/10/2026 08:03 AM  d.holt              Authenticator    SUCCESS
+07/10/2026 08:11 AM  k.doyle             Authenticator    SUCCESS
+07/09/2026 08:00 AM  t.barrera           Authenticator    SUCCESS
+07/08/2026 07:45 AM  m.jessup            Authenticator    SUCCESS
+07/07/2026 09:12 AM  b.cranford          Authenticator    SUCCESS
+07/07/2026 08:30 AM  l.pena              Authenticator    SUCCESS
+
+================================================================
+Verified by Derek Holt, IT Coordinator — July 10, 2026
+================================================================

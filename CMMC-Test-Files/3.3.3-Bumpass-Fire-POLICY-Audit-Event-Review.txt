@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.3.3 - Audit Event Review, Analysis, and Reporting
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to review, analyze, and report audit logs to identify inappropriate or unusual activity, per NIST SP 800-171 Rev. 2 control 3.3.3.
+
+2. SCOPE
+All CUI system audit logs collected by Bumpass Fire & Rescue.
+
+3. REQUIREMENTS
+a. Audit logs are reviewed weekly by Mike Sadler for anomalous activity.
+b. Automated correlation rules detect and alert on suspicious patterns.
+c. Anomalies are investigated and documented within 24 hours.
+d. Monthly audit summary reports are provided to Randy Bowles.
+e. Review findings are retained for 1 year.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, conducts weekly log reviews and responds to alerts.
+
+5. ENFORCEMENT
+Failure to review logs per schedule is reported to Randy Bowles for corrective action.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

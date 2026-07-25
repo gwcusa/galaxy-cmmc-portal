@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.1.16 - Wireless Access Authorization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to authorize wireless access connections prior to allowing them, per NIST SP 800-171 Rev. 2 control 3.1.16.
+
+2. SCOPE
+All wireless access to Bumpass Fire & Rescue networks and systems that process or store CUI.
+
+3. REQUIREMENTS
+a. Wireless access points are registered and approved by Mike Sadler before deployment.
+b. Only authorized devices may connect to the Bumpass Fire & Rescue CUI wireless network.
+c. MAC address filtering and 802.1X authentication are used for CUI network WiFi.
+d. Guest wireless networks are isolated from CUI systems.
+e. Unauthorized wireless access points (rogue APs) are detected and blocked.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, manages wireless infrastructure and authorization processes.
+
+5. ENFORCEMENT
+Unauthorized wireless access points must be removed within 2 hours of detection.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

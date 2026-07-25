@@ -1,0 +1,60 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+MOBILE CODE CONTROL - CONFIGURATION AUDIT
+Evidence for CMMC Control 3.13.13
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Terrell Banks, Systems Administrator
+================================================================
+
+OFFICE MACRO POLICY (GPO: MST-Office-Macro-Policy)
+-------------------------------------------------
+Policy Path: User Config > Admin Templates > Microsoft Office 2016
+  > Security Settings > Trust Center
+
+Setting: Block macros from running in Office files from the internet
+Value:   ENABLED
+
+Setting: VBA Macro Notification Settings
+Value:   Disable all macros except digitally signed macros
+
+Trusted Publishers (Terrell Banks manages list):
+  - Microsoft Corporation (built-in Office macros)
+  - MST Internal (self-signed cert - for approved internal macros)
+
+VERIFICATION - MST-WS-001 test (July 25, 2026):
+  Opened a .xlsm file with unsigned macro from internet.
+  Result: "SECURITY WARNING: Macros have been disabled" - OK.
+  Macro DID NOT run. COMPLIANT.
+
+MICROSOFT EDGE SECURITY CONFIG (Intune - Edge Baseline)
+-------------------------------------------------
+SmartScreen:           ENABLED (blocks known malicious downloads)
+Enhanced Security Mode: ENABLED
+JavaScript:            ENABLED (required for M365 web apps)
+ActiveX controls:      BLOCKED (not supported in Chromium Edge)
+Java plugin:           NOT installed (Java browser plugin deprecated)
+Flash:                 NOT supported (Edge no longer supports Flash)
+
+DEFENDER AMSI / SCRIPT MONITORING
+-------------------------------------------------
+AMSI (Antimalware Scan Interface): ENABLED
+  Scans scripts before execution (PowerShell, VBScript, etc.)
+  Any suspicious script: Blocked + alert to Defender portal
+
+Defender Script behavior monitoring:
+  Status: ENABLED on all 6 MST devices
+  Alerts last 30 days: 0 suspicious script detections
+
+EDGE SMARTSCREEN BLOCKS (July 2026)
+-------------------------------------------------
+Malicious download blocks: 2
+  07/08: jerome.williams attempted download of "FlashPlayer.exe"
+         (fake Flash installer containing adware)
+         SmartScreen: BLOCKED. User notified.
+  07/19: price.a tried to open .js attachment from phishing email
+         Defender: BLOCKED before execution.
+
+================================================================
+Certified: Terrell Banks - July 25, 2026
+================================================================

@@ -1,0 +1,56 @@
+================================================================
+BUMPASS FIRE & RESCUE
+SECURITY CONFIGURATION BASELINE POLICY
+================================================================
+Document ID:    POL-CM-002
+Version:        1.0
+Effective Date: April 5, 2026
+Review Date:    April 5, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy establishes and enforces security configuration
+settings for all BFR information systems.
+
+2. CONFIGURATION BASELINES
+
+2.1 Windows Workstations (Baseline: CIS Benchmark L1)
+  Key settings enforced via GPO:
+    - Windows Defender enabled, tamper protection ON
+    - Firewall enabled (all profiles)
+    - AutoPlay disabled for all media
+    - SMBv1 disabled
+    - Remote Registry: Disabled
+    - Guest account: Disabled
+    - Screensaver timeout: 15 minutes (password required)
+    - USB storage: Blocked (except approved devices)
+
+2.2 Servers (Baseline: CIS Benchmark L2)
+  Additional hardening:
+    - RDP access: via VPN only (no external exposure)
+    - Windows Remote Management (WinRM): HTTPS only
+    - NetBIOS over TCP/IP: Disabled
+    - LLMNR: Disabled
+
+2.3 Mobile Devices (Baseline: CIS iOS Benchmark L1)
+  Enforced via Intune:
+    - PIN/biometric required
+    - Encryption enabled
+    - Auto-lock: 2 minutes
+    - Jailbreak detection: block access if detected
+
+3. ENFORCEMENT
+  Baselines are enforced through Group Policy Objects and
+  Microsoft Intune Configuration Profiles. Drift from
+  baseline generates a Sentinel alert.
+
+4. REVIEW
+  Baselines are reviewed annually and after significant
+  vulnerability disclosures affecting baseline controls.
+
+================================================================
+Approved: Chief Randy Bowles        04/05/2026
+Prepared: Mike Sadler               04/02/2026
+================================================================

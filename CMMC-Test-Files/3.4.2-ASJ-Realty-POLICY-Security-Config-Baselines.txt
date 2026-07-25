@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: ASJ Realty
+Control: 3.4.2 - Security Configuration Baselines
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to establish and enforce security configuration settings for information technology products, per NIST SP 800-171 Rev. 2 control 3.4.2.
+
+2. SCOPE
+All ASJ Realty hardware and software in the CUI environment.
+
+3. REQUIREMENTS
+a. Security configuration baselines are derived from CIS Benchmarks or DISA STIGs.
+b. Baselines are applied to all CUI endpoints via Intune configuration profiles.
+c. Endpoints that drift from baseline are flagged as non-compliant.
+d. Sandra Okonkwo remediates baseline deviations within 72 hours.
+e. Baselines are reviewed and updated annually or after major OS releases.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, creates, applies, and maintains security configuration baselines.
+
+5. ENFORCEMENT
+Non-compliant endpoints are blocked from CUI access until remediated.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

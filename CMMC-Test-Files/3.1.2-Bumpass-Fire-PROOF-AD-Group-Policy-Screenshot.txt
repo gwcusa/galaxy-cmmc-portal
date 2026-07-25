@@ -1,0 +1,59 @@
+================================================================
+BUMPASS FIRE & RESCUE
+ACTIVE DIRECTORY — ROLE-BASED ACCESS GROUPS AUDIT REPORT
+Evidence for CMMC Control 3.1.2
+================================================================
+Report Date:    July 15, 2026
+Prepared By:    Mike Sadler, IT Administrator
+System:         Windows Server 2022 AD DS (dc01.bfr.local)
+================================================================
+
+SECURITY GROUPS AND MEMBERS
+-------------------------------------------------
+Group: BFR-Firefighters
+  Description: Standard firefighter/EMT personnel access
+  Members: Johnson D., Carter L., Webb T., Pierce A., Nguyen K.
+  Access Granted To: TrainingDB (read), IncidentReports (own),
+                     Scheduling (read/write own), CAD (read)
+  Access Denied: Payroll, CUI-Contracts, AdminConsole
+
+Group: BFR-Dispatch
+  Description: Dispatch and administrative staff
+  Members: Rogers S., Hammond P.
+  Access Granted To: CAD (full), Scheduling (full), Email (full)
+  Access Denied: InvestigationReports, FinancialDB, CUI-Contracts
+
+Group: BFR-Command
+  Description: Chief and deputy chiefs
+  Members: Bowles R. (Chief), Martinez F. (Deputy)
+  Access Granted To: All read, Approvals, AuditLogs
+  Access Denied: Direct DB modification (read-only on prod)
+
+Group: BFR-IT-Admins
+  Description: IT administrative staff
+  Members: Sadler M.
+  Access Granted To: All systems (full admin)
+  Privileged Actions: Logged to EventLog + SIEM
+
+GROUP POLICY OBJECTS — FUNCTION RESTRICTIONS
+-------------------------------------------------
+GPO: BFR-Restrict-Control-Panel
+  Applied To: BFR-Firefighters, BFR-Dispatch
+  Restrictions:
+    - Control Panel access: BLOCKED
+    - Software installation: BLOCKED
+    - Command Prompt: BLOCKED (non-admin users)
+    - Registry Editor: BLOCKED
+
+GPO: BFR-Restrict-CUI-Access
+  Applied To: BFR-Firefighters
+  Restrictions:
+    - CUI-Contracts share: DENIED
+    - Financial folder: DENIED
+
+LAST REVIEW: July 1, 2026 — Mike Sadler confirmed group
+memberships are current and match the access control policy.
+
+================================================================
+Report certified: Mike Sadler, IT Administrator — 07/15/2026
+================================================================

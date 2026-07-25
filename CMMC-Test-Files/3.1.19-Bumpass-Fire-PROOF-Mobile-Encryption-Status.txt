@@ -1,0 +1,34 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.19 - CUI Encryption on Mobile Devices
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue encrypts CUI on all mobile devices and computing platforms.
+
+2. DEVICE ENCRYPTION STATUS
+Intune Compliance Report - Encryption Check: 2026-07-01
+
+Windows Laptops (BitLocker):
+- BFR-WS-001: BitLocker ON | TPM 2.0 | AES-256-XTS | Recovery Key stored in Azure AD
+- Staff laptop 2: BitLocker ON | AES-256-XTS | Compliant
+
+iOS Devices:
+- iPhone 15 Pro (IMEI: 35xxx): Hardware AES encryption enabled (passcode set) | Compliant
+
+Android Devices:
+- Samsung Galaxy S24: File-based encryption enabled | Android 14 | Compliant
+
+3. INTUNE COMPLIANCE POLICY
+Policy Name: MobileEncryption-Bumpass Fire & Rescue
+Require encryption: Yes
+Action for non-compliance: Block resource access after 0 days
+
+4. BITLOCKER KEY REPORT
+Key ID: 2B7F-... | Backed up to Azure AD: Yes | Date: 2026-01-20
+Managed by: Mike Sadler (IT Coordinator)
+
+5. CONCLUSION
+All Bumpass Fire & Rescue mobile devices carrying CUI are fully encrypted per control 3.1.19.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

@@ -1,0 +1,54 @@
+================================================================
+BUMPASS FIRE & RESCUE
+MAINTENANCE PERSONNEL AND TOOL CONTROLS POLICY
+================================================================
+Document ID:    POL-MA-002
+Version:        1.0
+Effective Date: April 25, 2026
+Review Date:    April 25, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy establishes controls on maintenance tools,
+techniques, mechanisms, and personnel for BFR systems.
+
+2. AUTHORIZED MAINTENANCE PERSONNEL
+
+2.1 Internal
+  - Mike Sadler (IT Administrator) - authorized for all
+    hardware and software maintenance on BFR systems
+
+2.2 External (Third-Party)
+  - External maintenance vendors must be approved by Mike Sadler
+    and Chief Bowles before performing any work
+  - External vendors must sign the BFR Vendor Access Agreement
+    before being granted any system access
+  - External vendors are escorted by Mike Sadler at all times
+    while on BFR premises with access to IT systems
+
+3. MAINTENANCE TOOLS
+
+3.1 Approved Tools
+  - Only tools from BFR's approved toolset may be used
+  - Approved software tools: Microsoft Sysinternals Suite,
+    Nmap (internal use only), Wireshark, WinPE boot media
+  - Hardware tools: BFR-owned toolkit (labeled and stored in
+    IT room)
+
+3.2 External Tools
+  - Tools brought by external vendors must be inspected
+    by Mike Sadler before use (checked for malware risk)
+  - USB-based diagnostic tools must be scanned with Defender
+    before connection
+
+4. REMOTE MAINTENANCE
+  Remote maintenance by external vendors requires a temporary
+  VPN account (time-limited) and session is observed by
+  Mike Sadler in real time.
+
+================================================================
+Approved: Chief Randy Bowles        04/25/2026
+Prepared: Mike Sadler               04/23/2026
+================================================================

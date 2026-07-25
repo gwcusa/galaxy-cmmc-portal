@@ -1,0 +1,38 @@
+﻿MAINTENANCE IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.7.4 - Diagnostic Media Inspection
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC scans diagnostic media for malicious code before use on CUI systems.
+
+2. DIAGNOSTIC MEDIA SCAN PROCEDURE
+Quarantine System: Standalone Windows 11 laptop (not domain-joined, not on CUI network)
+Antivirus: Windows Defender + Malwarebytes Premium (updated to latest definitions before scan)
+Scan Type: Full scan of all media content
+Duration: Until scan completes with clean result
+
+Step-by-step:
+1. Connect media to quarantine laptop (air-gapped from CUI network)
+2. Update AV definitions
+3. Run full scan
+4. Document results
+5. If clean: media approved for use, affix green "SCANNED" sticker
+6. If malware found: quarantine media, notify Keith Merritt, do not use
+
+3. DIAGNOSTIC MEDIA SCAN LOG (FY2026)
+Date       | Media Type   | Source         | AV Tool         | Result  | Approved By
+2026-03-10 | USB (vendor) | Network Vendor | Defender+MBAM   | Clean   | Keith Merritt
+2026-05-20 | USB (HP)     | HP Support     | Defender+MBAM   | Clean   | Keith Merritt
+
+Media failures: 0
+
+4. SCAN ENVIRONMENT
+Quarantine Laptop: SCAN-WS-01 (not on keithdroney.com network)
+AV Definitions as of last scan: 2026-07-05
+Internet access: Updates only (blocked on network firewall post-update)
+
+5. CONCLUSION
+Keith the Drone Guy LLC scans all diagnostic media for malware before use on CUI systems per control 3.7.4.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

@@ -1,0 +1,35 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.13.3 - Security Function Separation
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty separates user functionality from system management functionality.
+
+2. SEPARATION IMPLEMENTATION
+Azure AD Roles:
+- Standard Users: No admin role. Access to SharePoint, Teams, Exchange only.
+- Sandra Okonkwo Admin Account: Global Admin (PIM-gated). Used ONLY for admin tasks.
+- Anthony James: Security Reader (read-only on security dashboards). No config access.
+
+Management Portals Accessible Only to Sandra Okonkwo:
+- Azure Portal (portal.azure.com): Blocked by Conditional Access for non-admin accounts
+- Microsoft 365 Admin Center: Blocked for non-admin accounts
+- Intune Admin Center: Blocked for non-admin accounts
+- Sentinel: Read-only for Anthony James, Contributor for Sandra Okonkwo
+
+3. TECHNICAL ENFORCEMENT
+Conditional Access Policy: AdminPortal-RestrictedAccess
+- Target: Access to Azure Portal, M365 Admin, Intune Admin
+- Require: Global Admin or Intune Admin role (enforced by AAD RBAC)
+- Standard users attempting access: BLOCKED with "You don't have permission" message
+
+4. SEPARATION TEST
+Date: 2026-06-20  |  Tester: Sandra Okonkwo
+Test: Attempted to access Azure Portal with Staff-1 standard account (asjrealty.com)
+Result: Access BLOCKED. "You need permission to access this." PASS.
+
+5. CONCLUSION
+ASJ Realty separates user and management functions via RBAC and Conditional Access per control 3.13.3.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

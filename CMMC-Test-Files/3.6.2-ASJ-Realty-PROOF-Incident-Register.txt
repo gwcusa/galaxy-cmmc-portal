@@ -1,0 +1,33 @@
+﻿INCIDENT RESPONSE IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.6.2 - Incident Tracking and Reporting
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty tracks and reports security incidents.
+
+2. INCIDENT TRACKING SYSTEM
+Platform: Freshservice (ITSM tenant: asjrealty.com)
+Incident Classification Matrix:
+- Low: No CUI access, minimal impact, 72-hour resolution target
+- Medium: Potential CUI exposure, 24-hour resolution target, Sandra Okonkwo escalation
+- High: Confirmed CUI exposure or system compromise, 4-hour resolution, Anthony James notification
+- Critical: Active attack or CUI exfiltration, 1-hour reporting to Anthony James and US-CERT
+
+3. INCIDENT REGISTER (FY2026 - Partial)
+INC-001 | 2026-02-14 | Low | Phishing email received by Staff-1 | Deleted, no click | Closed
+INC-002 | 2026-04-08 | Low | USB blocked on WS-002 (policy trigger) | Policy working correctly | Closed
+INC-003 | 2026-05-22 | Medium | Impossible travel alert (false positive) | Investigated, closed | Closed
+INC-004 | 2026-06-19 | Medium | Bulk file download alert | Authorized backup, closed | Closed
+
+Critical/High Incidents: 0 (FY2026)
+US-CERT Reports Filed: 0 (no qualifying incidents)
+
+4. MONTHLY INCIDENT SUMMARY (June 2026)
+Reported to: Anthony James | Date: 2026-07-03
+Total incidents: 2 | Closed: 2 | Open: 0
+
+5. CONCLUSION
+ASJ Realty tracks all incidents in Freshservice with required classifications and reporting per control 3.6.2.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

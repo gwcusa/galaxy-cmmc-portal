@@ -1,0 +1,43 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+APPROVED EXTERNAL SYSTEM CONNECTION REGISTER
+Evidence for CMMC Control 3.1.20
+================================================================
+Register Date:  July 20, 2026
+Maintained By:  Terrell Banks
+Last Reviewed:  July 1, 2026 (Camille Odom)
+================================================================
+
+APPROVED EXTERNAL CONNECTIONS
+-------------------------------------------------
+#   SERVICE               PURPOSE              APPROVED BY   DATE
+--  -------------------   ------------------   -----------   ----------
+1   Microsoft 365         Email, collab, CUI   C. Odom       01/15/2026
+2   Azure (IaaS)          VM hosting           C. Odom       01/15/2026
+3   DoD SAFE              CUI file transfer    C. Odom       01/15/2026
+4   Paychex               Payroll              C. Odom       01/15/2026
+5   QuickBooks Online     Accounting           C. Odom       01/15/2026
+6   GoDaddy               Website hosting      C. Odom       01/15/2026
+7   Cisco Umbrella        DNS filtering        C. Odom       03/10/2026
+8   Knowbe4               Security training    C. Odom       04/15/2026
+
+DENIED CONNECTION REQUESTS — 2026
+-------------------------------------------------
+DATE         REQUESTER    SERVICE         REASON FOR DENIAL
+-----------  -----------  --------------  ----------------------------
+03/25/2026   A. Price     Dropbox Biz     Unapproved cloud; use OneDrive
+05/10/2026   J. Williams  Google Drive    Unapproved cloud; use OneDrive
+
+CLOUD APP GOVERNANCE — M365 DEFENDER (Last 30 Days)
+-------------------------------------------------
+Unsanctioned app access alerts: 1
+  07/15/2026: J. Williams attempted to log in to personal
+  Dropbox from company device. Blocked by CA policy.
+  User counseled by Terrell Banks.
+
+Total approved external connections: 8
+Annual review completed: July 1, 2026 — all still needed.
+
+================================================================
+Certified: Camille Odom — July 20, 2026
+================================================================

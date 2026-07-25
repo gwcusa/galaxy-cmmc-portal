@@ -1,0 +1,57 @@
+================================================================
+KEITH THE DRONE GUY LLC
+CUI INFORMATION FLOW CONTROL POLICY
+================================================================
+Document ID:    POL-AC-003
+Version:        1.2
+Effective Date: February 15, 2026
+Review Date:    February 15, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy establishes how CUI is permitted to flow between
+systems, people, and locations at Keith the Drone Guy LLC,
+ensuring that CUI is not transmitted to unauthorized
+destinations or through unapproved channels.
+
+2. APPROVED CUI FLOW PATHS
+
+2.1 Internal Flows (Permitted)
+  - CUI may flow from the government client portal to the
+    secure CUI project folder on the company NAS only
+  - CUI may be shared between authorized staff via the
+    company Microsoft 365 tenant (encrypted in transit)
+  - CUI may flow to OneDrive for Business (CUI subfolder only)
+    but NOT to personal OneDrive or consumer cloud services
+
+2.2 External Flows (Permitted Only With Authorization)
+  - CUI may be transmitted to subcontractors holding an active
+    DFARS 252.204-7012 flow-down agreement
+  - CUI may be returned to the government client via SFTP or
+    the approved government portal (DIBBS, DoD SAFE, etc.)
+  - All external CUI transfers must be logged in the CUI
+    Transfer Log (SharePoint: CUI-Logs)
+
+3. PROHIBITED FLOWS
+  - Personal email (Gmail, Yahoo, Hotmail, etc.): PROHIBITED
+  - Consumer cloud storage (Dropbox, Google Drive): PROHIBITED
+  - Unencrypted FTP or HTTP: PROHIBITED
+  - Personal mobile devices not enrolled in Intune: PROHIBITED
+  - Printing CUI to uncontrolled network printers: PROHIBITED
+
+4. TECHNICAL CONTROLS ENFORCING FLOW
+  - Microsoft 365 DLP policy blocks CUI from leaving the tenant
+    to personal email addresses or consumer domains
+  - Conditional Access blocks CUI SharePoint access from
+    non-Intune-enrolled devices
+  - Network firewall blocks outbound SMTP except via M365
+
+5. MONITORING
+  Keith Merritt reviews M365 DLP incident reports weekly.
+  Any unauthorized CUI flow triggers immediate incident response.
+
+================================================================
+Approved: Keith Merritt           02/15/2026
+================================================================

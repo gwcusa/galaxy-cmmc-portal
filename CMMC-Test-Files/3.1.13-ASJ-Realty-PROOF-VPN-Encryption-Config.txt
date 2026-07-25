@@ -1,0 +1,34 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.1.13 - Remote Access Encryption
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty uses cryptographic encryption for all remote access sessions.
+
+2. VPN ENCRYPTION CONFIGURATION
+Solution: Azure VPN Gateway / GlobalProtect
+Tunnel Protocol: IKEv2
+Encryption: AES-256-GCM
+Integrity: SHA-256
+DH Group: ECP384
+
+TLS Configuration (Web Services / Remote Desktop):
+- Minimum version: TLS 1.2
+- Preferred: TLS 1.3
+- Disabled: SSL 3.0, TLS 1.0, TLS 1.1, RC4, DES, 3DES
+
+GPO: TLS-Hardening-ASJ Realty applied to all endpoints.
+
+3. CIPHER SUITE AUDIT
+Tool: IIS Crypto / SSL Labs  |  Date: 2026-06-20  |  Auditor: Sandra Okonkwo
+Result: All weak ciphers disabled. TLS 1.2/1.3 only. Score: A
+
+4. SYSTEM DETAILS
+Primary Remote Device: ASJ-WS-001  |  User: s.okonkwo@asjrealty.com
+VPN Connection Test: 2026-07-01 - AES-256 tunnel confirmed
+
+5. CONCLUSION
+ASJ Realty protects all remote access sessions with strong cryptographic controls per control 3.1.13.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

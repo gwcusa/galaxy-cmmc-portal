@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.4.6 - Least Functionality
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to configure information systems to provide only essential capabilities, per NIST SP 800-171 Rev. 2 control 3.4.6.
+
+2. SCOPE
+All Bumpass Fire & Rescue information systems and devices in the CUI environment.
+
+3. REQUIREMENTS
+a. Systems are configured with only the functions and services required for their mission.
+b. Unnecessary services, ports, and applications are disabled or removed.
+c. Default accounts and sample applications are disabled before deployment.
+d. Mike Sadler audits running services on all CUI systems quarterly.
+e. Any service additions require documented approval from Randy Bowles.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures systems to least functionality standard and maintains service inventories.
+
+5. ENFORCEMENT
+Unauthorized services discovered during audits are disabled within 24 hours.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

@@ -1,0 +1,36 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.8.2 - CUI Media Access Control
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC limits access to CUI media to authorized users only.
+
+2. CUI DIGITAL MEDIA ACCESS CONTROLS
+SharePoint CUI Site (blueridgetech.com):
+Site URL: https://blueridgetech.com/sites/CUI
+Permissions:
+- Owners: Nathan Cruz (full control)
+- Members: Victor Osei (read/write), staff1 (read only), staff2 (read only)
+- External sharing: Disabled
+- Anonymous access: Disabled
+- Inheritance broken from public sites
+
+OneDrive CUI Folders:
+Synced only to compliant, enrolled devices. External sharing disabled at tenant level.
+
+3. QUARTERLY PERMISSION REVIEW
+Date: 2026-06-30  |  Reviewer: Nathan Cruz
+SharePoint CUI permissions reviewed: All authorized. No unexpected users found.
+OneDrive sharing report: 0 external shares of CUI content.
+
+4. ACCESS LOG SAMPLE (SharePoint CUI - June 2026)
+Date       | User          | Action        | File
+2026-06-05 | n.cruz@blueridgetech.com   | FileAccessed  | DFARS-Compliance-Q2.docx
+2026-06-12 | Victor Osei@blueridgetech.com   | FileAccessed  | Contract-CUI-001.pdf
+2026-06-18 | Unknown ext.  | FileAccess    | BLOCKED (external sharing disabled)
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC restricts CUI digital media access to authorized users via SharePoint RBAC per control 3.8.2.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

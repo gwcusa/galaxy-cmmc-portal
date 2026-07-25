@@ -1,0 +1,35 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.3.8 - Audit Log Protection
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC protects audit logs from unauthorized modification or deletion.
+
+2. LOG PROTECTION CONTROLS
+Platform: Microsoft Sentinel + Log Analytics (tenant: keithdroney.com)
+
+Immutability: Log Analytics workspace configured with 90-day immutability lock.
+Records cannot be deleted or modified by any user during retention period.
+
+Access Control (RBAC):
+- Log Analytics Reader: Keith Merritt (read-only - for review/audit)
+- Log Analytics Contributor: Keith Merritt (query and configure, cannot delete logs)
+- Log Analytics Data Purge: Not assigned to any Keith the Drone Guy LLC user
+- Owner: Azure Subscription admin (break-glass account, MFA + PAM required)
+
+Backup: Logs exported to Azure Blob Storage (GRS redundancy)
+Blob container: cui-logs-backup-keithdroney.com | Access: Keith Merritt only | Soft delete: 30 days
+
+3. ACCESS AUDIT
+Log access itself is audited via Azure Activity Log.
+Azure Activity Log: Immutable, managed by Microsoft.
+
+4. ACCESS REVIEW
+Date: 2026-06-30  |  Reviewer: Keith Merritt
+Result: 0 unauthorized users with log access. RBAC assignments confirmed.
+
+5. CONCLUSION
+Keith the Drone Guy LLC protects audit logs via RBAC, immutable storage, and geo-redundant backup per control 3.3.8.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

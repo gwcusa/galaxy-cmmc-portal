@@ -1,0 +1,34 @@
+﻿AWARENESS AND TRAINING IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.2.3 - Insider Threat Reporting
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue trains personnel to report insider threat indicators and maintains reporting mechanisms.
+
+2. REPORTING MECHANISMS
+Primary: Direct report to Randy Bowles (Randy Bowles@bumpassfire.org)
+Secondary: Anonymous tip email (security-reports@bumpassfire.org) - managed by Mike Sadler
+Physical: Drop-box in office (sealed, reviewed weekly by Randy Bowles)
+
+Reporting channel communicated via:
+- Annual training module
+- Printed poster in break room
+- New-hire orientation packet
+
+3. TRAINING CONTENT (Reporting Module)
+Covered in KnowBe4 module "Insider Threat Reporting Procedures" (20 min):
+- What constitutes a reportable concern
+- How to submit a report (anonymous and named options)
+- What happens after a report is submitted
+- Non-retaliation guarantee
+
+4. REPORT LOG (FY2026)
+Reports received: 1 (anonymous tip - 2026-04-15)
+Nature: Unusual after-hours file access concern
+Resolution: Mike Sadler reviewed audit logs; confirmed authorized scheduled backup. No threat found.
+
+5. CONCLUSION
+Bumpass Fire & Rescue maintains active insider threat reporting mechanisms and trains all personnel per control 3.2.3.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

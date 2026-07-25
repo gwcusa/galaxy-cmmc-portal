@@ -1,0 +1,48 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+EXTERNAL SYSTEM CONNECTION CONTROL POLICY
+================================================================
+Document ID:    POL-AC-020
+Version:        1.0
+Effective Date: January 15, 2026
+Review Date:    January 15, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy verifies and controls connections to external
+information systems to prevent unauthorized access to CUI
+or unintended data flows to outside parties.
+
+2. APPROVED EXTERNAL CONNECTIONS
+  The following external connections are pre-approved:
+    - Microsoft 365 (mail, Teams, SharePoint) — business critical
+    - Azure AD / Azure services — identity and infrastructure
+    - DoD SAFE (for CUI transfer to government clients)
+    - Paychex (payroll) — no CUI access
+    - QuickBooks Online (accounting) — no CUI access
+    - Company website hosting (GoDaddy) — no CUI access
+
+3. NEW EXTERNAL CONNECTIONS — APPROVAL PROCESS
+  Any new external service connection must:
+    a) Be submitted to Terrell Banks for technical review
+    b) Be approved in writing by Camille Odom before use
+    c) Be added to the Approved External Connection Register
+       (SharePoint: IT-Policies/External-Connections-Register)
+    d) Be reviewed annually for continued necessity
+
+4. PROHIBITED CONNECTIONS
+  - Personal cloud services for CUI data (Google Drive, Dropbox)
+  - Unapproved SaaS applications that process company data
+  - Peer-to-peer file sharing services
+
+5. TECHNICAL CONTROLS
+  - Microsoft 365 Defender for Cloud Apps monitors SaaS usage
+  - Unsanctioned app access generates an alert to Terrell Banks
+  - DNS filtering (Cisco Umbrella) blocks known malicious sites
+
+================================================================
+Approved: Camille Odom           01/15/2026
+Prepared: Terrell Banks          01/13/2026
+================================================================

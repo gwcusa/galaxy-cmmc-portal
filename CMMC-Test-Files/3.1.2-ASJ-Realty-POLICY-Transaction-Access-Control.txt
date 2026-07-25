@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: ASJ Realty
+Control: 3.1.2 - Transaction and Function Access Limits
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy limits ASJ Realty system access to the types of transactions and functions that authorized users are permitted to execute, per NIST SP 800-171 Rev. 2 control 3.1.2.
+
+2. SCOPE
+All ASJ Realty information systems and users who access CUI or CUI-supporting systems.
+
+3. REQUIREMENTS
+a. User accounts are assigned roles that restrict access to only required functions.
+b. Role assignments are documented and reviewed semi-annually by Sandra Okonkwo.
+c. No user shall have access beyond what is required for their job function.
+d. Administrative roles are restricted to personnel with a documented operational need.
+e. Role changes require written approval before implementation.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, manages role assignments. Anthony James approves elevated access requests.
+
+5. ENFORCEMENT
+Unauthorized function access is treated as a policy violation subject to disciplinary action.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

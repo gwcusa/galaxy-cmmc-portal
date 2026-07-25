@@ -1,0 +1,37 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.5.1 - User Identification
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue assigns and manages unique identities for all users and devices.
+
+2. USER IDENTITY REGISTRY
+Platform: Azure Active Directory (tenant: bumpassfire.org)
+Total Active User Accounts: 5
+Naming Convention: firstname.lastname@bumpassfire.org
+Shared Accounts: 0  |  Anonymous Accounts: 0  |  Generic Accounts: 0
+
+Active Users:
+- Randy Bowles@bumpassfire.org (Fire Chief)
+- Mike Sadler@bumpassfire.org (IT Coordinator)
+- staff1@bumpassfire.org (Analyst)
+- staff2@bumpassfire.org (Coordinator)
+- svc-backup@bumpassfire.org (Service Account - Owner: Mike Sadler)
+
+3. DEVICE IDENTITY REGISTRY
+Tool: Intune / Azure AD Device Registration
+Total Registered Devices: 6
+All devices assigned unique device names and Azure AD Device IDs.
+
+Sample Entry:
+Device Name: BFR-WS-001 | Azure AD Device ID: d5c2a8... | Owner: Mike Sadler | OS: Windows 11 | Enrolled: 2026-01-10
+
+4. QUARTERLY IDENTITY REVIEW
+Date: 2026-06-30  |  Reviewer: Mike Sadler
+Result: All accounts and devices verified as legitimate. 0 orphaned or unauthorized identities.
+
+5. CONCLUSION
+Bumpass Fire & Rescue maintains unique user and device identities with quarterly reviews per control 3.5.1.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

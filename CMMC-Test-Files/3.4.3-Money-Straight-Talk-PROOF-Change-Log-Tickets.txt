@@ -1,0 +1,32 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.4.3 - Configuration Change Control
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC controls and documents all configuration changes to CUI systems.
+
+2. CHANGE MANAGEMENT PROCESS
+Ticketing: Freshservice (tenant: moneystraighttalk.com)
+Workflow: Request > Review by Terrell Banks > Approval by Camille Odom > Implementation > Closure
+
+Change Categories:
+- Standard (pre-approved, low risk): Implement within 48 hours, document after
+- Normal (requires review): 5-business-day approval window
+- Emergency: Implement first, document and get retroactive approval within 24 hours
+
+3. CHANGE LOG (June 2026)
+CHG-2026-041 | 2026-06-03 | Intune AV policy update       | Approved: Camille Odom | Status: Closed
+CHG-2026-042 | 2026-06-10 | Windows 11 update rollout     | Approved: Camille Odom | Status: Closed
+CHG-2026-043 | 2026-06-22 | VPN certificate renewal       | Approved: Camille Odom | Status: Closed
+CHG-2026-044 | 2026-06-28 | Sentinel alert rule addition  | Approved: Camille Odom | Status: Closed
+
+Unauthorized changes detected: 0
+
+4. ROLLBACK PROCEDURE
+Each change request includes rollback plan. Last rollback executed: N/A (FY2026)
+
+5. CONCLUSION
+Money Straight Talk LLC tracks and approves all configuration changes via Freshservice change management per control 3.4.3.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

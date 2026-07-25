@@ -1,0 +1,49 @@
+================================================================
+KEITH THE DRONE GUY LLC
+NAS AND SHAREPOINT CUI ACCESS PERMISSIONS AUDIT
+Evidence for CMMC Control 3.8.2
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Keith Merritt
+================================================================
+
+NAS CUI SHARE PERMISSIONS (\\NAS-01\CUI-Projects\)
+-------------------------------------------------
+Share Permissions:
+  KDG-CUI-Users: Read/Write
+  Everyone: DENIED
+
+NTFS Permissions (icacls output - CUI-Projects folder):
+  BUILTIN\Administrators: FullControl
+  KDGLLC\kmerritt: ReadAndExecute, Write, Modify
+  KDGLLC\dflowers: ReadAndExecute, Write, Modify
+  KDGLLC\rsingh: (no entry - DENIED by default)
+
+KDG-CUI-Users AD Group Members:
+  kmerritt (Keith Merritt) - AUTHORIZED
+  dflowers (Dana Flowers)  - AUTHORIZED
+
+Non-CUI staff confirmed DENIED:
+  rsingh: Tested access July 1, 2026 - ACCESS DENIED. COMPLIANT.
+
+SHAREPOINT CUI SITE PERMISSIONS
+-------------------------------------------------
+Site: KDG CUI Projects (https://kdgllc.sharepoint.com/sites/CUI)
+Members (Edit access):
+  kmerritt@kdgllc.com
+  dflowers@kdgllc.com
+Visitors (Read access): NONE
+Site Owners: kmerritt@kdgllc.com
+
+Conditional Access: "KDG-CUI-Require-Compliant-Device" - Active
+Result: CUI site not accessible from unenrolled devices.
+
+MONTHLY ACCESS REVIEW - July 1, 2026
+-------------------------------------------------
+Review performed by: Keith Merritt
+Findings: Access matches authorized list. No changes needed.
+Confirmed: Ricky Singh has no CUI media access.
+
+================================================================
+Certified: Keith Merritt - July 25, 2026
+================================================================

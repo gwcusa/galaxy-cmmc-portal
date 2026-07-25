@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: ASJ Realty
+Control: 3.1.21 - Portable Storage on External Systems
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy limits the use of portable storage devices on external systems, per NIST SP 800-171 Rev. 2 control 3.1.21.
+
+2. SCOPE
+All ASJ Realty personnel who use portable storage devices (USB drives, external HDDs, SD cards) on non-ASJ Realty systems.
+
+3. REQUIREMENTS
+a. ASJ Realty-owned portable storage devices may not be connected to external (non-ASJ Realty) systems.
+b. Portable storage used on external systems may not subsequently be connected to CUI systems without approval and scanning.
+c. Personal portable storage devices are prohibited on ASJ Realty CUI endpoints.
+d. Intune device control policies block unauthorized USB storage on CUI endpoints.
+e. Any exemption requires written approval from Anthony James and is logged.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, enforces USB device control policies. Anthony James approves exceptions.
+
+5. ENFORCEMENT
+Violations of this policy are investigated and may result in disciplinary action.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

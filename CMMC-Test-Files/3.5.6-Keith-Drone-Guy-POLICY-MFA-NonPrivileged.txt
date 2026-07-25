@@ -1,0 +1,26 @@
+﻿IDENTIFICATION AND AUTHENTICATION POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.5.6 - MFA for Non-Privileged Accounts
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to employ multifactor authentication for network access to non-privileged accounts, per NIST SP 800-171 Rev. 2 control 3.5.6.
+
+2. SCOPE
+All Keith the Drone Guy LLC standard (non-privileged) user accounts that access CUI systems over a network.
+
+3. REQUIREMENTS
+a. MFA is required for all standard user accounts when accessing CUI resources over a network.
+b. This includes access to Microsoft 365, SharePoint, Teams, and the corporate VPN.
+c. MFA enrollment is mandatory for all staff within 24 hours of account creation.
+d. Users who fail to complete MFA enrollment lose network CUI access until enrolled.
+e. MFA status is audited monthly.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, enforces MFA enrollment and compliance for all standard user accounts.
+
+5. ENFORCEMENT
+Network access to CUI systems without MFA is technically blocked.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

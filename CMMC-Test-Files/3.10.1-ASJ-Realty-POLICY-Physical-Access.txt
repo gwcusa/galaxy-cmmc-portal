@@ -1,0 +1,26 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY
+Organization: ASJ Realty
+Control: 3.10.1 - Physical Access Authorization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy limits physical access to ASJ Realty CUI systems to authorized individuals, per NIST SP 800-171 Rev. 2 control 3.10.1.
+
+2. SCOPE
+All ASJ Realty facilities where CUI systems are located.
+
+3. REQUIREMENTS
+a. CUI system areas are access-controlled with electronic key card or coded entry.
+b. A list of authorized personnel with physical access is maintained by Anthony James.
+c. The authorized access list is reviewed and updated quarterly.
+d. Visitors are not permitted unescorted access to CUI areas.
+e. Access rights are revoked within 24 hours of termination.
+
+4. RESPONSIBILITY
+Anthony James, Office Manager, approves physical access authorizations. Sandra Okonkwo maintains technical controls.
+
+5. ENFORCEMENT
+Unauthorized physical access to CUI areas is a security incident.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

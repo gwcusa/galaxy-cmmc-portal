@@ -1,0 +1,28 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.20 - External System Connection Control
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue verifies and controls all connections to external systems.
+
+2. APPROVED EXTERNAL CONNECTION REGISTER
+(Maintained by Mike Sadler - Last Updated: 2026-07-01)
+
+Connection              | System/Service                  | ISA Date   | Approver   | Status
+Microsoft 365           | Azure AD, Exchange, SharePoint  | 2025-09-01 | Randy Bowles      | Active
+DoD Prime Contractor    | SFTP CUI Exchange Portal        | 2026-01-15 | Randy Bowles      | Active
+Background Check SVC    | HireRight (HR only, no CUI)     | 2025-11-01 | Randy Bowles      | Active
+
+3. ANNUAL REVIEW
+Date: 2026-06-30  |  Reviewer: Mike Sadler  |  Approver: Randy Bowles
+Result: All 3 connections reviewed. 1 legacy FTP connection to retired vendor terminated. Register updated.
+
+4. NEW CONNECTION REQUEST LOG
+Date: 2026-05-12 | Requestor: Staff-1 | System: Personal Dropbox
+Decision: DENIED - non-approved cloud storage. User notified.
+
+5. CONCLUSION
+Bumpass Fire & Rescue maintains and reviews all external system connections with documented ISAs per control 3.1.20.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

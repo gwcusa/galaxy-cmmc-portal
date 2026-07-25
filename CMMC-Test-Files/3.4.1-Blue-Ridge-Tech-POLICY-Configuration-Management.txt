@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.4.1 - Configuration Management
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy establishes Blue Ridge Technology Solutions LLC's requirements for maintaining baseline configurations of information systems, per NIST SP 800-171 Rev. 2 control 3.4.1.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC hardware, software, and information systems that process, store, or transmit CUI.
+
+3. REQUIREMENTS
+a. Nathan Cruz maintains an inventory of all hardware and software in the CUI environment.
+b. Baseline configurations are documented for all CUI systems.
+c. The inventory is reviewed and updated quarterly.
+d. New devices must be approved and configured per baseline before connecting to CUI networks.
+e. Deviations from baseline require documented justification and approval.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, maintains the asset inventory and baseline configurations.
+
+5. ENFORCEMENT
+Unauthorized devices on the CUI network are removed immediately upon detection.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

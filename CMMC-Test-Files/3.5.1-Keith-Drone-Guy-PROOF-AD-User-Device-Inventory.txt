@@ -1,0 +1,37 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.5.1 - User Identification
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC assigns and manages unique identities for all users and devices.
+
+2. USER IDENTITY REGISTRY
+Platform: Azure Active Directory (tenant: keithdroney.com)
+Total Active User Accounts: 5
+Naming Convention: firstname.lastname@keithdroney.com
+Shared Accounts: 0  |  Anonymous Accounts: 0  |  Generic Accounts: 0
+
+Active Users:
+- Keith Merritt@keithdroney.com (Owner-Operator)
+- Keith Merritt@keithdroney.com (Owner-Operator)
+- staff1@keithdroney.com (Analyst)
+- staff2@keithdroney.com (Coordinator)
+- svc-backup@keithdroney.com (Service Account - Owner: Keith Merritt)
+
+3. DEVICE IDENTITY REGISTRY
+Tool: Intune / Azure AD Device Registration
+Total Registered Devices: 6
+All devices assigned unique device names and Azure AD Device IDs.
+
+Sample Entry:
+Device Name: KDG-WS-001 | Azure AD Device ID: d5c2a8... | Owner: Keith Merritt | OS: Windows 11 | Enrolled: 2026-01-10
+
+4. QUARTERLY IDENTITY REVIEW
+Date: 2026-06-30  |  Reviewer: Keith Merritt
+Result: All accounts and devices verified as legitimate. 0 orphaned or unauthorized identities.
+
+5. CONCLUSION
+Keith the Drone Guy LLC maintains unique user and device identities with quarterly reviews per control 3.5.1.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

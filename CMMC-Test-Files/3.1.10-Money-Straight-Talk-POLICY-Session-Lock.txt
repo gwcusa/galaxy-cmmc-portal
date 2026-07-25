@@ -1,0 +1,48 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+SESSION LOCK AND SCREEN TIMEOUT POLICY
+================================================================
+Document ID:    POL-AC-010
+Version:        1.0
+Effective Date: January 10, 2026
+Review Date:    January 10, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy requires that all company workstations and
+laptops automatically lock after a period of inactivity,
+using a pattern-hiding display (screen saver or blank screen)
+to prevent unauthorized viewing of CUI.
+
+2. REQUIREMENTS
+
+2.1 Inactivity Timeout
+  - Workstations: 15 minutes of inactivity triggers lock
+  - Laptops: 10 minutes of inactivity triggers lock
+  - Servers (console sessions): 5 minutes triggers lock
+
+2.2 Screen Lock Display
+  - Upon lock, screen must display a blank screen or
+    pattern (not a transparent/see-through saver)
+  - The desktop and any open documents must not be visible
+  - Password required to unlock
+
+2.3 Password Requirements
+  - User must re-authenticate with their domain password
+    to unlock a locked session
+  - Multi-factor authentication is not required at unlock
+    (MFA is required at initial logon per POL-IA-001)
+
+3. ENFORCEMENT
+  Enforced via Group Policy Object (MST-Screen-Lock-Policy).
+  Users cannot override the timeout setting.
+
+4. EXCEPTIONS
+  No exceptions are permitted for CUI-handling workstations.
+
+================================================================
+Approved: Camille Odom           01/10/2026
+Prepared: Terrell Banks          01/08/2026
+================================================================

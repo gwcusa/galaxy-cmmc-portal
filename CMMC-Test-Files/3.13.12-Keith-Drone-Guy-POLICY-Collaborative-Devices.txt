@@ -1,0 +1,51 @@
+================================================================
+KEITH THE DRONE GUY LLC
+COLLABORATIVE COMPUTING DEVICE POLICY
+================================================================
+Document ID:    POL-SC-012
+Version:        1.0
+Effective Date: April 10, 2026
+Review Date:    April 10, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy prohibits remote activation of collaborative
+computing devices (cameras, microphones, screen sharing) and
+provides indication of use to users.
+
+2. COLLABORATIVE COMPUTING DEVICES AT KDG
+  - Laptop webcams (KDG-LT-001, KDG-LT-002)
+  - Laptop microphones
+  - Microsoft Teams screen sharing
+  - Conference room camera (Logitech Rally - meeting room only)
+
+3. REMOTE ACTIVATION PROHIBITION
+  Collaborative computing devices must not be remotely
+  activated without the knowledge and consent of the user:
+    - Webcam access by remote applications: prohibited unless
+      the application is approved and the user initiates the session
+    - Microphone access by background processes: prohibited
+    - Screen sharing: user must explicitly initiate (Teams)
+
+4. TECHNICAL CONTROLS
+  - Camera and microphone access controlled by Windows
+    privacy settings (apps must request and be approved)
+  - Intune policy blocks camera/microphone access for
+    unapproved applications
+  - Physical webcam covers provided to all laptop users
+
+5. INDICATOR OF USE
+  - Windows shows a camera/microphone indicator light (orange LED)
+    when camera or microphone is active
+  - Teams shows an on-screen indicator when screen sharing is active
+  - Users are trained to watch for unexpected camera/mic activation
+
+6. CONFERENCE ROOM CAMERA
+  - Physical power switch on conference room camera
+  - Camera is powered off when room is not in use
+
+================================================================
+Approved: Keith Merritt           04/10/2026
+================================================================

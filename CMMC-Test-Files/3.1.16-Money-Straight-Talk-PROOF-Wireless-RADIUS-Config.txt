@@ -1,0 +1,32 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.1.16 - Wireless Access Authorization
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC authorizes and controls all wireless network access.
+
+2. WIRELESS ACCESS POINT INVENTORY
+Authorized APs (registered with Terrell Banks):
+AP-01: Office main (2.4GHz/5GHz) - CUI SSID + Guest SSID
+AP-02: Conference room (5GHz only) - CUI SSID
+All APs: Ubiquiti UniFi managed via UniFi Controller (managed by Terrell Banks)
+
+Network SSIDs:
+- CUI-Money Straight Talk LLC (hidden, 802.1X + WPA3): Authorized devices only
+- Guest-Money Straight Talk LLC (visible, WPA2 PSK): Internet only, firewall-isolated from CUI
+
+3. AUTHORIZATION CONFIGURATION
+802.1X Authentication: Enabled on CUI SSID
+RADIUS Server: Windows NPS (moneystraighttalk.com)
+Device Authorization: Certificate-based (Intune-issued client certs)
+MAC Filtering: Secondary control (approved device MACs registered)
+
+4. ROGUE AP DETECTION
+UniFi rogue AP detection: Enabled
+Last scan: 2026-07-05  |  Rogue APs detected: 0
+
+5. CONCLUSION
+Money Straight Talk LLC authorizes and enforces wireless access using 802.1X and registered device controls per control 3.1.16.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

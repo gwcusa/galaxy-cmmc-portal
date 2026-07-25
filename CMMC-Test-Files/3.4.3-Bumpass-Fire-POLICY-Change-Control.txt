@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.4.3 - Configuration Change Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy establishes Bumpass Fire & Rescue's requirements for controlling and documenting changes to information system configurations, per NIST SP 800-171 Rev. 2 control 3.4.3.
+
+2. SCOPE
+All changes to hardware, software, and configuration of Bumpass Fire & Rescue CUI systems.
+
+3. REQUIREMENTS
+a. All configuration changes require a documented change request.
+b. Changes are reviewed and approved by Randy Bowles before implementation.
+c. Emergency changes are documented within 24 hours of implementation.
+d. All changes are tested in a non-production environment when feasible.
+e. Change records are retained for 3 years.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, submits and implements change requests. Randy Bowles approves changes.
+
+5. ENFORCEMENT
+Unauthorized changes are rolled back and investigated as security incidents.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

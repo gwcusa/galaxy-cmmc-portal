@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.15 - Remote Privileged Command Authorization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy authorizes remote execution of privileged commands and security-relevant information access via remote access only for documented operational needs, per NIST SP 800-171 Rev. 2 control 3.1.15.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC personnel who execute privileged administrative commands remotely.
+
+3. REQUIREMENTS
+a. Remote privileged command execution requires a documented service ticket or change request.
+b. All remote privileged sessions are recorded and reviewed.
+c. Victor Osei authorizes remote privileged access requests in advance.
+d. Emergency remote privileged access requires after-action documentation within 24 hours.
+e. Remote privileged access is audited monthly by Nathan Cruz.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, executes privileged commands remotely only under documented authorization.
+
+5. ENFORCEMENT
+Unauthorized remote privileged command execution is an immediate security incident.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

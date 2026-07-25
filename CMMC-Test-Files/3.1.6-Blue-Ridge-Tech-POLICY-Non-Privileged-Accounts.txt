@@ -1,0 +1,61 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+NON-PRIVILEGED ACCOUNT USE POLICY
+================================================================
+Document ID:    POL-AC-006
+Version:        1.1
+Effective Date: April 1, 2026
+Review Date:    April 1, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy requires that users employ non-privileged accounts
+for routine daily activities, reserving privileged accounts
+solely for tasks that require elevated permissions.
+
+2. REQUIREMENTS
+
+2.1 Separate Account Structure
+  All IT staff at Blue Ridge Technology Solutions who require
+  administrative access must maintain TWO accounts:
+    a) Standard User Account: used for all daily tasks
+       (email, browsing, documentation, client communications)
+    b) Admin Account: used ONLY for administrative tasks
+       (prefixed with "adm_", e.g., adm_ncruz)
+
+2.2 Daily Work — Standard Accounts Required
+  The following tasks MUST be performed using standard accounts:
+    - Email and calendar
+    - Web browsing
+    - Office document creation
+    - Client portal access
+    - Ticket system updates
+    - Video conferencing
+
+2.3 Admin Accounts — Restricted Use
+  Admin accounts are used ONLY for:
+    - Domain controller management
+    - Server configuration changes
+    - User account administration
+    - Security policy changes
+    - Software deployment via Intune
+
+2.4 No Browser / Email on Admin Accounts
+  Admin accounts must NOT be used for:
+    - Web browsing (no browser access)
+    - Email
+    - Accessing internet-connected services
+  This prevents credential exposure and privilege escalation.
+
+3. TECHNICAL ENFORCEMENT
+  Admin accounts have "Log on locally" restricted to servers
+  and admin workstations only. Browser shortcuts are removed
+  from admin-account desktops. Conditional Access blocks
+  admin accounts from accessing M365 email and SharePoint.
+
+================================================================
+Approved: Victor Osei            04/01/2026
+Prepared: Nathan Cruz            03/28/2026
+================================================================

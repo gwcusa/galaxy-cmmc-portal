@@ -1,0 +1,44 @@
+﻿SYSTEM AND INFORMATION INTEGRITY IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.14.7 - Unauthorized Use Detection
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC identifies and responds to unauthorized use of CUI systems.
+
+2. UNAUTHORIZED USE DETECTION CAPABILITIES
+
+Microsoft Sentinel - User Entity Behavior Analytics (UEBA):
+Status: Enabled
+Scope: All Azure AD accounts in moneystraighttalk.com
+Baselines: Established from 90 days of behavioral data
+Detections: Access outside normal hours, new app access, impossible travel, mass downloads
+
+Microsoft Defender for Cloud Apps (MCAS):
+Status: Connected to M365 tenant
+Monitoring: All SharePoint, Teams, Exchange access
+Anomaly detection: Enabled (unusually large download, activity from anonymous IP, etc.)
+
+3. USER MONITORING CONSENT
+System use banner displayed at Windows login on MST-WS-001 and WS-002:
+Banner text: "This system is the property of Money Straight Talk LLC. Authorized use only. All activity is monitored and logged. By continuing you consent to monitoring."
+GPO: LoginBanner-Money Straight Talk LLC  |  Verified: 2026-06-30
+
+4. UNAUTHORIZED USE DETECTION LOG (FY2026)
+Date       | Event                           | System     | User Account | Action
+2026-04-22 | Off-hours SharePoint access 2am | SharePoint | t.banks@moneystraighttalk.com  | Investigated, Terrell Banks confirmed authorized (late night work)
+2026-05-15 | Large file download (2.3GB)     | OneDrive   | Staff-2      | Investigated - Q1 report export, authorized
+
+Confirmed unauthorized use incidents: 0
+
+5. INVESTIGATION PROCEDURE
+All UEBA/MCAS alerts are:
+a. Triaged within 4 hours
+b. Documented in incident log
+c. Escalated to Camille Odom if confirmed unauthorized
+d. Account suspended immediately on confirmed unauthorized access
+
+6. CONCLUSION
+Money Straight Talk LLC uses Sentinel UEBA and Microsoft Defender for Cloud Apps to continuously detect unauthorized system use with 0 confirmed incidents in FY2026 per control 3.14.7.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

@@ -1,0 +1,28 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.4 - Separation of Duties
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC separates duties to reduce insider risk for CUI system operations.
+
+2. ROLE SEPARATION MATRIX
+Function                    | Requester       | Approver        | Implementer
+New CUI account             | Department Head | Victor Osei           | Nathan Cruz
+Privileged access grant     | Nathan Cruz            | Victor Osei           | Nathan Cruz
+CUI data deletion           | Nathan Cruz            | Victor Osei           | Dual sign-off
+
+Azure AD Roles: Nathan Cruz holds Global Admin; Victor Osei holds Security Reader (read-only audit access).
+No single user holds both Global Admin and Billing Admin roles.
+
+3. AUDIT LOG INDEPENDENCE
+Microsoft Sentinel audit logs: Read access limited to Victor Osei and external assessor accounts.
+Nathan Cruz cannot modify or delete audit log data.
+
+4. SYSTEM DETAILS
+Primary Workstation: BRTS-WS-001  |  User: n.cruz@blueridgetech.com
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC enforces separation of duties across critical CUI functions per control 3.1.4.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

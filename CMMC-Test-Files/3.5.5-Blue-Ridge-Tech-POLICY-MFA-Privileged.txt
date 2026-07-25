@@ -1,0 +1,26 @@
+﻿IDENTIFICATION AND AUTHENTICATION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.5.5 - MFA for Privileged Accounts
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to employ multifactor authentication for network access to privileged accounts, per NIST SP 800-171 Rev. 2 control 3.5.5.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC privileged accounts (Global Admin, Security Admin, IT Administrator roles).
+
+3. REQUIREMENTS
+a. MFA is required every time a privileged account authenticates for network access.
+b. Privileged accounts are enrolled in MFA before being activated.
+c. PIM-gated privileged access requires MFA at activation.
+d. No persistent privileged sessions are permitted; re-authentication is required.
+e. Failed privileged account MFA attempts generate immediate alerts.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, configures and enforces MFA for all privileged accounts.
+
+5. ENFORCEMENT
+Any privileged account session without verified MFA is blocked and alerted.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

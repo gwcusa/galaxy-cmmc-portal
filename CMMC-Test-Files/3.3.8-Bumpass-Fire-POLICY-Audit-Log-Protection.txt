@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.3.8 - Audit Log Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy protects Bumpass Fire & Rescue audit information and tools from unauthorized access, modification, and deletion, per NIST SP 800-171 Rev. 2 control 3.3.8.
+
+2. SCOPE
+All Bumpass Fire & Rescue audit records, logging infrastructure, and audit management tools.
+
+3. REQUIREMENTS
+a. Audit logs are stored in a system where operational users cannot delete or modify records.
+b. Access to raw audit log data is restricted to Mike Sadler and authorized assessors.
+c. Audit log storage uses append-only or immutable storage mechanisms.
+d. Backup copies of audit logs are stored separately from production systems.
+e. Log access attempts are themselves logged.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, manages audit log access controls and immutability settings.
+
+5. ENFORCEMENT
+Any modification or deletion of audit records is treated as a security incident.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

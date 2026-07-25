@@ -1,0 +1,31 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.10 - Session Lock with Pattern-Hiding Display
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue enforces session lock with pattern-hiding displays after inactivity.
+
+2. SCREEN LOCK CONFIGURATION
+Windows Endpoints:
+GPO Name: ScreenLock-Bumpass Fire & Rescue-Baseline
+- Screen saver: Enabled (Blank screensaver - pattern-hiding)
+- Screen saver timeout: 900 seconds (15 minutes)
+- Password on resume: Required
+- User override: Disabled (policy enforced)
+
+Intune Configuration Profile: ScreenLock-Bumpass Fire & Rescue
+- Max inactivity: 15 minutes
+- Require password: Yes
+- Applied to: All enrolled devices (Domain: bumpassfire.org)
+
+3. COMPLIANCE REPORT
+Intune Device Compliance - Screen Lock Check: 2026-07-01
+Total Devices: 6  |  Compliant: 6  |  Non-Compliant: 0
+
+Workstation BFR-WS-001 - Account m.sadler@bumpassfire.org: COMPLIANT
+
+4. CONCLUSION
+All Bumpass Fire & Rescue endpoints enforce session lock with pattern-hiding display per control 3.1.10.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

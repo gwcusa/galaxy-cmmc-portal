@@ -1,0 +1,34 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.8 - Unsuccessful Logon Attempt Limits
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC enforces limits on unsuccessful logon attempts.
+
+2. ACCOUNT LOCKOUT CONFIGURATION
+Platform: Azure AD + Windows GPO
+Tenant: keithdroney.com
+
+Azure AD Smart Lockout:
+- Lockout Threshold: 5 attempts
+- Lockout Duration: 30 seconds (increasing with repeated failures, up to 30 minutes)
+- Familiar location bypass: Disabled
+
+Windows GPO (Computers OU):
+- Account Lockout Threshold: 5 invalid attempts
+- Lockout Duration: 30 minutes
+- Reset Counter After: 15 minutes
+GPO Name: AccountLockout-Keith the Drone Guy LLC-Baseline
+
+3. LOCKOUT EVENT LOG (June 2026)
+Date: 2026-06-18 - Account: staff1@keithdroney.com - Locked after 5 failed attempts
+Resolution: Keith Merritt unlocked after identity verification. Likely forgotten password.
+
+4. SYSTEM DETAILS
+Workstation: KDG-WS-001  |  Account: k.merritt@keithdroney.com  |  Lockout Policy: Applied and verified
+
+5. CONCLUSION
+Keith the Drone Guy LLC enforces account lockout controls on all CUI systems per control 3.1.8.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

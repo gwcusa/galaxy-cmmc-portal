@@ -1,0 +1,26 @@
+﻿PERSONNEL SECURITY POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.9.2 - Personnel Termination and Transfer
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy ensures Blue Ridge Technology Solutions LLC takes protective measures when personnel are terminated or transferred, per NIST SP 800-171 Rev. 2 control 3.9.2.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC personnel departures, transfers, and changes in role affecting CUI access.
+
+3. REQUIREMENTS
+a. Upon termination, all CUI access (logical and physical) is revoked within 24 hours.
+b. Blue Ridge Technology Solutions LLC property including devices, keys, and media is collected at or before departure.
+c. Terminated personnel are briefed on continuing CUI confidentiality obligations.
+d. Transfer to a new role triggers access review to ensure alignment with new responsibilities.
+e. Termination procedures are documented and tracked via a termination checklist.
+
+4. RESPONSIBILITY
+Victor Osei, Director of Operations, initiates termination procedures. Nathan Cruz executes logical access revocation.
+
+5. ENFORCEMENT
+Failure to complete termination procedures within 24 hours is a policy violation.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

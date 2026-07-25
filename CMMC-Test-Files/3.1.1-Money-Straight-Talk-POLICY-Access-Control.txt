@@ -1,0 +1,27 @@
+﻿ACCESS CONTROL POLICY
+Organization: Money Straight Talk LLC
+Control: 3.1.1 - Authorized User Access
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy limits Money Straight Talk LLC information system access to authorized users, processes acting on behalf of authorized users, and authorized devices, per NIST SP 800-171 Rev. 2 control 3.1.1.
+
+2. SCOPE
+All Money Straight Talk LLC systems, personnel, and contractors that process, store, or transmit Controlled Unclassified Information (CUI).
+
+3. REQUIREMENTS
+a. Maintain a current authorized user list for each CUI system.
+b. Require documented approval before provisioning any account.
+c. Terrell Banks reviews the authorized user list quarterly and removes stale entries.
+d. Shared or generic accounts are prohibited without documented exception.
+e. Disable accounts within 24 hours of termination or contract expiration.
+f. All system access events are logged and monitored.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, is responsible for implementation. Camille Odom, CEO, holds overall accountability.
+
+5. ENFORCEMENT
+Policy violations may result in disciplinary action up to and including termination.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

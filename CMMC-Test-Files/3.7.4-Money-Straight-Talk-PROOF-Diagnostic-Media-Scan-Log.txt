@@ -1,0 +1,51 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+DIAGNOSTIC MEDIA MALWARE SCAN LOG
+Evidence for CMMC Control 3.7.4
+================================================================
+Log Maintained By:  Terrell Banks
+Period:             January 1 - July 25, 2026
+================================================================
+
+DIAGNOSTIC MEDIA SCAN EVENTS - 2026
+-------------------------------------------------
+EVENT #1 - January 30, 2026
+Maintenance Ticket: CHG-2026-008
+Media Type:       USB flash drive (Dell SupportAssist Recovery)
+Source:           Dell ProSupport technician (factory sealed)
+Scan Tool:        Microsoft Defender (signatures: Jan 30, 2026)
+Scan Result:      CLEAN - 0 threats found
+Scan Duration:    4 minutes (2.1 GB content)
+Used On:          MST-WS-001 (RAM replacement - Dell on-site)
+Performed By:     Terrell Banks
+Log Entry:        Scan completed and verified before technician
+                  connected media to system.
+
+EVENT #2 - March 22, 2026
+Maintenance Ticket: CHG-2026-024
+Media Type:       USB drive (Technician's Hiren BootCD PE)
+Source:           External technician (NetworkPro LLC)
+Scan Tool:        Microsoft Defender + Malwarebytes
+Scan Result:      CLEAN (both scanners) - 0 threats
+Scan Duration:    6 minutes (4.3 GB content)
+Used On:          MST-WS-003 (OS repair - boot issues)
+Note:             Technician was informed of scan requirement in advance.
+Performed By:     Terrell Banks
+
+EVENT #3 - June 5, 2026
+Maintenance Ticket: CHG-2026-058
+Media Type:       Dell Diagnostics USB (from Dell online download)
+Source:           Downloaded and written to USB by Terrell Banks
+Scan Tool:        Microsoft Defender
+Scan Result:      CLEAN
+Note:             Terrell downloaded, verified SHA256 hash against
+                  Dell's published hash, then scanned. Triple verification.
+Used On:          MST-WS-004 (disk diagnostic - slow performance)
+Performed By:     Terrell Banks
+
+Total diagnostic media scans in period: 3
+Malware found: 0
+
+================================================================
+Certified: Terrell Banks - July 25, 2026
+================================================================

@@ -1,0 +1,67 @@
+================================================================
+BUMPASS FIRE & RESCUE
+TRANSACTION AND FUNCTION ACCESS CONTROL POLICY
+================================================================
+Document ID:    POL-AC-002
+Version:        1.0
+Effective Date: March 1, 2026
+Review Date:    March 1, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy limits system access for Bumpass Fire & Rescue
+personnel to only the transactions and functions each user
+is authorized to perform based on their role.
+
+2. SCOPE
+Applies to all information systems, CAD software, scheduling
+platforms, and CUI-handling applications used by BFR.
+
+3. ROLE-BASED FUNCTION RESTRICTIONS
+
+3.1 Firefighter/EMT Personnel
+  Permitted Functions:
+    - View and update own training records
+    - View incident reports assigned to their crew
+    - Submit after-action reports (create only, no edit/delete)
+    - Access personnel calendar and scheduling
+  Prohibited Functions:
+    - Access payroll or HR records of others
+    - Modify dispatch logs
+    - Access federal contract CUI folders
+    - Install software on department computers
+
+3.2 Dispatch/Admin Staff
+  Permitted Functions:
+    - Create, modify, and close dispatch records
+    - Schedule personnel and manage calendars
+    - Access general department communications
+  Prohibited Functions:
+    - Access incident investigation reports
+    - Modify financial records without supervisor approval
+    - Access contract CUI without explicit authorization
+
+3.3 IT Administrator
+  Permitted Functions:
+    - Full system administration
+    - User account creation and modification
+    - Security configuration changes
+  Required: All privileged actions logged and reviewed monthly
+
+3.4 Chief / Command Staff
+  Permitted Functions:
+    - Read access to all operational records
+    - Approve/deny access requests
+    - Review audit logs
+
+4. ENFORCEMENT
+  Access is enforced through Active Directory group membership.
+  Unauthorized function execution attempts are logged.
+  Violations are subject to disciplinary action.
+
+================================================================
+Approved: Chief Randy Bowles            03/01/2026
+Prepared: Mike Sadler, IT Admin         02/26/2026
+================================================================

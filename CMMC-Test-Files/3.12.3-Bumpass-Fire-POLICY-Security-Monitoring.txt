@@ -1,0 +1,56 @@
+================================================================
+BUMPASS FIRE & RESCUE
+ONGOING SECURITY CONTROL MONITORING POLICY
+================================================================
+Document ID:    POL-CA-003
+Version:        1.0
+Effective Date: May 20, 2026
+Review Date:    May 20, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy establishes continuous monitoring of information
+system security controls to maintain awareness of the security
+posture of BFR systems.
+
+2. MONITORING ACTIVITIES
+
+2.1 Continuous (Automated)
+  - Microsoft Sentinel: real-time log analysis, alerts 24/7
+  - Microsoft Defender for Endpoint: threat detection
+  - Azure AD Identity Protection: anomalous sign-in detection
+  - Intune compliance monitoring: device compliance status
+  - Azure Defender for Cloud: cloud security posture
+
+2.2 Weekly
+  - Mike Sadler reviews Sentinel incidents and alerts
+  - Mike Sadler reviews failed logon patterns
+  - Phishing simulation results reviewed (after campaigns)
+
+2.3 Monthly
+  - Intune compliance report (all devices)
+  - Vulnerability management report (Defender)
+  - M365 Secure Score trend review
+  - Patch compliance status
+  - User access review (AD group membership)
+
+2.4 Quarterly
+  - Physical security review (cameras, locks, access logs)
+  - GPO settings review (baseline compliance)
+  - Risk register review
+
+2.5 Annual
+  - Full security control assessment (all 110 controls)
+  - POA&M review and update
+  - Security awareness training refresh
+
+3. REPORTING
+  Monthly security status report provided to Chief Bowles.
+  Critical findings reported immediately.
+
+================================================================
+Approved: Chief Randy Bowles        05/20/2026
+Prepared: Mike Sadler               05/18/2026
+================================================================

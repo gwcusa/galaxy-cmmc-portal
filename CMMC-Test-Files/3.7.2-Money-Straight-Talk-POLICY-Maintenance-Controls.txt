@@ -1,0 +1,26 @@
+﻿MAINTENANCE POLICY
+Organization: Money Straight Talk LLC
+Control: 3.7.2 - Controlled Maintenance
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to provide controls on tools, techniques, mechanisms, and personnel who perform maintenance, per NIST SP 800-171 Rev. 2 control 3.7.2.
+
+2. SCOPE
+All maintenance activities on Money Straight Talk LLC CUI systems by internal staff or vendors.
+
+3. REQUIREMENTS
+a. Vendor maintenance personnel are pre-approved by Camille Odom before being granted access.
+b. Vendor access is escorted by Terrell Banks throughout the maintenance activity.
+c. Vendor tools and diagnostic software are inspected before use.
+d. Remote vendor access is monitored in real-time by Terrell Banks.
+e. All vendor maintenance is logged with contact details, scope, and outcome.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, controls and supervises all maintenance activities.
+
+5. ENFORCEMENT
+Unsupervised vendor access to CUI systems is prohibited.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

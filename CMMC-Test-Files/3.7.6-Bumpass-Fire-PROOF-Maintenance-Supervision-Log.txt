@@ -1,0 +1,33 @@
+﻿MAINTENANCE IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.7.6 - Maintenance Personnel Supervision
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue supervises maintenance personnel who lack CUI access authorization.
+
+2. SUPERVISION PROTOCOL
+Step 1: Mike Sadler escorts maintenance personnel to work area
+Step 2: CUI-sensitive systems are locked or screens faced away during maintenance
+Step 3: Mike Sadler remains in the same room throughout the maintenance activity
+Step 4: Mike Sadler verifies all tools and materials brought in and taken out
+Step 5: Post-maintenance: Mike Sadler inspects area before maintenance personnel leave
+
+3. MAINTENANCE SUPERVISION LOG (FY2026)
+Date       | Vendor       | Scope          | Supervised By | Unattended? | Notes
+2026-03-10 | Network-A    | Switch maint   | Mike Sadler          | No          | Full escort
+2026-05-20 | HP Support   | Laptop repair  | Mike Sadler          | No          | CUI screen covered
+2026-06-05 | ISP Tech     | Fiber repair   | Mike Sadler          | No          | Restricted to comms closet (no CUI)
+
+4. SYSTEM LOCKOUT PROCEDURE (when escort not possible)
+If Mike Sadler must leave area: All CUI systems shut down or screens locked + privacy filter on.
+This situation has not arisen in FY2026 - Mike Sadler maintained constant supervision.
+
+5. SECURITY CAMERA COVERAGE
+Office area with CUI systems is covered by security camera.
+Footage retained 30 days. Reviewed by Mike Sadler after each maintenance visit for anomalies.
+
+6. CONCLUSION
+Bumpass Fire & Rescue maintains constant supervision of all unauthorized maintenance personnel per control 3.7.6.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

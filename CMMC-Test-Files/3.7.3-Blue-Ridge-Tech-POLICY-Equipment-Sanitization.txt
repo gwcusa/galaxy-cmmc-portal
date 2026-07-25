@@ -1,0 +1,26 @@
+﻿MAINTENANCE POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.7.3 - Equipment Sanitization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to ensure that equipment removed for off-site maintenance is sanitized before release, per NIST SP 800-171 Rev. 2 control 3.7.3.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC CUI system equipment that is removed from the facility for repair or maintenance.
+
+3. REQUIREMENTS
+a. All CUI data is removed from equipment before it leaves Blue Ridge Technology Solutions LLC custody.
+b. If data cannot be removed, the equipment is escorted and not left unattended.
+c. Sanitization follows NIST SP 800-88 Guidelines for Media Sanitization.
+d. Sanitization is documented in the equipment maintenance log.
+e. Equipment returning from off-site maintenance is inspected and re-scanned before reconnection.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, performs or verifies equipment sanitization before off-site release.
+
+5. ENFORCEMENT
+Equipment leaving the facility with CUI without sanitization is a security incident.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

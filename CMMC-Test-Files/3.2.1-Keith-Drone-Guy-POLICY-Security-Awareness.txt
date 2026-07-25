@@ -1,0 +1,69 @@
+================================================================
+KEITH THE DRONE GUY LLC
+SECURITY AWARENESS AND TRAINING POLICY
+================================================================
+Document ID:    POL-SEC-001
+Version:        1.0
+Effective Date: February 1, 2026
+Review Date:    February 1, 2027
+Owner:          Keith Anderson, Owner/Operator
+================================================================
+
+1. PURPOSE
+Keith the Drone Guy LLC performs aerial survey and mapping
+services under federal contracts, including work for the Army
+Corps of Engineers and USDA. Personnel with access to CUI
+data, drone flight logs, and federal imagery must understand
+security risks and how to protect sensitive information.
+
+2. SCOPE
+Applies to Keith Anderson (owner), all subcontractors, and
+any part-time staff who access company systems or handle
+federal contract data.
+
+3. TRAINING REQUIREMENTS
+
+3.1 Initial Training
+All new employees and subcontractors must complete security
+awareness training BEFORE receiving system access. Training
+covers:
+  - What is CUI and how to identify it
+  - Acceptable use of company systems
+  - Password security and MFA setup
+  - Phishing and social engineering awareness
+  - How and when to report security incidents
+  - Physical security of drone equipment containing CUI data
+
+3.2 Annual Refresher Training
+All personnel complete annual refresher training by January 31
+of each year. Training is delivered via KnowBe4 platform and
+takes approximately 45 minutes.
+
+3.3 Phishing Simulations
+Quarterly simulated phishing emails are sent to all personnel.
+Any employee who clicks a simulated phishing link is required
+to complete additional targeted training within 5 business days.
+
+3.4 New Threat Training
+When a significant new threat is identified (e.g., new malware
+campaign targeting drone operators), Keith Anderson will notify
+all personnel via email and require acknowledgment within 48 hrs.
+
+4. TRAINING RECORDS
+Completion certificates and training records are maintained by
+Keith Anderson in the company SharePoint training folder for
+a minimum of 3 years.
+
+5. ACKNOWLEDGMENT
+All personnel sign an Annual Security Awareness Acknowledgment
+Form confirming they have read and understood this policy and
+completed the required training.
+
+6. ENFORCEMENT
+Personnel who fail to complete required training within the
+allotted time will have system access suspended until training
+is complete.
+
+================================================================
+Approved: Keith Anderson, Owner        02/01/2026
+================================================================

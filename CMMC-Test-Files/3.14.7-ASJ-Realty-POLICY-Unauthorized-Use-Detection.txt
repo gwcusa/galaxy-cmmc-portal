@@ -1,0 +1,26 @@
+﻿SYSTEM AND INFORMATION INTEGRITY POLICY
+Organization: ASJ Realty
+Control: 3.14.7 - Unauthorized Use Detection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to identify unauthorized use of CUI systems, per NIST SP 800-171 Rev. 2 control 3.14.7.
+
+2. SCOPE
+All ASJ Realty CUI systems and user accounts.
+
+3. REQUIREMENTS
+a. Microsoft Sentinel and Defender detect unauthorized or anomalous system use.
+b. User behavior analytics (UBA) identifies deviations from normal usage patterns.
+c. System banners and acceptable use notices inform users of monitoring.
+d. Reports of unauthorized use are investigated within 4 hours.
+e. Confirmed unauthorized use triggers immediate account suspension and incident response.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, identifies and investigates unauthorized use of CUI systems.
+
+5. ENFORCEMENT
+Confirmed unauthorized use results in immediate account lock and escalation to Anthony James and legal counsel.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

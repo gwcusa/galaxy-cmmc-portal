@@ -1,0 +1,35 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.17 - Wireless Access Authentication and Encryption
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC protects wireless CUI network access with strong authentication and encryption.
+
+2. WIRELESS ENCRYPTION CONFIGURATION
+CUI SSID: CUI-Blue Ridge Technology Solutions LLC
+Security Mode: WPA3-Enterprise (802.1X)
+Encryption: AES-CCMP 256-bit
+Authentication: Certificate-based EAP-TLS
+RADIUS Server: NPS on blueridgetech.com
+
+Disabled protocols: WEP, TKIP, WPA-Personal on CUI SSID
+
+Guest SSID: Guest-Blue Ridge Technology Solutions LLC
+Security Mode: WPA3-SAE (Personal - internet only, no CUI access)
+VLAN: Guest VLAN 20 (firewall-isolated)
+
+3. CERTIFICATE CONFIGURATION
+Issued by: Blue Ridge Technology Solutions LLC Internal CA (blueridgetech.com)
+Certificate Template: WiFi-Client-Auth
+Auto-enrollment: Via Intune SCEP profile
+Expiry: 1 year | Auto-renewal enabled
+
+4. QUARTERLY REVIEW
+Date: 2026-06-30  |  Reviewer: Nathan Cruz
+Result: All APs confirmed WPA3/AES. No deprecated protocols active.
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC protects wireless CUI network with WPA3-Enterprise and certificate-based 802.1X per control 3.1.17.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

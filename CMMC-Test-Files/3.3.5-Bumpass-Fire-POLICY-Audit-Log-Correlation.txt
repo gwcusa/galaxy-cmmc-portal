@@ -1,0 +1,47 @@
+================================================================
+BUMPASS FIRE & RESCUE
+AUDIT REVIEW, ANALYSIS, AND CORRELATION POLICY
+================================================================
+Document ID:    POL-AU-005
+Version:        1.0
+Effective Date: April 1, 2026
+Review Date:    April 1, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy establishes the process for correlating audit
+review and analysis across multiple sources to identify
+suspicious patterns and potential security incidents.
+
+2. CORRELATION APPROACH
+BFR uses Microsoft Sentinel as the central correlation platform.
+Logs from all sources are ingested and correlated automatically
+using Sentinel analytic rules and Microsoft threat intelligence.
+
+3. AUTOMATED CORRELATION RULES
+Active Sentinel analytic rules include:
+  - Brute force against Azure AD (multiple failed logons
+    from same IP followed by success)
+  - Impossible travel (logon from two geographically
+    separated locations in a short time)
+  - Privilege escalation followed by unusual data access
+  - New account creation followed by immediate data exfil
+  - Logon during non-business hours with data access
+
+4. MANUAL REVIEW
+Mike Sadler performs a weekly manual log review covering:
+  - Failed logon attempts exceeding 10/week per user
+  - After-hours logon activity
+  - Large file downloads (>500MB in one session)
+  - Access to CUI folders by accounts not normally accessing them
+
+5. REPORTING
+Suspicious patterns are escalated to Chief Bowles immediately.
+Monthly summary reviewed at department leadership meeting.
+
+================================================================
+Approved: Chief Randy Bowles        04/01/2026
+Prepared: Mike Sadler               03/29/2026
+================================================================

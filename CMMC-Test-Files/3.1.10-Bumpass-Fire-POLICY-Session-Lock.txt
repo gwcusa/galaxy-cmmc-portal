@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.1.10 - Session Lock with Pattern-Hiding Display
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to employ session lock with pattern-hiding displays after a period of inactivity, per NIST SP 800-171 Rev. 2 control 3.1.10.
+
+2. SCOPE
+All Bumpass Fire & Rescue endpoints and remote sessions used to access CUI systems.
+
+3. REQUIREMENTS
+a. Screen lock activates after 15 minutes of user inactivity.
+b. Screen lock uses a pattern-hiding screensaver (not a transparent or clear display).
+c. Password is required to unlock any locked session.
+d. Screen lock settings are enforced via Group Policy and Intune.
+e. Users may not configure screen lock settings beyond policy minimums.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures and enforces screen lock via MDM and Group Policy.
+
+5. ENFORCEMENT
+Tampering with screen lock settings constitutes a policy violation.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

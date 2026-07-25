@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.4.9 - User-Installed Software Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy controls and monitors user-installed software on Bumpass Fire & Rescue information systems, per NIST SP 800-171 Rev. 2 control 3.4.9.
+
+2. SCOPE
+All Bumpass Fire & Rescue CUI endpoints and systems.
+
+3. REQUIREMENTS
+a. Standard users do not have local administrator rights on CUI endpoints.
+b. All software must be installed by Mike Sadler from the approved software list.
+c. Mike Sadler scans endpoints monthly for unapproved or newly installed software.
+d. Unapproved software is removed within 24 hours of detection.
+e. Personnel are prohibited from installing personal software on Bumpass Fire & Rescue systems.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, controls software installation and conducts monthly software audits.
+
+5. ENFORCEMENT
+Personnel who install unauthorized software receive disciplinary action.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

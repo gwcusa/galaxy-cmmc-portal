@@ -1,0 +1,47 @@
+================================================================
+KEITH THE DRONE GUY LLC
+NETWORK DEFAULT-DENY POLICY
+================================================================
+Document ID:    POL-SC-006
+Version:        1.0
+Effective Date: April 5, 2026
+Review Date:    April 5, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy requires that network communications are denied
+by default and only permitted as explicitly authorized.
+
+2. DENY-BY-DEFAULT IMPLEMENTATION
+
+2.1 Perimeter Firewall (Meraki MX68)
+  Inbound rule:  Deny all by default (explicit rule at bottom)
+  Outbound rule: Deny all by default (explicit rule at bottom)
+  Only exceptions above the deny rule are permitted.
+
+2.2 Internal Firewall Rules (VLAN-level)
+  Cross-VLAN traffic is denied by default.
+  Only explicitly listed inter-VLAN rules are permitted.
+
+2.3 Windows Defender Firewall
+  Domain profile: Outbound allow, Inbound block by default
+    Exceptions: Only listed applications and ports permitted
+  GPO enforces: Inbound connections that do not match a rule
+    are blocked (Defender Firewall = ENABLED, Block inbound)
+
+2.4 Azure NSG (Network Security Groups)
+  Default rules on all Azure NSGs:
+    DenyAllInBound: Priority 65500 - DENY all inbound
+    AllowVnetInBound (lower priority allows VNet internal)
+  All custom rules explicitly allow only required traffic.
+
+3. DOCUMENTATION
+  All firewall exceptions are documented in the Firewall
+  Rule Change Log (SharePoint: IT/Firewall-Rule-Log.xlsx).
+  New rules require Keith Merritt's approval.
+
+================================================================
+Approved: Keith Merritt           04/05/2026
+================================================================

@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.13.12 - Collaborative Computing Devices
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to prohibit remote activation of collaborative computing devices and provide indication of use to present users, per NIST SP 800-171 Rev. 2 control 3.13.12.
+
+2. SCOPE
+All collaborative computing devices (cameras, microphones, screen sharing) at Blue Ridge Technology Solutions LLC.
+
+3. REQUIREMENTS
+a. Cameras and microphones cannot be remotely activated without user awareness.
+b. Physical privacy covers are used on CUI workstations.
+c. Camera hardware indicators (LED) must be active when in use.
+d. Screen sharing requires explicit user action and consent.
+e. CUI spaces do not have always-on listening devices (smart speakers, voice assistants).
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, enforces collaborative device policies through GPO and physical controls.
+
+5. ENFORCEMENT
+Unauthorized camera/microphone activation is a critical incident.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

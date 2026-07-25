@@ -1,0 +1,27 @@
+﻿ACCESS CONTROL POLICY
+Organization: ASJ Realty
+Control: 3.1.5 - Principle of Least Privilege
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to employ the principle of least privilege, including for specific security functions and privileged accounts, per NIST SP 800-171 Rev. 2 control 3.1.5.
+
+2. SCOPE
+All ASJ Realty personnel, contractors, and systems accessing CUI environments.
+
+3. REQUIREMENTS
+a. Users are granted the minimum access necessary to perform their job functions.
+b. Privileged accounts are used only for tasks requiring elevated permissions.
+c. Sandra Okonkwo reviews all privileged account assignments quarterly.
+d. Privileged access is revoked immediately when no longer operationally required.
+e. Just-in-time (JIT) privileged access is used where technically feasible.
+f. Default system accounts with excessive privileges are disabled or renamed.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, is responsible for implementing and reviewing access rights.
+
+5. ENFORCEMENT
+Violations including unauthorized privilege escalation are subject to termination.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

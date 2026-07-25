@@ -1,0 +1,25 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.1 - Authorized User Access
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+This document demonstrates that Keith the Drone Guy LLC limits CUI system access to authorized users and devices.
+
+2. AUTHORIZED USER LIST (CUI Systems - Domain: keithdroney.com)
+- Keith Merritt (Owner-Operator) - Full CUI read/write
+- Keith Merritt (Owner-Operator) - Admin and CUI access
+- 3 additional staff - reviewed and confirmed active
+- Accounts disabled Q2 2026: 2 (terminations processed within 24 hours)
+
+3. QUARTERLY REVIEW RECORD
+Date: 2026-06-28  |  Reviewer: Keith Merritt
+Result: All active accounts verified as authorized. No unauthorized accounts found.
+
+4. PRIMARY SYSTEM
+Workstation: KDG-WS-001  |  Account: k.merritt@keithdroney.com  |  Authorization: Documented in asset register
+
+5. CONCLUSION
+Keith the Drone Guy LLC maintains and reviews authorized user lists per control 3.1.1. Provisioning and deprovisioning controls are operational.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

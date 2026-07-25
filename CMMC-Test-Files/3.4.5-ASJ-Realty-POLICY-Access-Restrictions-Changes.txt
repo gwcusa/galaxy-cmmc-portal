@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: ASJ Realty
+Control: 3.4.5 - Access Restrictions for Configuration Changes
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy defines and enforces access restrictions associated with ASJ Realty configuration changes, per NIST SP 800-171 Rev. 2 control 3.4.5.
+
+2. SCOPE
+All ASJ Realty CUI systems and their configuration management functions.
+
+3. REQUIREMENTS
+a. Only Sandra Okonkwo is authorized to implement configuration changes on CUI systems.
+b. Physical access to server rooms and network equipment requires key card authorization.
+c. Remote configuration changes require VPN and MFA authentication.
+d. Configuration management tools are accessible only to Sandra Okonkwo.
+e. Attempts by unauthorized users to make configuration changes are detected and alerted.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, implements and enforces access restrictions for system configuration.
+
+5. ENFORCEMENT
+Unauthorized configuration changes are treated as security incidents.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

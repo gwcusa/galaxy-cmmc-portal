@@ -1,0 +1,30 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.12 - Remote Access Monitoring and Control
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue monitors and controls all remote access sessions to CUI systems.
+
+2. VPN CONFIGURATION
+Solution: GlobalProtect / Azure VPN Gateway
+Tenant: bumpassfire.org
+- All remote CUI access requires VPN connection
+- Non-compliant devices blocked (Intune compliance gate)
+- Max concurrent sessions per user: 1
+- Session logging: Full (user, source IP, start/end time, bytes transferred)
+
+3. REMOTE ACCESS LOG EXCERPT (June 2026)
+Date       | User          | Source IP     | Duration | Device
+2026-06-03 | m.sadler@bumpassfire.org   | 71.44.x.x     | 2h 14m   | BFR-WS-001 (Compliant)
+2026-06-10 | m.sadler@bumpassfire.org   | 71.44.x.x     | 1h 05m   | BFR-WS-001 (Compliant)
+2026-06-22 | Unknown       | 185.220.x.x   | Blocked  | Non-managed device
+
+4. WEEKLY REVIEW
+Date: 2026-07-07  |  Reviewer: Mike Sadler
+Result: 1 blocked attempt from unknown IP. No further action required. Logged to security register.
+
+5. CONCLUSION
+Bumpass Fire & Rescue monitors and controls all remote access sessions via VPN with full logging per control 3.1.12.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

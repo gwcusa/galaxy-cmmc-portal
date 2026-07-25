@@ -1,0 +1,52 @@
+================================================================
+BUMPASS FIRE & RESCUE
+UNSUCCESSFUL LOGON ATTEMPT LIMITING POLICY
+================================================================
+Document ID:    POL-AC-008
+Version:        1.0
+Effective Date: March 15, 2026
+Review Date:    March 15, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy limits the number of consecutive unsuccessful
+logon attempts to prevent brute-force attacks against
+BFR information systems.
+
+2. LOGON ATTEMPT LIMITS
+
+2.1 Workstations and Domain Accounts
+  - Maximum consecutive failed logons: 5
+  - Lockout duration: 30 minutes (auto-unlock)
+  - Observation window: 30 minutes
+  - After 5 failed attempts: account locks for 30 minutes
+  - IT admin can manually unlock sooner if needed
+
+2.2 VPN Access
+  - Maximum failed VPN authentication attempts: 3
+  - After 3 failures: account suspended, IT must re-enable
+  - Alert sent to Mike Sadler on 3rd failure
+
+2.3 Web-Based Applications
+  - Applications using Azure AD inherit the domain lockout
+    policy (5 attempts / 30-minute lockout)
+  - Azure AD Smart Lockout: enabled
+
+2.4 Mobile Devices (Intune-managed)
+  - Maximum PIN/passcode failures: 6
+  - After 6 failures: device wiped remotely
+
+3. ENFORCEMENT
+  Enforced via Active Directory Account Lockout Policy GPO
+  and Azure AD Smart Lockout settings.
+
+4. LOGGING
+  All failed logon attempts logged to Windows Event Log
+  (Event ID 4625) and Microsoft Sentinel.
+
+================================================================
+Approved: Chief Randy Bowles        03/15/2026
+Prepared: Mike Sadler               03/12/2026
+================================================================

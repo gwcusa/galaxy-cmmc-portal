@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.8.5 - Media Transport Controls
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy controls the transport of CUI media outside of controlled areas, per NIST SP 800-171 Rev. 2 control 3.8.5.
+
+2. SCOPE
+All Bumpass Fire & Rescue CUI media transported outside of secure office areas.
+
+3. REQUIREMENTS
+a. CUI media transport outside of secured areas requires advance approval from Randy Bowles.
+b. CUI media in transit is encrypted and kept in physical possession of the transporter.
+c. Transport is documented in the media transport log.
+d. CUI media is never checked in luggage during air travel.
+e. Lost or stolen CUI media is reported to Mike Sadler and Randy Bowles within 1 hour of discovery.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, manages media transport approvals and documentation.
+
+5. ENFORCEMENT
+Unapproved CUI media transport is a security violation.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

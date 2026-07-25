@@ -1,0 +1,26 @@
+﻿IDENTIFICATION AND AUTHENTICATION POLICY
+Organization: ASJ Realty
+Control: 3.5.1 - User Identification
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy establishes ASJ Realty's requirements for identifying all information system users, processes, and devices, per NIST SP 800-171 Rev. 2 control 3.5.1.
+
+2. SCOPE
+All users, devices, and processes that access ASJ Realty CUI systems.
+
+3. REQUIREMENTS
+a. Every user account is assigned a unique username tied to a specific individual.
+b. Every device is assigned a unique device identity registered in the asset inventory.
+c. Shared or anonymous accounts are prohibited for CUI system access.
+d. Service accounts are documented with a named owner responsible for the account.
+e. Sandra Okonkwo maintains and reviews the user and device identity registry quarterly.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, maintains user and device identity records.
+
+5. ENFORCEMENT
+Use of anonymous or unregistered identities on CUI systems is prohibited.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

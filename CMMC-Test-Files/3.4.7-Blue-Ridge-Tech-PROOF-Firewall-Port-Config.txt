@@ -1,0 +1,36 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.4.7 - Restrict Software Functions
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC restricts unnecessary programs, ports, and protocols.
+
+2. FIREWALL CONFIGURATION
+Firewall: Windows Defender Firewall + Azure NSG
+GPO: Firewall-Baseline-Blue Ridge Technology Solutions LLC
+
+Inbound Rules (CUI Endpoints - Default Deny All except):
+- Allow: VPN tunnel (port 443, 500, 4500 UDP from VPN gateway)
+- Allow: Intune management (HTTPS 443 to Microsoft endpoints)
+- Allow: Windows Update (HTTPS 443 to Microsoft endpoints)
+- Block: All other inbound
+
+Outbound Rules:
+- Allow: HTTPS 443 (web traffic, M365)
+- Allow: DNS 53
+- Block: FTP 21, Telnet 23, RDP 3389 to external (blocked at perimeter)
+
+3. SOFTWARE RESTRICTION CONTROLS
+Autorun: DISABLED on all drives (GPO: AutorunDisable-Blue Ridge Technology Solutions LLC)
+Office Macros: Only digitally signed macros allowed (GPO: MacroPolicy-Blue Ridge Technology Solutions LLC)
+WDAC: Windows Defender Application Control policy enforces approved application list
+
+4. QUARTERLY REVIEW
+Date: 2026-06-30  |  Reviewer: Nathan Cruz
+Result: All firewall rules reviewed. 1 legacy RDP rule removed (no longer needed).
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC restricts unnecessary functions and ports via firewall rules and software policies per control 3.4.7.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

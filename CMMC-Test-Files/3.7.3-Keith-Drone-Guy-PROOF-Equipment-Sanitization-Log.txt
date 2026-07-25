@@ -1,0 +1,45 @@
+================================================================
+KEITH THE DRONE GUY LLC
+EQUIPMENT SANITIZATION LOG
+Evidence for CMMC Control 3.7.3
+================================================================
+Log Maintained By:  Keith Merritt
+Period:             January 1 - July 25, 2026
+================================================================
+
+SANITIZATION EVENTS - 2026
+-------------------------------------------------
+EVENT #1 - March 5, 2026
+Device:           KDG-LT-001 (Dell XPS 15)
+Reason:           Sent to Dell for screen replacement (ProSupport)
+Sanitization:     BitLocker drive encryption key destroyed
+                  via: manage-bde -ForceRecovery then BitLocker
+                  key destruction followed by full Bitlocker
+                  re-encryption before return to service.
+                  In practice: BitLocker was active and key destroyed.
+                  Data unreadable without key. Drive NOT removed
+                  (Dell repair policy allows with key destroyed).
+Method Reference: NIST SP 800-88 Rev 1 - Cryptographic Erase
+Performed By:     Keith Merritt
+Date:             March 5, 2026 (day before shipping)
+Outcome:          Dell repaired screen. Returned March 10.
+                  New BitLocker key generated on return. CUI restored
+                  from OneDrive backup after re-enrollment in Intune.
+
+EVENT #2 - May 28, 2026
+Device:           KDG-WS-001 (desktop) - Hard Drive
+Reason:           Failed HDD sent to Seagate for warranty replacement
+Sanitization:     HDD removed from machine before shipping.
+                  Attempted secure erase via SeaTools: drive too
+                  damaged (logical failure) - erase not completed.
+                  Physical destruction: drive taken to local
+                  shredding service (Iron Mountain) on 05/28/2026.
+                  Certificate of destruction on file.
+Method Reference: NIST SP 800-88 Rev 1 - Physical Destruction
+Performed By:     Keith Merritt
+Certificate:      Iron Mountain COD #IM-2026-44821
+Outcome:          Seagate shipped new drive; no data at risk.
+
+================================================================
+Certified: Keith Merritt - July 25, 2026
+================================================================

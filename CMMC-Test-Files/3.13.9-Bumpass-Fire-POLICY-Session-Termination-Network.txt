@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.13.9 - Network Session Termination
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to terminate network connections associated with communications sessions after a defined period of inactivity, per NIST SP 800-171 Rev. 2 control 3.13.9.
+
+2. SCOPE
+All network sessions in Bumpass Fire & Rescue CUI systems including VPN, web, and application sessions.
+
+3. REQUIREMENTS
+a. Network sessions terminate after 60 minutes of inactivity.
+b. VPN sessions terminate after 60 minutes idle or 8 hours maximum.
+c. Web application sessions (SharePoint) terminate after 30 minutes idle.
+d. Terminated sessions require full re-authentication.
+e. Session timeout settings are enforced at the network/application level.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures session termination on all network services.
+
+5. ENFORCEMENT
+Network services without compliant session timeout settings must be remediated within 72 hours.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

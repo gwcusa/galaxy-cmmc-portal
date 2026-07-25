@@ -1,0 +1,27 @@
+﻿ACCESS CONTROL POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.12 - Remote Access Monitoring and Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy establishes Blue Ridge Technology Solutions LLC's requirements for monitoring and controlling remote access sessions, per NIST SP 800-171 Rev. 2 control 3.1.12.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC personnel and contractors who access Blue Ridge Technology Solutions LLC systems remotely.
+
+3. REQUIREMENTS
+a. All remote access sessions are conducted through the approved VPN solution.
+b. Remote sessions are logged including user identity, source IP, and duration.
+c. Nathan Cruz reviews remote access logs weekly.
+d. Simultaneous remote sessions for a single account are limited to 1.
+e. Remote access from non-managed devices is blocked.
+f. Anomalous remote access patterns generate immediate security alerts.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, manages the VPN solution and reviews remote access logs.
+
+5. ENFORCEMENT
+Unauthorized remote access attempts are treated as security incidents.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

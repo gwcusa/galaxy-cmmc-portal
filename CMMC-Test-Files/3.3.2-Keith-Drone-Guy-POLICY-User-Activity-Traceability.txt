@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.3.2 - User Activity Audit Traceability
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy ensures Keith the Drone Guy LLC audit logs can be traced to individual users and processes to support accountability, per NIST SP 800-171 Rev. 2 control 3.3.2.
+
+2. SCOPE
+All CUI systems at Keith the Drone Guy LLC where user activity occurs.
+
+3. REQUIREMENTS
+a. Audit records include user identity, timestamp, event type, source IP, and outcome.
+b. Shared accounts are prohibited to ensure individual traceability.
+c. User session IDs are included in all audit events.
+d. Audit records are sufficient to reconstruct user actions during an investigation.
+e. Keith Merritt tests traceability during quarterly log reviews.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, ensures log fields capture sufficient data for traceability.
+
+5. ENFORCEMENT
+Systems with insufficient audit traceability must be remediated within 30 days.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

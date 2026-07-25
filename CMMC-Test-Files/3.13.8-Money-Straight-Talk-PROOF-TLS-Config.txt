@@ -1,0 +1,39 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.13.8 - Encryption of CUI in Transit
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC encrypts all CUI during transmission.
+
+2. TLS CONFIGURATION
+Web Services / SharePoint CUI:
+- Protocol: TLS 1.3 (preferred), TLS 1.2 (fallback)
+- Disabled: SSL 3.0, TLS 1.0, TLS 1.1
+- Cipher suite: TLS_AES_256_GCM_SHA384 (TLS 1.3) / TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (TLS 1.2)
+- Certificate: Microsoft-managed (STAR cert for *.sharepoint.com)
+
+Endpoints (Windows 11):
+GPO: TLS-Hardening-Money Straight Talk LLC
+Registry values set:
+- HKLM\SYSTEM\...\TLS 1.0: DisabledByDefault=1, Enabled=0
+- HKLM\SYSTEM\...\TLS 1.1: DisabledByDefault=1, Enabled=0
+- HKLM\SYSTEM\...\TLS 1.2: DisabledByDefault=0, Enabled=1
+
+3. EMAIL ENCRYPTION
+Exchange Transport Rule: RequireTLS-CUI-Outbound
+- Scope: Email from @moneystraighttalk.com to external recipients with CUI keywords
+- Action: Require TLS (connection rejected if recipient does not support TLS)
+TLS fallback: S/MIME available for Terrell Banks and Camille Odom accounts
+
+4. VPN ENCRYPTION
+Protocol: IKEv2 | Encryption: AES-256-GCM | Integrity: SHA-256
+
+5. QUARTERLY REVIEW
+Date: 2026-06-30  |  Tool: SSL Labs / IIS Crypto
+Result: All Money Straight Talk LLC services TLS 1.2/1.3 only. Score A+. No weak protocols active.
+
+6. CONCLUSION
+Money Straight Talk LLC encrypts all CUI in transit using TLS 1.2+, AES-256 VPN, and email TLS enforcement per control 3.13.8.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

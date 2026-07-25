@@ -1,0 +1,27 @@
+﻿ACCESS CONTROL POLICY
+Organization: Money Straight Talk LLC
+Control: 3.1.12 - Remote Access Monitoring and Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy establishes Money Straight Talk LLC's requirements for monitoring and controlling remote access sessions, per NIST SP 800-171 Rev. 2 control 3.1.12.
+
+2. SCOPE
+All Money Straight Talk LLC personnel and contractors who access Money Straight Talk LLC systems remotely.
+
+3. REQUIREMENTS
+a. All remote access sessions are conducted through the approved VPN solution.
+b. Remote sessions are logged including user identity, source IP, and duration.
+c. Terrell Banks reviews remote access logs weekly.
+d. Simultaneous remote sessions for a single account are limited to 1.
+e. Remote access from non-managed devices is blocked.
+f. Anomalous remote access patterns generate immediate security alerts.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, manages the VPN solution and reviews remote access logs.
+
+5. ENFORCEMENT
+Unauthorized remote access attempts are treated as security incidents.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

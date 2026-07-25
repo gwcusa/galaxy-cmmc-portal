@@ -1,0 +1,51 @@
+================================================================
+KEITH THE DRONE GUY LLC
+MICROSOFT 365 DLP — CUI FLOW POLICY REPORT
+Evidence for CMMC Control 3.1.3
+================================================================
+Report Date:    July 16, 2026
+Exported By:    Keith Merritt (M365 Global Admin)
+Tenant:         keiththedroneGuy.onmicrosoft.com
+================================================================
+
+DLP POLICY: "Block External CUI Sharing"
+-------------------------------------------------
+Policy Status:       ACTIVE
+Scope:               All SharePoint sites, OneDrive, Exchange
+Sensitive Info Type: CUI label + "CUI" keyword detection
+
+Rules:
+  Rule 1 — Block external sharing of CUI content
+    Condition: Content labeled "CUI" shared with external users
+    Action: BLOCK + notify admin
+    Override allowed: NO
+
+  Rule 2 — Block CUI email to personal domains
+    Condition: Email with CUI label sent to *@gmail.com,
+               *@yahoo.com, *@hotmail.com, *@outlook.com
+    Action: BLOCK + notify sender
+
+  Rule 3 — Alert on CUI outside approved channels
+    Condition: CUI keyword in email to non-*.mil / non-*.gov
+               and non-approved subcontractor domains
+    Action: ALERT to Keith Merritt
+
+DLP INCIDENTS — Last 30 Days (June 16 - July 16, 2026)
+-------------------------------------------------
+DATE         RULE TRIGGERED      USER         ACTION    RESOLVED
+-----------  ------------------  -----------  --------  --------
+06/19/2026   Rule 2 — PersonalEmail  (test)  BLOCKED   YES
+No actual violations in 30 days.
+
+CONDITIONAL ACCESS POLICY: "Require Compliant Device for CUI"
+-------------------------------------------------
+Policy Status:     ACTIVE
+Target Apps:       SharePoint (CUI sites), Teams
+Condition:         Device must be Intune-compliant
+Non-compliant:     ACCESS BLOCKED
+
+Devices currently compliant: 3/3 (100%)
+
+================================================================
+Certified: Keith Merritt — July 16, 2026
+================================================================

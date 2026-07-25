@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.8.9 - CUI Backup Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to protect the confidentiality of backup CUI at storage locations, per NIST SP 800-171 Rev. 2 control 3.8.9.
+
+2. SCOPE
+All Bumpass Fire & Rescue backup media and backup data storage locations containing CUI.
+
+3. REQUIREMENTS
+a. CUI backups are encrypted at rest using AES-256 or equivalent.
+b. Backup storage locations are access-controlled and logged.
+c. Backup media is stored in physically secured locations.
+d. Cloud backup storage uses encryption and RBAC equivalent to production systems.
+e. Backup encryption keys are protected and backed up separately from data.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, manages CUI backup systems and encryption.
+
+5. ENFORCEMENT
+Unencrypted CUI backups are a critical security finding requiring immediate remediation.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

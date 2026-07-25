@@ -1,0 +1,36 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.5.2 - User Authentication
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue authenticates the identity of all users before granting CUI system access.
+
+2. AUTHENTICATION CONFIGURATION
+Platform: Azure Active Directory (tenant: bumpassfire.org)
+Authentication Methods Enabled:
+- Password (minimum 14 characters, complexity enforced)
+- Microsoft Authenticator (TOTP/push notification)
+- FIDO2 Security Key (optional - Mike Sadler only)
+
+MFA Required: Yes (Conditional Access policy: MFA-Required-All-Bumpass Fire & Rescue)
+Applied to: All users accessing CUI resources (M365, SharePoint, VPN)
+
+3. MFA ENROLLMENT STATUS (2026-07-01)
+Total Users: 5  |  MFA Enabled: 5 (100%)
+
+User              | MFA Method             | Status
+Randy Bowles@bumpassfire.org       | Authenticator App      | Active
+Mike Sadler@bumpassfire.org        | Authenticator App      | Active
+staff1@bumpassfire.org      | Authenticator App      | Active
+staff2@bumpassfire.org      | Authenticator App      | Active
+svc-backup@bumpassfire.org  | Certificate (service)  | Active
+
+4. RECENT AUTHENTICATION LOG (sample - June 2026)
+Date: 2026-06-15 | User: m.sadler@bumpassfire.org | Method: Password+MFA | Result: Success | Device: BFR-WS-001
+Date: 2026-06-15 | User: unknown     | Method: Password     | Result: Blocked | Reason: MFA not satisfied
+
+5. CONCLUSION
+Bumpass Fire & Rescue requires and verifies user authentication with MFA before granting CUI access per control 3.5.2.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

@@ -1,0 +1,64 @@
+================================================================
+KEITH THE DRONE GUY LLC
+NETWORK TOPOLOGY AND REMOTE ACCESS GATEWAY DOCUMENTATION
+Evidence for CMMC Control 3.1.14
+================================================================
+Document Date:  July 19, 2026
+Prepared By:    Keith Merritt, IT Lead
+================================================================
+
+NETWORK TOPOLOGY SUMMARY
+-------------------------------------------------
+INTERNET
+    |
+    v
+[Cisco Meraki MX68 — VPN Gateway + Firewall]
+    |--- WAN Port: [Public IP redacted]
+    |--- LAN Port: 192.168.1.1/24
+    |
+    +--- [NAS: 192.168.1.10] (CUI storage)
+    +--- [KDG-WS-001: 192.168.1.20] (Keith's workstation)
+    +--- [KDG-WS-002: 192.168.1.21] (Operations workstation)
+    +--- [KDG-PRINT-001: 192.168.1.30] (Network printer)
+
+REMOTE ACCESS FLOW
+-------------------------------------------------
+1. Remote user opens Cisco AnyConnect on Intune-managed laptop
+2. User authenticates to VPN gateway (Azure AD SAML + MFA)
+3. Upon successful auth, encrypted tunnel established to MX68
+4. User is assigned VPN IP in range 10.10.1.x/24
+5. User accesses internal resources via tunnel only
+6. All traffic routes through MX68 (full-tunnel mode)
+7. Internet traffic also tunneled (no split tunnel for CUI users)
+
+FIREWALL RULE VERIFICATION
+-------------------------------------------------
+Rule: BLOCK direct RDP from internet to LAN
+  Source: Any (internet)
+  Destination: 192.168.1.0/24
+  Port: 3389 (RDP)
+  Action: DENY
+  Status: ACTIVE
+
+Rule: BLOCK direct SSH from internet
+  Source: Any
+  Destination: 192.168.1.0/24
+  Port: 22 (SSH)
+  Action: DENY
+  Status: ACTIVE
+
+Rule: ALLOW VPN clients to LAN
+  Source: 10.10.1.0/24 (VPN pool)
+  Destination: 192.168.1.0/24
+  Action: ALLOW
+  Status: ACTIVE
+
+MERAKI VPN LOG — July 2026 (Sample)
+-------------------------------------------------
+07/02/2026 20:15  kmerritt  203.0.x.x  CONNECTED  2h 10m
+07/08/2026 19:30  kmerritt  203.0.x.x  CONNECTED  1h 45m
+07/15/2026 21:00  kmerritt  203.0.x.x  CONNECTED  3h 00m
+
+================================================================
+Certified: Keith Merritt — July 19, 2026
+================================================================

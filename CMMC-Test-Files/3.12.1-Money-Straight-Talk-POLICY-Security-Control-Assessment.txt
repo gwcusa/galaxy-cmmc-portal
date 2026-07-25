@@ -1,0 +1,26 @@
+﻿SECURITY ASSESSMENT POLICY
+Organization: Money Straight Talk LLC
+Control: 3.12.1 - Security Control Assessment
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to periodically assess the security controls in systems to determine their effectiveness, per NIST SP 800-171 Rev. 2 control 3.12.1.
+
+2. SCOPE
+All security controls implemented in Money Straight Talk LLC CUI systems.
+
+3. REQUIREMENTS
+a. Security controls are assessed at least annually.
+b. Assessment may be self-assessment or conducted by an independent third party.
+c. Assessment results are documented in a Security Assessment Report (SAR).
+d. Findings from the assessment are tracked to remediation.
+e. Assessment results inform updates to the System Security Plan.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, coordinates security assessments. Camille Odom reviews and accepts the SAR.
+
+5. ENFORCEMENT
+Gaps identified in security assessments are added to the POA&M and tracked to closure.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

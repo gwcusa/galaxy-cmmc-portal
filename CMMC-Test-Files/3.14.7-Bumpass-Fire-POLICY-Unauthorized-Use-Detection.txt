@@ -1,0 +1,60 @@
+================================================================
+BUMPASS FIRE & RESCUE
+UNAUTHORIZED SYSTEM USE DETECTION POLICY
+================================================================
+Document ID:    POL-SI-007
+Version:        1.0
+Effective Date: June 25, 2026
+Review Date:    June 25, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy establishes mechanisms to identify unauthorized
+use of BFR organizational information systems.
+
+2. UNAUTHORIZED USE DEFINED
+Unauthorized use includes:
+  - Access by former employees (accounts should be disabled)
+  - Access outside approved hours without justification
+  - Access to systems or data beyond a user's role
+  - Use of unapproved software on company devices
+  - Unauthorized hardware connected to BFR systems
+  - Unauthorized remote access tools
+  - Service accounts used for interactive logins
+  - Shared credential use (one person using another's account)
+
+3. DETECTION MECHANISMS
+
+3.1 User Behavior Analytics (Microsoft Sentinel + Azure AD)
+  - Baseline user behavior established automatically
+  - Deviations from baseline generate alerts (UEBA)
+  - Specific rules:
+    * Access during non-business hours
+    * Access to data sets not previously accessed
+    * Login from unusual geolocation
+    * High volume file access in short time
+
+3.2 Account Usage Monitoring
+  - Disabled account login attempt: ALERT (Event ID 4625 + 4648)
+  - Service account interactive login: ALERT (Event ID 4624)
+  - Simultaneous logins from multiple IPs: ALERT
+
+3.3 Software Inventory
+  - Intune software inventory detects unapproved applications
+  - Monthly review by Mike Sadler
+  - Unapproved software removed within 24 hours
+
+3.4 Network Traffic Analysis
+  - Meraki IDS monitors for anomalous traffic patterns
+  - Unusual outbound data volume: alert
+
+4. RESPONSE
+  Any confirmed unauthorized use is reported to Chief Bowles
+  immediately and triggers the IR plan (POL-IR-001).
+
+================================================================
+Approved: Chief Randy Bowles        06/25/2026
+Prepared: Mike Sadler               06/23/2026
+================================================================

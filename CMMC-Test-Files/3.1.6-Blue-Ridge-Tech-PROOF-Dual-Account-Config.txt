@@ -1,0 +1,55 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+ACTIVE DIRECTORY — PRIVILEGED ACCOUNT AUDIT
+Evidence for CMMC Control 3.1.6
+================================================================
+Report Date:    July 17, 2026
+Prepared By:    Nathan Cruz (Domain Admin)
+Domain:         blueridgetech.local
+================================================================
+
+STANDARD USER ACCOUNTS
+-------------------------------------------------
+Username     Full Name        Group Membership
+-----------  ---------------  --------------------------------
+ncruz        Nathan Cruz      BRTS-Staff, BRTS-Engineers
+vosei        Victor Osei      BRTS-Staff, BRTS-Management
+jhartwell    J. Hartwell      BRTS-Staff, BRTS-Engineers
+rkimble      R. Kimble        BRTS-Staff, BRTS-Helpdesk
+mjohnson     M. Johnson       BRTS-Staff, BRTS-Helpdesk
+
+PRIVILEGED (ADMIN) ACCOUNTS
+-------------------------------------------------
+Username     Full Name        Group Membership
+-----------  ---------------  --------------------------------
+adm_ncruz    Nathan Cruz      Domain Admins, Schema Admins
+adm_vosei    Victor Osei      Domain Admins (limited)
+
+VERIFICATION — STANDARD ACCOUNTS DO NOT HAVE ADMIN RIGHTS
+-------------------------------------------------
+Account: ncruz
+  Domain Admins: NO
+  Local Admin on workstations: NO
+  Can install software: NO
+  Can modify GPO: NO
+  Result: COMPLIANT
+
+Account: vosei
+  Domain Admins: NO
+  Local Admin on workstations: NO
+  Result: COMPLIANT
+
+ADMIN ACCOUNT RESTRICTIONS (from GPO: BRTS-Admin-Restrictions)
+-------------------------------------------------
+Browser access blocked:     YES (Chrome/Edge not in PATH)
+Email client blocked:       YES (Outlook blocked by CA policy)
+Internet access:            BLOCKED (firewall rule: adm_* accounts)
+Login allowed on:           DC01, DC02, BRTS-AdminWS-001 only
+
+LAST PRIVILEGED ACTION REVIEW: July 1, 2026
+All admin tasks performed under adm_* accounts. No standard
+account was found to have performed admin-level tasks.
+
+================================================================
+Certified: Nathan Cruz — July 17, 2026
+================================================================

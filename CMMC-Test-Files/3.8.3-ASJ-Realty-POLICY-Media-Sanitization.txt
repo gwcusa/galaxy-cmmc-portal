@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: ASJ Realty
+Control: 3.8.3 - Media Sanitization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to sanitize or destroy information system media before disposal or reuse, per NIST SP 800-171 Rev. 2 control 3.8.3.
+
+2. SCOPE
+All ASJ Realty digital and physical media prior to disposal, reuse, or transfer.
+
+3. REQUIREMENTS
+a. Media sanitization follows NIST SP 800-88 Rev. 1 Guidelines for Media Sanitization.
+b. Hard drives and SSDs are wiped using DoD 5220.22-M standard or secure erase.
+c. Media that cannot be reliably sanitized is physically destroyed.
+d. Destruction/sanitization is documented in the media disposal log.
+e. A certificate of destruction is obtained for third-party media disposal.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, performs and documents all media sanitization activities.
+
+5. ENFORCEMENT
+Unsanitized media disposal is a serious security violation.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

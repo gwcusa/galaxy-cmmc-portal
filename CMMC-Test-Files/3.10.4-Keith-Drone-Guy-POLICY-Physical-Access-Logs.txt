@@ -1,0 +1,50 @@
+================================================================
+KEITH THE DRONE GUY LLC
+PHYSICAL ACCESS AUDIT LOGGING POLICY
+================================================================
+Document ID:    POL-PE-004
+Version:        1.0
+Effective Date: March 25, 2026
+Review Date:    March 25, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy requires KDG to maintain audit logs of physical
+access to facilities and sensitive areas.
+
+2. LOGGED AREAS
+Physical access logs are maintained for:
+  - Main office entrance (key fob log)
+  - Server/IT closet (keypad access log)
+  - NAS/data storage area (same room as IT closet)
+
+3. LOGGING METHODS
+
+3.1 Electronic Key Fob System (Main Entrance, After Hours)
+  - Alarm system (DSC Smart Home) logs key fob entries:
+    user ID, date, time, and door accessed
+  - Log retained: 90 days on the alarm controller
+    (downloaded monthly by Keith Merritt to SharePoint)
+
+3.2 IT Closet Keypad
+  - Keypad generates an entry log for each access attempt:
+    success/failure, date, time
+  - Log downloaded monthly and reviewed by Keith Merritt
+
+3.3 Security Camera
+  - IP camera covers server closet entrance (visual log)
+  - Footage retained 30 days (overwrite)
+
+4. LOG REVIEW
+  Keith Merritt reviews access logs monthly.
+  Any after-hours or anomalous access is investigated.
+
+5. LOG PROTECTION
+  Physical access logs are stored in SharePoint (IT folder)
+  and cannot be modified by standard users.
+
+================================================================
+Approved: Keith Merritt           03/25/2026
+================================================================

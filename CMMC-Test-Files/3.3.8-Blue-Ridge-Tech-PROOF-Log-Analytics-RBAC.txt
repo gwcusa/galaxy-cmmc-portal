@@ -1,0 +1,49 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+AZURE LOG ANALYTICS - AUDIT LOG PROTECTION CONFIGURATION
+Evidence for CMMC Control 3.3.8
+================================================================
+Report Date:    July 23, 2026
+Prepared By:    Nathan Cruz
+Workspace:      BRTS-Sentinel-Workspace
+Resource Group: brts-security-rg
+================================================================
+
+IMMUTABLE LOG STORAGE
+-------------------------------------------------
+Immutable Storage Mode: ENABLED
+  - Logs cannot be deleted or modified once written
+  - Policy-level: Azure Policy enforced
+  - Immutability period: 365 days (matches retention policy)
+  - Status: COMPLIANT
+
+WORKSPACE ACCESS CONTROL (RBAC)
+-------------------------------------------------
+Principal         Role                    Scope
+----------------  ----------------------  -----------------
+Nathan Cruz       Log Analytics Contributor  Workspace level
+Victor Osei       Log Analytics Reader     Workspace level
+BRTS-Devices (AAD group) AMA Agent         Data collection only
+(All others)      No assignment           N/A - no access
+
+RBAC VERIFICATION - Users with delete rights: NONE
+Log Analytics Contributor cannot delete workspaces.
+Workspace deletion requires Owner at subscription level.
+
+LOCAL EVENT LOG PROTECTION (GPO: BRTS-EventLog-Protection)
+-------------------------------------------------
+Security Event Log Size:    512 MB (Do not overwrite events)
+Security Log ACL:           SYSTEM: Full | Administrators: Full
+                            All others: DENIED
+Event Log Service:          Cannot be stopped by non-admins (GPO)
+Event Log Clear:            Generates Event ID 1102 (monitored)
+
+SENTINEL ALERT: "Audit Log Cleared"
+-------------------------------------------------
+Rule: Alert on Event ID 1102 (audit log cleared)
+Severity: Critical
+Last triggered: Never
+
+================================================================
+Certified: Nathan Cruz - July 23, 2026
+================================================================

@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.13.4 - Shared Resource Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to prevent unauthorized and unintended information transfer via shared system resources, per NIST SP 800-171 Rev. 2 control 3.13.4.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC systems with shared resources (memory, storage, network) in the CUI environment.
+
+3. REQUIREMENTS
+a. Virtual machines and containers are isolated to prevent data leakage between workloads.
+b. Temporary storage is cleared between user sessions.
+c. Printer spooler directories are cleared after each job.
+d. Memory is overwritten or not re-used across security boundaries without clearing.
+e. Nathan Cruz verifies isolation controls quarterly.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, configures and verifies shared resource isolation controls.
+
+5. ENFORCEMENT
+Shared resource isolation failures are treated as potential data leakage incidents.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

@@ -1,0 +1,28 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.4 - Separation of Duties
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC separates duties to reduce insider risk for CUI system operations.
+
+2. ROLE SEPARATION MATRIX
+Function                    | Requester       | Approver        | Implementer
+New CUI account             | Department Head | Keith Merritt           | Keith Merritt
+Privileged access grant     | Keith Merritt            | Keith Merritt           | Keith Merritt
+CUI data deletion           | Keith Merritt            | Keith Merritt           | Dual sign-off
+
+Azure AD Roles: Keith Merritt holds Global Admin; Keith Merritt holds Security Reader (read-only audit access).
+No single user holds both Global Admin and Billing Admin roles.
+
+3. AUDIT LOG INDEPENDENCE
+Microsoft Sentinel audit logs: Read access limited to Keith Merritt and external assessor accounts.
+Keith Merritt cannot modify or delete audit log data.
+
+4. SYSTEM DETAILS
+Primary Workstation: KDG-WS-001  |  User: k.merritt@keithdroney.com
+
+5. CONCLUSION
+Keith the Drone Guy LLC enforces separation of duties across critical CUI functions per control 3.1.4.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

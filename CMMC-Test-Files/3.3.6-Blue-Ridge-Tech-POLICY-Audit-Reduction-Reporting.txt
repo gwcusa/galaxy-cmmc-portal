@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.3.6 - Audit Reduction and Report Generation
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to provide audit reduction and report generation capabilities that support on-demand analysis and reporting without altering the original audit records, per NIST SP 800-171 Rev. 2 control 3.3.6.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC audit log sources and SIEM infrastructure.
+
+3. REQUIREMENTS
+a. A SIEM is deployed capable of filtering, sorting, and summarizing audit records.
+b. Reports are generated without altering original log records.
+c. Nathan Cruz can produce audit reports on demand for specific users, timeframes, or events.
+d. Audit reduction tools operate on copies, not originals.
+e. Report generation capability is tested quarterly.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, maintains audit reduction and reporting capabilities.
+
+5. ENFORCEMENT
+Audit reduction tools must not modify original log data under any circumstances.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

@@ -1,0 +1,35 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.5.5 - MFA for Privileged Accounts
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC requires MFA for all privileged account network access.
+
+2. PRIVILEGED ACCOUNT MFA CONFIGURATION
+Tenant: moneystraighttalk.com
+Privileged Roles in Scope: Global Admin, SharePoint Admin, Security Admin, Intune Admin
+
+Conditional Access Policy: MFA-Privileged-Accounts-Money Straight Talk LLC
+- Target: Users with Global Admin or Security Admin role
+- Condition: Any location, any device, any app
+- Grant Control: Require MFA + Compliant Device
+- Session: Sign-in frequency every 1 hour (no persistent sessions)
+
+Azure AD PIM:
+- All privileged roles are eligible (not permanently active)
+- Activation requires: MFA verification + business justification
+- Max activation: 8 hours
+
+3. PIM ACTIVATION LOG (June 2026)
+Date        | User      | Role         | MFA Used | Duration | Justification
+2026-06-05  | Terrell Banks      | Global Admin | Yes      | 2h       | Intune policy update
+2026-06-12  | Terrell Banks      | Security Admin | Yes    | 1h       | Sentinel rule update
+2026-06-20  | Terrell Banks      | Global Admin | Yes      | 45m      | User account change
+
+MFA failures on privileged accounts: 0
+
+4. CONCLUSION
+Money Straight Talk LLC enforces MFA on all privileged account activations and network access via PIM and Conditional Access per control 3.5.5.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

@@ -1,0 +1,30 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.1.12 - Remote Access Monitoring and Control
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC monitors and controls all remote access sessions to CUI systems.
+
+2. VPN CONFIGURATION
+Solution: GlobalProtect / Azure VPN Gateway
+Tenant: moneystraighttalk.com
+- All remote CUI access requires VPN connection
+- Non-compliant devices blocked (Intune compliance gate)
+- Max concurrent sessions per user: 1
+- Session logging: Full (user, source IP, start/end time, bytes transferred)
+
+3. REMOTE ACCESS LOG EXCERPT (June 2026)
+Date       | User          | Source IP     | Duration | Device
+2026-06-03 | t.banks@moneystraighttalk.com   | 71.44.x.x     | 2h 14m   | MST-WS-001 (Compliant)
+2026-06-10 | t.banks@moneystraighttalk.com   | 71.44.x.x     | 1h 05m   | MST-WS-001 (Compliant)
+2026-06-22 | Unknown       | 185.220.x.x   | Blocked  | Non-managed device
+
+4. WEEKLY REVIEW
+Date: 2026-07-07  |  Reviewer: Terrell Banks
+Result: 1 blocked attempt from unknown IP. No further action required. Logged to security register.
+
+5. CONCLUSION
+Money Straight Talk LLC monitors and controls all remote access sessions via VPN with full logging per control 3.1.12.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

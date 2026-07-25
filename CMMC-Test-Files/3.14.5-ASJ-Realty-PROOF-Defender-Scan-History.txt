@@ -1,0 +1,40 @@
+﻿SYSTEM AND INFORMATION INTEGRITY IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.14.5 - System and File Scanning
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty performs real-time and periodic malware scans on CUI endpoints.
+
+2. SCANNING CONFIGURATION
+Real-Time Scanning:
+- Status: ENABLED on all CUI endpoints
+- Tamper Protection: ENABLED (scanning cannot be disabled by users)
+- Action: Real-time scan of all files on access, download, execution
+
+Scheduled Scans:
+- Type: Full scan
+- Frequency: Weekly (every Sunday at 02:00)
+- Scope: All fixed and removable drives
+
+Email Scanning (Defender for Office 365):
+- Attachments: Scanned before delivery (Safe Attachments - Dynamic Delivery)
+- Downloads from SharePoint: Scanned on open/download
+
+3. SCAN HISTORY - ASJ-WS-001 (Last 30 Days via Defender Portal)
+Scan Type     | Date       | Duration | Files Scanned | Threats Found | Action
+Full Scan     | 2026-06-01 | 42 min   | 284,331       | 0             | None
+Full Scan     | 2026-06-08 | 40 min   | 284,446       | 0             | None
+Full Scan     | 2026-06-15 | 41 min   | 284,512       | 0             | None
+Full Scan     | 2026-06-22 | 39 min   | 284,610       | 0             | None
+Full Scan     | 2026-06-29 | 41 min   | 284,718       | 0             | None
+
+Real-time detections: 1 (PUA:Win32/Softcoupon - quarantined automatically on 2026-06-22)
+
+4. SCAN HISTORY - WS-002 (Last 30 Days)
+All weekly full scans completed. 0 threats detected.
+
+5. CONCLUSION
+ASJ Realty performs real-time and weekly full-disk scans with Defender on all CUI endpoints per control 3.14.5.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

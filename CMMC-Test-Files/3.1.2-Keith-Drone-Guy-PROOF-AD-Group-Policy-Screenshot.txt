@@ -1,0 +1,27 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.2 - Transaction and Function Access Limits
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC restricts users to only the transactions and functions required for their roles.
+
+2. ROLE ASSIGNMENT SUMMARY
+Platform: Microsoft 365 / keithdroney.com
+- Keith Merritt (Owner-Operator): SharePoint Owner (CUI site), no admin portal access
+- Keith Merritt (Owner-Operator): Global Admin (restricted to IT functions only)
+- Staff roles: Reader or Contributor on CUI SharePoint; no admin rights
+
+GPO Applied: RoleBasedAccess-Keith the Drone Guy LLC-v2 enforced via Intune
+
+3. SEMI-ANNUAL REVIEW
+Date: 2026-06-15  |  Reviewer: Keith Merritt
+Result: 1 role downgrade applied (user no longer requires editor rights). All others confirmed appropriate.
+
+4. SYSTEM DETAILS
+Workstation: KDG-WS-001  |  User: k.merritt@keithdroney.com  |  Role: Standard User (CUI Read/Write)
+
+5. CONCLUSION
+Keith the Drone Guy LLC enforces role-based access limiting users to required transactions and functions per control 3.1.2.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

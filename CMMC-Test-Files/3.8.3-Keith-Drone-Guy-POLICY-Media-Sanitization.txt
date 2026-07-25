@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.8.3 - Media Sanitization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to sanitize or destroy information system media before disposal or reuse, per NIST SP 800-171 Rev. 2 control 3.8.3.
+
+2. SCOPE
+All Keith the Drone Guy LLC digital and physical media prior to disposal, reuse, or transfer.
+
+3. REQUIREMENTS
+a. Media sanitization follows NIST SP 800-88 Rev. 1 Guidelines for Media Sanitization.
+b. Hard drives and SSDs are wiped using DoD 5220.22-M standard or secure erase.
+c. Media that cannot be reliably sanitized is physically destroyed.
+d. Destruction/sanitization is documented in the media disposal log.
+e. A certificate of destruction is obtained for third-party media disposal.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, performs and documents all media sanitization activities.
+
+5. ENFORCEMENT
+Unsanitized media disposal is a serious security violation.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

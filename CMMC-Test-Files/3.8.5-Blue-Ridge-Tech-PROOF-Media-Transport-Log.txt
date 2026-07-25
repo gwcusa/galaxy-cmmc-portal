@@ -1,0 +1,34 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.8.5 - Media Transport Controls
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC controls the transport of CUI media outside secure areas.
+
+2. TRANSPORT AUTHORIZATION PROCESS
+Step 1: Requestor submits transport request to Nathan Cruz (email or ticket)
+Step 2: Nathan Cruz verifies media encryption status
+Step 3: Victor Osei approves transport request
+Step 4: Transporter signs out media in transport log
+Step 5: Transporter returns media and signs back in
+
+3. MEDIA TRANSPORT LOG (FY2026)
+Date       | Media     | Transported By | Destination        | Purpose       | Approved | Return Date
+2026-03-12 | USB KI-001 | Nathan Cruz          | DoD Contractor mtg | Contract docs | Victor Osei    | 2026-03-12
+2026-06-05 | USB KI-001 | Victor Osei         | Client meeting     | Deliverables  | Nathan Cruz     | 2026-06-05
+
+Transport outside office: 2 events. Media encrypted in both cases. Kept in hand carry.
+
+4. ENCRYPTION VERIFICATION (Pre-Transport)
+Before each transport, Nathan Cruz verifies:
+- USB drive encryption active (hardware IronKey status indicator: LOCKED)
+- Files accessible only with PIN
+
+5. LOST/STOLEN MEDIA INCIDENTS
+FY2026: 0 incidents
+
+6. CONCLUSION
+Blue Ridge Technology Solutions LLC controls CUI media transport with documented approval and encryption verification per control 3.8.5.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

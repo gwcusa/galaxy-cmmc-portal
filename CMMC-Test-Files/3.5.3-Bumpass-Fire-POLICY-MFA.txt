@@ -1,0 +1,66 @@
+================================================================
+BUMPASS VOLUNTEER FIRE & RESCUE DEPARTMENT
+MULTI-FACTOR AUTHENTICATION (MFA) POLICY
+================================================================
+Document ID:    POL-IA-002
+Version:        1.1
+Effective Date: May 1, 2026
+Review Date:    May 1, 2027
+Owner:          IT Coordinator, Derek Holt
+Approved By:    Fire Chief, Raymond Stubbs
+================================================================
+
+1. PURPOSE
+This policy requires multi-factor authentication (MFA) to
+protect access to Bumpass Fire & Rescue systems, especially
+those containing CUI related to federal grant programs and
+personnel records.
+
+2. SCOPE
+Applies to all personnel accessing department systems
+remotely or via privileged accounts, including the records
+management system, grant portal, and Microsoft 365.
+
+3. MFA REQUIREMENTS
+
+3.1 Required For:
+  - ALL network-based access to any department system
+  - ALL privileged/administrator account logins
+  - ALL remote access (VPN, remote desktop)
+  - Microsoft 365 / email access from any device
+  - Grant administration portal
+  - Any system containing CUI
+
+3.2 MFA Method
+  The department uses Microsoft Authenticator app as the
+  primary MFA method. Approved second factors include:
+    - Microsoft Authenticator push notification (preferred)
+    - Time-based one-time password (TOTP) via Authenticator
+    - SMS code (allowed only as backup — not preferred)
+  Hardware tokens are available for personnel without
+  smartphones upon request to the IT Coordinator.
+
+3.3 MFA Enrollment
+  - All personnel must enroll in MFA within 3 days of
+    receiving a system account
+  - MFA enrollment is completed during IT onboarding session
+    with Derek Holt
+  - Personnel who lose MFA access must contact Derek Holt
+    immediately for recovery
+
+3.4 MFA Bypass
+  - MFA cannot be bypassed except in documented emergency
+    scenarios approved by the Fire Chief in writing
+  - Any MFA bypass event is logged and reviewed
+
+4. ENFORCEMENT
+Accounts without MFA enrollment cannot access network
+resources. The system is configured to enforce MFA at login.
+
+5. REVIEW
+Policy reviewed annually. Last reviewed April 28, 2026.
+
+================================================================
+Approved: Raymond Stubbs, Fire Chief    05/01/2026
+Prepared: Derek Holt, IT Coordinator   04/28/2026
+================================================================

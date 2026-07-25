@@ -1,0 +1,26 @@
+﻿INCIDENT RESPONSE POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.6.1 - Incident Response Capability
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy establishes Keith the Drone Guy LLC's capability to handle information security incidents, per NIST SP 800-171 Rev. 2 control 3.6.1.
+
+2. SCOPE
+All Keith the Drone Guy LLC information systems and personnel.
+
+3. REQUIREMENTS
+a. Keith the Drone Guy LLC maintains a documented Incident Response Plan (IRP).
+b. The IRP defines roles, responsibilities, and procedures for incident handling.
+c. Keith Merritt is the primary incident responder; Keith Merritt provides management escalation.
+d. The IRP is tested annually via tabletop exercise.
+e. Incident response contacts include US-CERT reporting capability for CUI-related incidents.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, leads incident response. Keith Merritt approves the IRP and provides executive escalation.
+
+5. ENFORCEMENT
+All personnel must report suspected security incidents to Keith Merritt within 1 hour of discovery.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

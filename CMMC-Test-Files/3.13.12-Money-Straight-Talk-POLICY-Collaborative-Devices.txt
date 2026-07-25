@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Money Straight Talk LLC
+Control: 3.13.12 - Collaborative Computing Devices
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to prohibit remote activation of collaborative computing devices and provide indication of use to present users, per NIST SP 800-171 Rev. 2 control 3.13.12.
+
+2. SCOPE
+All collaborative computing devices (cameras, microphones, screen sharing) at Money Straight Talk LLC.
+
+3. REQUIREMENTS
+a. Cameras and microphones cannot be remotely activated without user awareness.
+b. Physical privacy covers are used on CUI workstations.
+c. Camera hardware indicators (LED) must be active when in use.
+d. Screen sharing requires explicit user action and consent.
+e. CUI spaces do not have always-on listening devices (smart speakers, voice assistants).
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, enforces collaborative device policies through GPO and physical controls.
+
+5. ENFORCEMENT
+Unauthorized camera/microphone activation is a critical incident.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

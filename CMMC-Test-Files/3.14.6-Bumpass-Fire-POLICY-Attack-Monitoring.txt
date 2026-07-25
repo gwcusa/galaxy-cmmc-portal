@@ -1,0 +1,26 @@
+﻿SYSTEM AND INFORMATION INTEGRITY POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.14.6 - Security Monitoring
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to monitor information systems to detect attacks and indicators of potential attacks, per NIST SP 800-171 Rev. 2 control 3.14.6.
+
+2. SCOPE
+All Bumpass Fire & Rescue CUI systems and the networks through which CUI flows.
+
+3. REQUIREMENTS
+a. Microsoft Sentinel provides continuous security monitoring and attack detection.
+b. Sentinel analytics rules are configured to detect known attack patterns (TTPs).
+c. Defender for Endpoint monitors endpoint behavior for attack indicators.
+d. Mike Sadler triages Sentinel incidents within 2 hours during business hours.
+e. After-hours critical incidents trigger automated alert to Mike Sadler via SMS/email.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures and monitors attack detection controls.
+
+5. ENFORCEMENT
+Unreviewed Sentinel incidents beyond SLA are escalated to Randy Bowles.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

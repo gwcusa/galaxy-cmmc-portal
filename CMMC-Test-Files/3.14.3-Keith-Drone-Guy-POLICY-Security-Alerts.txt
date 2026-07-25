@@ -1,0 +1,45 @@
+================================================================
+KEITH THE DRONE GUY LLC
+SECURITY ALERT AND ADVISORY MONITORING POLICY
+================================================================
+Document ID:    POL-SI-003
+Version:        1.0
+Effective Date: April 15, 2026
+Review Date:    April 15, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy requires KDG to monitor security alerts and
+advisories from authoritative sources and take appropriate
+action in response.
+
+2. ALERT SOURCES MONITORED
+  The following sources are monitored for security alerts:
+    a) CISA (cisa.gov) - Known Exploited Vulnerabilities (KEV)
+       and advisories (email subscription + weekly check)
+    b) Microsoft Security Response Center (MSRC)
+       security update guide - checked each Patch Tuesday
+    c) Microsoft Defender portal - real-time endpoint alerts
+    d) Microsoft Sentinel - SIEM alerts (real-time)
+    e) US-CERT (alerts.us-cert.cisa.gov) - email subscription
+    f) Cisco Meraki - device security advisories (dashboard)
+
+3. RESPONSE PROCESS
+  Upon receiving a security alert:
+    a) Keith Merritt assesses applicability to KDG environment
+    b) If applicable: determines severity and action required
+    c) Critical/High (in CISA KEV): patch within 72 hours
+    d) All others: follow standard patching timeline
+    e) Alert and response documented in IT log
+
+4. AUTOMATED ALERTS
+  Microsoft Sentinel and Defender send real-time email and
+  Teams channel alerts to Keith Merritt.
+  Keith Merritt reviews alerts within 4 hours during business
+  hours and within 24 hours on weekends.
+
+================================================================
+Approved: Keith Merritt           04/15/2026
+================================================================

@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: ASJ Realty
+Control: 3.3.1 - System Audit Logging
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to create, protect, and retain information system audit records to enable monitoring, analysis, investigation, and reporting of unlawful or unauthorized activity, per NIST SP 800-171 Rev. 2 control 3.3.1.
+
+2. SCOPE
+All ASJ Realty information systems that process, store, or transmit CUI.
+
+3. REQUIREMENTS
+a. Audit logging is enabled on all CUI systems for login, logout, access, and change events.
+b. Audit logs are retained for a minimum of 90 days online and 1 year archived.
+c. Log integrity is protected to prevent tampering.
+d. Sandra Okonkwo configures log collection to the centralized SIEM.
+e. Logging failures generate immediate alerts.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, configures and maintains the logging infrastructure.
+
+5. ENFORCEMENT
+Disabling or tampering with audit logs is a serious security violation.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

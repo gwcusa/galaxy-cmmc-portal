@@ -1,0 +1,26 @@
+﻿INCIDENT RESPONSE POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.6.3 - Incident Response Testing
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to test incident response capabilities to determine their effectiveness, per NIST SP 800-171 Rev. 2 control 3.6.3.
+
+2. SCOPE
+The Keith the Drone Guy LLC Incident Response Plan and all personnel with IR responsibilities.
+
+3. REQUIREMENTS
+a. An IR tabletop exercise is conducted annually.
+b. The exercise tests at least one realistic threat scenario relevant to Keith the Drone Guy LLC's environment.
+c. Exercise results are documented and reviewed by Keith Merritt.
+d. Identified gaps are tracked in a remediation plan.
+e. Remediation items are completed within 90 days of the exercise.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, designs and facilitates IR exercises. Keith Merritt participates and approves results.
+
+5. ENFORCEMENT
+Annual IR testing is mandatory; failure to test results in a security program finding.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

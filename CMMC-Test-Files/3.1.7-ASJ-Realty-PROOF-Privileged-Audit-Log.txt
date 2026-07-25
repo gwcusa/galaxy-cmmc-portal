@@ -1,0 +1,41 @@
+================================================================
+ASJ REALTY
+WINDOWS SECURITY EVENT LOG — PRIVILEGED FUNCTION AUDIT
+Evidence for CMMC Control 3.1.7
+================================================================
+Report Period:  July 1–17, 2026
+Exported By:    Sandra Okonkwo, IT Coordinator
+Source:         Microsoft Sentinel — ASJ Realty Workspace
+================================================================
+
+PRIVILEGED LOGON EVENTS (Event ID 4672) — July 2026
+-------------------------------------------------
+DATE/TIME           USER              COMPUTER        PRIVILEGES
+------------------  ----------------  --------------  ------------------
+07/02/2026 09:14    ASJR\sokonkwo    ASJ-ADMIN-WS    SeDebugPrivilege,
+                                                      SeTcbPrivilege
+07/07/2026 11:30    ASJR\sokonkwo    ASJ-ADMIN-WS    SeDebugPrivilege
+07/14/2026 08:55    ASJR\sokonkwo    ASJ-ADMIN-WS    SeDebugPrivilege
+
+NON-PRIVILEGED USERS — NO PRIVILEGE EVENTS
+-------------------------------------------------
+Users checked for Event ID 4672 (July 1-17, 2026):
+  ajames, rthomas, dcollins, mwhite, lbrown — ZERO matches
+  Interpretation: No non-privileged users executed privileged
+  functions during the review period. COMPLIANT.
+
+USER ACCOUNT MANAGEMENT EVENTS (Event IDs 4720, 4738)
+-------------------------------------------------
+07/07/2026 11:32    Account modified: mwhite (password reset)
+                    Performed by: sokonkwo — AUTHORIZED
+
+FAILED PRIVILEGE ATTEMPTS (Event ID 4673)
+-------------------------------------------------
+None detected in the period July 1–17, 2026.
+
+SENTINEL ALERT STATUS: No unauthorized privilege escalation
+alerts fired during the review period.
+
+================================================================
+Certified: Sandra Okonkwo — July 17, 2026
+================================================================

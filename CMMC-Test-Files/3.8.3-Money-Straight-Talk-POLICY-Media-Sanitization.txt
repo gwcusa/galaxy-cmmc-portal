@@ -1,0 +1,55 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+MEDIA SANITIZATION AND DISPOSAL POLICY
+================================================================
+Document ID:    POL-MP-003
+Version:        1.0
+Effective Date: February 10, 2026
+Review Date:    February 10, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy requires that system media is properly sanitized
+or destroyed before disposal or reuse to prevent unauthorized
+disclosure of CUI.
+
+2. SANITIZATION METHODS BY MEDIA TYPE
+
+2.1 SSDs and Flash Storage (Internal and USB)
+  Method: Cryptographic Erase (preferred)
+    - For BitLocker-encrypted drives: destroy the BitLocker
+      recovery key; the drive data is unreadable
+    - For drives supporting ATA Secure Erase: issue
+      secure erase command via manufacturer tool
+  Method: Physical Destruction (if cryptographic erase fails)
+    - Degaussing (ineffective on SSDs - use shredding)
+    - Physical shredding at an approved facility
+      (NAID-certified preferred)
+
+2.2 HDDs (Magnetic)
+  Method: DoD 3-pass overwrite (DBAN or equivalent)
+  OR: Degaussing + physical puncture for high-sensitivity media
+
+2.3 Paper Documents Containing CUI
+  Method: Cross-cut shredding (Level P-4 or higher)
+  MST has a cross-cut shredder on-site (Fellowes LX221)
+  Shredding is performed immediately upon document end-of-life
+
+3. REUSE OF MEDIA
+  Before reusing any media that previously held CUI,
+  the above sanitization must be performed and documented.
+
+4. DOCUMENTATION
+  All media sanitizations are logged in the Media Sanitization
+  Log (SharePoint: IT/MP-Sanitization-Log.xlsx).
+
+5. CERTIFICATE
+  For off-site destruction, a Certificate of Destruction is
+  obtained and filed with the sanitization log.
+
+================================================================
+Approved: Camille Odom           02/10/2026
+Prepared: Terrell Banks          02/08/2026
+================================================================

@@ -1,0 +1,50 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+REMOTE WORK CUI COMPLIANCE VERIFICATION
+Evidence for CMMC Control 3.10.6
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Nathan Cruz, Lead Systems Engineer
+================================================================
+
+REMOTE WORK AGREEMENTS - CURRENT STAFF
+-------------------------------------------------
+EMPLOYEE          AGREEMENT SIGNED  HOME OFFICE APPROVED
+----------------  ----------------  --------------------
+Nathan Cruz       March 1, 2026     YES
+James Hartwell    March 1, 2026     YES
+Rachel Kimble     March 1, 2026     YES (limited CUI access)
+Marcus Johnson    March 1, 2026     YES (limited CUI access)
+Victor Osei       March 1, 2026     YES
+
+All 5 staff: Remote Work and CUI Agreement signed. Agreements on
+file in SharePoint: HR/Remote-Work-Agreements/.
+
+TECHNICAL CONTROLS VERIFICATION (July 1, 2026)
+-------------------------------------------------
+VPN enforcement:
+  Conditional Access policy "BRTS-Require-VPN-For-CUI":
+    Target: SharePoint CUI site, company file servers
+    Condition: Must be compliant device + on BRTS network
+               OR on VPN (named network = VPN IP range)
+    Status: ACTIVE - Remote users must VPN for CUI access.
+
+Intune compliance for remote devices:
+  Screen lock: 10 min timeout - COMPLIANT (all 5 devices)
+  BitLocker: ACTIVE (all 5 devices)
+  Defender: ACTIVE (all 5 devices)
+  OS updates: CURRENT (all 5 devices)
+
+ANNUAL HOME OFFICE SELF-ASSESSMENT (March 2026)
+-------------------------------------------------
+All staff submitted home office CUI checklist:
+  Dedicated work area: YES (all 5)
+  Private WiFi: YES (all 5)
+  VPN used for CUI: YES (all 5 - Sentinel confirms VPN logons)
+  Screen filter (if applicable): 3 of 5 have filters
+  Paper CUI storage: Not applicable (4 of 5 paper-free at home)
+                     Nathan Cruz: locked desk drawer (confirmed)
+
+================================================================
+Certified: Victor Osei - July 25, 2026
+================================================================

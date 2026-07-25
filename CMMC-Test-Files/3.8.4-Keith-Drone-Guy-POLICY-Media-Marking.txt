@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.8.4 - CUI Media Marking
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to mark media with necessary CUI markings and distribution limitations, per NIST SP 800-171 Rev. 2 control 3.8.4.
+
+2. SCOPE
+All Keith the Drone Guy LLC physical and digital media containing CUI.
+
+3. REQUIREMENTS
+a. Physical media containing CUI is labeled with "CUI" on the media and its container.
+b. CUI documents include CUI header/footer markings.
+c. Digital files containing CUI include CUI designation in the file name or metadata.
+d. Media labels are applied by Keith Merritt before the media is used to store CUI.
+e. Keith Merritt verifies CUI markings quarterly.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, applies and verifies CUI markings on all CUI media.
+
+5. ENFORCEMENT
+Unmarked CUI media is a compliance finding requiring immediate remediation.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

@@ -1,0 +1,26 @@
+﻿MAINTENANCE POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.7.3 - Equipment Sanitization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to ensure that equipment removed for off-site maintenance is sanitized before release, per NIST SP 800-171 Rev. 2 control 3.7.3.
+
+2. SCOPE
+All Bumpass Fire & Rescue CUI system equipment that is removed from the facility for repair or maintenance.
+
+3. REQUIREMENTS
+a. All CUI data is removed from equipment before it leaves Bumpass Fire & Rescue custody.
+b. If data cannot be removed, the equipment is escorted and not left unattended.
+c. Sanitization follows NIST SP 800-88 Guidelines for Media Sanitization.
+d. Sanitization is documented in the equipment maintenance log.
+e. Equipment returning from off-site maintenance is inspected and re-scanned before reconnection.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, performs or verifies equipment sanitization before off-site release.
+
+5. ENFORCEMENT
+Equipment leaving the facility with CUI without sanitization is a security incident.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

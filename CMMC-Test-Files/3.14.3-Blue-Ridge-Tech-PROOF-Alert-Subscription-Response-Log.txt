@@ -1,0 +1,32 @@
+﻿SYSTEM AND INFORMATION INTEGRITY IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.14.3 - Security Alerts and Advisories
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC monitors and responds to security alerts and advisories.
+
+2. ALERT SUBSCRIPTION SOURCES
+Source                                    | Type      | Delivery Method         | Subscriber
+CISA Alerts (us-cert.cisa.gov)            | Email     | RSS/Email subscription   | Nathan Cruz (n.cruz@blueridgetech.com)
+Microsoft MSRC (msrc.microsoft.com)       | Email     | Security update guide    | Nathan Cruz (n.cruz@blueridgetech.com)
+Microsoft Defender Threat Intelligence    | Platform  | Defender portal alerts   | Nathan Cruz (n.cruz@blueridgetech.com)
+Microsoft Sentinel - Analytics Rules      | Platform  | Sentinel incidents       | Nathan Cruz (n.cruz@blueridgetech.com)
+
+3. ALERT RESPONSE LOG (Q2 2026 - Selected)
+Date       | Source    | Alert                        | Severity | Response                         | Closed
+2026-04-12 | MSRC      | CVE-2026-1234 (Windows RCE)  | Critical | Patch applied 2026-04-12         | Yes
+2026-05-10 | CISA      | CISA KEV update (3 vulns)    | High     | Reviewed - none affected Blue Ridge Technology Solutions LLC | Yes
+2026-06-05 | MSRC      | CVE-2026-3945 (Exchange)     | Critical | Patch applied 2026-06-06         | Yes
+2026-06-20 | Sentinel  | Unusual sign-in alert        | Medium   | Investigated - travel, false pos  | Yes
+
+All critical alerts responded to within 24 hours.
+
+4. WEEKLY ADVISORY REVIEW
+Every Monday: Nathan Cruz reviews CISA KEV list updates and MSRC security advisories
+Documented in: IT-Log-2026.xlsx on SharePoint
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC maintains active alert subscriptions to CISA and MSRC and documents advisory responses within 24 hours per control 3.14.3.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

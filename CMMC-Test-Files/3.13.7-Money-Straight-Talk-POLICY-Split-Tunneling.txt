@@ -1,0 +1,52 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+SPLIT TUNNELING PREVENTION POLICY
+================================================================
+Document ID:    POL-SC-007
+Version:        1.0
+Effective Date: March 5, 2026
+Review Date:    March 5, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy prevents remote devices from simultaneously
+using non-remote (VPN) connections with the system and
+other connections to external resources (split tunneling),
+which could allow data to bypass security controls.
+
+2. POLICY STATEMENT
+Split tunneling is PROHIBITED for VPN connections made
+by MST employees and authorized users.
+
+3. FULL-TUNNEL VPN REQUIREMENT
+When connected to the MST VPN:
+  - ALL traffic (to company resources AND to internet)
+    must route through the VPN tunnel
+  - The VPN client must be configured with
+    "Tunnel All Traffic" or equivalent
+  - No direct internet access is permitted while VPN is
+    active (all internet requests also pass through MST
+    perimeter filtering)
+
+4. ENFORCEMENT
+  Cisco AnyConnect VPN profile is configured with:
+    split-tunnel-policy tunnelall
+  This prevents the client from allowing split tunneling
+  regardless of client-side settings.
+
+5. MONITORING
+  Any VPN client attempting to establish split tunnel
+  connections will be denied by the VPN gateway.
+  Terrell Banks reviews VPN configuration quarterly.
+
+6. CLOUD SERVICES
+  For direct cloud services (M365), Conditional Access
+  requires Intune-compliant devices, providing equivalent
+  security even when not on VPN (Defender always active).
+
+================================================================
+Approved: Camille Odom           03/05/2026
+Prepared: Terrell Banks          03/03/2026
+================================================================

@@ -1,0 +1,28 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.4 - Separation of Duties
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue separates duties to reduce insider risk for CUI system operations.
+
+2. ROLE SEPARATION MATRIX
+Function                    | Requester       | Approver        | Implementer
+New CUI account             | Department Head | Randy Bowles           | Mike Sadler
+Privileged access grant     | Mike Sadler            | Randy Bowles           | Mike Sadler
+CUI data deletion           | Mike Sadler            | Randy Bowles           | Dual sign-off
+
+Azure AD Roles: Mike Sadler holds Global Admin; Randy Bowles holds Security Reader (read-only audit access).
+No single user holds both Global Admin and Billing Admin roles.
+
+3. AUDIT LOG INDEPENDENCE
+Microsoft Sentinel audit logs: Read access limited to Randy Bowles and external assessor accounts.
+Mike Sadler cannot modify or delete audit log data.
+
+4. SYSTEM DETAILS
+Primary Workstation: BFR-WS-001  |  User: m.sadler@bumpassfire.org
+
+5. CONCLUSION
+Bumpass Fire & Rescue enforces separation of duties across critical CUI functions per control 3.1.4.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

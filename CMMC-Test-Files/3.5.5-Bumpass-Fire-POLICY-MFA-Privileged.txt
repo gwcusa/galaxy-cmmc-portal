@@ -1,0 +1,26 @@
+﻿IDENTIFICATION AND AUTHENTICATION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.5.5 - MFA for Privileged Accounts
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to employ multifactor authentication for network access to privileged accounts, per NIST SP 800-171 Rev. 2 control 3.5.5.
+
+2. SCOPE
+All Bumpass Fire & Rescue privileged accounts (Global Admin, Security Admin, IT Administrator roles).
+
+3. REQUIREMENTS
+a. MFA is required every time a privileged account authenticates for network access.
+b. Privileged accounts are enrolled in MFA before being activated.
+c. PIM-gated privileged access requires MFA at activation.
+d. No persistent privileged sessions are permitted; re-authentication is required.
+e. Failed privileged account MFA attempts generate immediate alerts.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures and enforces MFA for all privileged accounts.
+
+5. ENFORCEMENT
+Any privileged account session without verified MFA is blocked and alerted.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

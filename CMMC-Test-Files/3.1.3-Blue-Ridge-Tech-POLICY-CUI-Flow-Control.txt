@@ -1,0 +1,27 @@
+﻿ACCESS CONTROL POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.3 - CUI Information Flow Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy controls the flow of Controlled Unclassified Information (CUI) at Blue Ridge Technology Solutions LLC in accordance with approved authorizations, per NIST SP 800-171 Rev. 2 control 3.1.3.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC systems, users, and processes that create, receive, transmit, or store CUI.
+
+3. REQUIREMENTS
+a. CUI shall only flow between systems and users with documented authorization.
+b. Data Loss Prevention (DLP) policies are configured to block unauthorized CUI exfiltration.
+c. CUI transmission to external parties requires approval from Victor Osei.
+d. Email DLP rules prevent CUI from being sent to non-blueridgetech.com addresses without encryption.
+e. File transfers to removable media are logged and require supervisor approval.
+f. Nathan Cruz reviews DLP policy alerts monthly.
+
+4. RESPONSIBILITY
+Nathan Cruz configures and monitors DLP controls. Victor Osei approves external CUI sharing.
+
+5. ENFORCEMENT
+Unauthorized CUI flow events are investigated and may result in termination.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

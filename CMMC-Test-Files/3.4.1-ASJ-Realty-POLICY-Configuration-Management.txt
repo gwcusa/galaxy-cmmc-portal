@@ -1,0 +1,71 @@
+================================================================
+ASJ REALTY GROUP
+CONFIGURATION MANAGEMENT POLICY
+================================================================
+Document ID:    POL-CM-001
+Version:        1.2
+Effective Date: January 15, 2026
+Review Date:    January 15, 2027
+Owner:          IT Director, Marcus Webb
+Approved By:    CEO, Sandra Joiner
+================================================================
+
+1. PURPOSE
+This policy establishes requirements for managing the
+configuration of all ASJ Realty information systems to
+ensure systems remain secure, consistent, and documented
+throughout their lifecycle.
+
+2. SCOPE
+Applies to all servers, workstations, laptops, network
+devices, and cloud systems used by ASJ Realty, including
+the property management platform, MLS integration systems,
+and all devices processing federal housing contract data.
+
+3. ASSET INVENTORY
+
+3.1 All hardware and software assets must be documented in
+    the company IT Asset Register maintained in SharePoint.
+3.2 The IT Asset Register includes:
+    - Device name and type
+    - Serial number / asset tag
+    - Operating system and version
+    - Installed software and versions
+    - Assigned user
+    - Location
+    - Date last inventoried
+
+3.3 The asset inventory is reviewed and updated:
+    - When any device is added or removed
+    - Quarterly as part of the access review process
+    - Annually during the full system audit
+
+4. BASELINE CONFIGURATIONS
+
+4.1 ASJ Realty maintains approved baseline configurations
+    for the following system types:
+    - Windows 11 Workstations (Baseline v3.1)
+    - Windows Server 2022 (Baseline v2.0)
+    - Meraki Network Devices (Baseline v1.5)
+    - Microsoft 365 Tenant Settings (Baseline v2.2)
+
+4.2 Baselines are based on CIS Benchmarks (Level 1 minimum)
+    and are reviewed annually.
+
+4.3 Deviations from baseline require documented approval from
+    the IT Director and are logged in the Deviation Register.
+
+5. CONFIGURATION CHANGE CONTROL
+- All changes to production systems require a Change Request
+  ticket in the IT helpdesk system (Freshdesk)
+- Emergency changes may be applied immediately but must be
+  documented within 24 hours
+- Changes are reviewed for security impact before approval
+
+6. DOCUMENTATION RETENTION
+Configuration records and change logs are retained for 3 years.
+
+================================================================
+Approved: Sandra Joiner, CEO         01/15/2026
+Prepared: Marcus Webb, IT Director   01/12/2026
+================================================================

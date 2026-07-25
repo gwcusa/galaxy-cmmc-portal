@@ -1,0 +1,35 @@
+﻿RISK ASSESSMENT IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.11.1 - Risk Assessment
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue conducts periodic risk assessments of CUI systems.
+
+2. RISK ASSESSMENT DETAILS
+Date Conducted: 2026-03-15  |  Methodology: NIST SP 800-30 Rev. 1
+Conducted by: Mike Sadler  |  Reviewed by: Randy Bowles
+Scope: All Bumpass Fire & Rescue systems handling CUI (M365, SharePoint, laptops, network infrastructure)
+
+3. RISK REGISTER SUMMARY (Top Risks - March 2026)
+Risk ID | Threat                          | Likelihood | Impact | Rating | Status
+R-001   | Phishing / credential theft     | High       | High   | HIGH   | Mitigated (MFA)
+R-002   | Ransomware via email attachment | Medium     | High   | HIGH   | Mitigated (Defender, DLP)
+R-003   | Insider data exfiltration       | Low        | High   | MEDIUM | Mitigated (DLP, audit logs)
+R-004   | Lost/stolen encrypted laptop    | Low        | Medium | LOW    | Mitigated (BitLocker)
+R-005   | Supply chain software risk      | Low        | High   | MEDIUM | Monitoring (app allowlist)
+
+Residual Risk: Acceptable per Randy Bowles approval (2026-03-20)
+
+4. RISK ASSESSMENT APPROVAL
+Approved by: Randy Bowles, Fire Chief
+Date: 2026-03-20
+Finding: All residual risks within acceptable tolerance. No new remediation actions required beyond existing controls.
+
+5. NEXT ASSESSMENT DUE
+Date: 2027-03-15 (or sooner if significant system or threat changes occur)
+
+6. CONCLUSION
+Bumpass Fire & Rescue conducts annual risk assessments with documented Risk Register and executive approval per control 3.11.1.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

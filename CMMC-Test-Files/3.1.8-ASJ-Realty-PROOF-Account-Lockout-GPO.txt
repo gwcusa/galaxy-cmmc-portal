@@ -1,0 +1,34 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.1.8 - Unsuccessful Logon Attempt Limits
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty enforces limits on unsuccessful logon attempts.
+
+2. ACCOUNT LOCKOUT CONFIGURATION
+Platform: Azure AD + Windows GPO
+Tenant: asjrealty.com
+
+Azure AD Smart Lockout:
+- Lockout Threshold: 5 attempts
+- Lockout Duration: 30 seconds (increasing with repeated failures, up to 30 minutes)
+- Familiar location bypass: Disabled
+
+Windows GPO (Computers OU):
+- Account Lockout Threshold: 5 invalid attempts
+- Lockout Duration: 30 minutes
+- Reset Counter After: 15 minutes
+GPO Name: AccountLockout-ASJ Realty-Baseline
+
+3. LOCKOUT EVENT LOG (June 2026)
+Date: 2026-06-18 - Account: staff1@asjrealty.com - Locked after 5 failed attempts
+Resolution: Sandra Okonkwo unlocked after identity verification. Likely forgotten password.
+
+4. SYSTEM DETAILS
+Workstation: ASJ-WS-001  |  Account: s.okonkwo@asjrealty.com  |  Lockout Policy: Applied and verified
+
+5. CONCLUSION
+ASJ Realty enforces account lockout controls on all CUI systems per control 3.1.8.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

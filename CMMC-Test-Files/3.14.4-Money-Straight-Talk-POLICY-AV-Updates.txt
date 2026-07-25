@@ -1,0 +1,55 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+MALICIOUS CODE PROTECTION UPDATE POLICY
+================================================================
+Document ID:    POL-SI-004
+Version:        1.0
+Effective Date: March 15, 2026
+Review Date:    March 15, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy requires that malicious code protection mechanisms
+are updated when new releases are available to maintain
+effective protection against evolving threats.
+
+2. APPROVED PROTECTION SOFTWARE
+  Primary: Microsoft Defender for Endpoint (Plan 2)
+  Secondary (email): Microsoft Defender for Office 365
+
+3. UPDATE REQUIREMENTS
+
+3.1 Signature Updates
+  - Defender security intelligence updates: automatic
+  - Update frequency: Every 2 hours (Defender default)
+  - Maximum signature age allowed: 24 hours
+  - Devices offline > 24 hours: priority update on reconnection
+
+3.2 Platform and Engine Updates
+  - Defender platform updates: deployed via Windows Update
+    monthly (Patch Tuesday) or sooner if critical
+  - Engine updates: automatic (separate from signature updates)
+
+3.3 Intune Compliance Enforcement
+  - Intune compliance policy checks:
+    * Defender signature age <= 24 hours (required)
+    * Defender real-time protection = ON (required)
+    * Non-compliant device: blocked from company resources
+
+4. MONITORING
+  - Terrell Banks monitors Defender update status in the
+    Defender portal and Intune compliance dashboard weekly
+  - Alerts are generated if any device falls behind on updates
+
+5. OUT-OF-DATE RESPONSE
+  If a device has signatures older than 24 hours:
+    - Intune compliance: NON-COMPLIANT flag
+    - Device blocked from M365 access until updated
+    - Terrell Banks investigates root cause
+
+================================================================
+Approved: Camille Odom           03/15/2026
+Prepared: Terrell Banks          03/13/2026
+================================================================

@@ -1,0 +1,51 @@
+================================================================
+ASJ REALTY
+WIRELESS NETWORK ENCRYPTION AND AUTH CONFIGURATION AUDIT
+Evidence for CMMC Control 3.1.17
+================================================================
+Report Date:    July 19, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+WAP System:     Cisco Meraki MR33 (x2 APs)
+================================================================
+
+CORPORATE SSID SETTINGS (from Meraki Dashboard)
+-------------------------------------------------
+SSID Name:          ASJR-Corporate
+Security Mode:      WPA2-Enterprise (AES)
+RADIUS Server:      asjr-nps-01.asjrealty.local (192.168.1.5)
+RADIUS Auth Port:   1812
+802.1X:             ENABLED
+Min RSSI:           -70 dBm (clients below signal floor rejected)
+Band Steering:      Enabled (prefer 5GHz)
+VLAN:               10 (Corporate)
+Status:             ACTIVE
+
+SSID Name:          ASJR-Guest
+Security Mode:      WPA2-Personal
+PSK Length:         20 characters (rotated weekly — last 07/14)
+Band:               2.4GHz only
+VLAN:               20 (Guest — internet only, firewall blocks
+                    access to VLAN 10)
+Status:             ACTIVE
+
+NPS RADIUS POLICY
+-------------------------------------------------
+Policy: ASJ-Corp-WiFi
+  Conditions: User group = ASJR-Staff
+              Machine cert = valid (ASJR CA)
+  Permission: GRANT ACCESS
+  Encryption: Require WPA2-AES (CCMP)
+
+CONNECTED CLIENTS — ASJR-Corporate (July 19, 2026)
+-------------------------------------------------
+CLIENT        MAC               AUTH          ENC      RSSI
+-----------   ---------------   -----------   ------   -----
+ASJ-WS-001    AA:BB:CC:xx:x1   802.1X PEAP   AES-256  -55
+ASJ-WS-002    AA:BB:CC:xx:x2   802.1X PEAP   AES-256  -58
+ASJ-LT-001    AA:BB:CC:xx:x3   802.1X PEAP   AES-256  -62
+
+No open or WEP-encrypted networks detected in building scan.
+
+================================================================
+Certified: Sandra Okonkwo — July 19, 2026
+================================================================

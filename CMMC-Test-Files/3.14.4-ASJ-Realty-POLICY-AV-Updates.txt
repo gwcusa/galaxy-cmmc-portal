@@ -1,0 +1,26 @@
+﻿SYSTEM AND INFORMATION INTEGRITY POLICY
+Organization: ASJ Realty
+Control: 3.14.4 - Anti-Virus Signature Updates
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to update malware protection mechanisms when new releases are available, per NIST SP 800-171 Rev. 2 control 3.14.4.
+
+2. SCOPE
+All anti-malware software on ASJ Realty CUI endpoints.
+
+3. REQUIREMENTS
+a. Microsoft Defender signatures are updated at least daily (automated via Intune).
+b. Definition updates occur automatically; users cannot defer or block updates.
+c. Sandra Okonkwo verifies definition currency via Intune reports weekly.
+d. Definitions older than 3 days trigger an alert to Sandra Okonkwo.
+e. Endpoints with outdated definitions are restricted from CUI until updated.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, ensures anti-malware signatures are current on all CUI systems.
+
+5. ENFORCEMENT
+Endpoints with definitions older than 3 days are isolated from the CUI network.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

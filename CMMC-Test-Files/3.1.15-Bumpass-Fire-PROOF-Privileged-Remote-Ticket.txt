@@ -1,0 +1,31 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.15 - Remote Privileged Command Authorization
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue authorizes and documents remote execution of privileged commands.
+
+2. REMOTE PRIVILEGED ACCESS PROCESS
+Ticketing System: IT Helpdesk (ServiceDesk Plus / Freshservice)
+Authorization Workflow:
+1. Mike Sadler submits change request with scope, justification, and duration
+2. Randy Bowles approves change request before session begins
+3. Remote session recorded via Azure Bastion session recording
+4. Post-session: Mike Sadler updates ticket with actions taken
+
+3. PRIVILEGED REMOTE SESSION LOG (June 2026)
+Ticket     | Date       | Authorizer    | Task                         | Duration
+CHG-2024   | 2026-06-08 | Randy Bowles         | Intune policy push - all APs | 1h 20m
+CHG-2025   | 2026-06-22 | Randy Bowles         | Azure AD config update       | 45m
+
+All sessions recorded in Azure Bastion session archive.
+
+4. SYSTEM DETAILS
+Remote Admin Workstation: BFR-WS-001  |  Admin Account: m.sadler@bumpassfire.org
+Session Recording: Azure Bastion - Enabled
+
+5. CONCLUSION
+Bumpass Fire & Rescue authorizes and documents all remote privileged command executions per control 3.1.15.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

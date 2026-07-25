@@ -1,0 +1,27 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.1.2 - Transaction and Function Access Limits
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC restricts users to only the transactions and functions required for their roles.
+
+2. ROLE ASSIGNMENT SUMMARY
+Platform: Microsoft 365 / moneystraighttalk.com
+- Camille Odom (CEO): SharePoint Owner (CUI site), no admin portal access
+- Terrell Banks (Systems Admin): Global Admin (restricted to IT functions only)
+- Staff roles: Reader or Contributor on CUI SharePoint; no admin rights
+
+GPO Applied: RoleBasedAccess-Money Straight Talk LLC-v2 enforced via Intune
+
+3. SEMI-ANNUAL REVIEW
+Date: 2026-06-15  |  Reviewer: Terrell Banks
+Result: 1 role downgrade applied (user no longer requires editor rights). All others confirmed appropriate.
+
+4. SYSTEM DETAILS
+Workstation: MST-WS-001  |  User: t.banks@moneystraighttalk.com  |  Role: Standard User (CUI Read/Write)
+
+5. CONCLUSION
+Money Straight Talk LLC enforces role-based access limiting users to required transactions and functions per control 3.1.2.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

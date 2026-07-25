@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.3.9 - Audit Management Access
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy limits management of audit logging to a subset of privileged users, per NIST SP 800-171 Rev. 2 control 3.3.9.
+
+2. SCOPE
+All Bumpass Fire & Rescue audit logging infrastructure and SIEM tools.
+
+3. REQUIREMENTS
+a. Management of audit log configuration is restricted to Mike Sadler only.
+b. Standard users have no access to configure, modify, or disable audit logging.
+c. Audit management access is reviewed quarterly.
+d. Any changes to audit logging configuration require documented justification.
+e. Changes to logging configuration generate alerts to Randy Bowles.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, is the sole administrator of the audit logging system.
+
+5. ENFORCEMENT
+Unauthorized changes to audit logging configuration are security incidents.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

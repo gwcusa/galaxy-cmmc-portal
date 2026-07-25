@@ -1,0 +1,30 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.5 - Principle of Least Privilege
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC employs least privilege principles across CUI systems.
+
+2. PRIVILEGED ACCOUNT INVENTORY
+Platform: Azure AD / Microsoft 365 (keithdroney.com)
+Global Admin: Keith Merritt (1 account, used only for admin tasks; separate standard account for daily work)
+SharePoint Admin: Keith Merritt only
+Security Admin: Keith Merritt only
+Standard Users: All other staff - no admin roles assigned
+
+Azure AD PIM: Privileged Identity Management enabled for Global Admin role.
+Activation requires MFA and business justification; max duration 8 hours.
+
+3. QUARTERLY REVIEW
+Date: 2026-06-30  |  Reviewer: Keith Merritt
+Result: 0 unnecessary privileged accounts found. 1 temporary access grant expired and was removed.
+
+4. SYSTEM DETAILS
+Workstation: KDG-WS-001  |  Daily Account: k.merritt@keithdroney.com (Standard User)
+Admin Account: k.merritt-adm@keithdroney.com (Privileged, PIM-gated)
+
+5. CONCLUSION
+Keith the Drone Guy LLC applies least privilege via PIM-gated admin roles and quarterly access reviews per control 3.1.5.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

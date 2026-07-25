@@ -1,0 +1,26 @@
+﻿SECURITY ASSESSMENT POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.12.3 - Security Control Monitoring
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to monitor security controls on an ongoing basis to ensure their continued effectiveness, per NIST SP 800-171 Rev. 2 control 3.12.3.
+
+2. SCOPE
+All security controls implemented in Keith the Drone Guy LLC CUI systems.
+
+3. REQUIREMENTS
+a. Security controls are continuously monitored through automated tools and periodic reviews.
+b. Microsoft Sentinel provides continuous monitoring of security events.
+c. Keith Merritt conducts weekly security dashboard reviews.
+d. Monthly security posture reports are provided to Keith Merritt.
+e. Control effectiveness degradation triggers immediate review and remediation.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, monitors and reports on security control effectiveness continuously.
+
+5. ENFORCEMENT
+Degraded security controls are treated as priority incidents requiring same-day remediation.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

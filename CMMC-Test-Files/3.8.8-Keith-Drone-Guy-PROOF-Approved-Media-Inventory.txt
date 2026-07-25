@@ -1,0 +1,37 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.8.8 - Unowned Portable Storage Prohibition
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC prohibits use of portable storage without an identifiable owner.
+
+2. TECHNICAL CONTROLS
+Intune Device Control Policy: USBDeviceControl-Keith the Drone Guy LLC
+- Only allowlisted devices (by hardware ID and serial number) may connect
+- Each allowlisted device has a documented owner in the Approved Media Register
+- Devices without registered owner: BLOCKED
+
+This ensures no ownerless device can be used on CUI endpoints, even if someone attempts to connect one.
+
+3. APPROVED MEDIA REGISTER (Owner Documentation)
+Device         | Owner       | Contact            | Registered
+KI-001 (32GB)  | Keith Merritt        | Keith Merritt@keithdroney.com         | 2026-01-15
+KI-002 (32GB)  | Keith Merritt       | Keith Merritt@keithdroney.com        | 2026-01-15
+ITBK-001       | Keith Merritt        | Keith Merritt@keithdroney.com         | 2026-01-20
+
+No unowned devices registered: All entries have named owners.
+
+4. FOUND DEVICE PROCEDURE
+FY2026 incident: 2026-05-10 - USB drive found in conference room (not from approved list)
+Action by Keith Merritt: Device quarantined (not connected to any Keith the Drone Guy LLC system). Announced via email.
+Unclaimed after 5 days: Scanned on quarantine laptop, then physically destroyed.
+
+5. TRAINING
+Annual training includes: "Do not plug in found USB drives - bring to Keith Merritt"
+Covered in KnowBe4 security awareness module.
+
+6. CONCLUSION
+Keith the Drone Guy LLC prohibits unowned portable storage via Intune controls and maintains an owner-linked media register per control 3.8.8.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

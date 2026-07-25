@@ -1,0 +1,55 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+WIRELESS NETWORK CONFIGURATION AND AUTHORIZATION AUDIT
+Evidence for CMMC Control 3.1.16
+================================================================
+Report Date:    July 19, 2026
+Prepared By:    Nathan Cruz, Lead Systems Engineer
+WAP System:     Cisco Meraki MR46 Access Points (x3)
+================================================================
+
+SSID CONFIGURATION
+-------------------------------------------------
+SSID: BRTS-Corporate
+  Security: WPA3-Enterprise (802.1X)
+  RADIUS Server: Azure AD via NPS Proxy (brts-nps-01)
+  VLAN: 10 (Corporate)
+  Band: 5GHz preferred, 2.4GHz fallback
+  Client Isolation: OFF (corp devices can communicate)
+  Status: ACTIVE
+
+SSID: BRTS-Guest
+  Security: WPA2-Personal (PSK)
+  PSK: rotated weekly (stored in IT password vault)
+  VLAN: 20 (Guest — internet-only ACL)
+  Firewall Rule: DENY guest -> VLAN 10, DENY guest -> VLAN 30
+  Status: ACTIVE
+
+SSID: BRTS-IoT
+  Security: WPA2-Personal
+  VLAN: 30 (IoT — no internet, no corp routing)
+  Status: ACTIVE
+
+802.1X AUTHENTICATION (NPS Policy)
+-------------------------------------------------
+Network Policy: BRTS-Corp-Wireless
+  Conditions:
+    - Client is member of: BRTS-Corporate-Devices (AD group)
+    - Machine certificate present and valid (Intune CA)
+    - User group: BRTS-Staff
+  Access Type: GRANT
+
+CONNECTED DEVICES — BRTS-Corporate (July 19, 2026)
+-------------------------------------------------
+DEVICE            MAC ADDRESS        AUTH METHOD    STATUS
+----------------  -----------------  -----------    --------
+BRTS-WS-OSEI      00:1A:2B:xx:xx:01  802.1X Cert    AUTHORIZED
+BRTS-WS-HARTWELL  00:1A:2B:xx:xx:02  802.1X Cert    AUTHORIZED
+BRTS-LT-CRUZ      00:1A:2B:xx:xx:03  802.1X Cert    AUTHORIZED
+
+Unauthorized device attempts blocked this month: 0
+Rogue AP scan (July 1, 2026): No rogue APs detected.
+
+================================================================
+Certified: Nathan Cruz — July 19, 2026
+================================================================

@@ -1,0 +1,50 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+INCIDENT TRACKING AND REPORTING POLICY
+================================================================
+Document ID:    POL-IR-002
+Version:        1.0
+Effective Date: February 1, 2026
+Review Date:    February 1, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy requires MST to track, document, and report
+security incidents to appropriate officials within required
+timeframes.
+
+2. INCIDENT DOCUMENTATION REQUIREMENTS
+For every security incident, the following must be documented:
+  - Date and time of discovery
+  - Date and time of occurrence (if different)
+  - Description of the incident
+  - Systems and data affected
+  - CUI involved (yes/no and what type if yes)
+  - Immediate actions taken
+  - Root cause (once determined)
+  - Resolution and recovery steps
+  - Lessons learned and corrective actions
+
+3. INTERNAL REPORTING CHAIN
+  - Discovery: Any staff member
+  - Immediate notification: Terrell Banks (within 1 hour)
+  - Escalation: Camille Odom (within 2 hours)
+  - For CUI-involved incidents: Government Contracting Officer
+    must be notified within 72 hours (per DFARS 252.204-7012)
+
+4. EXTERNAL REPORTING
+  - DoD/DIBNet report: submitted within 72 hours of discovering
+    a cyber incident affecting CUI
+  - US-CERT report: if required by incident type
+
+5. TRACKING
+  All incidents tracked in the MST IT Incident Register
+  (SharePoint: IT/Incident-Register.xlsx). Incidents remain
+  open until resolution is confirmed and documented.
+
+================================================================
+Approved: Camille Odom           02/01/2026
+Prepared: Terrell Banks          01/30/2026
+================================================================

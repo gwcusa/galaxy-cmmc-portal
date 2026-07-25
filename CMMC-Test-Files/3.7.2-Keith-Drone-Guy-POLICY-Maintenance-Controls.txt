@@ -1,0 +1,26 @@
+﻿MAINTENANCE POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.7.2 - Controlled Maintenance
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to provide controls on tools, techniques, mechanisms, and personnel who perform maintenance, per NIST SP 800-171 Rev. 2 control 3.7.2.
+
+2. SCOPE
+All maintenance activities on Keith the Drone Guy LLC CUI systems by internal staff or vendors.
+
+3. REQUIREMENTS
+a. Vendor maintenance personnel are pre-approved by Keith Merritt before being granted access.
+b. Vendor access is escorted by Keith Merritt throughout the maintenance activity.
+c. Vendor tools and diagnostic software are inspected before use.
+d. Remote vendor access is monitored in real-time by Keith Merritt.
+e. All vendor maintenance is logged with contact details, scope, and outcome.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, controls and supervises all maintenance activities.
+
+5. ENFORCEMENT
+Unsupervised vendor access to CUI systems is prohibited.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

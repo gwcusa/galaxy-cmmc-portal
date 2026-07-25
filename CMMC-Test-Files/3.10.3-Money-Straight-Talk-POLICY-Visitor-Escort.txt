@@ -1,0 +1,26 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY
+Organization: Money Straight Talk LLC
+Control: 3.10.3 - Visitor Escort and Monitoring
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to escort visitors and monitor visitor activity in CUI areas, per NIST SP 800-171 Rev. 2 control 3.10.3.
+
+2. SCOPE
+All visitors (non-Money Straight Talk LLC employees) entering CUI facilities.
+
+3. REQUIREMENTS
+a. All visitors are signed in via the visitor log before entering CUI areas.
+b. Visitors are escorted by authorized Money Straight Talk LLC personnel at all times in CUI areas.
+c. Visitors are never left unattended with CUI systems or documents.
+d. Visitor log records name, organization, purpose, escort, entry/exit times.
+e. Visitor log is retained for 1 year.
+
+4. RESPONSIBILITY
+Camille Odom or Terrell Banks escorts all visitors in CUI areas. Terrell Banks maintains visitor log.
+
+5. ENFORCEMENT
+Unescorted visitors in CUI areas are a security incident.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

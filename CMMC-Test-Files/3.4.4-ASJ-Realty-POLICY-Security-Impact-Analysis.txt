@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: ASJ Realty
+Control: 3.4.4 - Security Impact Analysis
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to analyze the security impact of changes prior to implementation, per NIST SP 800-171 Rev. 2 control 3.4.4.
+
+2. SCOPE
+All planned changes to ASJ Realty CUI systems.
+
+3. REQUIREMENTS
+a. Each change request includes a security impact assessment section.
+b. Sandra Okonkwo assesses potential security impacts before approving any change.
+c. High-risk changes require additional review and testing.
+d. Security impacts that cannot be mitigated result in change rejection.
+e. Security impact assessments are documented and retained with change records.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, performs security impact assessments. Anthony James reviews high-risk assessments.
+
+5. ENFORCEMENT
+Changes submitted without a security impact assessment are automatically rejected.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

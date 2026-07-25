@@ -1,0 +1,34 @@
+﻿SYSTEM AND INFORMATION INTEGRITY IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.14.4 - Anti-Virus Signature Updates
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty maintains current anti-malware signature definitions on all CUI endpoints.
+
+2. SIGNATURE UPDATE CONFIGURATION
+Tool: Microsoft Defender for Endpoint
+Update method: Automatic via Windows Update + Intune MDM
+Update frequency: Multiple times daily (Microsoft Security Intelligence updates hourly)
+User override: NOT permitted (Tamper Protection enforced)
+
+3. DEFENDER SIGNATURE STATUS (July 1, 2026 - Intune Security Report)
+Device  | Platform  | Engine Version | Definition Version   | Last Updated     | Status
+ASJ-WS-001    | Win 11    | 1.1.24050.2   | 1.413.125.0          | 2026-07-01 03:14 | Current
+WS-002  | Win 11    | 1.1.24050.2   | 1.413.125.0          | 2026-07-01 03:15 | Current
+
+Definition age: 0 days (same-day)
+Latest available definition: 1.413.125.0 (verified via Microsoft Security Intelligence portal)
+
+4. SIGNATURE UPDATE MONITORING
+Intune compliance policy: DefenderSignature-ASJ Realty
+Alert condition: Signature older than 3 days triggers Intune non-compliance flag
+Non-compliant device action: Marked non-compliant, Conditional Access blocks CUI SharePoint access
+
+5. WEEKLY DEFINITION CHECK (Intune Report - Week of 2026-06-30)
+All devices: Current definitions, 0 days old. No alerts triggered.
+
+6. CONCLUSION
+ASJ Realty maintains current Defender signature definitions updated multiple times daily with automated Intune enforcement per control 3.14.4.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

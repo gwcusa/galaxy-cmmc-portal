@@ -1,0 +1,49 @@
+================================================================
+KEITH THE DRONE GUY LLC
+EQUIPMENT SANITIZATION BEFORE MAINTENANCE POLICY
+================================================================
+Document ID:    POL-MA-003
+Version:        1.0
+Effective Date: March 10, 2026
+Review Date:    March 10, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy ensures that equipment sent off-site for maintenance
+or repair is sanitized of CUI and sensitive data before departure.
+
+2. SANITIZATION REQUIREMENTS
+
+2.1 Before Off-Site Maintenance
+  Before any device is sent off-site (to a repair facility,
+  vendor, or shipping for manufacturer warranty repair):
+    a) All CUI and sensitive data must be removed or sanitized
+    b) Keith Merritt reviews the device to confirm CUI removal
+    c) Sanitization must use NIST SP 800-88 approved methods:
+       - For SSDs/Flash storage: Cryptographic Erase (preferred)
+         using BitLocker key destruction or secure erase command
+       - For HDDs: DoD 3-pass overwrite (DBAN or equivalent)
+       - If sanitization is not possible: device stays on-site
+         and vendor performs maintenance on-site under escort
+
+2.2 On-Site Maintenance (Preferred)
+  Whenever possible, maintenance is performed on-site to
+  avoid the need for off-site data sanitization.
+
+3. DOCUMENTATION
+  All equipment sent off-site is logged in the Equipment
+  Sanitization Log (SharePoint: IT/MA-Sanitization-Log.xlsx)
+  including: device, sanitization method, date, and who
+  performed the sanitization.
+
+4. DATA RECOVERY RISK
+  If a device cannot be sanitized before off-site service
+  (e.g., failed drive that cannot be erased), the device
+  is physically escorted by Keith Merritt or the data storage
+  component is removed and retained before shipping.
+
+================================================================
+Approved: Keith Merritt           03/10/2026
+================================================================

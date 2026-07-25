@@ -1,0 +1,36 @@
+﻿IDENTIFICATION AND AUTHENTICATION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.5.4 - Replay-Resistant Authentication
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC uses replay-resistant authentication mechanisms.
+
+2. KERBEROS CONFIGURATION
+Domain: keithdroney.com
+Kerberos version: 5 (default on Windows and Azure AD joined devices)
+Replay protection: Enabled (timestamp validation within 5 minutes clock skew)
+Ticket lifetime: 10 hours
+Renewal period: 7 days
+
+3. AZURE AD TOKEN CONFIGURATION
+OAuth 2.0 / OpenID Connect used for cloud authentication
+Access Token lifetime: 1 hour (short-lived, non-replayable after expiration)
+Refresh Token: Rotated on use (single use)
+ID Tokens: Include nonce value; validated by client before use
+
+4. NTLM CONFIGURATION
+NTLMv1: DISABLED (GPO: NTLMv1-Disabled-Keith the Drone Guy LLC)
+NTLMv2: Permitted only where Kerberos is unavailable
+Registry: HKLM\SYSTEM\CurrentControlSet\Control\Lsa
+  LMCompatibilityLevel = 5 (Send NTLMv2 only, refuse LM and NTLM)
+
+5. VERIFICATION
+Date: 2026-06-20  |  Verifier: Keith Merritt
+Tool: Network packet capture (Wireshark) on KDG-WS-001
+Result: Authentication traffic uses Kerberos (SPNEGO) for keithdroney.com resources. No NTLMv1 observed.
+
+6. CONCLUSION
+Keith the Drone Guy LLC uses Kerberos and Azure AD OAuth 2.0, both replay-resistant per control 3.5.4.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

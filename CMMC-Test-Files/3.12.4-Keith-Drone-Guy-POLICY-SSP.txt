@@ -1,0 +1,26 @@
+﻿SECURITY ASSESSMENT POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.12.4 - System Security Plan
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to develop, document, and periodically update System Security Plans (SSPs) that describe the system boundary, security requirements, and security controls, per NIST SP 800-171 Rev. 2 control 3.12.4.
+
+2. SCOPE
+All Keith the Drone Guy LLC information systems that process, store, or transmit CUI.
+
+3. REQUIREMENTS
+a. An SSP is maintained that documents the CUI system boundary, users, and controls.
+b. The SSP describes all 110 NIST SP 800-171 Rev. 2 controls and their implementation status.
+c. The SSP is reviewed and updated at least annually.
+d. Keith Merritt approves the SSP.
+e. The SSP is protected from unauthorized access.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, authors and maintains the SSP. Keith Merritt reviews and approves it annually.
+
+5. ENFORCEMENT
+An outdated SSP (>1 year old) is treated as a security compliance finding.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

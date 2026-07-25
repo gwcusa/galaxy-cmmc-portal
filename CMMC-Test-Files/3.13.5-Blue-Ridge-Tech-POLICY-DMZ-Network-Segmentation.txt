@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.13.5 - Network Segmentation
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to implement subnetworks for publicly accessible system components that are physically or logically separated from internal networks, per NIST SP 800-171 Rev. 2 control 3.13.5.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC network segments in the CUI environment.
+
+3. REQUIREMENTS
+a. CUI systems reside in a separate, isolated network segment (CUI VLAN).
+b. Guest/public WiFi is isolated from CUI network on a separate VLAN.
+c. Publicly accessible systems (if any) are placed in a DMZ, separate from CUI.
+d. VLAN segmentation is enforced by managed switches and firewall rules.
+e. Nathan Cruz reviews VLAN configurations quarterly.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, designs and maintains network segmentation.
+
+5. ENFORCEMENT
+CUI systems on non-CUI network segments must be remediated within 24 hours.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

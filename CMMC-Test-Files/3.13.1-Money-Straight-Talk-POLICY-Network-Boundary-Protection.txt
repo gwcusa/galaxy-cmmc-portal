@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Money Straight Talk LLC
+Control: 3.13.1 - Network Boundary Protection
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to monitor, control, and protect communications at external and internal network boundaries, per NIST SP 800-171 Rev. 2 control 3.13.1.
+
+2. SCOPE
+All Money Straight Talk LLC network boundaries separating CUI systems from external networks.
+
+3. REQUIREMENTS
+a. Firewalls protect all network boundaries between CUI systems and external networks.
+b. Intrusion Prevention System (IPS) monitors traffic at network boundaries.
+c. Traffic is logged and reviewed for anomalies.
+d. Default-deny rules are in place; only approved traffic is allowed.
+e. Firewall rules are reviewed quarterly.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, manages all boundary protection devices and configurations.
+
+5. ENFORCEMENT
+Unauthorized network boundary changes are security incidents requiring immediate investigation.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

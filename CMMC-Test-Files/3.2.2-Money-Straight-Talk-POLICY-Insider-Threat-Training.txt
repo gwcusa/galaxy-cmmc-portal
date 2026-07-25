@@ -1,0 +1,26 @@
+﻿AWARENESS AND TRAINING POLICY
+Organization: Money Straight Talk LLC
+Control: 3.2.2 - Insider Threat Awareness Training
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy ensures Money Straight Talk LLC trains personnel to recognize and report potential indicators of insider threat, per NIST SP 800-171 Rev. 2 control 3.2.2.
+
+2. SCOPE
+All Money Straight Talk LLC personnel with access to CUI systems or facilities.
+
+3. REQUIREMENTS
+a. Insider threat awareness training is completed annually by all personnel.
+b. Training covers behavioral indicators, reporting channels, and non-retaliation protections.
+c. Personnel are trained on the Money Straight Talk LLC anonymous reporting mechanism.
+d. Training records are maintained for 3 years.
+e. Camille Odom receives quarterly insider threat awareness briefings.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, administers insider threat training. Camille Odom oversees the insider threat program.
+
+5. ENFORCEMENT
+Failure to complete insider threat training results in CUI access suspension.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

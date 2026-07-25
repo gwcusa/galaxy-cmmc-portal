@@ -1,0 +1,49 @@
+================================================================
+ASJ REALTY
+PRIVILEGED FUNCTION EXECUTION CONTROL POLICY
+================================================================
+Document ID:    POL-AC-007
+Version:        1.0
+Effective Date: May 1, 2026
+Review Date:    May 1, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy prevents non-privileged users from executing
+privileged functions and ensures all privileged function
+executions are captured in audit logs.
+
+2. PRIVILEGED FUNCTIONS DEFINED
+Privileged functions at ASJ Realty include:
+  - Creating or deleting user accounts
+  - Modifying system configurations
+  - Installing or removing software
+  - Accessing or modifying security settings
+  - Resetting passwords for other users
+  - Accessing CUI data belonging to other staff members
+  - Modifying audit log settings
+
+3. RESTRICTIONS
+  - Only Sandra Okonkwo (IT Coordinator) is authorized to
+    perform privileged functions on ASJ Realty systems
+  - All other staff accounts are standard user accounts
+    without local administrator rights
+
+4. AUDIT LOGGING
+  All privileged function executions are captured by:
+    - Windows Event Log (Security: Event IDs 4624, 4648, 4672,
+      4688, 4720, 4732, 4756)
+    - Microsoft Sentinel SIEM (log collection from all devices)
+  Logs are reviewed monthly by Sandra Okonkwo.
+
+5. USER ATTESTATION
+  All staff sign an annual Acceptable Use Agreement confirming
+  they understand they are not authorized to attempt privileged
+  functions and that all such attempts are logged.
+
+================================================================
+Approved: Anthony James            05/01/2026
+Prepared: Sandra Okonkwo           04/28/2026
+================================================================

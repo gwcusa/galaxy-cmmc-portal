@@ -1,0 +1,48 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+SYSTEM CLOCK SYNCHRONIZATION POLICY
+================================================================
+Document ID:    POL-AU-007
+Version:        1.0
+Effective Date: January 22, 2026
+Review Date:    January 22, 2027
+Owner:          Terrell Banks, Systems Administrator
+Approved By:    Camille Odom, Managing Director
+================================================================
+
+1. PURPOSE
+This policy requires that all MST information system clocks
+are synchronized to a reliable, authoritative time source
+to ensure audit log timestamps are accurate and consistent.
+
+2. TIME SYNCHRONIZATION REQUIREMENTS
+
+2.1 Time Source
+  - Primary NTP source: time.windows.com (Microsoft)
+  - Secondary NTP source: pool.ntp.org
+  - All domain-joined systems sync time from the domain
+    controller (DC) which syncs from the above sources
+
+2.2 Allowed Clock Drift
+  - Maximum allowed drift: 5 minutes from NTP source
+  - Systems exceeding 5 minutes of drift generate an alert
+  - Systems with excessive drift are investigated promptly
+
+2.3 Cloud Resources
+  - Azure VMs sync time from Azure infrastructure (Hyper-V)
+    which is synchronized to Microsoft time servers
+  - Azure platform time is accurate to within milliseconds
+
+3. ENFORCEMENT
+  Windows Time Service (W32tm) is configured via GPO to
+  enforce NTP synchronization. Service is set to automatic
+  start and cannot be disabled by users.
+
+4. MONITORING
+  Terrell Banks checks system time accuracy quarterly via
+  w32tm /query /status on all servers and domain controllers.
+
+================================================================
+Approved: Camille Odom           01/22/2026
+Prepared: Terrell Banks          01/20/2026
+================================================================

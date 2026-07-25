@@ -1,0 +1,53 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+NETWORK SESSION TERMINATION CONFIGURATION AUDIT
+Evidence for CMMC Control 3.13.9
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Nathan Cruz, Lead Systems Engineer
+================================================================
+
+VPN SESSION TIMEOUT (Meraki MX68 / AnyConnect)
+-------------------------------------------------
+group-policy BRTS-Employees attributes:
+  vpn-idle-timeout 60          (60 min idle = disconnect)
+  vpn-session-timeout 480      (8 hour max session)
+
+Test (July 25, 2026):
+  Left VPN session idle for 65 minutes.
+  Result: Session terminated at 60-minute mark. COMPLIANT.
+
+RDP SESSION TIMEOUT (GPO: BRTS-RDP-Timeout)
+-------------------------------------------------
+Set time limit for disconnected sessions: 30 minutes (ENABLED)
+Set time limit for active idle RDS sessions: 30 minutes (ENABLED)
+Set time limit for active RDS sessions: 240 minutes (4 hours)
+End session when time limits reached: ENABLED
+
+Applied to: BRTS-SRV-001, BRTS-SRV-002 (all RDS hosts)
+
+SSH TIMEOUT (BRTS-SRV-001 /etc/ssh/sshd_config)
+-------------------------------------------------
+ClientAliveInterval 300     # Check client every 5 min
+ClientAliveCountMax 2       # Disconnect after 2 missed checks
+# = 10 minutes idle = disconnect
+
+AZURE AD SESSION POLICY (Conditional Access)
+-------------------------------------------------
+Policy: "BRTS-Signin-Frequency"
+Sign-in frequency: 8 hours
+Persistent browser session: NOT ALLOWED
+Applied to: All cloud apps
+
+FIREWALL TCP STATE TIMEOUTS (Meraki MX68)
+-------------------------------------------------
+TCP established timeout:  3600 seconds
+TCP half-open timeout:    30 seconds
+UDP timeout:              300 seconds
+ICMP timeout:             30 seconds
+
+All session timeouts configured and verified COMPLIANT.
+
+================================================================
+Certified: Nathan Cruz - July 25, 2026
+================================================================

@@ -1,0 +1,54 @@
+================================================================
+MONEY STRAIGHT TALK LLC
+VPN FULL-TUNNEL CONFIGURATION VERIFICATION
+Evidence for CMMC Control 3.13.7
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Terrell Banks, Systems Administrator
+VPN Solution:   Cisco AnyConnect 4.10 (Meraki MX67)
+================================================================
+
+VPN PROFILE CONFIGURATION (AnyConnect XML Profile)
+-------------------------------------------------
+<PerUserConnectionProfile>
+  <name>MST-Corporate-VPN</name>
+  <serverList>
+    <hostEntry>
+      <hostName>vpn.moneystalk.com</hostName>
+    </hostEntry>
+  </serverList>
+  <clientInitialization>
+    <splitTunnel>false</splitTunnel>
+    <!-- FALSE = Full Tunnel mode - all traffic through VPN -->
+    <allowManualHostInput>false</allowManualHostInput>
+    <!-- Users cannot modify connection settings -->
+  </clientInitialization>
+</PerUserConnectionProfile>
+
+MERAKI ASA VPN GROUP POLICY
+-------------------------------------------------
+group-policy MST-Employees attributes
+  split-tunnel-policy tunnelall      ! ALL traffic through tunnel
+  ! No split-tunnel-network-list = tunnelall enforced
+
+ROUTE TABLE DURING VPN (from Terrell Banks test laptop)
+-------------------------------------------------
+When VPN connected (07/22/2026 test):
+  0.0.0.0/1    ->  VPN gateway (10.10.1.1)  (all internet via VPN)
+  128.0.0.0/1  ->  VPN gateway (10.10.1.1)  (all internet via VPN)
+  192.168.10.0/24 -> VPN gateway (internal access)
+  Result: ALL traffic (0.0.0.0/0) routes through VPN. No split tunnel.
+
+Verification: Visited whatismyip.com while VPN active.
+IP shown: MST corporate egress IP (not home IP). CONFIRMED full tunnel.
+
+ANYCONNECT CLIENT - USER CANNOT MODIFY
+-------------------------------------------------
+AnyConnect lockdown policy: Enabled
+  Users cannot disconnect without IT permission
+  Users cannot add new connections
+  Users cannot modify the VPN profile
+
+================================================================
+Certified: Terrell Banks - July 25, 2026
+================================================================

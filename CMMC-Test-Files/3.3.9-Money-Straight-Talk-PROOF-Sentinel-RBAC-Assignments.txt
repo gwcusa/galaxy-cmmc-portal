@@ -1,0 +1,34 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.3.9 - Audit Management Access
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC limits audit log management to a restricted set of privileged users.
+
+2. AUDIT MANAGEMENT RBAC
+Platform: Microsoft Sentinel + Log Analytics (tenant: moneystraighttalk.com)
+
+Role Assignments (Sentinel Workspace):
+Name          | Role                       | Access Level
+Terrell Banks          | Sentinel Contributor       | Configure analytics, manage data connectors
+Camille Odom         | Sentinel Reader            | View dashboards and incidents only
+All others    | No Sentinel access         | None
+
+Azure Policy: AuditManagement-Money Straight Talk LLC
+- Blocks assignment of Sentinel Contributor or higher to non-approved accounts
+- Alert fires to Camille Odom@moneystraighttalk.com if any new Sentinel admin role is assigned
+
+3. CONFIGURATION CHANGE LOG (FY2026)
+Date: 2026-03-15 - Terrell Banks added new alert rule for after-hours admin logon
+Date: 2026-05-10 - Terrell Banks adjusted brute force alert threshold from 10 to 5 attempts
+Both changes: Documented in IT change log. No unauthorized changes detected.
+
+4. QUARTERLY ACCESS REVIEW
+Date: 2026-07-01  |  Reviewer: Camille Odom
+Result: Terrell Banks only user with management access to Sentinel. All other users confirmed read-only or no access.
+
+5. CONCLUSION
+Money Straight Talk LLC restricts audit log management to Terrell Banks only with monitored RBAC per control 3.3.9.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

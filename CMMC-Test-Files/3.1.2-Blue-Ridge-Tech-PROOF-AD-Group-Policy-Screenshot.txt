@@ -1,0 +1,27 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.1.2 - Transaction and Function Access Limits
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC restricts users to only the transactions and functions required for their roles.
+
+2. ROLE ASSIGNMENT SUMMARY
+Platform: Microsoft 365 / blueridgetech.com
+- Victor Osei (Director of Operations): SharePoint Owner (CUI site), no admin portal access
+- Nathan Cruz (IT Manager): Global Admin (restricted to IT functions only)
+- Staff roles: Reader or Contributor on CUI SharePoint; no admin rights
+
+GPO Applied: RoleBasedAccess-Blue Ridge Technology Solutions LLC-v2 enforced via Intune
+
+3. SEMI-ANNUAL REVIEW
+Date: 2026-06-15  |  Reviewer: Nathan Cruz
+Result: 1 role downgrade applied (user no longer requires editor rights). All others confirmed appropriate.
+
+4. SYSTEM DETAILS
+Workstation: BRTS-WS-001  |  User: n.cruz@blueridgetech.com  |  Role: Standard User (CUI Read/Write)
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC enforces role-based access limiting users to required transactions and functions per control 3.1.2.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

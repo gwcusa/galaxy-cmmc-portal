@@ -1,0 +1,26 @@
+﻿SYSTEM AND INFORMATION INTEGRITY POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.14.3 - Security Alerts and Advisories
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to monitor security alerts and advisories from authoritative sources and take appropriate actions, per NIST SP 800-171 Rev. 2 control 3.14.3.
+
+2. SCOPE
+All security threat intelligence and advisory monitoring for Blue Ridge Technology Solutions LLC CUI systems.
+
+3. REQUIREMENTS
+a. Nathan Cruz subscribes to US-CERT/CISA alerts and advisories.
+b. Microsoft Security Response Center (MSRC) advisories are monitored for M365 and Windows.
+c. Relevant alerts are reviewed within 24 hours of receipt.
+d. Emergency/critical advisories trigger immediate response per the Incident Response Plan.
+e. Advisory responses are logged.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, monitors security alerts and coordinates response.
+
+5. ENFORCEMENT
+Failure to respond to critical advisories within 24 hours is escalated to Victor Osei.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

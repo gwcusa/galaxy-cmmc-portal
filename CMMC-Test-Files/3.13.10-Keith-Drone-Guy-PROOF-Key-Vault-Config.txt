@@ -1,0 +1,39 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.13.10 - Cryptographic Key Management
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC manages cryptographic keys using Azure Key Vault.
+
+2. KEY VAULT CONFIGURATION
+Azure Key Vault: kv-k.merritt-cui
+Resource Group: rg-Keith the Drone Guy LLC-cui
+Location: East US (US-based)
+Access Policy: RBAC mode
+
+Key Vault Access (RBAC assignments):
+- Keith Merritt (k.merritt@keithdroney.com): Key Vault Administrator
+- Automation service principal: Key Vault Secrets User (read-only)
+- Keith Merritt: No direct access
+
+3. MANAGED KEYS AND CERTIFICATES
+Key/Secret Name           | Type        | Rotation | Last Rotated  | Expiry
+BitLocker-RecoveryKey     | Secret      | Annual   | 2026-01-01    | 2027-01-01
+TLS-Cert-keithdroney.com            | Certificate | Annual   | 2026-02-01    | 2027-02-01
+AppReg-ClientSecret       | Secret      | Annual   | 2026-03-01    | 2027-03-01
+SMTP-Auth-Password        | Secret      | Annual   | 2026-01-01    | 2027-01-01
+
+4. KEY AUDIT LOG (sample - last 30 days)
+2026-07-01 | k.merritt@keithdroney.com | SecretGet | BitLocker-RecoveryKey | Success
+2026-07-08 | automation-sp | SecretGet | SMTP-Auth-Password | Success
+No unauthorized access attempts detected.
+
+5. KEY ROTATION SCHEDULE
+All keys scheduled for annual rotation. Next rotation: January 2027.
+Rotation alert configured in Azure Monitor - notifies Keith Merritt 30 days before expiry.
+
+6. CONCLUSION
+Keith the Drone Guy LLC manages all cryptographic keys in Azure Key Vault with annual rotation and audit logging per control 3.13.10.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.13.16 - Protection of CUI at Rest
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to protect the confidentiality of CUI at rest, per NIST SP 800-171 Rev. 2 control 3.13.16.
+
+2. SCOPE
+All Keith the Drone Guy LLC storage locations containing CUI (endpoints, cloud storage, backups).
+
+3. REQUIREMENTS
+a. All endpoints storing CUI must have BitLocker full-disk encryption enabled.
+b. Microsoft 365 SharePoint stores CUI encrypted at rest (AES-256, Microsoft-managed keys).
+c. Removable media containing CUI must be encrypted.
+d. BitLocker recovery keys are stored in Azure Key Vault (not in AD only).
+e. Encryption status is verified monthly via Intune compliance reports.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, ensures all CUI storage locations have encryption at rest enabled.
+
+5. ENFORCEMENT
+Unencrypted devices with CUI are treated as data breach risk requiring immediate action.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

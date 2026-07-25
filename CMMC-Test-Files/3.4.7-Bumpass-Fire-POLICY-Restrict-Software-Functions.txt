@@ -1,0 +1,53 @@
+================================================================
+BUMPASS FIRE & RESCUE
+RESTRICT AND DISABLE NONESSENTIAL FUNCTIONS POLICY
+================================================================
+Document ID:    POL-CM-007
+Version:        1.0
+Effective Date: April 10, 2026
+Review Date:    April 10, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy restricts, disables, or prevents the use of
+nonessential programs, functions, ports, protocols, and
+services on BFR information systems.
+
+2. RESTRICTED FUNCTIONS AND PORTS
+
+2.1 Unused Network Ports (Firewall Rules)
+  Outbound: Only the following outbound ports are allowed:
+    - 443 (HTTPS) - web and M365
+    - 80 (HTTP) - redirected to HTTPS at destination
+    - 53 (DNS) - to approved DNS servers only
+    - 636 (LDAPS) - for domain auth
+    - 500/4500 (IKEv2 VPN)
+  All other outbound ports: BLOCKED by default
+
+  Inbound: All inbound connections BLOCKED except VPN (IKEv2)
+
+2.2 Disabled Protocols
+  - SMBv1: DISABLED (vulnerability risk)
+  - TLS 1.0, 1.1: DISABLED
+  - SSLv3: DISABLED
+  - LLMNR: DISABLED
+  - NetBIOS: DISABLED on internet-facing systems
+  - WPS (WiFi Protected Setup): DISABLED on all APs
+
+2.3 Unused Programs
+  Removed from all workstations:
+    - Games (pre-installed Windows games removed)
+    - Windows Fax and Scan (not needed)
+    - XPS Writer (not needed)
+    - Internet Explorer (removed, Edge used)
+    - Hyper-V (workstations only - not needed)
+
+3. REVIEW
+  Firewall rules and disabled features reviewed quarterly.
+
+================================================================
+Approved: Chief Randy Bowles        04/10/2026
+Prepared: Mike Sadler               04/08/2026
+================================================================

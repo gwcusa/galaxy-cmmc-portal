@@ -1,0 +1,52 @@
+================================================================
+BUMPASS FIRE & RESCUE
+INFORMATION SYSTEM FLAW REMEDIATION POLICY
+================================================================
+Document ID:    POL-SI-001
+Version:        1.0
+Effective Date: June 20, 2026
+Review Date:    June 20, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy requires BFR to identify, report, and correct
+information system flaws in a timely manner.
+
+2. FLAW IDENTIFICATION
+Flaws are identified through:
+  - Microsoft Defender Vulnerability Management (continuous)
+  - Microsoft Update / Windows Update for Business
+  - CISA Known Exploited Vulnerabilities (KEV) catalog alerts
+  - Vendor security advisories (Microsoft, Cisco, etc.)
+  - Security awareness (staff reporting unexpected behavior)
+
+3. REPORTING
+  - Flaws identified by automated tools: alerts to Mike Sadler
+    via email (Sentinel alert rules) and Defender portal
+  - Flaws reported by staff: to Mike Sadler via Teams/email
+  - Mike Sadler reports critical flaws to Chief Bowles same day
+
+4. CORRECTION TIMEFRAMES
+  Severity    Timeline
+  --------    -------------------------
+  Critical    72 hours (3 business days)
+  High        30 calendar days
+  Medium      90 calendar days
+  Low         180 calendar days (or accept)
+
+5. PATCH MANAGEMENT
+  - Patches deployed via Intune Windows Update for Business
+  - Standard patch cycle: Second Tuesday of the month
+  - Emergency patches: deployed out-of-cycle within 72 hours
+  - Application updates: deployed via Intune app management
+
+6. TRACKING
+  All flaws tracked in the BFR Vulnerability Tracking Log
+  (SharePoint: IT/Vulnerability-Log.xlsx) with status updates.
+
+================================================================
+Approved: Chief Randy Bowles        06/20/2026
+Prepared: Mike Sadler               06/18/2026
+================================================================

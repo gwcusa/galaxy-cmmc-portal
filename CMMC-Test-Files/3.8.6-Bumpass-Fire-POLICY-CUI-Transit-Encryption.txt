@@ -1,0 +1,48 @@
+================================================================
+BUMPASS FIRE & RESCUE
+CUI IN-TRANSIT ENCRYPTION POLICY
+================================================================
+Document ID:    POL-MP-006
+Version:        1.0
+Effective Date: May 5, 2026
+Review Date:    May 5, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy requires cryptographic mechanisms to protect the
+confidentiality of CUI during transport (both physical media
+transport and network transmission).
+
+2. DIGITAL TRANSMISSION
+  All CUI transmitted over any network must be encrypted:
+  - Email: TLS 1.2+ required (enforced by M365 Exchange Online)
+    MIP sensitivity label "CUI" adds additional encryption
+  - File transfer: SFTP or DoD SAFE (HTTPS/TLS)
+  - Web access: HTTPS only (TLS 1.2 minimum, TLS 1.3 preferred)
+  - VPN: IKEv2 with AES-256 (all remote access)
+  - Internal network: Kerberos-encrypted domain communication
+
+3. PHYSICAL MEDIA IN TRANSPORT
+  All portable media containing CUI must be encrypted:
+  - USB drives: hardware AES-256 (Kingston IronKey)
+    or BitLocker To Go with AES-256
+  - Laptops: BitLocker full-disk encryption (AES-256)
+  - External hard drives: BitLocker To Go
+
+4. PROHIBITED TRANSIT METHODS
+  - Unencrypted HTTP transmission of CUI: PROHIBITED
+  - Unencrypted USB drives with CUI: PROHIBITED
+  - Sending CUI via unencrypted personal email: PROHIBITED
+  - Sending CUI via SMS text message: PROHIBITED
+  - FTP (unencrypted): PROHIBITED
+
+5. VERIFICATION
+  Mike Sadler confirms encryption is active on all
+  portable devices before CUI transport is authorized.
+
+================================================================
+Approved: Chief Randy Bowles        05/05/2026
+Prepared: Mike Sadler               05/02/2026
+================================================================

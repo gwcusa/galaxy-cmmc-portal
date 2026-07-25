@@ -1,0 +1,41 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.13.5 - Network Segmentation
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC implements network segmentation isolating CUI systems.
+
+2. VLAN CONFIGURATION
+Network Equipment: Ubiquiti UniFi switch + Azure NSG
+Managed by: Terrell Banks
+
+VLAN Layout:
+VLAN 10 - CUI Production (10.0.2.0/24):
+  Devices: MST-WS-001, WS-002, CUI SharePoint (via Azure)
+  Access: Authorized personnel via VPN or physical connection only
+  Outbound: Only HTTPS to M365, DNS to Terrell Banks-managed resolver
+
+VLAN 20 - Guest/Public WiFi (192.168.20.0/24):
+  Devices: Visitor devices, personal mobile
+  Access: Internet only (full isolation from VLAN 10)
+  Inter-VLAN routing: BLOCKED
+
+VLAN 30 - Management (10.0.3.0/24):
+  Devices: Terrell Banks admin workstation only
+  Access: Terrell Banks only, MFA required
+
+3. INTER-VLAN FIREWALL RULES
+Rule: DENY all traffic from VLAN 20 to VLAN 10 (Guest to CUI: blocked)
+Rule: DENY all traffic from VLAN 10 to VLAN 20 (CUI to Guest: blocked)
+Rule: ALLOW specific management traffic VLAN 30 to VLAN 10 only
+
+4. QUARTERLY REVIEW
+Date: 2026-06-30  |  Reviewer: Terrell Banks
+VLAN config verified via UniFi controller.
+Inter-VLAN rules tested: Guest-to-CUI ping attempt: BLOCKED. PASS.
+
+5. CONCLUSION
+Money Straight Talk LLC implements VLAN-based network segmentation isolating CUI from guest and public traffic per control 3.13.5.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

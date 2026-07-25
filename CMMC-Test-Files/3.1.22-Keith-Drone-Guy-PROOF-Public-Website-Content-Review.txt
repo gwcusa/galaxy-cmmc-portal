@@ -1,0 +1,32 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.22 - CUI on Publicly Accessible Systems
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC controls CUI on publicly accessible systems and conducts periodic reviews.
+
+2. PUBLIC-FACING SYSTEM INVENTORY
+System                          | URL/Platform          | CUI Allowed  | Content Approver
+Keith the Drone Guy LLC Website                 | keithdroney.com                 | No           | Keith Merritt
+LinkedIn Company Page           | linkedin.com          | No           | Keith Merritt
+Government Contract Portal      | contractor-portal.gov | No           | Keith Merritt
+
+3. QUARTERLY CUI SCAN RESULTS
+Tool: Microsoft Purview Content Explorer + manual review
+Date: 2026-07-05  |  Reviewer: Keith Merritt
+
+Keith the Drone Guy LLC website (keithdroney.com): Scanned 48 pages - CUI found: 0
+LinkedIn page: Reviewed 12 posts - CUI found: 0
+Contract portal profile: Reviewed - CUI found: 0
+
+Result: NO CUI found on any publicly accessible Keith the Drone Guy LLC system.
+
+4. CONTENT APPROVAL LOG (Last 3 Months)
+2026-05-10: Website case study approved by Keith Merritt - CUI review: Passed
+2026-06-15: LinkedIn post (drone footage) approved by Keith Merritt - No CUI
+
+5. CONCLUSION
+Keith the Drone Guy LLC conducts quarterly scans of public systems and maintains zero CUI exposure on publicly accessible platforms per control 3.1.22.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

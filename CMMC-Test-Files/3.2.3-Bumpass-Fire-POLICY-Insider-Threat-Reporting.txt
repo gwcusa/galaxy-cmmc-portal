@@ -1,0 +1,26 @@
+﻿AWARENESS AND TRAINING POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.2.3 - Insider Threat Reporting
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy ensures Bumpass Fire & Rescue provides security training on recognizing and reporting potential insider threats, per NIST SP 800-171 Rev. 2 control 3.2.3.
+
+2. SCOPE
+All Bumpass Fire & Rescue personnel who may observe or have knowledge of insider threat indicators.
+
+3. REQUIREMENTS
+a. Personnel are trained to recognize physical, behavioral, and technical indicators of insider threat.
+b. Reporting mechanisms are clearly communicated and accessible to all personnel.
+c. Anonymous reporting is available and confidentiality is maintained.
+d. Reports are reviewed by Randy Bowles within 24 hours.
+e. Training on reporting procedures is provided annually.
+
+4. RESPONSIBILITY
+Mike Sadler administers technical monitoring. Randy Bowles reviews insider threat reports.
+
+5. ENFORCEMENT
+Retaliation against personnel who report concerns in good faith is strictly prohibited.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

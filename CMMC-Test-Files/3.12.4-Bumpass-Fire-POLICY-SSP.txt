@@ -1,0 +1,66 @@
+================================================================
+BUMPASS VOLUNTEER FIRE & RESCUE DEPARTMENT
+SYSTEM SECURITY PLAN (SSP) — DEVELOPMENT AND MAINTENANCE POLICY
+================================================================
+Document ID:    POL-CA-004
+Version:        1.0
+Effective Date: March 1, 2026
+Review Date:    March 1, 2027
+Owner:          Derek Holt, IT Coordinator
+Approved By:    Raymond Stubbs, Fire Chief
+================================================================
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to develop,
+maintain, and regularly update a System Security Plan (SSP)
+that describes the security requirements and controls for
+all systems that process, store, or transmit CUI.
+
+2. SSP REQUIREMENTS
+
+2.1 Content
+The SSP must document:
+  - System name and description
+  - System boundary and authorization boundary
+  - System environment of operation
+  - System interconnections with other systems
+  - How each NIST SP 800-171 requirement is implemented
+  - Personnel responsible for each control
+  - Planned implementation dates for any controls not yet met
+
+2.2 System Coverage
+The following systems are in scope for the SSP:
+  - Records Management System (RMS)
+  - Computer-Aided Dispatch (CAD) workstations
+  - Grant Administration Portal (web-based)
+  - Department file server and shared drives
+  - Microsoft 365 email environment
+
+2.3 SSP Updates
+The SSP must be reviewed and updated:
+  - Annually (by March 1 of each year)
+  - When a significant system change is made
+  - When a new system is added to scope
+  - When a security incident affects in-scope systems
+  - When NIST 800-171 requirements are updated
+
+2.4 SSP Version Control
+  - SSP is version-controlled in SharePoint
+  - Previous versions retained for 3 years
+  - Change log maintained at the front of the document
+  - Current version signed by Fire Chief
+
+3. RESPONSIBILITIES
+  - IT Coordinator: Author and maintain SSP
+  - Fire Chief: Review and approve SSP annually
+  - All staff: Cooperate with SSP review process
+
+4. RELATIONSHIP TO POA&M
+Security requirements not yet implemented are documented
+in the Plan of Action and Milestones (POA&M), which is
+an attachment to the SSP.
+
+================================================================
+Approved: Raymond Stubbs, Fire Chief    03/01/2026
+Prepared: Derek Holt, IT Coordinator   02/27/2026
+================================================================

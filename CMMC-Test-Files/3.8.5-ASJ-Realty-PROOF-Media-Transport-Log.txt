@@ -1,0 +1,51 @@
+================================================================
+ASJ REALTY
+MEDIA TRANSPORT LOG - Q2 2026
+Evidence for CMMC Control 3.8.5
+================================================================
+Log Period:     April 1 - June 30, 2026
+Maintained By:  Sandra Okonkwo, IT Coordinator
+================================================================
+
+MEDIA TRANSPORT EVENTS - Q2 2026
+-------------------------------------------------
+TRANSPORT #1 - April 22, 2026
+Media:            ASJ-LT-001 (laptop) with CUI project files
+Transported By:   Sandra Okonkwo
+Destination:      DoD client meeting (Quantico, VA)
+Authorization:    Self-authorized (sokonkwo is the authorizing official;
+                  Anthony James notified via email 04/21/2026)
+Encryption:       BitLocker ACTIVE (verified before departure)
+Packaging:        Laptop in locked hard-shell Pelican case
+Departure:        April 22, 2026 07:00 AM
+Return:           April 22, 2026 09:30 PM
+Outcome:          Successful. Laptop returned to office.
+CUI accessed:     Contract review docs (presented to CO only)
+
+TRANSPORT #2 - May 30, 2026
+Media:            BFR-USB-001 (Kingston IronKey, encrypted)
+Transported By:   Sandra Okonkwo
+Destination:      ASJ branch office (Richmond, VA)
+Authorization:    Anthony James email approval 05/29/2026
+Encryption:       AES-256 hardware encryption (IronKey)
+Departure:        May 30, 2026 09:00 AM
+Return:           May 30, 2026 04:00 PM
+Contents:         Q1 CUI deliverables for branch review
+Outcome:          Successful. USB returned same day.
+
+TRANSPORT #3 - June 18, 2026
+Media:            Paper documents (3 pages CUI)
+Transported By:   Anthony James
+Destination:      Legal counsel office (2 miles away)
+Authorization:    Sandra Okonkwo email 06/18/2026 08:30 AM
+Packaging:        Sealed opaque envelope, marked per policy
+Delivery:         Hand-delivered by A. James to attorney directly
+Return:           Documents returned (scan copies kept)
+Outcome:          Successful.
+
+Total transports Q2: 3
+Lost or compromised media: 0
+
+================================================================
+Certified: Sandra Okonkwo - June 30, 2026
+================================================================

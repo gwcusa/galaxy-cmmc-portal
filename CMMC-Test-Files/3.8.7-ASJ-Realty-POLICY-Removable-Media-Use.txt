@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: ASJ Realty
+Control: 3.8.7 - Removable Media Use Control
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy controls the use of removable media on system components, per NIST SP 800-171 Rev. 2 control 3.8.7.
+
+2. SCOPE
+All ASJ Realty CUI endpoints and the removable media used with them.
+
+3. REQUIREMENTS
+a. Only Sandra Okonkwo-approved removable media may be used on CUI endpoints.
+b. Approved media must be encrypted (AES-256 hardware or software).
+c. Intune device control policies block unapproved USB storage devices.
+d. A register of approved removable media is maintained by Sandra Okonkwo.
+e. Approved media is inventoried and audited quarterly.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, manages the approved media register and Intune device control policies.
+
+5. ENFORCEMENT
+Unapproved removable media connected to CUI endpoints is blocked and generates a security alert.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

@@ -1,0 +1,53 @@
+================================================================
+ASJ REALTY
+PHYSICAL FACILITY PROTECTION AND MONITORING POLICY
+================================================================
+Document ID:    POL-PE-002
+Version:        1.0
+Effective Date: June 30, 2026
+Review Date:    June 30, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy establishes requirements for protecting and
+monitoring ASJ Realty's physical facilities and infrastructure.
+
+2. FACILITY PHYSICAL SECURITY CONTROLS
+
+2.1 Building Access
+  - Main entrance: Keyed entry during business hours
+  - After hours: Key fob access (authorized staff only)
+  - Visitor entrance: Reception must buzz visitors in
+  - All exterior doors are alarmed
+
+2.2 IT Infrastructure Areas
+  - Server room: Electronic keypad lock (code known only to
+    Sandra Okonkwo and Anthony James)
+  - Network closet: Keyed lock (Sandra Okonkwo holds key)
+  - Wiring closet: Keyed lock (Sandra holds key)
+
+3. MONITORING
+
+3.1 Security Cameras
+  - 8 HD IP cameras cover: all entrances/exits, server room,
+    network closet, main office area, parking lot
+  - Recording: 24/7 continuous to on-site NVR (30-day retention)
+  - Reviewed: Sandra reviews logs weekly and upon any incident
+
+3.2 Alarm System
+  - Intrusion alarm: ADT monitored (24/7)
+  - Motion sensors in server room and IT areas
+  - Door sensors on all exterior and IT room doors
+  - Alert sent to Sandra Okonkwo and Anthony James via SMS
+
+4. SUPPORT INFRASTRUCTURE
+  - UPS (APC) for all servers and network equipment
+  - Generator on-site for power failure > 30 minutes
+  - HVAC with temperature monitoring alert (threshold: 80F)
+
+================================================================
+Approved: Anthony James           06/30/2026
+Prepared: Sandra Okonkwo          06/28/2026
+================================================================

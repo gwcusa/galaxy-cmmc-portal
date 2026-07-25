@@ -1,0 +1,27 @@
+﻿SYSTEM AND INFORMATION INTEGRITY POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.14.1 - Flaw Remediation
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to identify, report, and correct information system flaws in a timely manner, per NIST SP 800-171 Rev. 2 control 3.14.1.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC CUI systems and software.
+
+3. REQUIREMENTS
+a. All software and operating systems receive security patches per vulnerability SLA.
+b. Critical patches (CVSS 9.0+): applied within 72 hours.
+c. High patches (CVSS 7.0-8.9): applied within 7 days.
+d. Medium/Low: applied within 30-90 days.
+e. Patch status is monitored via Intune and reported monthly to Victor Osei.
+f. Unpatched systems are isolated from CUI until patched.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, manages patch deployment. Victor Osei reviews monthly patch reports.
+
+5. ENFORCEMENT
+Systems with critical unpatched vulnerabilities beyond 72 hours are removed from CUI network.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

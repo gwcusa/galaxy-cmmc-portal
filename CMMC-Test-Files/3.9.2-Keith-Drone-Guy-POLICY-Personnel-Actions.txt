@@ -1,0 +1,26 @@
+﻿PERSONNEL SECURITY POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.9.2 - Personnel Termination and Transfer
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy ensures Keith the Drone Guy LLC takes protective measures when personnel are terminated or transferred, per NIST SP 800-171 Rev. 2 control 3.9.2.
+
+2. SCOPE
+All Keith the Drone Guy LLC personnel departures, transfers, and changes in role affecting CUI access.
+
+3. REQUIREMENTS
+a. Upon termination, all CUI access (logical and physical) is revoked within 24 hours.
+b. Keith the Drone Guy LLC property including devices, keys, and media is collected at or before departure.
+c. Terminated personnel are briefed on continuing CUI confidentiality obligations.
+d. Transfer to a new role triggers access review to ensure alignment with new responsibilities.
+e. Termination procedures are documented and tracked via a termination checklist.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, initiates termination procedures. Keith Merritt executes logical access revocation.
+
+5. ENFORCEMENT
+Failure to complete termination procedures within 24 hours is a policy violation.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

@@ -1,0 +1,53 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+MICROSOFT DEFENDER - SCAN HISTORY AND REAL-TIME PROTECTION REPORT
+Evidence for CMMC Control 3.14.5
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Nathan Cruz (Defender Admin)
+Tenant:         blueridgetech.onmicrosoft.com
+================================================================
+
+SCHEDULED SCAN HISTORY - LAST 4 WEEKS
+-------------------------------------------------
+DATE         TYPE    DEVICES  DURATION  THREATS  QUARANTINED
+-----------  ------  -------  --------  -------  -----------
+07/06/2026   Full    7        45 min    0        0
+07/07/2026   Quick   7        3 min     0        0
+07/08/2026   Quick   7        3 min     0        0
+07/09/2026   Quick   7        3 min     0        0
+07/10/2026   Quick   7        3 min     0        0
+07/13/2026   Full    7        47 min    0        0
+07/14/2026   Quick   7        3 min     0        0
+[daily quick scans continue...]
+07/20/2026   Full    7        45 min    1        1
+  Detection: BRTS-LT-OSEI - PUP.Optional.Bundleware
+  Source: Downloaded browser extension from untrusted site
+  Action: Auto-quarantined and removed. User notified.
+07/21/2026   Quick   7        3 min     0        0
+[continues to report date...]
+
+REAL-TIME PROTECTION STATUS (July 25, 2026)
+-------------------------------------------------
+Device        RTP Status    On-Access Scan   Last RTP Event
+-----------   ----------    --------------   --------------
+BRTS-WS-OSEI  ACTIVE        ENABLED          07/23 (clean download)
+BRTS-WS-HARTWELL ACTIVE     ENABLED          07/24 (email attachment scanned)
+BRTS-WS-CRUZ  ACTIVE        ENABLED          07/22 (file opened from NAS)
+BRTS-WS-KIMBLE ACTIVE       ENABLED          07/25 (USB file scan)
+BRTS-WS-JOHNSON ACTIVE      ENABLED          07/21 (download scanned)
+BRTS-LT-OSEI  ACTIVE        ENABLED          07/24 (download scanned)
+BRTS-LT-CRUZ  ACTIVE        ENABLED          07/25 (Outlook attachment)
+
+All 7 devices: RTP ACTIVE. 100% compliant.
+
+SAFE ATTACHMENTS (Defender for Office 365) - July 2026
+-------------------------------------------------
+Emails with attachments processed: 341
+Attachments detonated in sandbox: 341
+Malicious attachments blocked: 4 (PDFs with macro launchers)
+Clean attachments delivered: 337
+
+================================================================
+Certified: Nathan Cruz - July 25, 2026
+================================================================

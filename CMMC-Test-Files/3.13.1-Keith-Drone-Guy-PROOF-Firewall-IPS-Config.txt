@@ -1,0 +1,61 @@
+================================================================
+KEITH THE DRONE GUY LLC
+MERAKI MX68 - BOUNDARY PROTECTION CONFIGURATION AUDIT
+Evidence for CMMC Control 3.13.1
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Keith Merritt
+Device:         Cisco Meraki MX68 (Primary Firewall)
+================================================================
+
+FIREWALL RULES - EXTERNAL BOUNDARY (Inbound)
+-------------------------------------------------
+Priority  Source    Destination       Protocol  Port   Action
+--------  --------  ----------------  --------  -----  ------
+1         Any       [VPN-Public-IP]   UDP       500    ALLOW (IKEv2)
+2         Any       [VPN-Public-IP]   UDP       4500   ALLOW (NAT-T)
+3         Any       Any               Any       Any    DENY
+
+FIREWALL RULES - EXTERNAL BOUNDARY (Outbound)
+-------------------------------------------------
+Priority  Source          Destination  Protocol  Port   Action
+--------  --------------  -----------  --------  -----  ------
+1         192.168.1.0/24  Any          TCP       443    ALLOW
+2         192.168.1.0/24  Any          TCP       80     ALLOW
+3         192.168.1.0/24  Any          UDP       53     ALLOW
+4         192.168.1.0/24  Any          Any       Any    DENY
+
+CONTENT FILTERING (URL Categories)
+-------------------------------------------------
+Categories Blocked:
+  Malware sites:          BLOCKED
+  Phishing:               BLOCKED
+  Botnets:               BLOCKED
+  Adult content:          BLOCKED
+  Gambling:               BLOCKED
+  Peer-to-peer:           BLOCKED
+
+IPS/IDS (Meraki Advanced Security)
+-------------------------------------------------
+Mode:       Prevention (block + alert)
+Signatures: Updated daily (auto)
+Events - July 2026:
+  Date: 07/12 | Type: SQL Injection attempt | Source: External
+  Action: BLOCKED | Alert sent to Keith Merritt
+
+VLAN CONFIGURATION - INTERNAL BOUNDARIES
+-------------------------------------------------
+VLAN 10 (Corporate): Default - no cross-VLAN to VLAN 20/30
+VLAN 20 (Guest): Internet only - DENY to VLAN 10 and VLAN 30
+VLAN 30 (IoT): DENY to all; only cloud callbacks allowed
+
+CISCO UMBRELLA - DNS FILTERING
+-------------------------------------------------
+Policy: KDG-DNS-Security
+Malicious domain blocking: ENABLED
+Newly seen domains (30 days): WARN
+Known C2 domains: BLOCKED (AI-updated list)
+
+================================================================
+Certified: Keith Merritt - July 25, 2026
+================================================================

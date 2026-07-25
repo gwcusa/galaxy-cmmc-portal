@@ -1,0 +1,35 @@
+﻿MAINTENANCE IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.7.3 - Equipment Sanitization
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC sanitizes equipment before off-site maintenance release.
+
+2. SANITIZATION PROCEDURE
+Standard: NIST SP 800-88 Rev. 1 Guidelines for Media Sanitization
+Method for Working Drives: Secure Erase (using manufacturer tools or DBAN)
+Method for Faulty Drives: Physical destruction if cannot be wiped; documented
+Method for SSDs: Manufacturer secure erase (NVMe Sanitize command)
+
+Sanitization tool: Eraser v6.2 (Windows) / Manufacturer SSD Secure Erase Utility
+
+3. SANITIZATION LOG (FY2026)
+Date       | Device    | SN           | Reason          | Method         | Technician | Verified
+2026-05-19 | Laptop    | HP-XW4892    | Off-site repair | BitLocker wipe + reset | Nathan Cruz  | Victor Osei
+2026-07-05 | USB Drive | KI-003       | Returned vendor | DBAN 2-pass    | Nathan Cruz       | Nathan Cruz
+
+4. RETURN-FROM-MAINTENANCE INSPECTION
+Date: 2026-05-22 | Device: HP Laptop (SN: HP-XW4892) | Returned from: HP Repair
+Inspection by: Nathan Cruz
+Checks:
+  - Physical integrity: OK
+  - Malware scan: Clean (Windows Defender full scan)
+  - Firmware hash: Verified against HP reference
+  - Re-enrolled in Intune: Yes
+  - CUI data restored from backup: Yes (encrypted)
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC sanitizes equipment before off-site release and inspects it upon return per control 3.7.3.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

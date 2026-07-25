@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.13.10 - Cryptographic Key Management
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to establish and manage cryptographic keys for required cryptography, per NIST SP 800-171 Rev. 2 control 3.13.10.
+
+2. SCOPE
+All cryptographic keys used in Bumpass Fire & Rescue CUI systems.
+
+3. REQUIREMENTS
+a. Cryptographic keys are generated, stored, and managed in Azure Key Vault.
+b. Keys are rotated at least annually or upon personnel departure.
+c. Access to Key Vault is restricted to Mike Sadler and specific service principals.
+d. Key operations are logged and audited.
+e. Compromised keys are immediately revoked and replaced.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, manages all cryptographic keys for CUI systems.
+
+5. ENFORCEMENT
+Unmanaged or expired keys are a critical finding requiring immediate remediation.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

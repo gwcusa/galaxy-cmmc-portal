@@ -1,0 +1,36 @@
+﻿PHYSICAL AND ENVIRONMENTAL PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.10.5 - Physical Access Device Management
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue manages physical access devices for CUI facilities.
+
+2. ACCESS DEVICE REGISTER
+Location: SharePoint/IT-Docs/Physical-Access/AccessDevice-Register.xlsx
+Last Updated: 2026-07-01  |  Maintained by: Mike Sadler
+
+Access Device Inventory:
+Device Type    | ID      | Issued To  | Date Issued | Status    | PIN/Code
+Office Key     | KEY-001 | Randy Bowles      | 2025-09-01  | Active    | N/A
+Office Key     | KEY-002 | Mike Sadler       | 2025-09-01  | Active    | N/A
+Office Key     | KEY-003 | Spare      | 2025-09-01  | Secured   | Locked in safe
+PIN (Suite 200)| PIN-001 | All staff  | 2026-04-01  | Active    | [Changed quarterly]
+Visitor Badges | VB-001-3| Visitors   | 2025-09-01  | Active    | N/A
+
+3. QUARTERLY PIN ROTATION
+PIN last changed: 2026-04-01  |  Next change due: 2026-07-01 (completed on schedule)
+Changed by: Mike Sadler  |  Approved by: Randy Bowles
+
+4. TERMINATED STAFF DEVICE COLLECTION
+Last termination: 2026-04-01 (Staff member)
+PIN removed: 2026-04-01 (same day, before staff left building)
+No physical key held by this staff member - N/A
+
+5. LOST/STOLEN DEVICES
+FY2026: 0 incidents
+
+6. CONCLUSION
+Bumpass Fire & Rescue maintains an access device register with quarterly PIN rotation and termination procedures per control 3.10.5.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

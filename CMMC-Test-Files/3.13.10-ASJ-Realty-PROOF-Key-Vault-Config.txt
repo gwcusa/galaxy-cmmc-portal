@@ -1,0 +1,59 @@
+================================================================
+ASJ REALTY
+AZURE KEY VAULT - CRYPTOGRAPHIC KEY MANAGEMENT AUDIT
+Evidence for CMMC Control 3.13.10
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Sandra Okonkwo, IT Coordinator
+Vault:          asjr-keyvault (East US)
+================================================================
+
+KEY VAULT CONFIGURATION
+-------------------------------------------------
+Vault Name:             asjr-keyvault
+Region:                 East US
+Soft Delete:            ENABLED (90-day retention)
+Purge Protection:       ENABLED
+RBAC Authorization:     ENABLED
+
+ACCESS CONTROL (RBAC)
+-------------------------------------------------
+Principal              Role                    Scope
+---------------------  ----------------------  ---------------
+sokonkwo@asjrealty.com Key Vault Administrator Vault level
+ajames@asjrealty.com   Key Vault Reader        Vault level (audit)
+All others             No assignment
+
+KEY INVENTORY
+-------------------------------------------------
+Key Name                  Type     Size  Created      Expires    Rotated
+------------------------  -------  ----  -----------  ---------  ----------
+asjr-sharepoint-cmk       RSA      2048  2025-07-01   Never      2026-07-01
+asjr-storage-cmk          RSA      2048  2025-07-01   Never      2026-07-01
+asjr-backup-enc-key       RSA      2048  2025-07-01   Never      2026-07-01
+
+All keys rotated July 1, 2026 (annual rotation completed).
+
+BITLOCKER KEY ESCROW STATUS (Azure AD)
+-------------------------------------------------
+All 6 company devices have BitLocker recovery keys escrowed:
+  ASJ-WS-001: Key ID [redacted] - Escrowed in Azure AD YES
+  ASJ-WS-002: Key ID [redacted] - Escrowed in Azure AD YES
+  ASJ-WS-003: Key ID [redacted] - Escrowed in Azure AD YES
+  ASJ-WS-004: Key ID [redacted] - Escrowed in Azure AD YES
+  ASJ-LT-001: Key ID [redacted] - Escrowed in Azure AD YES
+  ASJ-LT-002: Key ID [redacted] - Escrowed in Azure AD YES
+
+KEY VAULT AUDIT LOG (Last 30 Days - July 2026)
+-------------------------------------------------
+DATE         OPERATION        USER          RESULT
+-----------  ---------------  ----------    -------
+07/01/2026   Key Rotate       sokonkwo      Success (annual rotation)
+07/01/2026   Key Rotate       sokonkwo      Success (annual rotation x3)
+07/01/2026   Secret Set       sokonkwo      Success (updated VPN cert)
+
+No unauthorized key access detected.
+
+================================================================
+Certified: Sandra Okonkwo - July 25, 2026
+================================================================

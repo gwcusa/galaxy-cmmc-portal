@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Money Straight Talk LLC
+Control: 3.1.16 - Wireless Access Authorization
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to authorize wireless access connections prior to allowing them, per NIST SP 800-171 Rev. 2 control 3.1.16.
+
+2. SCOPE
+All wireless access to Money Straight Talk LLC networks and systems that process or store CUI.
+
+3. REQUIREMENTS
+a. Wireless access points are registered and approved by Terrell Banks before deployment.
+b. Only authorized devices may connect to the Money Straight Talk LLC CUI wireless network.
+c. MAC address filtering and 802.1X authentication are used for CUI network WiFi.
+d. Guest wireless networks are isolated from CUI systems.
+e. Unauthorized wireless access points (rogue APs) are detected and blocked.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, manages wireless infrastructure and authorization processes.
+
+5. ENFORCEMENT
+Unauthorized wireless access points must be removed within 2 hours of detection.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

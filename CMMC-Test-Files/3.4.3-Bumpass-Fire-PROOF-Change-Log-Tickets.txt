@@ -1,0 +1,32 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.4.3 - Configuration Change Control
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue controls and documents all configuration changes to CUI systems.
+
+2. CHANGE MANAGEMENT PROCESS
+Ticketing: Freshservice (tenant: bumpassfire.org)
+Workflow: Request > Review by Mike Sadler > Approval by Randy Bowles > Implementation > Closure
+
+Change Categories:
+- Standard (pre-approved, low risk): Implement within 48 hours, document after
+- Normal (requires review): 5-business-day approval window
+- Emergency: Implement first, document and get retroactive approval within 24 hours
+
+3. CHANGE LOG (June 2026)
+CHG-2026-041 | 2026-06-03 | Intune AV policy update       | Approved: Randy Bowles | Status: Closed
+CHG-2026-042 | 2026-06-10 | Windows 11 update rollout     | Approved: Randy Bowles | Status: Closed
+CHG-2026-043 | 2026-06-22 | VPN certificate renewal       | Approved: Randy Bowles | Status: Closed
+CHG-2026-044 | 2026-06-28 | Sentinel alert rule addition  | Approved: Randy Bowles | Status: Closed
+
+Unauthorized changes detected: 0
+
+4. ROLLBACK PROCEDURE
+Each change request includes rollback plan. Last rollback executed: N/A (FY2026)
+
+5. CONCLUSION
+Bumpass Fire & Rescue tracks and approves all configuration changes via Freshservice change management per control 3.4.3.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

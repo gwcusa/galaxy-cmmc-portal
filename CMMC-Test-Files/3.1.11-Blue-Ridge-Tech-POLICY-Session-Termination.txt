@@ -1,0 +1,53 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+AUTOMATIC SESSION TERMINATION POLICY
+================================================================
+Document ID:    POL-AC-011
+Version:        1.0
+Effective Date: April 15, 2026
+Review Date:    April 15, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy defines the conditions under which user sessions
+are automatically terminated to prevent unauthorized access
+to CUI through abandoned or unattended sessions.
+
+2. TERMINATION CONDITIONS
+
+2.1 Inactivity-Based Termination
+  - Web application sessions (client portal, M365):
+    Terminated after 30 minutes of inactivity
+  - VPN sessions: Terminated after 60 minutes of inactivity
+    OR at end of business day (6:00 PM local time),
+    whichever comes first
+  - Remote Desktop (RDP) sessions to servers:
+    Disconnected after 30 minutes idle, terminated after
+    4 hours regardless of activity
+
+2.2 End-of-Day Termination
+  - All active VPN sessions are forcibly terminated at
+    6:00 PM weekdays and 2:00 PM Saturdays
+  - Users working after hours must re-authenticate via VPN
+
+2.3 Role Change or Termination
+  - Upon an employee's separation, all active sessions are
+    immediately terminated and the account is disabled
+
+2.4 Security Event Termination
+  - Upon detection of anomalous activity, the SIEM can
+    trigger an automated session kill via Microsoft Defender
+    for Identity
+
+3. IMPLEMENTATION
+  - Azure AD Conditional Access: token lifetime policies
+  - RDP session timeout: GPO (BRTS-RDP-Timeout)
+  - VPN: Cisco AnyConnect session timeout configured in
+    ASA firewall policy
+
+================================================================
+Approved: Victor Osei            04/15/2026
+Prepared: Nathan Cruz            04/12/2026
+================================================================

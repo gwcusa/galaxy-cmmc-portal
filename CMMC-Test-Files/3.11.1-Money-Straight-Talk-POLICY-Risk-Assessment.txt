@@ -1,0 +1,26 @@
+﻿RISK ASSESSMENT POLICY
+Organization: Money Straight Talk LLC
+Control: 3.11.1 - Risk Assessment
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to periodically assess the risk to organizational operations from the operation of information systems that process, store, or transmit CUI, per NIST SP 800-171 Rev. 2 control 3.11.1.
+
+2. SCOPE
+All Money Straight Talk LLC information systems and processes involving CUI.
+
+3. REQUIREMENTS
+a. A formal risk assessment is conducted at least annually.
+b. The risk assessment identifies threats, vulnerabilities, likelihood, and impact.
+c. Risks are documented in a Risk Register maintained by Terrell Banks.
+d. Camille Odom reviews and approves the risk assessment findings.
+e. Risk assessment results drive remediation priorities.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, conducts the risk assessment. Camille Odom reviews and approves results.
+
+5. ENFORCEMENT
+Failure to complete annual risk assessment is reported to Camille Odom as a compliance gap.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

@@ -1,0 +1,50 @@
+================================================================
+KEITH THE DRONE GUY LLC
+DEFAULT-DENY NETWORK CONFIGURATION AUDIT
+Evidence for CMMC Control 3.13.6
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Keith Merritt
+================================================================
+
+MERAKI MX68 - INBOUND FIREWALL (show access-list summary)
+-------------------------------------------------
+Rules (top to bottom - first match wins):
+  Rule 1:  ALLOW UDP 0.0.0.0/0 -> [VPN-IP]:500    (IKEv2 VPN)
+  Rule 2:  ALLOW UDP 0.0.0.0/0 -> [VPN-IP]:4500   (IKEv2 NAT-T)
+  Rule LAST (default): DENY all inbound             **DENY-ALL**
+
+MERAKI MX68 - OUTBOUND FIREWALL
+-------------------------------------------------
+  Rule 1:  ALLOW TCP 192.168.1.0/24 -> any:443     (HTTPS)
+  Rule 2:  ALLOW TCP 192.168.1.0/24 -> any:80      (HTTP)
+  Rule 3:  ALLOW UDP 192.168.1.0/24 -> any:53      (DNS)
+  Rule 4:  ALLOW UDP 192.168.1.0/24 -> any:500,4500 (VPN return)
+  Rule LAST (default): DENY all outbound            **DENY-ALL**
+
+WINDOWS DEFENDER FIREWALL (GPO: KDG-WF-Settings)
+-------------------------------------------------
+Domain Profile:  Inbound - Block (default) | Outbound - Allow
+Private Profile: Inbound - Block (default) | Outbound - Allow
+Public Profile:  Inbound - Block (default) | Outbound - Block
+
+Inbound exceptions (allowed):
+  - AMA Agent (Log Analytics): port 443 outbound only
+  - Microsoft Defender (system): allowed
+  - No external inbound connections allowed
+
+AZURE NSG (kdg-vnet-nsg)
+-------------------------------------------------
+Priority 100: ALLOW HTTPS (443) inbound from specific IP range
+Priority 200: ALLOW SSH (22) from kdg-mgmt-subnet only
+Priority 65500: DENY ALL inbound (default Azure rule)
+Priority 65000: ALLOW VNet internal (default Azure rule - reviewed OK)
+
+FIREWALL EXCEPTION LOG (last 6 months)
+-------------------------------------------------
+No new exception rules added in last 6 months.
+All existing rules reviewed and validated July 1, 2026.
+
+================================================================
+Certified: Keith Merritt - July 25, 2026
+================================================================

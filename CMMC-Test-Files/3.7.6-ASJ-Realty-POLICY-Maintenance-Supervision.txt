@@ -1,0 +1,55 @@
+================================================================
+ASJ REALTY
+MAINTENANCE PERSONNEL SUPERVISION POLICY
+================================================================
+Document ID:    POL-MA-006
+Version:        1.0
+Effective Date: June 20, 2026
+Review Date:    June 20, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy requires that maintenance activities performed by
+personnel without required access authorization are supervised
+to protect CUI and system integrity.
+
+2. SCOPE
+Applies to any maintenance activity performed by:
+  - External contractors and vendors
+  - Any third-party technician
+  - Any individual who has not been granted general access
+    to ASJR systems and facilities
+
+3. SUPERVISION REQUIREMENTS
+
+3.1 Physical Maintenance
+  - External technicians performing hardware work must be
+    escorted by Sandra Okonkwo (or Anthony James if Sandra
+    is unavailable) from the moment they arrive
+  - The escort does not need to be a technical expert but
+    must maintain visual oversight of all technician actions
+  - No unescorted access to server rooms, network equipment
+    areas, or workstations holding CUI
+
+3.2 Software / Remote Maintenance
+  - Remote maintenance sessions by external parties are
+    monitored by Sandra Okonkwo in real time
+  - Sandra must be able to terminate the remote session
+    immediately if unauthorized activity is observed
+
+3.3 Cleared Maintenance Personnel
+  If maintenance is performed by a vendor whose personnel
+  have appropriate background checks and have signed an NDA
+  with ASJ Realty, supervision may be reduced to periodic
+  check-ins (every 15 minutes) rather than continuous oversight.
+
+4. DOCUMENTATION
+  All external maintenance visits are logged with: vendor,
+  technician name, escorting staff member, time in/out.
+
+================================================================
+Approved: Anthony James           06/20/2026
+Prepared: Sandra Okonkwo          06/18/2026
+================================================================

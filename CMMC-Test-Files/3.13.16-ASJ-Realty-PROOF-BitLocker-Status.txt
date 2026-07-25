@@ -1,0 +1,43 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.13.16 - Protection of CUI at Rest
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty encrypts all CUI at rest using BitLocker and Microsoft 365 encryption.
+
+2. ENDPOINT ENCRYPTION STATUS (via Intune - July 1, 2026)
+Device          | OS           | BitLocker Status | Method       | Recovery Key Backed Up
+ASJ-WS-001            | Windows 11   | ENCRYPTED        | Full disk    | Azure Key Vault + Azure AD
+WS-002          | Windows 11   | ENCRYPTED        | Full disk    | Azure Key Vault + Azure AD
+
+Encryption algorithm: AES-256 (XTS-AES-256)
+TPM version: 2.0 (both devices)
+Protectors: TPM + PIN (required at boot)
+
+3. CLOUD STORAGE ENCRYPTION
+Microsoft SharePoint (asjrealty.com):
+- Encryption at rest: AES-256 (Microsoft 365 service encryption)
+- Key management: Microsoft Managed Keys (MMK) at minimum; Customer Managed Keys (CMK) available
+- Current configuration: Microsoft Managed Keys (reviewed and accepted by Anthony James)
+
+OneDrive for Business:
+- Encryption at rest: AES-256 (per-file encryption)
+- CUI OneDrive folders synchronized to CUI-labeled SharePoint sites only
+
+4. BACKUP ENCRYPTION
+Microsoft 365 backup (built-in): Encrypted at rest via M365 service encryption
+No third-party backup media with unencrypted CUI.
+
+5. REMOVABLE MEDIA
+Policy: No CUI permitted on removable media without encryption.
+Technical control: Intune policy blocks non-ASJ Realty removable media from accessing CUI files.
+
+6. MONTHLY ENCRYPTION REPORT
+Date: 2026-07-01  |  Source: Intune Encryption Report
+Total devices: 2  |  Encrypted: 2  |  Not encrypted: 0  |  Compliance: 100%
+
+7. CONCLUSION
+ASJ Realty encrypts all CUI at rest with AES-256 BitLocker on endpoints and Microsoft 365 service encryption in the cloud per control 3.13.16.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

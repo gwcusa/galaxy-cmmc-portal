@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Money Straight Talk LLC
+Control: 3.1.21 - Portable Storage on External Systems
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy limits the use of portable storage devices on external systems, per NIST SP 800-171 Rev. 2 control 3.1.21.
+
+2. SCOPE
+All Money Straight Talk LLC personnel who use portable storage devices (USB drives, external HDDs, SD cards) on non-Money Straight Talk LLC systems.
+
+3. REQUIREMENTS
+a. Money Straight Talk LLC-owned portable storage devices may not be connected to external (non-Money Straight Talk LLC) systems.
+b. Portable storage used on external systems may not subsequently be connected to CUI systems without approval and scanning.
+c. Personal portable storage devices are prohibited on Money Straight Talk LLC CUI endpoints.
+d. Intune device control policies block unauthorized USB storage on CUI endpoints.
+e. Any exemption requires written approval from Camille Odom and is logged.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, enforces USB device control policies. Camille Odom approves exceptions.
+
+5. ENFORCEMENT
+Violations of this policy are investigated and may result in disciplinary action.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

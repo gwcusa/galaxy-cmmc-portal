@@ -1,0 +1,37 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.1.11 - Automatic Session Termination
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue automatically terminates sessions after defined inactivity periods.
+
+2. SESSION TIMEOUT CONFIGURATIONS
+
+Windows Endpoints (Interactive Sessions):
+GPO: SessionTimeout-Bumpass Fire & Rescue
+- Interactive session idle limit: 60 minutes
+- Disconnected session limit: 60 minutes
+
+Microsoft 365 / Azure AD:
+- Persistent browser session: Disabled
+- Sign-in frequency: 8 hours (Conditional Access policy: SignInFreq-Bumpass Fire & Rescue)
+- Re-authentication required: Yes (includes MFA prompt)
+
+SharePoint / CUI Portal:
+- Session timeout: 30 minutes idle
+- Token lifetime: 1 hour max
+
+VPN (GlobalProtect):
+- Max session duration: 8 hours
+- Idle timeout: 60 minutes
+
+3. VERIFICATION
+Date: 2026-06-25  |  Tested by: Mike Sadler
+Test: Opened SharePoint CUI session on BFR-WS-001 (m.sadler@bumpassfire.org), left idle 35 minutes.
+Result: Session expired after 30 minutes. Full re-authentication required. PASS.
+
+4. CONCLUSION
+Bumpass Fire & Rescue enforces automatic session termination across all CUI-connected systems per control 3.1.11.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

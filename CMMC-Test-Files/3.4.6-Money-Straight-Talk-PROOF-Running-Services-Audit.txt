@@ -1,0 +1,43 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.4.6 - Least Functionality
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC configures systems to provide only essential capabilities.
+
+2. RUNNING SERVICES AUDIT
+Date: 2026-06-30  |  Auditor: Terrell Banks
+System: MST-WS-001 (Windows 11 Pro)
+
+Required Services (Active):
+- Windows Defender Antivirus
+- Intune Management Agent
+- Windows Update
+- RPC / DCOM
+- Windows Event Log
+- BitLocker Drive Encryption Service
+- GlobalProtect VPN
+
+Disabled/Unnecessary Services:
+- Telnet: DISABLED
+- FTP Server: DISABLED
+- IIS Web Server: DISABLED (not installed)
+- Remote Registry: DISABLED
+- Print Spooler: DISABLED (no printer connected to CUI system)
+- Xbox Services (3): DISABLED via GPO
+
+3. PORT SCAN RESULTS
+Tool: Nmap (run by Terrell Banks)
+Date: 2026-06-30
+Open ports on MST-WS-001: 135 (RPC - expected), 443 (VPN - expected)
+Unexpected open ports: 0
+
+4. APPLICATION INVENTORY
+Approved applications: 8 (M365, Defender, Intune, VPN, Acrobat, 7-Zip, Notepad++, Chrome)
+Unapproved applications found: 0
+
+5. CONCLUSION
+Money Straight Talk LLC configures systems to least functionality with quarterly service audits per control 3.4.6.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

@@ -1,0 +1,40 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.8.9 - CUI Backup Protection
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC protects the confidentiality of CUI in backup storage.
+
+2. BACKUP ARCHITECTURE
+Primary Backup: Microsoft 365 Backup (Exchange, SharePoint, OneDrive)
+- Encryption: AES-256 at rest (Microsoft managed)
+- Geo-redundancy: Active (LRS + GRS replication)
+- Access: Terrell Banks only (Backup Admin role in M365)
+- Retention: 30 days granular + 1 year archive
+
+Secondary Backup: External encrypted HDD (KI-BACKUP-01)
+- Encryption: VeraCrypt AES-256 + SHA-512
+- Key stored: Azure Key Vault (access: Terrell Banks only)
+- Physical location: Locked cabinet, Terrell Banks's office
+- Backup frequency: Monthly full backup
+
+3. BACKUP ENCRYPTION VERIFICATION
+Date: 2026-06-30  |  Verifier: Terrell Banks
+M365 Backup: Microsoft Compliance Center confirms AES-256 at rest for all content
+External HDD: VeraCrypt volume header verified. Decryption attempted with test key - successful.
+
+4. ACCESS CONTROL
+M365 Backup Admin: Terrell Banks only
+External HDD: Physical key held by Terrell Banks; spare with Camille Odom in sealed envelope (emergency)
+Key Vault access: Terrell Banks only (Reader); audit log enabled
+
+5. BACKUP RESTORATION TEST
+Date: 2026-05-15  |  Tester: Terrell Banks
+Test: Restored 3 CUI documents from M365 Backup
+Result: Successful restore. Data integrity verified. Encryption maintained post-restore.
+
+6. CONCLUSION
+Money Straight Talk LLC protects CUI backups with AES-256 encryption and access controls per control 3.8.9.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

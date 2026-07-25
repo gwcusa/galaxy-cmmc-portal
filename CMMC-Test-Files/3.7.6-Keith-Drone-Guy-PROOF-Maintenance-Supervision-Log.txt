@@ -1,0 +1,33 @@
+﻿MAINTENANCE IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.7.6 - Maintenance Personnel Supervision
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC supervises maintenance personnel who lack CUI access authorization.
+
+2. SUPERVISION PROTOCOL
+Step 1: Keith Merritt escorts maintenance personnel to work area
+Step 2: CUI-sensitive systems are locked or screens faced away during maintenance
+Step 3: Keith Merritt remains in the same room throughout the maintenance activity
+Step 4: Keith Merritt verifies all tools and materials brought in and taken out
+Step 5: Post-maintenance: Keith Merritt inspects area before maintenance personnel leave
+
+3. MAINTENANCE SUPERVISION LOG (FY2026)
+Date       | Vendor       | Scope          | Supervised By | Unattended? | Notes
+2026-03-10 | Network-A    | Switch maint   | Keith Merritt          | No          | Full escort
+2026-05-20 | HP Support   | Laptop repair  | Keith Merritt          | No          | CUI screen covered
+2026-06-05 | ISP Tech     | Fiber repair   | Keith Merritt          | No          | Restricted to comms closet (no CUI)
+
+4. SYSTEM LOCKOUT PROCEDURE (when escort not possible)
+If Keith Merritt must leave area: All CUI systems shut down or screens locked + privacy filter on.
+This situation has not arisen in FY2026 - Keith Merritt maintained constant supervision.
+
+5. SECURITY CAMERA COVERAGE
+Office area with CUI systems is covered by security camera.
+Footage retained 30 days. Reviewed by Keith Merritt after each maintenance visit for anomalies.
+
+6. CONCLUSION
+Keith the Drone Guy LLC maintains constant supervision of all unauthorized maintenance personnel per control 3.7.6.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

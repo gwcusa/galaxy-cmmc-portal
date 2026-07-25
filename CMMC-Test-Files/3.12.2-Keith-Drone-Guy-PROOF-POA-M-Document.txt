@@ -1,0 +1,32 @@
+﻿SECURITY ASSESSMENT IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.12.2 - Plan of Action and Milestones
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC maintains and updates a POA&M for identified security deficiencies.
+
+2. POA&M DOCUMENT
+Document: Keith the Drone Guy LLC POA-M-2026.xlsx
+Location: SharePoint/IT-Docs/Security-Assessments/
+Last Updated: 2026-07-01  |  Owner: Keith Merritt
+Quarterly Review: Approved by Keith Merritt on 2026-07-05
+
+3. CURRENT POA&M ENTRIES (Active)
+Item ID | Finding                          | Owner  | Due Date   | Status
+POA-001 | MFA not enrolled for svc account | Keith Merritt   | 2026-08-01 | In Progress (75%)
+POA-002 | IR plan missing out-of-band comms | Keith Merritt  | 2026-07-15 | CLOSED 2026-05-01
+
+4. CLOSED POA&M ENTRIES (Q2 2026)
+POA-002 | IR plan update       | Closed 2026-05-01 | Evidence: Updated IRP v2.1 on SharePoint
+POA-003 | Audit report gap     | Closed 2026-04-05 | Evidence: Sentinel workbook report generated
+
+5. POA&M QUARTERLY REVIEW
+Date: 2026-07-05  |  Reviewer: Keith Merritt
+Total items: 2  |  Closed: 1  |  Open: 1  |  Overdue: 0
+Risk acceptance for POA-001: Accepted by Keith Merritt pending completion by 2026-08-01
+
+6. CONCLUSION
+Keith the Drone Guy LLC maintains an active POA&M reviewed quarterly by Keith Merritt per control 3.12.2.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

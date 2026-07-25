@@ -1,0 +1,38 @@
+﻿AUDIT AND ACCOUNTABILITY IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.3.7 - System Clock Synchronization
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty synchronizes all system clocks with an authoritative NTP source.
+
+2. NTP CONFIGURATION
+Windows Endpoints:
+GPO: NTP-Sync-ASJ Realty
+W32tm NTP Server: time.windows.com (primary), time.nist.gov (secondary)
+Sync Interval: Every 1 hour
+Applied to: All computers in asjrealty.com
+
+Azure Services (M365, Azure AD, Sentinel):
+Time source: Microsoft Azure infrastructure (synced to GPS/atomic - accurate to <1ms)
+
+3. CLOCK SYNC VERIFICATION
+Date: 2026-07-01  |  Verifier: Sandra Okonkwo
+Command run on ASJ-WS-001: w32tm /query /status
+
+Output:
+  Source: time.windows.com
+  Last Successful Sync: 2026-07-01T08:00:14Z
+  Time Offset: +0.0045s (within 1 second threshold)
+  Poll Interval: 3600s
+
+Endpoint Status: SYNCHRONIZED (Stratum 3)
+
+4. QUARTERLY CHECK RESULTS
+Q1 2026: All endpoints within 0.01s of NTP source. Pass.
+Q2 2026: All endpoints within 0.005s of NTP source. Pass.
+
+5. CONCLUSION
+ASJ Realty maintains accurate clock synchronization on all systems per control 3.3.7.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

@@ -1,0 +1,26 @@
+﻿MAINTENANCE POLICY
+Organization: ASJ Realty
+Control: 3.7.5 - Remote Maintenance MFA
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Sandra Okonkwo, IT Director  |  Approved: Anthony James, Office Manager
+
+1. PURPOSE
+This policy requires ASJ Realty to require MFA to establish remote maintenance sessions and to terminate such connections after maintenance, per NIST SP 800-171 Rev. 2 control 3.7.5.
+
+2. SCOPE
+All remote maintenance sessions on ASJ Realty CUI systems.
+
+3. REQUIREMENTS
+a. Remote maintenance sessions require MFA before the session is established.
+b. Session credentials are unique to the maintenance session and not reused.
+c. Remote maintenance connections are terminated immediately after the session ends.
+d. Remote sessions are logged with start time, end time, and actions performed.
+e. Sandra Okonkwo monitors all remote maintenance sessions in real-time.
+
+4. RESPONSIBILITY
+Sandra Okonkwo, IT Director, manages and monitors remote maintenance sessions.
+
+5. ENFORCEMENT
+Remote maintenance sessions without MFA are blocked and investigated.
+
+Signed: Anthony James, Office Manager  |  ASJ Realty  |  2026-01-15

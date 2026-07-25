@@ -1,0 +1,26 @@
+﻿CONFIGURATION MANAGEMENT POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.4.4 - Security Impact Analysis
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to analyze the security impact of changes prior to implementation, per NIST SP 800-171 Rev. 2 control 3.4.4.
+
+2. SCOPE
+All planned changes to Keith the Drone Guy LLC CUI systems.
+
+3. REQUIREMENTS
+a. Each change request includes a security impact assessment section.
+b. Keith Merritt assesses potential security impacts before approving any change.
+c. High-risk changes require additional review and testing.
+d. Security impacts that cannot be mitigated result in change rejection.
+e. Security impact assessments are documented and retained with change records.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, performs security impact assessments. Keith Merritt reviews high-risk assessments.
+
+5. ENFORCEMENT
+Changes submitted without a security impact assessment are automatically rejected.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

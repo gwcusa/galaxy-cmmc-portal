@@ -1,0 +1,33 @@
+﻿AWARENESS AND TRAINING IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.2.1 - Security Awareness Training
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue provides and tracks security awareness training for all personnel.
+
+2. TRAINING PLATFORM
+Platform: KnowBe4 (tenant: bumpassfire.org)
+Training Modules Assigned:
+- Security Awareness Basics (30 min) - Annual
+- CUI Handling Fundamentals (20 min) - Annual
+- Phishing Recognition (15 min) - Quarterly
+- Password Best Practices (15 min) - Annual
+
+3. TRAINING COMPLETION RECORDS (FY2026)
+Name          | Title        | Completion Date | Score
+Randy Bowles         | Fire Chief       | 2026-02-10      | 95%
+Mike Sadler          | IT Coordinator        | 2026-02-08      | 100%
+Staff-1       | Analyst      | 2026-02-14      | 88%
+Staff-2       | Coordinator  | 2026-02-15      | 92%
+
+Overall Completion Rate: 100% (4/4 staff)
+
+4. PHISHING SIMULATION
+Date: 2026-05-15  |  Test: Credential harvest email simulation
+Click Rate: 0% (0/4 staff clicked)  |  Report Rate: 75% (3/4 reported)
+
+5. CONCLUSION
+Bumpass Fire & Rescue maintains 100% security awareness training compliance per control 3.2.1.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

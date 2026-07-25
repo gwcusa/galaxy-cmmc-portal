@@ -1,0 +1,58 @@
+================================================================
+ASJ REALTY GROUP
+IT ASSET INVENTORY REGISTER
+Evidence for CMMC Control 3.4.1
+================================================================
+Last Updated:   July 1, 2026
+Updated By:     Marcus Webb, IT Director
+Version:        Q3-2026
+================================================================
+
+SERVERS
+-------------------------------------------------
+Asset Tag  Hostname          OS                    Role              Location       Last Audit
+---------  ----------------  --------------------  ----------------  -------------- ----------
+SRV-001    ASJDC01           Windows Server 2022   Domain Controller Server Room    07/01/2026
+SRV-002    ASJFILE01         Windows Server 2022   File Server       Server Room    07/01/2026
+SRV-003    ASJBACKUP01       Windows Server 2019   Backup Server     Server Room    07/01/2026
+
+WORKSTATIONS
+-------------------------------------------------
+Asset Tag  Hostname          OS          Assigned User        Serial #       Last Audit
+---------  ----------------  ----------  -------------------  -------------- ----------
+WS-001     ASJS-WEBB         Windows 11  Marcus Webb          HP-78432AA     07/01/2026
+WS-002     ASJS-JOINER       Windows 11  Sandra Joiner        HP-78433BB     07/01/2026
+WS-003     ASJS-TRAN         Windows 11  Lisa Tran            DELL-99231CC   07/01/2026
+WS-004     ASJS-OKAFOR       Windows 11  David Okafor         DELL-99232DD   07/01/2026
+WS-005     ASJS-NAIR         Windows 11  Priya Nair           DELL-99233EE   07/01/2026
+WS-006     ASJS-BURNETTE     Windows 11  Tom Burnette         LEN-55671FF    07/01/2026
+WS-007     ASJS-CROSS        Windows 11  Angela Cross         LEN-55672GG    07/01/2026
+WS-008     ASJS-WHITFIELD    Windows 11  James Whitfield      HP-78441HH     07/01/2026
+
+LAPTOPS
+-------------------------------------------------
+Asset Tag  Hostname          OS          Assigned User        Serial #       Last Audit
+---------  ----------------  ----------  -------------------  -------------- ----------
+LT-001     ASJL-WEBB         Windows 11  Marcus Webb          HP-LT99011     07/01/2026
+LT-002     ASJL-JOINER       Windows 11  Sandra Joiner        HP-LT99012     07/01/2026
+
+NETWORK DEVICES
+-------------------------------------------------
+Asset Tag  Device            Model               Role            Firmware    Last Audit
+---------  ----------------  ------------------  --------------  ----------  ----------
+NET-001    ASJ-FW-01         Meraki MX68         Firewall/VPN    18.2.4      07/01/2026
+NET-002    ASJ-SW-01         Meraki MS120-8FP    Core Switch     14.32       07/01/2026
+NET-003    ASJ-AP-01         Meraki MR46         WiFi AP         29.5.1      07/01/2026
+
+BASELINE CONFIGURATION STATUS
+-------------------------------------------------
+System Type            Baseline Version   Compliant   Last Checked
+--------------------   ----------------   ---------   ------------
+Windows 11 WS          CIS v3.1           YES (8/8)   07/01/2026
+Windows Server 2022    CIS v2.0           YES (3/3)   07/01/2026
+Meraki Devices         ASJ Baseline v1.5  YES (3/3)   07/01/2026
+Microsoft 365          ASJ Baseline v2.2  YES         07/01/2026
+
+OPEN DEVIATION RECORDS: 0
+
+================================================================

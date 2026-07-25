@@ -1,0 +1,32 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.1.18 - Mobile Device Connection Control
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC controls mobile device connections to CUI systems via MDM enrollment.
+
+2. MDM CONFIGURATION
+Solution: Microsoft Intune (tenant: keithdroney.com)
+Enrollment requirement: Required before CUI resource access
+Conditional Access Policy: MDM-Compliant-Required
+- Access to SharePoint CUI, Exchange, Teams: Requires enrolled and compliant device
+
+3. ENROLLED DEVICE INVENTORY
+Device                | Owner         | OS            | Status
+KDG-WS-001 (laptop)         | Keith Merritt          | Windows 11    | Enrolled, Compliant
+iPhone 15 Pro         | Keith Merritt          | iOS 17.4      | Enrolled, Compliant
+Samsung Galaxy S24    | Keith Merritt         | Android 14    | Enrolled, Compliant
+MacBook Air M2        | Staff-1       | macOS 14.4    | Enrolled, Compliant
+
+Non-compliant: 0  |  Unenrolled: 0 (all staff devices enrolled)
+
+4. REMOTE WIPE CAPABILITY
+Test performed: 2026-06-10
+Test device: Lab iPhone (non-production)
+Result: Remote wipe completed in 2m 45s. Confirmed wiped by Keith Merritt.
+
+5. CONCLUSION
+Keith the Drone Guy LLC controls all mobile device access to CUI systems via Intune MDM enrollment per control 3.1.18.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

@@ -1,0 +1,78 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+INCIDENT RESPONSE TABLETOP EXERCISE REPORT
+Evidence for CMMC Control 3.6.3
+================================================================
+Exercise Date:  May 22, 2026
+Facilitator:    Nathan Cruz
+Participants:   Victor Osei (President), Nathan Cruz (IT Lead),
+                James Hartwell (Systems Engineer)
+Scenario:       Ransomware Attack on BRTS File Server
+================================================================
+
+SCENARIO DESCRIPTION
+-------------------------------------------------
+At 8:45 AM, Marcus Johnson reports that his workstation
+(BRTS-WS-JOHNSON) is displaying a ransom note and he
+cannot access any files on the shared drive.
+
+RESPONSE WALKTHROUGH
+-------------------------------------------------
+Step 1 - Detection and Initial Response (0-30 minutes)
+  Actions discussed:
+    - Marcus isolates BRTS-WS-JOHNSON from network
+      (disconnect network cable, disable WiFi)
+    - Nathan Cruz notified immediately
+    - Nathan logs into Defender portal to assess scope
+    - Preliminary check: Which other systems show anomalous
+      activity? (Sentinel alert review)
+  Gaps identified: Marcus was unsure whether to pull the network
+    cable or just turn off the PC. Clarified: pull network cable,
+    leave PC on for forensics.
+
+Step 2 - Scope Assessment (30-90 minutes)
+  Actions discussed:
+    - Identify all affected systems via Sentinel
+    - Determine if CUI was on affected shares
+    - Contact client accounts to assess exposure
+  Gaps identified: No written client contact list for incident
+    notification. ACTION: Nathan to create contact card by 6/1.
+
+Step 3 - Containment (1-4 hours)
+  Actions discussed:
+    - Isolate affected systems to quarantine VLAN
+    - Disable compromised accounts
+    - Block malware IOCs at firewall
+
+Step 4 - Eradication and Recovery (4-24 hours)
+  Actions discussed:
+    - Rebuild from known-good image (Veeam backup)
+    - Verify backup integrity before restore
+    - Restore most recent clean backup (tested: 2-hour RTO)
+
+Step 5 - Reporting
+  Actions discussed:
+    - DIBNet report within 72 hours if CUI affected
+    - Document incident in IR register
+
+FINDINGS AND CORRECTIVE ACTIONS
+-------------------------------------------------
+GAP 1: Staff unsure about physical isolation steps
+  Action: Update IR procedure card. Distribute to all staff.
+  Owner: Nathan Cruz | Due: June 1, 2026 | Status: COMPLETED
+
+GAP 2: No written client incident notification contact list
+  Action: Create and store in IR binder and SharePoint
+  Owner: Nathan Cruz | Due: June 1, 2026 | Status: COMPLETED
+
+GAP 3: Backup restore time not formally documented
+  Action: Document RTO/RPO in IR plan (2-hour RTO confirmed)
+  Owner: Nathan Cruz | Due: June 15, 2026 | Status: COMPLETED
+
+EXERCISE RESULT: SUCCESSFUL - All major steps covered.
+3 corrective actions identified and resolved.
+
+================================================================
+Signed: Nathan Cruz - May 22, 2026
+Reviewed: Victor Osei - May 25, 2026
+================================================================

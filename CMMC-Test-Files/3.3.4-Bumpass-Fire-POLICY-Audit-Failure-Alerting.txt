@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.3.4 - Audit Failure Alerting
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to alert personnel in the event of an audit logging failure, per NIST SP 800-171 Rev. 2 control 3.3.4.
+
+2. SCOPE
+All Bumpass Fire & Rescue audit logging infrastructure and CUI systems.
+
+3. REQUIREMENTS
+a. Automated alerts notify Mike Sadler if any log source stops sending events for more than 30 minutes.
+b. Disk space alerts fire when log storage exceeds 80% capacity.
+c. Audit logging failures are treated as priority-1 incidents requiring immediate response.
+d. Response to logging failure alerts must begin within 15 minutes.
+e. Alert handling and resolution is documented.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, configures and responds to audit failure alerts.
+
+5. ENFORCEMENT
+Unacknowledged audit failure alerts beyond 15 minutes escalate automatically to Randy Bowles.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

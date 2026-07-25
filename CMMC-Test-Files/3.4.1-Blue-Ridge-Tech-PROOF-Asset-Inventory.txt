@@ -1,0 +1,33 @@
+﻿CONFIGURATION MANAGEMENT IMPLEMENTATION EVIDENCE
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.4.1 - Configuration Management
+Prepared By: Nathan Cruz, IT Manager  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Blue Ridge Technology Solutions LLC maintains an asset inventory and baseline configurations for all CUI systems.
+
+2. HARDWARE ASSET INVENTORY (Current)
+Tool: Intune Device Inventory + Manual Register
+Last Updated: 2026-07-01  |  Owner: Nathan Cruz
+
+Device Name  | Type         | OS              | Owner   | CUI Access | Status
+BRTS-WS-001         | Desktop/Laptop | Windows 11 Pro  | Nathan Cruz    | Yes        | Active
+WS-002       | Desktop      | Windows 11 Pro  | Victor Osei   | Yes        | Active
+Mobile-001   | Smartphone   | iOS 17          | Nathan Cruz    | Yes        | Active
+Mobile-002   | Smartphone   | Android 14      | Victor Osei   | Yes        | Active
+NETWORK-SW-1 | Switch       | Firmware 8.5.4  | Nathan Cruz    | N/A        | Active
+
+3. SOFTWARE INVENTORY (Approved Applications)
+Microsoft 365 Business Premium, Windows Defender, Intune, GlobalProtect VPN, Adobe Acrobat Reader
+
+Unapproved software: Detected via Intune: 0 instances in last 30 days.
+
+4. BASELINE DOCUMENTATION
+Baseline config stored in: SharePoint/IT-Docs/Baselines/
+- Windows11-CUI-Baseline.docx (GPO settings, security config)
+- Mobile-Device-Baseline.docx (Intune compliance requirements)
+
+5. CONCLUSION
+Blue Ridge Technology Solutions LLC maintains a current asset inventory with documented baselines per control 3.4.1.
+
+Verified: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-07-10

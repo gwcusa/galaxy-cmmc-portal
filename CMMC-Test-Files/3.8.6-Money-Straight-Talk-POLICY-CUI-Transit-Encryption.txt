@@ -1,0 +1,26 @@
+﻿MEDIA PROTECTION POLICY
+Organization: Money Straight Talk LLC
+Control: 3.8.6 - CUI Encryption in Transit
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Terrell Banks, Systems Admin  |  Approved: Camille Odom, CEO
+
+1. PURPOSE
+This policy requires Money Straight Talk LLC to implement cryptographic mechanisms to protect CUI during transmission, per NIST SP 800-171 Rev. 2 control 3.8.6.
+
+2. SCOPE
+All CUI transmitted electronically or physically by Money Straight Talk LLC.
+
+3. REQUIREMENTS
+a. CUI transmitted over networks uses TLS 1.2 or higher encryption.
+b. CUI emailed externally uses S/MIME or is protected via encrypted secure file transfer.
+c. CUI on portable media uses hardware encryption (AES-256 minimum).
+d. Unencrypted transmission of CUI is prohibited.
+e. Terrell Banks verifies transmission encryption controls quarterly.
+
+4. RESPONSIBILITY
+Terrell Banks, Systems Admin, configures and verifies encryption for all CUI transmission methods.
+
+5. ENFORCEMENT
+Unencrypted CUI transmission is a serious policy violation.
+
+Signed: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-01-15

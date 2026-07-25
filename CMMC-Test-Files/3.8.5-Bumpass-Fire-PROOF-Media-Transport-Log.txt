@@ -1,0 +1,34 @@
+﻿MEDIA PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Bumpass Fire & Rescue
+Control: 3.8.5 - Media Transport Controls
+Prepared By: Mike Sadler, IT Coordinator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Bumpass Fire & Rescue controls the transport of CUI media outside secure areas.
+
+2. TRANSPORT AUTHORIZATION PROCESS
+Step 1: Requestor submits transport request to Mike Sadler (email or ticket)
+Step 2: Mike Sadler verifies media encryption status
+Step 3: Randy Bowles approves transport request
+Step 4: Transporter signs out media in transport log
+Step 5: Transporter returns media and signs back in
+
+3. MEDIA TRANSPORT LOG (FY2026)
+Date       | Media     | Transported By | Destination        | Purpose       | Approved | Return Date
+2026-03-12 | USB KI-001 | Mike Sadler          | DoD Contractor mtg | Contract docs | Randy Bowles    | 2026-03-12
+2026-06-05 | USB KI-001 | Randy Bowles         | Client meeting     | Deliverables  | Mike Sadler     | 2026-06-05
+
+Transport outside office: 2 events. Media encrypted in both cases. Kept in hand carry.
+
+4. ENCRYPTION VERIFICATION (Pre-Transport)
+Before each transport, Mike Sadler verifies:
+- USB drive encryption active (hardware IronKey status indicator: LOCKED)
+- Files accessible only with PIN
+
+5. LOST/STOLEN MEDIA INCIDENTS
+FY2026: 0 incidents
+
+6. CONCLUSION
+Bumpass Fire & Rescue controls CUI media transport with documented approval and encryption verification per control 3.8.5.
+
+Verified: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-07-10

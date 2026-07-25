@@ -1,0 +1,53 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+CUI MEDIA MARKING POLICY
+================================================================
+Document ID:    POL-MP-004
+Version:        1.0
+Effective Date: May 20, 2026
+Review Date:    May 20, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy requires that media containing CUI is marked with
+appropriate CUI markings and distribution limitations.
+
+2. MARKING REQUIREMENTS
+
+2.1 Paper Documents
+  - Every page of a paper document containing CUI must be
+    marked at the top and bottom: "CUI"
+  - The cover page must also include the applicable CUI
+    category (e.g., CUI // OPSEC, CUI // PRVCY)
+  - Distribution limitation: "DISTRIBUTION LIMITED TO
+    AUTHORIZED PERSONNEL ONLY"
+
+2.2 Electronic Files
+  - Documents in Word, Excel, PDF containing CUI must include
+    a "CUI" header in the document header/footer
+  - SharePoint CUI site has a default sensitivity label
+    "CUI - Confidential" applied to all content
+  - Files emailed externally must include "CUI" in the
+    email subject line and body
+
+2.3 Physical Media (USB drives, hard drives)
+  - CUI-containing USB drives must have a physical label
+    affixed: "CUI - HANDLE PER DFARS 252.204-7012"
+  - Labels are orange (BRTS standard) to visually distinguish
+    CUI media from non-CUI media
+
+2.4 Exclusion
+  - Encrypted drives with ONLY operating system files
+    (no CUI data) do not require CUI markings
+  - Media that has been sanitized of all CUI no longer
+    requires markings
+
+3. TRAINING
+  Staff are trained annually on CUI marking requirements.
+
+================================================================
+Approved: Victor Osei            05/20/2026
+Prepared: Nathan Cruz            05/18/2026
+================================================================

@@ -1,0 +1,53 @@
+================================================================
+ASJ REALTY
+SYSTEM MAINTENANCE POLICY
+================================================================
+Document ID:    POL-MA-001
+Version:        1.0
+Effective Date: June 15, 2026
+Review Date:    June 15, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy establishes requirements for performing maintenance
+on ASJ Realty information systems in a controlled manner.
+
+2. TYPES OF MAINTENANCE
+
+2.1 Scheduled Maintenance
+  - Software patching: Second Tuesday of each month (Patch Tuesday)
+    Patches applied via Microsoft Intune/Windows Update for Business
+  - Hardware inspection: Quarterly (Sandra Okonkwo)
+  - Antivirus signature updates: Automatic (daily)
+  - Firmware updates: As released, within 30 days for critical
+    patches and 90 days for non-critical
+
+2.2 Unscheduled/Emergency Maintenance
+  - Emergency patches (zero-day or critical severity): within 72 hours
+  - Hardware failures: addressed within 24 hours for systems
+    holding CUI
+
+3. MAINTENANCE RECORDS
+  All maintenance activities are logged in the IT Maintenance Log
+  (SharePoint: IT/Maintenance-Log.xlsx) including:
+    - Date and time
+    - Description of work performed
+    - Systems affected
+    - Personnel performing maintenance
+    - Outcome
+
+4. PATCH MANAGEMENT
+  Patches are tested on a non-production device before broad
+  deployment when possible. Emergency patches may be deployed
+  directly to production with rollback plan documented.
+
+5. VENDOR MAINTENANCE
+  Third-party maintenance visits require prior approval from
+  Sandra Okonkwo and are escorted at all times.
+
+================================================================
+Approved: Anthony James           06/15/2026
+Prepared: Sandra Okonkwo          06/13/2026
+================================================================

@@ -1,0 +1,26 @@
+﻿ACCESS CONTROL POLICY
+Organization: Bumpass Fire & Rescue
+Control: 3.1.14 - Managed Access Control Points for Remote Access
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Mike Sadler, IT Coordinator  |  Approved: Randy Bowles, Fire Chief
+
+1. PURPOSE
+This policy requires Bumpass Fire & Rescue to route all remote access through managed access control points, per NIST SP 800-171 Rev. 2 control 3.1.14.
+
+2. SCOPE
+All remote access to Bumpass Fire & Rescue CUI systems and networks.
+
+3. REQUIREMENTS
+a. All remote access is routed through a centrally managed VPN gateway.
+b. Split tunneling is disabled; all traffic routes through Bumpass Fire & Rescue gateway.
+c. Direct internet access to internal CUI systems from outside the VPN is blocked.
+d. The VPN gateway is managed exclusively by Mike Sadler.
+e. Firewall rules enforce that CUI systems are reachable only via VPN.
+
+4. RESPONSIBILITY
+Mike Sadler, IT Coordinator, maintains the VPN gateway and access control infrastructure.
+
+5. ENFORCEMENT
+Attempts to bypass the managed access point are security incidents.
+
+Signed: Randy Bowles, Fire Chief  |  Bumpass Fire & Rescue  |  2026-01-15

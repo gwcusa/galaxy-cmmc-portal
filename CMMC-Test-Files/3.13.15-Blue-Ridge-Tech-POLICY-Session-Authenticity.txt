@@ -1,0 +1,26 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.13.15 - Session Authenticity
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to protect the authenticity of communications sessions, per NIST SP 800-171 Rev. 2 control 3.13.15.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC communications sessions, including email, web sessions, and API connections.
+
+3. REQUIREMENTS
+a. Email authenticity is enforced via SPF, DKIM, and DMARC records.
+b. Web sessions use TLS certificates with proper authentication.
+c. DMARC policy enforces rejection of spoofed email from blueridgetech.com.
+d. DKIM is configured for all outbound email.
+e. Email authentication records are reviewed quarterly.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, configures and maintains email and session authentication controls.
+
+5. ENFORCEMENT
+Failed email authentication checks result in mail rejection per DMARC policy.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

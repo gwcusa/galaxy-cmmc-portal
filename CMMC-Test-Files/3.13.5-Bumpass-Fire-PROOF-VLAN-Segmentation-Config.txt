@@ -1,0 +1,47 @@
+================================================================
+BUMPASS FIRE & RESCUE
+VLAN SEGMENTATION CONFIGURATION AUDIT
+Evidence for CMMC Control 3.13.5
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Mike Sadler, IT Administrator
+Switch:         Cisco Meraki MS225 (Core Switch)
+================================================================
+
+VLAN CONFIGURATION (Meraki Dashboard)
+-------------------------------------------------
+VLAN   Name                Subnet               DHCP   Status
+----   -----------------   ------------------   -----  ------
+10     BFR-Corporate       192.168.10.0/24      YES    ACTIVE
+20     BFR-Guest           192.168.20.0/24      YES    ACTIVE
+30     BFR-IoT             192.168.30.0/24      YES    ACTIVE
+
+INTER-VLAN FIREWALL RULES (Meraki MX - L3 Firewall)
+-------------------------------------------------
+Rule 1: DENY 192.168.20.0/24 -> 192.168.10.0/24 (ANY)
+  Guest to Corporate: BLOCKED
+Rule 2: DENY 192.168.30.0/24 -> 192.168.10.0/24 (ANY)
+  IoT to Corporate: BLOCKED
+Rule 3: DENY 192.168.30.0/24 -> 192.168.20.0/24 (ANY)
+  IoT to Guest: BLOCKED
+Rule 4: PERMIT 192.168.10.0/24 -> Internet (via firewall rules)
+  Corporate internet access (filtered outbound)
+Rule 5: PERMIT 192.168.20.0/24 -> Internet ONLY (port 80/443/53)
+  Guest internet access only
+
+ISOLATION TEST (July 1, 2026)
+-------------------------------------------------
+Test 1: From Guest VLAN device, ping CUI workstation (192.168.10.20)
+Result: Request timed out - BLOCKED. COMPLIANT.
+
+Test 2: From IoT VLAN, attempt HTTP to Corporate NAS (192.168.10.10)
+Result: Request timed out - BLOCKED. COMPLIANT.
+
+Test 3: From Corporate VLAN, ping Guest VLAN client
+Result: Request timed out - BLOCKED (bidirectional). COMPLIANT.
+
+All segmentation tests PASSED.
+
+================================================================
+Certified: Mike Sadler - July 25, 2026
+================================================================

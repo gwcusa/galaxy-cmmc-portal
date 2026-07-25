@@ -1,0 +1,39 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: Keith the Drone Guy LLC
+Control: 3.13.13 - Mobile Code
+Prepared By: Keith Merritt, Owner-Operator  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Keith the Drone Guy LLC controls mobile code on CUI endpoints.
+
+2. OFFICE MACRO CONFIGURATION
+GPO/Intune Policy: OfficeMacro-Control-Keith the Drone Guy LLC
+Settings applied:
+- Block macros from files downloaded from the Internet: Enabled
+- Disable all macros except digitally signed macros: Enabled
+- Require macros to be signed by a trusted publisher: Enabled
+Trusted location: SharePoint site ("Keith the Drone Guy LLC CUI" site library only)
+
+3. BROWSER (MICROSOFT EDGE) CONFIGURATION
+Intune Configuration Profile: EdgeHardening-Keith the Drone Guy LLC
+Key settings:
+- JavaScript from Restricted Sites: Blocked
+- ActiveX: Disabled (not supported in Edge)
+- Enhanced Security Mode: Enabled
+- SmartScreen: Enabled (blocks known malicious scripts)
+- WebAssembly: Restricted to trusted sites
+
+4. MACRO EXECUTION LOG (Q2 2026)
+Blocked macro attempts: 4 (all from email attachments originating from external sources)
+Allowed macro executions: 0 (no trusted-location macros executed this quarter)
+No unsigned macros executed.
+
+5. CONFIGURATION VERIFICATION
+Date: 2026-06-30  |  Tool: Intune device compliance report
+KDG-WS-001 - OfficeMacro-Control-Keith the Drone Guy LLC: Compliant
+KDG-WS-001 - EdgeHardening-Keith the Drone Guy LLC: Compliant
+
+6. CONCLUSION
+Keith the Drone Guy LLC blocks unsigned macros and controls browser-based mobile code execution via Intune/GPO per control 3.13.13.
+
+Verified: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-07-10

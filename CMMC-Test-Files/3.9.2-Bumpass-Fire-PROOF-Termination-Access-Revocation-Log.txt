@@ -1,0 +1,52 @@
+================================================================
+BUMPASS FIRE & RESCUE
+PERSONNEL TERMINATION/TRANSFER ACCESS REVOCATION LOG
+Evidence for CMMC Control 3.9.2
+================================================================
+Log Period:     January 1 - July 25, 2026
+Maintained By:  Mike Sadler, IT Administrator
+================================================================
+
+PERSONNEL ACTION LOG - 2026
+-------------------------------------------------
+ACTION #1 - February 28, 2026
+Type:             VOLUNTARY TERMINATION
+Employee:         Tony Lopez (Firefighter)
+Last Day:         February 28, 2026
+Notification:     Chief Bowles notified Mike Sadler 02/25/2026
+
+Actions Completed (February 28, 2026):
+  09:00 AM - AD account disabled: tlopez
+  09:01 AM - Azure AD account disabled, sessions revoked
+  09:02 AM - M365 license removed (mailbox to shared)
+  09:05 AM - Key fob #BFR-FOB-07 deactivated in alarm system
+  10:00 AM - Company iPhone (BFR-iPhone-003) collected and
+             Intune remote wipe initiated
+  10:30 AM - Work laptop returned (no personal data)
+  11:00 AM - Server room code changed (precautionary)
+
+Post-Termination Verification (March 1, 2026):
+  Attempted login with tlopez credentials: ACCESS DENIED
+  VPN access with tlopez: BLOCKED
+  All access verified revoked.
+
+ACTION #2 - June 15, 2026
+Type:             ROLE TRANSFER
+Employee:         Kim Nguyen (Dispatcher -> Lead Dispatcher)
+Effective Date:   June 15, 2026
+
+Actions Completed:
+  Added to BFR-Dispatch-Lead AD group (new role permissions)
+  Removed from BFR-Dispatch-Standard (old role permissions)
+  Access reviewed: New role does not require CUI access change.
+  Documented in HR file and IT Access Log.
+
+CURRENT ACCESS REVIEW STATUS
+-------------------------------------------------
+All current staff access reviewed: July 1, 2026
+All access appropriate for current roles: CONFIRMED
+No orphaned accounts: CONFIRMED
+
+================================================================
+Certified: Chief Randy Bowles (approving official) - July 25, 2026
+================================================================

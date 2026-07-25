@@ -1,0 +1,26 @@
+﻿IDENTIFICATION AND AUTHENTICATION POLICY
+Organization: Blue Ridge Technology Solutions LLC
+Control: 3.5.11 - Authentication Feedback Obscuring
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Nathan Cruz, IT Manager  |  Approved: Victor Osei, Director of Operations
+
+1. PURPOSE
+This policy requires Blue Ridge Technology Solutions LLC to obscure authentication feedback information to protect it from exploitation, per NIST SP 800-171 Rev. 2 control 3.5.11.
+
+2. SCOPE
+All Blue Ridge Technology Solutions LLC CUI system login interfaces.
+
+3. REQUIREMENTS
+a. Password fields display asterisks or dots instead of the actual characters typed.
+b. Login failure messages do not reveal whether the username or password was incorrect.
+c. Authentication error messages provide no information that aids guessing.
+d. Debug authentication information is never displayed to end users.
+e. Nathan Cruz reviews authentication interface feedback annually.
+
+4. RESPONSIBILITY
+Nathan Cruz, IT Manager, ensures all login interfaces obscure authentication feedback.
+
+5. ENFORCEMENT
+Any interface that reveals password characters or specific credential errors must be immediately remediated.
+
+Signed: Victor Osei, Director of Operations  |  Blue Ridge Technology Solutions LLC  |  2026-01-15

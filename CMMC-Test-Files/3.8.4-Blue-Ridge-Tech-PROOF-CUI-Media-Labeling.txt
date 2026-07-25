@@ -1,0 +1,51 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+CUI MEDIA MARKING VERIFICATION REPORT
+Evidence for CMMC Control 3.8.4
+================================================================
+Report Date:    July 25, 2026
+Prepared By:    Nathan Cruz, Lead Systems Engineer
+================================================================
+
+PHYSICAL MEDIA MARKING AUDIT - July 25, 2026
+-------------------------------------------------
+MEDIA ID        TYPE            LABEL PRESENT?   LABEL TEXT
+--------------  -----------     --------------   --------------------------------
+BRTS-USB-001    Kingston IronKey  YES            "CUI - HANDLE PER DFARS 252.204-7012"
+BRTS-USB-002    Kingston IronKey  YES            "CUI - HANDLE PER DFARS 252.204-7012"
+BFR-SRV-001-D1  Server HDD        N/A (internal) OS only - no CUI label required
+BRTS-EXT-001    External HDD      YES            "CUI - AUTHORIZED PERSONNEL ONLY"
+
+Labels: Orange color, printed on adhesive label tape.
+All portable CUI media PROPERLY LABELED. COMPLIANT.
+
+ELECTRONIC FILE MARKING AUDIT
+-------------------------------------------------
+SharePoint CUI Site: "BRTS CUI Projects"
+  Default Label: "CUI - Confidential" (auto-applied to all files)
+  Sensitivity Label Settings: Encryption + header/footer added
+  Sample files reviewed (July 25, 2026):
+    DOD-Contract-2026-Q2.docx:
+      Header: "CUI" - PRESENT
+      Footer: "DISTRIBUTION LIMITED TO AUTHORIZED PERSONNEL"
+      Label: "CUI - Confidential" - PRESENT
+    NetworkAssessment-CUI-May2026.pdf:
+      Header: "CUI" - PRESENT
+      Footer: "DISTRIBUTION LIMITED TO AUTHORIZED PERSONNEL"
+      Label: "CUI - Confidential" - PRESENT
+
+Paper Document Audit (Chief's office file):
+  All 5 paper CUI documents reviewed:
+  "CUI" marking on top and bottom of each page: YES (5/5)
+  Distribution limitation: YES (5/5)
+  COMPLIANT.
+
+ANNUAL MARKING TRAINING
+-------------------------------------------------
+Training date: March 15, 2026
+All BRTS staff completed "CUI Marking and Handling" module.
+KnowBe4 training record on file.
+
+================================================================
+Certified: Nathan Cruz - July 25, 2026
+================================================================

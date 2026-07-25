@@ -1,0 +1,27 @@
+﻿SYSTEM AND INFORMATION INTEGRITY POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.14.1 - Flaw Remediation
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to identify, report, and correct information system flaws in a timely manner, per NIST SP 800-171 Rev. 2 control 3.14.1.
+
+2. SCOPE
+All Keith the Drone Guy LLC CUI systems and software.
+
+3. REQUIREMENTS
+a. All software and operating systems receive security patches per vulnerability SLA.
+b. Critical patches (CVSS 9.0+): applied within 72 hours.
+c. High patches (CVSS 7.0-8.9): applied within 7 days.
+d. Medium/Low: applied within 30-90 days.
+e. Patch status is monitored via Intune and reported monthly to Keith Merritt.
+f. Unpatched systems are isolated from CUI until patched.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, manages patch deployment. Keith Merritt reviews monthly patch reports.
+
+5. ENFORCEMENT
+Systems with critical unpatched vulnerabilities beyond 72 hours are removed from CUI network.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

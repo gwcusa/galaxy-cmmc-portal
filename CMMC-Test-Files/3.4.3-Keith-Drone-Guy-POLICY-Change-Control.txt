@@ -1,0 +1,55 @@
+================================================================
+KEITH THE DRONE GUY LLC
+SYSTEM CHANGE CONTROL POLICY
+================================================================
+Document ID:    POL-CM-003
+Version:        1.0
+Effective Date: February 20, 2026
+Review Date:    February 20, 2027
+Owner:          Keith Merritt, Owner/IT Lead
+Approved By:    Keith Merritt, Owner
+================================================================
+
+1. PURPOSE
+This policy establishes a change control process to track,
+review, approve, and log changes to KDG information systems.
+
+2. SCOPE
+Applies to all changes to hardware, software, configuration,
+and network infrastructure that may affect security or CUI.
+
+3. CHANGE TYPES
+
+3.1 Standard Changes (pre-approved)
+  Low-risk, repeatable changes with defined procedures:
+    - Monthly Windows patching (second Tuesday of month)
+    - Antivirus signature updates (automatic)
+    - User password resets
+  Standard changes do not require individual approval but
+  are still logged.
+
+3.2 Normal Changes (require review)
+  Any change to system configuration, new software installation,
+  firewall rule changes, user permission changes, or
+  infrastructure modifications. Process:
+    a) Submit Change Request via IT ticketing system
+    b) Review by Keith Merritt (technical impact assessment)
+    c) Approval (self-approval for routine; Dana Flowers
+       approval required if Keith is implementing)
+    d) Schedule and implement
+    e) Close ticket with outcome documented
+
+3.3 Emergency Changes
+  Changes to resolve active P1 incidents:
+    - Implemented immediately
+    - Documented in ticket within 2 hours
+    - Reviewed and formally approved post-implementation
+
+4. CHANGE LOG
+  All changes logged in IT ticketing system with:
+  date, requester, description, approver, outcome.
+  Retained 3 years.
+
+================================================================
+Approved: Keith Merritt           02/20/2026
+================================================================

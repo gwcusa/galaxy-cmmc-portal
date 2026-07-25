@@ -1,0 +1,56 @@
+================================================================
+BLUE RIDGE TECHNOLOGY SOLUTIONS LLC
+INCIDENT RESPONSE CAPABILITY TESTING POLICY
+================================================================
+Document ID:    POL-IR-003
+Version:        1.0
+Effective Date: May 10, 2026
+Review Date:    May 10, 2027
+Owner:          Nathan Cruz, Lead Systems Engineer
+Approved By:    Victor Osei, President
+================================================================
+
+1. PURPOSE
+This policy requires periodic testing of BRTS's incident
+response capability to ensure it functions effectively when
+a real incident occurs.
+
+2. TESTING METHODS
+
+2.1 Tabletop Exercises
+  Conducted annually (minimum). A hypothetical security
+  incident scenario is presented and staff walk through
+  their response steps without affecting live systems.
+  Participants: Nathan Cruz, Victor Osei, and any other
+  relevant staff.
+
+2.2 Functional Drills
+  Conducted annually (may be combined with tabletop or separate).
+  Actual technical response actions are practiced on test/lab
+  systems, including:
+    - Isolating a compromised system
+    - Preserving evidence (log export, disk image)
+    - Restoring from backup
+    - Notifying simulated stakeholders
+
+2.3 Phishing Simulations
+  Conducted quarterly via KnowBe4 to test staff ability to
+  recognize and report phishing emails (part of IR detection).
+
+3. DOCUMENTATION
+  Each test/exercise produces:
+    - Scenario description
+    - Participants
+    - Response steps taken
+    - Gaps identified
+    - Corrective actions assigned (with owners and dates)
+
+4. FREQUENCY
+  Tabletop exercise: annually (spring)
+  Functional drill: annually (fall)
+  Phishing simulation: quarterly
+
+================================================================
+Approved: Victor Osei            05/10/2026
+Prepared: Nathan Cruz            05/08/2026
+================================================================

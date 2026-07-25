@@ -1,0 +1,26 @@
+﻿AUDIT AND ACCOUNTABILITY POLICY
+Organization: Keith the Drone Guy LLC
+Control: 3.3.4 - Audit Failure Alerting
+Version: 1.2  |  Effective: 2026-01-15
+Owner: Keith Merritt, Owner-Operator  |  Approved: Keith Merritt, Owner-Operator
+
+1. PURPOSE
+This policy requires Keith the Drone Guy LLC to alert personnel in the event of an audit logging failure, per NIST SP 800-171 Rev. 2 control 3.3.4.
+
+2. SCOPE
+All Keith the Drone Guy LLC audit logging infrastructure and CUI systems.
+
+3. REQUIREMENTS
+a. Automated alerts notify Keith Merritt if any log source stops sending events for more than 30 minutes.
+b. Disk space alerts fire when log storage exceeds 80% capacity.
+c. Audit logging failures are treated as priority-1 incidents requiring immediate response.
+d. Response to logging failure alerts must begin within 15 minutes.
+e. Alert handling and resolution is documented.
+
+4. RESPONSIBILITY
+Keith Merritt, Owner-Operator, configures and responds to audit failure alerts.
+
+5. ENFORCEMENT
+Unacknowledged audit failure alerts beyond 15 minutes escalate automatically to Keith Merritt.
+
+Signed: Keith Merritt, Owner-Operator  |  Keith the Drone Guy LLC  |  2026-01-15

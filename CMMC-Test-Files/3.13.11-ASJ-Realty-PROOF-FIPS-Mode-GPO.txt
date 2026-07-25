@@ -1,0 +1,44 @@
+﻿SYSTEM AND COMMUNICATIONS PROTECTION IMPLEMENTATION EVIDENCE
+Organization: ASJ Realty
+Control: 3.13.11 - FIPS-Validated Cryptography
+Prepared By: Sandra Okonkwo, IT Director  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that ASJ Realty enables FIPS 140-2 validated cryptography on CUI endpoints.
+
+2. FIPS MODE CONFIGURATION
+Group Policy Object: FIPS-Mode-Enforcement-ASJ Realty
+GPO Path: Computer Configuration > Windows Settings > Security Settings > Local Policies > Security Options
+Setting: "System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing"
+Value: Enabled
+
+GPO linked to: CUI-Computers OU (contains ASJ-WS-001, WS-002)
+
+3. FIPS MODE VERIFICATION
+Endpoint: ASJ-WS-001
+Registry key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy
+Value: Enabled = 1
+
+Endpoint: WS-002
+Registry key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy
+Value: Enabled = 1
+
+4. GPO APPLICATION STATUS
+GPO Report run: 2026-06-30  |  Tool: gpresult /H on ASJ-WS-001
+Result: FIPS-Mode-Enforcement-ASJ Realty GPO applied. FIPS mode: ACTIVE. PASS.
+
+5. FIPS-VALIDATED MODULES IN USE
+BitLocker: Uses AES-128 (FIPS 140-2 validated, Module #1752)
+Windows TLS: Uses TLS 1.2/1.3 with FIPS-approved cipher suites
+Azure services: FIPS 140-2 Level 1 or higher for all M365 cryptographic operations
+
+6. PROHIBITED ALGORITHMS STATUS
+MD5: Disabled for CUI operations (allowed only for non-security checksums in FIPS mode)
+RC4: Disabled system-wide
+DES/3DES: Disabled system-wide
+SHA-1: Disabled for TLS; not used for CUI signatures
+
+7. CONCLUSION
+ASJ Realty enforces FIPS 140-2 validated cryptography on all CUI endpoints via GPO per control 3.13.11.
+
+Verified: Anthony James, Office Manager  |  ASJ Realty  |  2026-07-10

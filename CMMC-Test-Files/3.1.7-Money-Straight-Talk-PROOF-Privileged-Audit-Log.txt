@@ -1,0 +1,28 @@
+﻿ACCESS CONTROL IMPLEMENTATION EVIDENCE
+Organization: Money Straight Talk LLC
+Control: 3.1.7 - Privileged Function Execution Control
+Prepared By: Terrell Banks, Systems Admin  |  Date: 2026-07-10
+
+1. SUMMARY
+Evidence that Money Straight Talk LLC prevents non-privileged users from executing privileged functions and audits all privileged activity.
+
+2. TECHNICAL CONTROLS
+- Windows UAC: Enabled at max level on all Money Straight Talk LLC endpoints (GPO: UAC-Enforce-Money Straight Talk LLC)
+- Azure AD RBAC: Standard users have no admin role assignments
+- Intune: Device compliance blocks software install without admin credentials
+- Microsoft Sentinel: Alert rule triggers on Event ID 4672 (Special Logon) for non-admin accounts
+
+3. PRIVILEGED FUNCTION AUDIT LOG (Excerpt - June 2026)
+Date        | User            | Action                    | Outcome
+2026-06-05  | t.banks@moneystraighttalk.com     | Software install attempt  | Blocked (UAC)
+2026-06-12  | Terrell Banks@moneystraighttalk.com      | Azure AD role change      | Success (logged)
+2026-06-20  | Terrell Banks@moneystraighttalk.com      | Intune policy update      | Success (logged)
+
+4. MONTHLY REVIEW
+Date: 2026-07-02  |  Reviewer: Terrell Banks
+Result: 1 blocked non-admin install attempt. No unauthorized privilege escalation.
+
+5. CONCLUSION
+Money Straight Talk LLC enforces privileged function controls via UAC, RBAC, and monitored audit logs per control 3.1.7.
+
+Verified: Camille Odom, CEO  |  Money Straight Talk LLC  |  2026-07-10

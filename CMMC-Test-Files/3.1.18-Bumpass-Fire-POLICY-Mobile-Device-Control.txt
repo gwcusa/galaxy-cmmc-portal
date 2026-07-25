@@ -1,0 +1,47 @@
+================================================================
+BUMPASS FIRE & RESCUE
+MOBILE DEVICE CONNECTION CONTROL POLICY
+================================================================
+Document ID:    POL-AC-018
+Version:        1.0
+Effective Date: April 1, 2026
+Review Date:    April 1, 2027
+Owner:          Mike Sadler, IT Administrator
+Approved By:    Chief Randy Bowles
+================================================================
+
+1. PURPOSE
+This policy controls the connection of mobile devices
+(smartphones, tablets, and personal laptops) to Bumpass
+Fire & Rescue networks and systems.
+
+2. APPROVED MOBILE DEVICES
+  Only the following mobile devices are permitted to connect
+  to BFR's corporate network or access BFR systems:
+    - Company-issued mobile devices enrolled in Intune MDM
+    - Currently issued: 4 department iPhones (dispatch and command)
+    - Personally owned devices: NOT permitted on corp network
+      (BYOD is prohibited for CUI access)
+
+3. ENROLLMENT REQUIREMENTS
+  All approved mobile devices must:
+    - Be enrolled in Microsoft Intune MDM
+    - Have a minimum 6-digit PIN or biometric lock
+    - Have the BFR Authenticator app installed (for MFA)
+    - Have automatic OS updates enabled
+    - Have data encryption enabled (enforced by Intune)
+
+4. NETWORK SEGMENTATION
+  - Company iPhones connect to BRFD-Mobile SSID (separate VLAN)
+  - This VLAN has access to email (M365) and dispatch app only
+  - No access to file servers or CUI storage from mobile SSID
+
+5. LOST/STOLEN DEVICES
+  Any lost or stolen device must be reported to Mike Sadler
+  immediately. Intune remote wipe will be performed within
+  1 hour of notification.
+
+================================================================
+Approved: Chief Randy Bowles        04/01/2026
+Prepared: Mike Sadler               03/30/2026
+================================================================

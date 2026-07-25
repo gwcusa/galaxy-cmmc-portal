@@ -1,0 +1,51 @@
+================================================================
+ASJ REALTY
+AUDIT LOG MANAGEMENT ACCESS CONTROL POLICY
+================================================================
+Document ID:    POL-AU-009
+Version:        1.0
+Effective Date: June 5, 2026
+Review Date:    June 5, 2027
+Owner:          Sandra Okonkwo, IT Coordinator
+Approved By:    Anthony James, Principal Broker
+================================================================
+
+1. PURPOSE
+This policy limits the management of audit logging to a
+subset of privileged users to ensure logs are protected
+from tampering by those whose activities are being logged.
+
+2. AUTHORIZED AUDIT ADMINISTRATORS
+Only the following individuals may manage audit logging:
+  - Sandra Okonkwo (IT Coordinator) - Primary
+  - Anthony James (Principal Broker) - Emergency backup only
+
+3. RESTRICTED MANAGEMENT FUNCTIONS
+Only authorized audit administrators may:
+  - Configure which events are logged
+  - Modify audit log retention settings
+  - Access and export audit logs for investigation
+  - Create or modify SIEM alert rules
+  - Add or remove log sources
+
+4. SEPARATION PRINCIPLE
+  - No user can modify the audit log for their own activities
+  - Sandra Okonkwo cannot modify audit logs that record her
+    own actions without Anthony James being notified
+  - Changes to audit configuration are themselves logged
+
+5. TECHNICAL ENFORCEMENT
+  - Microsoft Sentinel RBAC: only sokonkwo@asjrealty.com and
+    ajames@asjrealty.com have Sentinel Contributor role
+  - Sentinel audit configuration changes are captured in
+    Azure Activity Log and forwarded to Sentinel
+  - Regular user accounts have no access to Sentinel
+
+6. REVIEW
+  Sandra Okonkwo reviews who has audit management access
+  quarterly and certifies the list to Anthony James.
+
+================================================================
+Approved: Anthony James           06/05/2026
+Prepared: Sandra Okonkwo          06/03/2026
+================================================================
