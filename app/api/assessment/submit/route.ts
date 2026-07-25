@@ -4,6 +4,7 @@ import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/s
 import { runAssessmentReview, executeReviewRun } from "@/lib/run-assessment-review";
 import { sendAssessmentSubmittedEmail } from "@/lib/email";
 import { logAudit } from "@/lib/audit";
+import { getControlsForLevel } from "@/lib/controls";
 
 export const maxDuration = 300;
 
@@ -23,15 +24,17 @@ export async function POST(req: NextRequest) {
   // Verify the assessment belongs to this user
   const { data: assessment } = await serviceSupabase
     .from("assessments")
-    .select("id, status, client_id, clients(user_id)")
+    .select("id, status, client_id, clients(user_id, cmmc_target_level)")
     .eq("id", assessmentId)
     .single();
 
   if (!assessment) return NextResponse.json({ error: "Not found" }, { status: 404 });
   const client = Array.isArray(assessment.clients) ? assessment.clients[0] : assessment.clients;
-  if (!client || (client as { user_id: string }).user_id !== user.id) {
+  if (!client || (client as { user_id: string; cmmc_target_level?: number }).user_id !== user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
+  const targetLevel = ((client as { cmmc_target_level?: number }).cmmc_target_level ?? 2) as 1 | 2;
+  const applicableControlIds = new Set(getControlsForLevel(targetLevel).map((c) => c.id));
 
   // Allow submission from in_progress (→ submitted) or remediation_required (→ resubmitted)
   if (assessment.status !== "in_progress" && assessment.status !== "remediation_required") {
@@ -40,12 +43,15 @@ export async function POST(req: NextRequest) {
 
   const newStatus = assessment.status === "remediation_required" ? "resubmitted" : "submitted";
 
-  // Get all controls the client answered yes or partial
-  const { data: responses } = await serviceSupabase
+  // Get all controls the client answered yes or partial, filtered to their CMMC target level.
+  // Controls outside the client's level (e.g. level-2 controls for a level-1 client) are
+  // never shown in the assessment UI, so we must not validate evidence for them.
+  const { data: allResponses } = await serviceSupabase
     .from("assessment_responses")
     .select("control_id, no_artifacts, no_policy_document, no_implementation_artifact")
     .eq("assessment_id", assessmentId)
     .in("response", ["yes", "partial"]);
+  const responses = (allResponses ?? []).filter((r) => applicableControlIds.has(r.control_id));
 
   // Validate BEFORE changing status: every yes/partial control must have
   // (policy artifact OR no_policy_document) AND (implementation artifact OR no_implementation_artifact).
