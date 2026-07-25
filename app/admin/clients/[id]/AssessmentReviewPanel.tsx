@@ -11,6 +11,8 @@ export type ControlReviewItem = {
   clientResponse: string;
   clientNotes: string | null;
   noArtifacts: boolean;
+  noPolicyDocument: boolean;
+  noImplementationArtifact: boolean;
   aiVerdict: string | null;
   aiFeedback: string | null;
   aiGeneratedAt: string | null;
@@ -248,13 +250,22 @@ export default function AssessmentReviewPanel({
                   ) : (
                     <div style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", fontStyle: "italic" }}>No notes provided</div>
                   )}
-                  {item.noArtifacts && (
+                  {item.noPolicyDocument && (
                     <div style={{
-                      marginTop: 8, padding: "4px 10px", borderRadius: 6, display: "inline-block",
+                      marginTop: 6, padding: "3px 10px", borderRadius: 6, display: "inline-block",
+                      background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.25)",
+                      fontSize: 11, color: "#A78BFA", fontStyle: "normal",
+                    }}>
+                      No policy document available
+                    </div>
+                  )}
+                  {item.noImplementationArtifact && (
+                    <div style={{
+                      marginTop: 6, padding: "3px 10px", borderRadius: 6, display: "inline-block",
                       background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.25)",
                       fontSize: 11, color: "#F87171", fontStyle: "normal",
                     }}>
-                      No artifacts — client declared none available
+                      No implementation evidence available
                     </div>
                   )}
                 </div>

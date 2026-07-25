@@ -13,6 +13,7 @@ type ArtifactItem = {
   file_size: number | null;
   mime_type: string | null;
   uploaded_at: string;
+  artifact_type: "policy" | "implementation" | null;
   signedUrl: string;
 };
 
@@ -20,7 +21,8 @@ export default function AssessmentPage() {
   const [step, setStep] = useState(0);
   const [responses, setResponses] = useState<ResponseMap>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const [noArtifacts, setNoArtifacts] = useState<Record<string, boolean>>({});
+  const [noPolicyDocument, setNoPolicyDocument] = useState<Record<string, boolean>>({});
+  const [noImplementationArtifact, setNoImplementationArtifact] = useState<Record<string, boolean>>({});
   const [assessmentId, setAssessmentId] = useState<string | null>(null);
   const [assessmentStatus, setAssessmentStatus] = useState<string>("in_progress");
   const [clientId, setClientId] = useState<string | null>(null);
@@ -57,15 +59,24 @@ export default function AssessmentPage() {
       setAssessmentStatus(data.assessmentStatus ?? "in_progress");
       const responseMap: ResponseMap = {};
       const notesMap: Record<string, string> = {};
-      const noArtifactsMap: Record<string, boolean> = {};
+      const noPolicyMap: Record<string, boolean> = {};
+      const noImplMap: Record<string, boolean> = {};
       for (const r of data.responses) {
         responseMap[r.control_id] = r.response;
         if (r.notes) notesMap[r.control_id] = r.notes;
-        if (r.no_artifacts) noArtifactsMap[r.control_id] = true;
+        // Support both legacy no_artifacts and new per-type flags
+        if (r.no_artifacts) {
+          noPolicyMap[r.control_id] = true;
+          noImplMap[r.control_id] = true;
+        } else {
+          if (r.no_policy_document) noPolicyMap[r.control_id] = true;
+          if (r.no_implementation_artifact) noImplMap[r.control_id] = true;
+        }
       }
       setResponses(responseMap);
       setNotes(notesMap);
-      setNoArtifacts(noArtifactsMap);
+      setNoPolicyDocument(noPolicyMap);
+      setNoImplementationArtifact(noImplMap);
 
       if (data.assessmentId) {
         const guidanceRes = await fetch(`/api/remediation/client?assessmentId=${data.assessmentId}`);
@@ -89,7 +100,8 @@ export default function AssessmentPage() {
     controlId: string,
     response: Response,
     note: string,
-    noArt: boolean,
+    noPolicy: boolean,
+    noImpl: boolean,
   ) => {
     if (!assessmentId) return;
     setSaving(true);
@@ -101,7 +113,8 @@ export default function AssessmentPage() {
         controlId,
         response,
         notes: note,
-        no_artifacts: noArt,
+        no_policy_document: noPolicy,
+        no_implementation_artifact: noImpl,
       }),
     });
     setSaving(false);
@@ -115,17 +128,22 @@ export default function AssessmentPage() {
   const answeredCount = Object.keys(responses).length;
   const currentResponse = responses[control?.id ?? ""];
   const currentNote = notes[control?.id ?? ""] ?? "";
-  const currentNoArtifacts = noArtifacts[control?.id ?? ""] ?? false;
+  const currentNoPolicyDocument = noPolicyDocument[control?.id ?? ""] ?? false;
+  const currentNoImplementationArtifact = noImplementationArtifact[control?.id ?? ""] ?? false;
   const currentArtifacts = artifacts[control?.id ?? ""] ?? [];
+  const policyArtifacts = currentArtifacts.filter((a) => a.artifact_type === "policy");
+  const implementationArtifacts = currentArtifacts.filter((a) => a.artifact_type === "implementation");
   const needsEvidence = currentResponse === "yes" || currentResponse === "partial";
-  const evidenceSatisfied = needsEvidence ? (currentArtifacts.length > 0 || currentNoArtifacts) : true;
+  const policySatisfied = policyArtifacts.length > 0 || currentNoPolicyDocument;
+  const implementationSatisfied = implementationArtifacts.length > 0 || currentNoImplementationArtifact;
+  const evidenceSatisfied = needsEvidence ? (policySatisfied && implementationSatisfied) : true;
 
   function handleResponse(val: Response) {
     setArtifactError(false);
     setResponses((r) => ({ ...r, [control.id]: val }));
-    const noArt = noArtifacts[control.id] ?? false;
-    saveResponse(control.id, val, currentNote, noArt);
-    // Load artifacts when switching to yes/partial
+    const noPolicy = noPolicyDocument[control.id] ?? false;
+    const noImpl = noImplementationArtifact[control.id] ?? false;
+    saveResponse(control.id, val, currentNote, noPolicy, noImpl);
     if ((val === "yes" || val === "partial") && !artifacts[control.id]) {
       loadArtifacts(control.id);
     }
@@ -137,15 +155,25 @@ export default function AssessmentPage() {
 
   function handleNoteBlur() {
     if (currentResponse) {
-      saveResponse(control.id, currentResponse, currentNote, currentNoArtifacts);
+      saveResponse(control.id, currentResponse, currentNote, currentNoPolicyDocument, currentNoImplementationArtifact);
     }
   }
 
-  function handleNoArtifactsToggle(checked: boolean) {
-    setNoArtifacts((n) => ({ ...n, [control.id]: checked }));
+  function handleNoPolicyToggle(checked: boolean) {
+    setNoPolicyDocument((n) => ({ ...n, [control.id]: checked }));
     if (checked) setArtifactError(false);
     if (currentResponse) {
-      saveResponse(control.id, currentResponse, currentNote, checked);
+      const noImpl = noImplementationArtifact[control.id] ?? false;
+      saveResponse(control.id, currentResponse, currentNote, checked, noImpl);
+    }
+  }
+
+  function handleNoImplementationToggle(checked: boolean) {
+    setNoImplementationArtifact((n) => ({ ...n, [control.id]: checked }));
+    if (checked) setArtifactError(false);
+    if (currentResponse) {
+      const noPolicy = noPolicyDocument[control.id] ?? false;
+      saveResponse(control.id, currentResponse, currentNote, noPolicy, checked);
     }
   }
 
@@ -167,7 +195,7 @@ export default function AssessmentPage() {
     }
   }
 
-  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>, artifactType: "policy" | "implementation") {
     const file = e.target.files?.[0];
     if (!file || !assessmentId || !control) return;
     setUploading(true);
@@ -175,6 +203,7 @@ export default function AssessmentPage() {
     const form = new FormData();
     form.append("assessmentId", assessmentId);
     form.append("controlId", control.id);
+    form.append("artifactType", artifactType);
     form.append("file", file);
     const res = await fetch("/api/artifacts", { method: "POST", body: form });
     const data = await res.json();
@@ -184,10 +213,15 @@ export default function AssessmentPage() {
         [control.id]: [...(prev[control.id] ?? []), data.artifact],
       }));
       setArtifactError(false);
-      // Clear "no artifacts" if they upload something
-      if (currentNoArtifacts) {
-        setNoArtifacts((n) => ({ ...n, [control.id]: false }));
-        if (currentResponse) saveResponse(control.id, currentResponse, currentNote, false);
+      // Clear the "not available" flag for the type they just uploaded
+      if (artifactType === "policy" && (noPolicyDocument[control.id] ?? false)) {
+        setNoPolicyDocument((n) => ({ ...n, [control.id]: false }));
+        const noImpl = noImplementationArtifact[control.id] ?? false;
+        if (currentResponse) saveResponse(control.id, currentResponse, currentNote, false, noImpl);
+      } else if (artifactType === "implementation" && (noImplementationArtifact[control.id] ?? false)) {
+        setNoImplementationArtifact((n) => ({ ...n, [control.id]: false }));
+        const noPolicy = noPolicyDocument[control.id] ?? false;
+        if (currentResponse) saveResponse(control.id, currentResponse, currentNote, noPolicy, false);
       }
     } else {
       setUploadError(data.error ?? "Upload failed");
@@ -233,7 +267,7 @@ export default function AssessmentPage() {
     setSaving(false);
     if (!res.ok) {
       if (data.missingArtifacts) {
-        setSubmitError(`Evidence required for ${data.missingArtifacts.length} control(s): ${data.missingArtifacts.slice(0, 5).join(", ")}${data.missingArtifacts.length > 5 ? "…" : ""}. Please go back and upload artifacts or select "No artifacts available" for each.`);
+        setSubmitError(`Evidence required for ${data.missingArtifacts.length} control(s): ${data.missingArtifacts.slice(0, 5).join(", ")}${data.missingArtifacts.length > 5 ? "…" : ""}. Please go back and provide both a policy document and implementation evidence for each, or mark each type as unavailable.`);
       } else {
         setSubmitError(data.error ?? "Submission failed");
       }
@@ -291,6 +325,158 @@ export default function AssessmentPage() {
   }
 
   const card: React.CSSProperties = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
+
+  function EvidencePanel({
+    type,
+    label,
+    hint,
+    uploadLabel,
+    panelArtifacts,
+    noFlag,
+    noFlagLabel,
+    noFlagHint,
+    onToggle,
+    satisfied,
+    showError,
+  }: {
+    type: "policy" | "implementation";
+    label: string;
+    hint: string;
+    uploadLabel: string;
+    panelArtifacts: ArtifactItem[];
+    noFlag: boolean;
+    noFlagLabel: string;
+    noFlagHint: string;
+    onToggle: (checked: boolean) => void;
+    satisfied: boolean;
+    showError: boolean;
+  }) {
+    return (
+      <div style={{
+        background: showError && !satisfied ? "rgba(248,113,113,0.03)" : "rgba(255,255,255,0.02)",
+        border: `1px solid ${showError && !satisfied ? "rgba(248,113,113,0.25)" : "rgba(255,255,255,0.07)"}`,
+        borderRadius: 10,
+        padding: 14,
+      }}>
+        {/* Panel header */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+          <div style={{
+            fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "1px",
+            color: showError && !satisfied ? "#F87171" : "rgba(255,255,255,0.45)",
+          }}>
+            {label}
+          </div>
+          <span style={{ fontSize: 11, color: "#F87171", fontWeight: 700 }}>*</span>
+          {satisfied && <span style={{ fontSize: 11, color: "#4DFFA0" }}>✓</span>}
+        </div>
+
+        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", lineHeight: 1.5, marginBottom: 12 }}>
+          {hint}
+        </div>
+
+        {/* Uploaded files */}
+        {panelArtifacts.length > 0 && (
+          <div style={{ marginBottom: 10 }}>
+            {panelArtifacts.map((artifact) => (
+              <div key={artifact.id} style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                background: "rgba(77,255,160,0.04)", border: "1px solid rgba(77,255,160,0.15)",
+                borderRadius: 8, padding: "9px 12px", marginBottom: 6,
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
+                  <span style={{ fontSize: 15 }}>📎</span>
+                  <div style={{ minWidth: 0 }}>
+                    <a
+                      href={artifact.signedUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        fontSize: 12, color: "#4DFFA0", textDecoration: "none", fontWeight: 500,
+                        display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                      }}
+                    >
+                      {artifact.file_name}
+                    </a>
+                    {artifact.file_size && (
+                      <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>
+                        {(artifact.file_size / 1024).toFixed(1)} KB
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleDelete(artifact.id, control.id)}
+                  style={{
+                    background: "none", border: "none", color: "rgba(248,113,113,0.6)",
+                    cursor: "pointer", fontSize: 18, padding: "0 4px", flexShrink: 0,
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {uploadError && type === "policy" && (
+          <div style={{ fontSize: 12, color: "#F87171", marginBottom: 8 }}>{uploadError}</div>
+        )}
+        {uploadError && type === "implementation" && (
+          <div style={{ fontSize: 12, color: "#F87171", marginBottom: 8 }}>{uploadError}</div>
+        )}
+
+        {/* Upload button */}
+        {!noFlag && (
+          <label style={{
+            display: "inline-flex", alignItems: "center", gap: 8,
+            padding: "8px 14px", borderRadius: 8, fontSize: 12, fontWeight: 500,
+            border: "1px dashed rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.03)",
+            color: uploading ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.6)",
+            cursor: uploading ? "not-allowed" : "pointer", marginBottom: 4,
+          }}>
+            <span>{uploading ? "Uploading..." : `+ ${uploadLabel}`}</span>
+            <input
+              type="file"
+              accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.txt"
+              onChange={(e) => handleUpload(e, type)}
+              disabled={uploading}
+              style={{ display: "none" }}
+            />
+          </label>
+        )}
+        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginBottom: panelArtifacts.length === 0 ? 10 : 0 }}>
+          PDF, PNG, JPG, DOCX, XLSX, TXT · Max 10MB
+        </div>
+
+        {/* "or" divider + not-available checkbox */}
+        {panelArtifacts.length === 0 && (
+          <>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "10px 0" }}>
+              <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.06)" }} />
+              <span style={{ fontSize: 11, color: "rgba(255,255,255,0.2)" }}>or</span>
+              <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.06)" }} />
+            </div>
+            <label style={{ display: "flex", alignItems: "flex-start", gap: 9, cursor: "pointer" }}>
+              <input
+                type="checkbox"
+                checked={noFlag}
+                onChange={(e) => onToggle(e.target.checked)}
+                style={{ marginTop: 2, accentColor: "#F87171", width: 14, height: 14, flexShrink: 0 }}
+              />
+              <div>
+                <div style={{ fontSize: 12, color: noFlag ? "#F87171" : "rgba(255,255,255,0.5)", fontWeight: noFlag ? 600 : 400 }}>
+                  {noFlagLabel}
+                </div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 2, lineHeight: 1.5 }}>
+                  {noFlagHint}
+                </div>
+              </div>
+            </label>
+          </>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -403,49 +589,43 @@ export default function AssessmentPage() {
           </div>
         </div>
 
-        {/* Notes */}
+        {/* Implementation Statement */}
         <div style={{ marginBottom: needsEvidence ? 20 : 24 }}>
           <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 6 }}>
-            Notes / Implementation Details
-            {needsEvidence && <span style={{ color: "rgba(255,255,255,0.2)", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}> (optional)</span>}
+            Implementation Statement
+            {needsEvidence && <span style={{ color: "rgba(255,255,255,0.2)", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}> (required)</span>}
           </div>
           <textarea
             value={currentNote}
             onChange={(e) => handleNote(e.target.value)}
             onBlur={handleNoteBlur}
-            placeholder="Describe how this control is implemented, what systems are in use, or any relevant context..."
+            placeholder="Describe specifically how this control is implemented in your environment — what processes, technical controls, or systems are in place to meet this requirement fully or partially..."
             style={{
               width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
               borderRadius: 8, padding: 12, color: "#E2E8F0", fontSize: 13,
-              resize: "vertical", minHeight: 80, boxSizing: "border-box",
+              resize: "vertical", minHeight: 90, boxSizing: "border-box",
             }}
           />
         </div>
 
-        {/* Evidence / Artifacts — required for yes/partial */}
+        {/* Evidence — required for yes/partial */}
         {needsEvidence && (
-          <div style={{
-            marginBottom: 24,
-            background: artifactError ? "rgba(248,113,113,0.04)" : "rgba(255,255,255,0.02)",
-            border: `1px solid ${artifactError ? "rgba(248,113,113,0.3)" : "rgba(255,255,255,0.08)"}`,
-            borderRadius: 10,
-            padding: 16,
-          }}>
-            {/* Header */}
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+          <div style={{ marginBottom: 24 }}>
+            {/* Section header */}
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
               <div style={{ fontSize: 11, color: artifactError ? "#F87171" : "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "1px", fontWeight: 600 }}>
-                Evidence Required
+                Supporting Evidence
               </div>
               <span style={{ fontSize: 11, color: "#F87171", fontWeight: 700 }}>*</span>
               {evidenceSatisfied && (
-                <span style={{ fontSize: 11, color: "#4DFFA0", marginLeft: 4 }}>✓ Provided</span>
+                <span style={{ fontSize: 11, color: "#4DFFA0", marginLeft: 4 }}>✓ Complete</span>
               )}
             </div>
 
-            {/* CMMC Guidance */}
+            {/* CMMC guidance */}
             {control.guidance && (
               <div style={{
-                marginBottom: 14, padding: "10px 14px",
+                marginBottom: 12, padding: "10px 14px",
                 background: "rgba(0,201,255,0.04)", border: "1px solid rgba(0,201,255,0.12)",
                 borderRadius: 8,
               }}>
@@ -458,115 +638,44 @@ export default function AssessmentPage() {
               </div>
             )}
 
-            {/* Uploaded artifacts */}
-            {currentArtifacts.length > 0 && (
-              <div style={{ marginBottom: 12 }}>
-                {currentArtifacts.map((artifact) => (
-                  <div key={artifact.id} style={{
-                    display: "flex", alignItems: "center", justifyContent: "space-between",
-                    background: "rgba(77,255,160,0.04)", border: "1px solid rgba(77,255,160,0.15)",
-                    borderRadius: 8, padding: "10px 14px", marginBottom: 6,
-                  }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
-                      <span style={{ fontSize: 16 }}>📎</span>
-                      <div style={{ minWidth: 0 }}>
-                        <a
-                          href={artifact.signedUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{
-                            fontSize: 13, color: "#4DFFA0", textDecoration: "none", fontWeight: 500,
-                            display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
-                          }}
-                        >
-                          {artifact.file_name}
-                        </a>
-                        {artifact.file_size && (
-                          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>
-                            {(artifact.file_size / 1024).toFixed(1)} KB
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => handleDelete(artifact.id, control.id)}
-                      style={{
-                        background: "none", border: "none", color: "rgba(248,113,113,0.6)",
-                        cursor: "pointer", fontSize: 18, padding: "0 4px", flexShrink: 0,
-                      }}
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Upload error */}
-            {uploadError && (
-              <div style={{ fontSize: 12, color: "#F87171", marginBottom: 8 }}>{uploadError}</div>
-            )}
-
-            {/* Upload button — only show if no_artifacts not checked */}
-            {!currentNoArtifacts && (
-              <label style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "9px 16px", borderRadius: 8, fontSize: 13, fontWeight: 500,
-                border: "1px dashed rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.03)",
-                color: uploading ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.6)",
-                cursor: uploading ? "not-allowed" : "pointer", marginBottom: 6,
-              }}>
-                <span>{uploading ? "Uploading..." : "+ Attach Evidence"}</span>
-                <input
-                  type="file"
-                  accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.txt"
-                  onChange={handleUpload}
-                  disabled={uploading}
-                  style={{ display: "none" }}
-                />
-              </label>
-            )}
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginBottom: 14 }}>
-              PDF, PNG, JPG, DOCX, XLSX, TXT · Max 10MB
+            {/* Two evidence panels */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+              <EvidencePanel
+                type="policy"
+                label="Policy Document"
+                hint="Upload a written policy or procedure that covers this control requirement (e.g., Access Control Policy, Configuration Management Plan)."
+                uploadLabel="Attach Policy Document"
+                panelArtifacts={policyArtifacts}
+                noFlag={currentNoPolicyDocument}
+                noFlagLabel="No policy document available"
+                noFlagHint="Check this if you do not have a formal written policy covering this control."
+                onToggle={handleNoPolicyToggle}
+                satisfied={policySatisfied}
+                showError={artifactError}
+              />
+              <EvidencePanel
+                type="implementation"
+                label="Implementation Evidence"
+                hint="Upload a screenshot or record showing this control actively in place (e.g., Active Directory settings, firewall config, system screenshot)."
+                uploadLabel="Attach Implementation Evidence"
+                panelArtifacts={implementationArtifacts}
+                noFlag={currentNoImplementationArtifact}
+                noFlagLabel="No implementation evidence available"
+                noFlagHint="Check this if you cannot provide a screenshot or artifact showing active implementation."
+                onToggle={handleNoImplementationToggle}
+                satisfied={implementationSatisfied}
+                showError={artifactError}
+              />
             </div>
-
-            {/* Divider */}
-            {currentArtifacts.length === 0 && (
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-                <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)" }} />
-                <span style={{ fontSize: 11, color: "rgba(255,255,255,0.2)" }}>or</span>
-                <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)" }} />
-              </div>
-            )}
-
-            {/* No artifacts checkbox */}
-            {currentArtifacts.length === 0 && (
-              <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer" }}>
-                <input
-                  type="checkbox"
-                  checked={currentNoArtifacts}
-                  onChange={(e) => handleNoArtifactsToggle(e.target.checked)}
-                  style={{ marginTop: 2, accentColor: "#F87171", width: 15, height: 15, flexShrink: 0 }}
-                />
-                <div>
-                  <div style={{ fontSize: 13, color: currentNoArtifacts ? "#F87171" : "rgba(255,255,255,0.5)", fontWeight: currentNoArtifacts ? 600 : 400 }}>
-                    No artifacts available for this control
-                  </div>
-                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 2, lineHeight: 1.5 }}>
-                    Check this only if you are genuinely unable to provide supporting evidence. Your assessor will review this declaration.
-                  </div>
-                </div>
-              </label>
-            )}
 
             {/* Validation error */}
             {artifactError && (
               <div style={{
-                marginTop: 12, padding: "10px 14px", borderRadius: 8,
+                marginTop: 10, padding: "10px 14px", borderRadius: 8,
                 background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.25)",
                 fontSize: 12, color: "#F87171",
               }}>
-                Please attach at least one piece of evidence, or check &ldquo;No artifacts available&rdquo; to proceed.
+                Both a policy document and implementation evidence are required. Upload each or check &ldquo;not available&rdquo; for each type.
               </div>
             )}
           </div>

@@ -56,16 +56,16 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
 
   // Fetch responses WITH notes for review panel
   let responses: ResponseMap = {};
-  let responseRows: { control_id: string; response: string; notes: string | null; no_artifacts: boolean }[] = [];
+  let responseRows: { control_id: string; response: string; notes: string | null; no_artifacts: boolean; no_policy_document: boolean; no_implementation_artifact: boolean }[] = [];
   let gapControlIds: string[] = [];
 
   if (activeAssessment) {
     const { data } = await supabase
       .from("assessment_responses")
-      .select("control_id, response, notes, no_artifacts")
+      .select("control_id, response, notes, no_artifacts, no_policy_document, no_implementation_artifact")
       .eq("assessment_id", activeAssessment.id);
     if (data) {
-      responseRows = data;
+      responseRows = data as typeof responseRows;
       responses = Object.fromEntries(data.map((r) => [r.control_id, r.response])) as ResponseMap;
       gapControlIds = data.filter((r) => r.response === "no").map((r) => r.control_id);
     }
@@ -88,14 +88,14 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 
-  let artifactRows: { id: string; control_id: string; file_name: string; file_size: number | null; storage_path: string; uploaded_at: string }[] = [];
+  let artifactRows: { id: string; control_id: string; file_name: string; file_size: number | null; storage_path: string; uploaded_at: string; artifact_type: "policy" | "implementation" | null }[] = [];
   if (activeAssessment) {
     const { data } = await supabase
       .from("artifacts")
-      .select("id, control_id, file_name, file_size, storage_path, uploaded_at")
+      .select("id, control_id, file_name, file_size, storage_path, uploaded_at, artifact_type")
       .eq("assessment_id", activeAssessment.id)
       .order("uploaded_at", { ascending: false });
-    artifactRows = data ?? [];
+    artifactRows = (data ?? []) as typeof artifactRows;
   }
 
   const artifactsWithUrls = await Promise.all(
@@ -148,6 +148,8 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         clientResponse: r.response,
         clientNotes: r.notes ?? null,
         noArtifacts: r.no_artifacts ?? false,
+        noPolicyDocument: (r.no_artifacts || r.no_policy_document) ?? false,
+        noImplementationArtifact: (r.no_artifacts || r.no_implementation_artifact) ?? false,
         aiVerdict: ai?.verdict ?? null,
         aiFeedback: ai?.feedback ?? null,
         aiGeneratedAt: ai?.generated_at ?? null,
@@ -523,7 +525,13 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
                   </span>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  {items.map((artifact) => (
+                  {items.map((artifact) => {
+                    const typeConfig = artifact.artifact_type === "policy"
+                      ? { label: "Policy", color: "#A78BFA", bg: "rgba(167,139,250,0.08)", border: "rgba(167,139,250,0.25)" }
+                      : artifact.artifact_type === "implementation"
+                      ? { label: "Implementation", color: "#00C9FF", bg: "rgba(0,201,255,0.08)", border: "rgba(0,201,255,0.25)" }
+                      : { label: "Uncategorized", color: "rgba(255,255,255,0.35)", bg: "rgba(255,255,255,0.04)", border: "rgba(255,255,255,0.1)" };
+                    return (
                     <div key={artifact.id} style={{
                       display: "flex", alignItems: "center", justifyContent: "space-between",
                       background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: "10px 14px",
@@ -545,8 +553,16 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
                           </div>
                         </div>
                       </div>
+                      <span style={{
+                        fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 12,
+                        color: typeConfig.color, background: typeConfig.bg, border: `1px solid ${typeConfig.border}`,
+                        flexShrink: 0,
+                      }}>
+                        {typeConfig.label}
+                      </span>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             ))}

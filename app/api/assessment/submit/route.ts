@@ -43,31 +43,43 @@ export async function POST(req: NextRequest) {
   // Get all controls the client answered yes or partial
   const { data: responses } = await serviceSupabase
     .from("assessment_responses")
-    .select("control_id, no_artifacts")
+    .select("control_id, no_artifacts, no_policy_document, no_implementation_artifact")
     .eq("assessment_id", assessmentId)
     .in("response", ["yes", "partial"]);
 
-  // Validate BEFORE changing status: every yes/partial control must have either
-  // an artifact or no_artifacts = true
-  const controlsNeedingArtifacts = (responses ?? [])
-    .filter((r) => !r.no_artifacts)
+  // Validate BEFORE changing status: every yes/partial control must have
+  // (policy artifact OR no_policy_document) AND (implementation artifact OR no_implementation_artifact).
+  // Legacy: no_artifacts=true satisfies both types; artifact_type=null satisfies both types.
+  const controlsNeedingCheck = (responses ?? [])
+    .filter((r) => {
+      const policyOk = r.no_artifacts || r.no_policy_document;
+      const implOk = r.no_artifacts || r.no_implementation_artifact;
+      return !(policyOk && implOk);
+    })
     .map((r) => r.control_id);
 
-  if (controlsNeedingArtifacts.length > 0) {
+  if (controlsNeedingCheck.length > 0) {
     const { data: artifacts } = await serviceSupabase
       .from("artifacts")
-      .select("control_id")
+      .select("control_id, artifact_type")
       .eq("assessment_id", assessmentId)
-      .in("control_id", controlsNeedingArtifacts);
+      .in("control_id", controlsNeedingCheck);
 
-    const coveredSet = new Set((artifacts ?? []).map((a) => a.control_id));
-    const missing = controlsNeedingArtifacts.filter((id) => !coveredSet.has(id));
+    const missing: string[] = [];
+    for (const r of (responses ?? []).filter((r) => controlsNeedingCheck.includes(r.control_id))) {
+      const controlArtifacts = (artifacts ?? []).filter((a) => a.control_id === r.control_id);
+      const policyOk = r.no_artifacts || r.no_policy_document ||
+        controlArtifacts.some((a) => a.artifact_type === "policy" || a.artifact_type === null);
+      const implOk = r.no_artifacts || r.no_implementation_artifact ||
+        controlArtifacts.some((a) => a.artifact_type === "implementation" || a.artifact_type === null);
+      if (!policyOk || !implOk) missing.push(r.control_id);
+    }
 
     if (missing.length > 0) {
       return NextResponse.json({
         error: "Evidence required",
         missingArtifacts: missing,
-        message: `${missing.length} control(s) require evidence. Please upload artifacts or select "No artifacts available" for: ${missing.join(", ")}`,
+        message: `${missing.length} control(s) require both a policy document and implementation evidence. Please upload both types or mark each as unavailable for: ${missing.join(", ")}`,
       }, { status: 400 });
     }
   }

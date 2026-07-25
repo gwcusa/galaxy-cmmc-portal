@@ -63,7 +63,7 @@ export async function GET(req: NextRequest) {
 
   const { data: artifactRows, error } = await serviceSupabase
     .from("artifacts")
-    .select("id, file_name, file_size, mime_type, storage_path, uploaded_at")
+    .select("id, file_name, file_size, mime_type, storage_path, uploaded_at, artifact_type")
     .eq("assessment_id", assessmentId)
     .eq("control_id", controlId)
     .order("uploaded_at", { ascending: true });
@@ -82,6 +82,7 @@ export async function GET(req: NextRequest) {
         file_size: a.file_size,
         mime_type: a.mime_type,
         uploaded_at: a.uploaded_at,
+        artifact_type: a.artifact_type as "policy" | "implementation" | null,
         signedUrl: signed?.signedUrl ?? "",
       };
     })
@@ -100,12 +101,16 @@ export async function POST(req: NextRequest) {
   const assessmentId = formData.get("assessmentId") as string | null;
   const controlId = formData.get("controlId") as string | null;
   const file = formData.get("file") as File | null;
+  const artifactType = formData.get("artifactType") as string | null;
 
   if (!assessmentId || !controlId) {
     return NextResponse.json({ error: "assessmentId and controlId required" }, { status: 400 });
   }
   if (!file) {
     return NextResponse.json({ error: "file required" }, { status: 400 });
+  }
+  if (!artifactType || (artifactType !== "policy" && artifactType !== "implementation")) {
+    return NextResponse.json({ error: "artifactType must be 'policy' or 'implementation'" }, { status: 400 });
   }
 
   // Validate size
@@ -156,10 +161,11 @@ export async function POST(req: NextRequest) {
       storage_path: storagePath,
       file_size: file.size,
       mime_type: file.type || null,
+      artifact_type: artifactType,
       uploaded_by: user.id,
       uploaded_at: new Date().toISOString(),
     })
-    .select("id, file_name, file_size, mime_type, uploaded_at")
+    .select("id, file_name, file_size, mime_type, uploaded_at, artifact_type")
     .single();
 
   if (dbError) {
@@ -180,6 +186,7 @@ export async function POST(req: NextRequest) {
       file_size: artifact.file_size,
       mime_type: artifact.mime_type,
       uploaded_at: artifact.uploaded_at,
+      artifact_type: artifact.artifact_type as "policy" | "implementation",
       signedUrl: signed?.signedUrl ?? "",
     },
   });
