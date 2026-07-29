@@ -8,18 +8,25 @@ export async function GET() {
   const { data: { user } } = await authSupabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  const adminClient = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+
+  // Role check — reading own row, so svc (cookie-based) works here
   const svc = createServiceSupabaseClient();
   const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
   if (!["admin", "assessor"].includes(role?.role ?? "")) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-  const { data: rows } = await svc
+  // Use adminClient to bypass RLS for reading all admin/assessor rows
+  const { data: rows } = await adminClient
     .from("user_roles")
     .select("user_id, role")
     .in("role", ["admin", "assessor"]);
 
   const assessors = await Promise.all(
     (rows ?? []).map(async ({ user_id, role: r }) => {
-      const { data } = await svc.auth.admin.getUserById(user_id);
+      const { data } = await adminClient.auth.admin.getUserById(user_id);
       return {
         id: user_id,
         role: r,
