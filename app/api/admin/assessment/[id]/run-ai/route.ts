@@ -28,7 +28,7 @@ export async function POST(
     .select("role")
     .eq("user_id", user.id)
     .single();
-  if (roleRow?.role !== "admin") {
+  if (!["admin", "assessor"].includes(roleRow?.role ?? "")) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -59,7 +59,7 @@ export async function POST(
 
   logAudit({
     actorId: user.id,
-    actorRole: "admin",
+    actorRole: roleRow?.role ?? "assessor",
     action: "review_run.started",
     entityType: "assessment",
     entityId: assessmentId,

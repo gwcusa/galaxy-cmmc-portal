@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
 
   const svc = createServiceSupabaseClient();
   const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
-  if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (!["admin", "assessor"].includes(role?.role ?? "")) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const assessmentId = req.nextUrl.searchParams.get("assessmentId");
   if (!assessmentId) return NextResponse.json({ error: "assessmentId required" }, { status: 400 });
@@ -33,7 +33,7 @@ export async function PATCH(req: NextRequest) {
 
   const svc = createServiceSupabaseClient();
   const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
-  if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (!["admin", "assessor"].includes(role?.role ?? "")) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const { id, content, status } = await req.json();
   if (!id) return NextResponse.json({ error: "id required" }, { status: 400 });

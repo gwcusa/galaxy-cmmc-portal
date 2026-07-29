@@ -23,7 +23,7 @@ export async function POST(
       .select("role")
       .eq("user_id", assessorId)
       .single();
-    if (assessorRole?.role !== "admin") {
+    if (!["admin", "assessor"].includes(assessorRole?.role ?? "")) {
       return NextResponse.json({ error: "assessorId is not an assessor account" }, { status: 400 });
     }
   }

@@ -30,7 +30,7 @@ export async function POST(
     .select("role")
     .eq("user_id", user.id)
     .single();
-  if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (!["admin", "assessor"].includes(role?.role ?? "")) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const { status: newStatus } = await req.json();
   if (!newStatus) return NextResponse.json({ error: "status required" }, { status: 400 });
@@ -66,7 +66,7 @@ export async function POST(
 
   logAudit({
     actorId: user.id,
-    actorRole: "admin",
+    actorRole: role?.role ?? "assessor",
     action: "assessment.status_changed",
     entityType: "assessment",
     entityId: assessmentId,

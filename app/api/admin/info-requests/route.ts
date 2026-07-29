@@ -1,20 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
+import { createServiceSupabaseClient } from "@/lib/supabase-server";
 import { sendInfoRequestEmail } from "@/lib/email";
-
-async function requireAdmin() {
-  const authSupabase = createServerSupabaseClient();
-  const { data: { user } } = await authSupabase.auth.getUser();
-  if (!user) return { error: "Unauthorized", status: 401 };
-  const svc = createServiceSupabaseClient();
-  const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
-  if (role?.role !== "admin") return { error: "Forbidden", status: 403 };
-  return { user, svc };
-}
+import { requireAdminOrAssessor } from "@/lib/auth-helpers";
 
 // GET /api/admin/info-requests?assessmentId=xxx
 export async function GET(req: NextRequest) {
-  const result = await requireAdmin();
+  const result = await requireAdminOrAssessor();
   if ("error" in result) return NextResponse.json({ error: result.error }, { status: result.status });
   const { svc } = result;
 
@@ -33,7 +24,7 @@ export async function GET(req: NextRequest) {
 
 // POST /api/admin/info-requests — create a new request
 export async function POST(req: NextRequest) {
-  const result = await requireAdmin();
+  const result = await requireAdminOrAssessor();
   if ("error" in result) return NextResponse.json({ error: result.error }, { status: result.status });
   const { user, svc } = result;
 

@@ -7,7 +7,7 @@ const serviceClient = createClient(
 
 export type AuditEntry = {
   actorId?: string | null;
-  actorRole?: "admin" | "client" | "system";
+  actorRole?: "admin" | "assessor" | "client" | "system";
   action: string; // e.g. "assessment.status_changed", "artifact.published"
   entityType: string; // e.g. "assessment", "artifact", "document"
   entityId?: string | null;

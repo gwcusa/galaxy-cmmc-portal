@@ -1,17 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
+import { requireAdminOrAssessor } from "@/lib/auth-helpers";
+import { createServiceSupabaseClient } from "@/lib/supabase-server";
 import { logAudit } from "@/lib/audit";
 
 // GET /api/admin/determinations?assessmentId=xxx
 export async function GET(req: NextRequest) {
-  const authSupabase = createServerSupabaseClient();
-  const { data: { user } } = await authSupabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-  const serviceSupabase = createServiceSupabaseClient();
-  const { data: role } = await serviceSupabase
-    .from("user_roles").select("role").eq("user_id", user.id).single();
-  if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const auth = await requireAdminOrAssessor();
+  if ("error" in auth) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  const { svc: serviceSupabase } = auth;
 
   const assessmentId = req.nextUrl.searchParams.get("assessmentId");
   if (!assessmentId) return NextResponse.json({ error: "assessmentId required" }, { status: 400 });
@@ -29,14 +25,9 @@ export async function GET(req: NextRequest) {
 // POST /api/admin/determinations
 // Upserts a single assessor determination for a control.
 export async function POST(req: NextRequest) {
-  const authSupabase = createServerSupabaseClient();
-  const { data: { user } } = await authSupabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-  const serviceSupabase = createServiceSupabaseClient();
-  const { data: role } = await serviceSupabase
-    .from("user_roles").select("role").eq("user_id", user.id).single();
-  if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const auth = await requireAdminOrAssessor();
+  if ("error" in auth) return NextResponse.json({ error: auth.error }, { status: auth.status });
+  const { user, svc: serviceSupabase, role: actorRole } = auth;
 
   const { assessmentId, controlId, assessorVerdict, assessorNotes } = await req.json();
 
@@ -78,7 +69,7 @@ export async function POST(req: NextRequest) {
 
   logAudit({
     actorId: user.id,
-    actorRole: "admin",
+    actorRole,
     action: "determination.recorded",
     entityType: "assessment",
     entityId: assessmentId,

@@ -6,6 +6,7 @@ const ADMIN_NAV = [
   { id: "dashboard", href: "/admin/dashboard", icon: "⊞", label: "All Clients" },
   { id: "clients", href: "/admin/clients", icon: "◈", label: "Clients" },
   { id: "reports", href: "/admin/reports", icon: "▤", label: "Analytics" },
+  { id: "team", href: "/admin/team", icon: "◉", label: "Team" },
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

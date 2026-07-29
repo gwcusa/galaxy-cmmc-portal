@@ -12,7 +12,7 @@ export async function PATCH(
 
   const svc = createServiceSupabaseClient();
   const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
-  if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (!["admin", "assessor"].includes(role?.role ?? "")) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const { status } = await req.json();
   if (status !== "closed") return NextResponse.json({ error: "Only 'closed' status allowed via this endpoint" }, { status: 400 });
