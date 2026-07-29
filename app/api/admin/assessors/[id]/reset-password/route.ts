@@ -11,24 +11,19 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
   const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
   if (role?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
+  const body = await req.json();
+  const { newPassword } = body;
+  if (!newPassword || typeof newPassword !== "string" || newPassword.length < 8) {
+    return NextResponse.json({ error: "Password must be at least 8 characters" }, { status: 400 });
+  }
+
   const adminClient = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 
-  const { data: { user: targetUser }, error: lookupError } = await adminClient.auth.admin.getUserById(params.id);
-  if (lookupError || !targetUser?.email) {
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
-  }
-
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "";
-  const { error: resetError } = await adminClient.auth.resetPasswordForEmail(targetUser.email, {
-    redirectTo: `${appUrl}/update-password`,
-  });
-
-  if (resetError) {
-    return NextResponse.json({ error: resetError.message }, { status: 500 });
-  }
+  const { error } = await adminClient.auth.admin.updateUserById(params.id, { password: newPassword });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
   return NextResponse.json({ success: true });
 }

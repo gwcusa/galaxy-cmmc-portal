@@ -2,18 +2,29 @@
 
 import { useState, useEffect, useCallback } from "react";
 
-type Assessor = { id: string; name: string; email: string; role: "admin" | "assessor" };
+type TeamMember = { id: string; name: string; email: string; role: "admin" | "assessor" };
+
+const inputStyle: React.CSSProperties = {
+  padding: "8px 12px", borderRadius: 6, fontSize: 13,
+  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)",
+  color: "#fff", outline: "none",
+};
 
 export default function TeamPage() {
-  const [assessors, setAssessors] = useState<Assessor[]>([]);
+  const [members, setMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // Invite form
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
-  const [resettingId, setResettingId] = useState<string | null>(null);
-  const [resetMsg, setResetMsg] = useState<Record<string, { ok: boolean; text: string }>>({});
+  const [inviteMsg, setInviteMsg] = useState<{ ok: boolean; text: string } | null>(null);
+
+  // Password reset inline form
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [newPassword, setNewPassword] = useState("");
+  const [savingId, setSavingId] = useState<string | null>(null);
+  const [pwMsg, setPwMsg] = useState<Record<string, { ok: boolean; text: string }>>({});
 
   const card: React.CSSProperties = {
     background: "rgba(255,255,255,0.04)",
@@ -27,7 +38,7 @@ export default function TeamPage() {
     const res = await fetch("/api/admin/assessors");
     if (res.ok) {
       const data = await res.json();
-      setAssessors(data.assessors ?? []);
+      setMembers(data.assessors ?? []);
     }
     setLoading(false);
   }, []);
@@ -37,39 +48,141 @@ export default function TeamPage() {
   async function handleInvite(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
-    setError("");
-    setSuccess("");
-
+    setInviteMsg(null);
     const res = await fetch("/api/admin/assessors", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: email.trim(), fullName: fullName.trim() }),
     });
-
     const data = await res.json();
     setSubmitting(false);
-
     if (!res.ok) {
-      setError(data.error ?? "Failed to invite assessor");
+      setInviteMsg({ ok: false, text: data.error ?? "Failed to invite assessor" });
     } else {
-      setSuccess(`Invite sent to ${email.trim()}. They will receive a password setup email.`);
+      setInviteMsg({ ok: true, text: `Account created for ${email.trim()}. Set their password below.` });
       setEmail("");
       setFullName("");
       fetchTeam();
     }
   }
 
-  async function handleResetPassword(id: string) {
-    setResettingId(id);
-    const res = await fetch(`/api/admin/assessors/${id}/reset-password`, { method: "POST" });
-    const data = await res.json();
-    setResettingId(null);
-    setResetMsg((prev) => ({ ...prev, [id]: { ok: res.ok, text: res.ok ? "Reset email sent!" : (data.error ?? "Failed") } }));
-    setTimeout(() => setResetMsg((prev) => { const n = { ...prev }; delete n[id]; return n; }), 4000);
+  function openReset(id: string) {
+    setExpandedId(id);
+    setNewPassword("");
+    setPwMsg((prev) => { const n = { ...prev }; delete n[id]; return n; });
   }
 
-  const adminMembers = assessors.filter((a) => a.role === "admin");
-  const assessorMembers = assessors.filter((a) => a.role === "assessor");
+  async function handleSetPassword(id: string) {
+    if (newPassword.length < 8) {
+      setPwMsg((prev) => ({ ...prev, [id]: { ok: false, text: "Min 8 characters" } }));
+      return;
+    }
+    setSavingId(id);
+    const res = await fetch(`/api/admin/assessors/${id}/reset-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ newPassword }),
+    });
+    const data = await res.json();
+    setSavingId(null);
+    if (res.ok) {
+      setPwMsg((prev) => ({ ...prev, [id]: { ok: true, text: "Password updated!" } }));
+      setExpandedId(null);
+      setNewPassword("");
+    } else {
+      setPwMsg((prev) => ({ ...prev, [id]: { ok: false, text: data.error ?? "Failed" } }));
+    }
+  }
+
+  function renderMember(a: TeamMember, i: number, badgeColor: string, badgeLabel: string) {
+    const isExpanded = expandedId === a.id;
+    const isSaving = savingId === a.id;
+    const msg = pwMsg[a.id];
+
+    return (
+      <div key={a.id} style={{
+        borderTop: i > 0 ? "1px solid rgba(255,255,255,0.05)" : "none",
+        paddingTop: i > 0 ? 12 : 0,
+        marginTop: i > 0 ? 12 : 0,
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <div style={{
+            width: 36, height: 36, borderRadius: "50%", flexShrink: 0,
+            background: badgeLabel === "Assessor"
+              ? "linear-gradient(135deg, #A78BFA, #00C9FF)"
+              : "linear-gradient(135deg, #00C9FF, #4DFFA0)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 14, fontWeight: 700, color: "#050B18",
+          }}>
+            {a.name.charAt(0).toUpperCase()}
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>{a.name}</div>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{a.email}</div>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            {msg && !isExpanded && (
+              <span style={{ fontSize: 12, color: msg.ok ? "#4DFFA0" : "#F87171" }}>{msg.text}</span>
+            )}
+            <button
+              onClick={() => isExpanded ? setExpandedId(null) : openReset(a.id)}
+              style={{
+                fontSize: 11, fontWeight: 600, padding: "4px 12px", borderRadius: 6, cursor: "pointer",
+                background: isExpanded ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.06)",
+                color: "rgba(255,255,255,0.7)",
+                border: "1px solid rgba(255,255,255,0.14)",
+              }}
+            >
+              {isExpanded ? "Cancel" : "Reset Password"}
+            </button>
+            <span style={{
+              fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20,
+              color: badgeColor,
+              background: `${badgeColor}18`,
+              border: `1px solid ${badgeColor}30`,
+            }}>
+              {badgeLabel}
+            </span>
+          </div>
+        </div>
+
+        {isExpanded && (
+          <div style={{
+            marginTop: 12, marginLeft: 50,
+            display: "flex", alignItems: "center", gap: 10,
+          }}>
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="New password (min 8 chars)"
+              autoFocus
+              onKeyDown={(e) => e.key === "Enter" && handleSetPassword(a.id)}
+              style={{ ...inputStyle, width: 240 }}
+            />
+            <button
+              onClick={() => handleSetPassword(a.id)}
+              disabled={isSaving}
+              style={{
+                fontSize: 12, fontWeight: 600, padding: "8px 16px", borderRadius: 6, cursor: "pointer",
+                background: isSaving ? "rgba(255,255,255,0.08)" : "linear-gradient(135deg, #00C9FF, #4DFFA0)",
+                color: isSaving ? "rgba(255,255,255,0.4)" : "#050B18",
+                border: "none",
+              }}
+            >
+              {isSaving ? "Saving…" : "Set Password"}
+            </button>
+            {msg && (
+              <span style={{ fontSize: 12, color: msg.ok ? "#4DFFA0" : "#F87171" }}>{msg.text}</span>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  const adminMembers = members.filter((m) => m.role === "admin");
+  const assessorMembers = members.filter((m) => m.role === "assessor");
 
   return (
     <div style={{ maxWidth: 720 }}>
@@ -86,66 +199,44 @@ export default function TeamPage() {
         <form onSubmit={handleInvite}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
             <div>
-              <label style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>
-                Full Name
-              </label>
+              <label style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Full Name</label>
               <input
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                required
-                placeholder="Jane Smith"
-                style={{
-                  width: "100%", padding: "10px 14px", borderRadius: 8,
-                  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-                  color: "#fff", fontSize: 14, boxSizing: "border-box",
-                }}
+                type="text" value={fullName} onChange={(e) => setFullName(e.target.value)}
+                required placeholder="Jane Smith"
+                style={{ ...inputStyle, width: "100%", boxSizing: "border-box", padding: "10px 14px" }}
               />
             </div>
             <div>
-              <label style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>
-                Email Address
-              </label>
+              <label style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", display: "block", marginBottom: 6 }}>Email Address</label>
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="jane@example.com"
-                style={{
-                  width: "100%", padding: "10px 14px", borderRadius: 8,
-                  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
-                  color: "#fff", fontSize: 14, boxSizing: "border-box",
-                }}
+                type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                required placeholder="jane@example.com"
+                style={{ ...inputStyle, width: "100%", boxSizing: "border-box", padding: "10px 14px" }}
               />
             </div>
           </div>
-          {error && (
-            <div style={{ fontSize: 13, color: "#F87171", marginBottom: 12, padding: "8px 14px", background: "rgba(248,113,113,0.08)", borderRadius: 8 }}>
-              {error}
-            </div>
-          )}
-          {success && (
-            <div style={{ fontSize: 13, color: "#4DFFA0", marginBottom: 12, padding: "8px 14px", background: "rgba(77,255,160,0.08)", borderRadius: 8 }}>
-              {success}
+          {inviteMsg && (
+            <div style={{
+              fontSize: 13, marginBottom: 12, padding: "8px 14px", borderRadius: 8,
+              color: inviteMsg.ok ? "#4DFFA0" : "#F87171",
+              background: inviteMsg.ok ? "rgba(77,255,160,0.08)" : "rgba(248,113,113,0.08)",
+            }}>
+              {inviteMsg.text}
             </div>
           )}
           <button
-            type="submit"
-            disabled={submitting}
+            type="submit" disabled={submitting}
             style={{
               padding: "10px 24px", borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: "pointer",
               background: submitting ? "rgba(255,255,255,0.08)" : "linear-gradient(135deg, #00C9FF, #4DFFA0)",
-              color: submitting ? "rgba(255,255,255,0.4)" : "#050B18",
-              border: "none",
+              color: submitting ? "rgba(255,255,255,0.4)" : "#050B18", border: "none",
             }}
           >
-            {submitting ? "Sending Invite…" : "Send Invite"}
+            {submitting ? "Creating…" : "Create Account"}
           </button>
         </form>
       </div>
 
-      {/* Current team */}
       {loading ? (
         <div style={{ fontSize: 13, color: "rgba(255,255,255,0.3)" }}>Loading team…</div>
       ) : (
@@ -155,50 +246,7 @@ export default function TeamPage() {
               <div style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>
                 Assessors
               </div>
-              {assessorMembers.map((a, i) => (
-                <div key={a.id} style={{
-                  display: "flex", alignItems: "center", gap: 14, padding: "11px 0",
-                  borderTop: i > 0 ? "1px solid rgba(255,255,255,0.05)" : "none",
-                }}>
-                  <div style={{
-                    width: 36, height: 36, borderRadius: "50%",
-                    background: "linear-gradient(135deg, #A78BFA, #00C9FF)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 14, fontWeight: 700, color: "#050B18", flexShrink: 0,
-                  }}>
-                    {a.name.charAt(0).toUpperCase()}
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>{a.name}</div>
-                    <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{a.email}</div>
-                  </div>
-                  <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
-                    {resetMsg[a.id] && (
-                      <span style={{ fontSize: 12, color: resetMsg[a.id].ok ? "#4DFFA0" : "#F87171" }}>
-                        {resetMsg[a.id].text}
-                      </span>
-                    )}
-                    <button
-                      onClick={() => handleResetPassword(a.id)}
-                      disabled={resettingId === a.id}
-                      style={{
-                        fontSize: 11, fontWeight: 600, padding: "4px 12px", borderRadius: 6, cursor: "pointer",
-                        background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.6)",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                        opacity: resettingId === a.id ? 0.5 : 1,
-                      }}
-                    >
-                      {resettingId === a.id ? "Sending…" : "Reset Password"}
-                    </button>
-                    <span style={{
-                      fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20,
-                      color: "#A78BFA", background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)",
-                    }}>
-                      Assessor
-                    </span>
-                  </div>
-                </div>
-              ))}
+              {assessorMembers.map((a, i) => renderMember(a, i, "#A78BFA", "Assessor"))}
             </div>
           )}
 
@@ -207,54 +255,11 @@ export default function TeamPage() {
               <div style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>
                 Admins
               </div>
-              {adminMembers.map((a, i) => (
-                <div key={a.id} style={{
-                  display: "flex", alignItems: "center", gap: 14, padding: "11px 0",
-                  borderTop: i > 0 ? "1px solid rgba(255,255,255,0.05)" : "none",
-                }}>
-                  <div style={{
-                    width: 36, height: 36, borderRadius: "50%",
-                    background: "linear-gradient(135deg, #00C9FF, #4DFFA0)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 14, fontWeight: 700, color: "#050B18", flexShrink: 0,
-                  }}>
-                    {a.name.charAt(0).toUpperCase()}
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>{a.name}</div>
-                    <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{a.email}</div>
-                  </div>
-                  <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
-                    {resetMsg[a.id] && (
-                      <span style={{ fontSize: 12, color: resetMsg[a.id].ok ? "#4DFFA0" : "#F87171" }}>
-                        {resetMsg[a.id].text}
-                      </span>
-                    )}
-                    <button
-                      onClick={() => handleResetPassword(a.id)}
-                      disabled={resettingId === a.id}
-                      style={{
-                        fontSize: 11, fontWeight: 600, padding: "4px 12px", borderRadius: 6, cursor: "pointer",
-                        background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.6)",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                        opacity: resettingId === a.id ? 0.5 : 1,
-                      }}
-                    >
-                      {resettingId === a.id ? "Sending…" : "Reset Password"}
-                    </button>
-                    <span style={{
-                      fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20,
-                      color: "#00C9FF", background: "rgba(0,201,255,0.1)", border: "1px solid rgba(0,201,255,0.2)",
-                    }}>
-                      Admin
-                    </span>
-                  </div>
-                </div>
-              ))}
+              {adminMembers.map((a, i) => renderMember(a, i, "#00C9FF", "Admin"))}
             </div>
           )}
 
-          {assessors.length === 0 && (
+          {members.length === 0 && (
             <div style={{ ...card, textAlign: "center", padding: 40, color: "rgba(255,255,255,0.3)", fontSize: 13 }}>
               No team members yet. Invite your first assessor above.
             </div>
