@@ -12,6 +12,8 @@ export default function TeamPage() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [resettingId, setResettingId] = useState<string | null>(null);
+  const [resetMsg, setResetMsg] = useState<Record<string, { ok: boolean; text: string }>>({});
 
   const card: React.CSSProperties = {
     background: "rgba(255,255,255,0.04)",
@@ -55,6 +57,15 @@ export default function TeamPage() {
       setFullName("");
       fetchTeam();
     }
+  }
+
+  async function handleResetPassword(id: string) {
+    setResettingId(id);
+    const res = await fetch(`/api/admin/assessors/${id}/reset-password`, { method: "POST" });
+    const data = await res.json();
+    setResettingId(null);
+    setResetMsg((prev) => ({ ...prev, [id]: { ok: res.ok, text: res.ok ? "Reset email sent!" : (data.error ?? "Failed") } }));
+    setTimeout(() => setResetMsg((prev) => { const n = { ...prev }; delete n[id]; return n; }), 4000);
   }
 
   const adminMembers = assessors.filter((a) => a.role === "admin");
@@ -161,7 +172,24 @@ export default function TeamPage() {
                     <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>{a.name}</div>
                     <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{a.email}</div>
                   </div>
-                  <div style={{ marginLeft: "auto" }}>
+                  <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
+                    {resetMsg[a.id] && (
+                      <span style={{ fontSize: 12, color: resetMsg[a.id].ok ? "#4DFFA0" : "#F87171" }}>
+                        {resetMsg[a.id].text}
+                      </span>
+                    )}
+                    <button
+                      onClick={() => handleResetPassword(a.id)}
+                      disabled={resettingId === a.id}
+                      style={{
+                        fontSize: 11, fontWeight: 600, padding: "4px 12px", borderRadius: 6, cursor: "pointer",
+                        background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.6)",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        opacity: resettingId === a.id ? 0.5 : 1,
+                      }}
+                    >
+                      {resettingId === a.id ? "Sending…" : "Reset Password"}
+                    </button>
                     <span style={{
                       fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20,
                       color: "#A78BFA", background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)",
@@ -196,7 +224,24 @@ export default function TeamPage() {
                     <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>{a.name}</div>
                     <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{a.email}</div>
                   </div>
-                  <div style={{ marginLeft: "auto" }}>
+                  <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
+                    {resetMsg[a.id] && (
+                      <span style={{ fontSize: 12, color: resetMsg[a.id].ok ? "#4DFFA0" : "#F87171" }}>
+                        {resetMsg[a.id].text}
+                      </span>
+                    )}
+                    <button
+                      onClick={() => handleResetPassword(a.id)}
+                      disabled={resettingId === a.id}
+                      style={{
+                        fontSize: 11, fontWeight: 600, padding: "4px 12px", borderRadius: 6, cursor: "pointer",
+                        background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.6)",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        opacity: resettingId === a.id ? 0.5 : 1,
+                      }}
+                    >
+                      {resettingId === a.id ? "Sending…" : "Reset Password"}
+                    </button>
                     <span style={{
                       fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20,
                       color: "#00C9FF", background: "rgba(0,201,255,0.1)", border: "1px solid rgba(0,201,255,0.2)",

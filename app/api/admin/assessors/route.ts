@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
 
   const userId = authData.user.id;
 
-  const { error: roleError } = await svc
+  const { error: roleError } = await adminClient
     .from("user_roles")
     .insert({ user_id: userId, role: "assessor" });
 
