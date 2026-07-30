@@ -20,7 +20,26 @@ export type ControlReviewItem = {
   assessorVerdict: string | null;
   assessorNotes: string | null;
   reviewedAt: string | null;
+  objectives: { id: string; text: string }[];
+  aiObjectiveResults: { id: string; met: string; note?: string }[];
+  objectiveVerdicts: Record<string, string>;
 };
+
+const OBJ_VERDICTS = [
+  { val: "met", label: "Met", color: "#4DFFA0" },
+  { val: "not_met", label: "Not Met", color: "#F87171" },
+  { val: "unclear", label: "Unclear", color: "#FFB347" },
+] as const;
+
+// A requirement is MET only if every objective is met (NIST SP 800-171A).
+function deriveVerdict(objVerdicts: Record<string, string>, objectives: { id: string }[]): string {
+  if (objectives.length === 0) return "needs_review";
+  const vals = objectives.map((o) => objVerdicts[o.id]);
+  if (vals.some((v) => !v || v === "unclear")) return "needs_review";
+  if (vals.every((v) => v === "met")) return "met";
+  if (vals.every((v) => v === "not_met")) return "not_met";
+  return "partially_met";
+}
 
 const VERDICT_CONFIG = {
   met:           { color: "#4DFFA0", bg: "rgba(77,255,160,0.08)",   border: "rgba(77,255,160,0.25)",   label: "Met" },
@@ -60,6 +79,8 @@ export default function AssessmentReviewPanel({
   const router = useRouter();
   const [items, setItems] = useState(initialItems);
   const [editMode, setEditMode] = useState<Record<string, { verdict: string; notes: string } | null>>({});
+  const [objEdits, setObjEdits] = useState<Record<string, Record<string, string>>>({});
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [saving, setSaving] = useState<Record<string, boolean>>({});
   const [bulkSaving, setBulkSaving] = useState(false);
   const [filter, setFilter] = useState<"all" | "pending" | "reviewed">("all");
@@ -74,19 +95,19 @@ export default function AssessmentReviewPanel({
     return true;
   });
 
-  async function save(controlId: string, verdict: string, notes: string) {
+  async function save(controlId: string, verdict: string, notes: string, objectiveVerdicts?: Record<string, string>) {
     setSaving((prev) => ({ ...prev, [controlId]: true }));
     const res = await fetch("/api/admin/determinations", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ assessmentId, controlId, assessorVerdict: verdict, assessorNotes: notes }),
+      body: JSON.stringify({ assessmentId, controlId, assessorVerdict: verdict, assessorNotes: notes, objectiveVerdicts }),
     });
     if (res.ok) {
       const data = await res.json();
       setItems((prev) =>
         prev.map((item) =>
           item.controlId === controlId
-            ? { ...item, assessorVerdict: verdict, assessorNotes: notes, reviewedAt: data.reviewedAt }
+            ? { ...item, assessorVerdict: verdict, assessorNotes: notes, objectiveVerdicts: objectiveVerdicts ?? item.objectiveVerdicts, reviewedAt: data.reviewedAt }
             : item
         )
       );
@@ -96,9 +117,16 @@ export default function AssessmentReviewPanel({
     setSaving((prev) => ({ ...prev, [controlId]: false }));
   }
 
+  // "Accept" adopts the AI's per-objective results as the assessor's, too.
+  function aiObjVerdicts(item: ControlReviewItem): Record<string, string> {
+    const map: Record<string, string> = {};
+    for (const r of item.aiObjectiveResults) map[r.id] = r.met;
+    return map;
+  }
+
   async function acceptAI(item: ControlReviewItem) {
     if (!item.aiVerdict) return;
-    await save(item.controlId, item.aiVerdict, "AI recommendation accepted.");
+    await save(item.controlId, item.aiVerdict, "AI recommendation accepted.", aiObjVerdicts(item));
   }
 
   async function bulkAcceptAll() {
@@ -106,12 +134,16 @@ export default function AssessmentReviewPanel({
     if (!unreviewed.length) return;
     setBulkSaving(true);
     for (const item of unreviewed) {
-      await save(item.controlId, item.aiVerdict!, "AI recommendation accepted.");
+      await save(item.controlId, item.aiVerdict!, "AI recommendation accepted.", aiObjVerdicts(item));
     }
     setBulkSaving(false);
   }
 
   function openEdit(item: ControlReviewItem) {
+    // Seed per-objective verdicts: prior assessor verdicts first, else the AI's.
+    const seed: Record<string, string> = { ...aiObjVerdicts(item), ...item.objectiveVerdicts };
+    setObjEdits((prev) => ({ ...prev, [item.controlId]: seed }));
+    setExpanded((prev) => ({ ...prev, [item.controlId]: true }));
     setEditMode((prev) => ({
       ...prev,
       [item.controlId]: {
@@ -119,6 +151,10 @@ export default function AssessmentReviewPanel({
         notes: item.assessorNotes ?? "",
       },
     }));
+  }
+
+  function setObjVerdict(controlId: string, objId: string, verdict: string) {
+    setObjEdits((prev) => ({ ...prev, [controlId]: { ...(prev[controlId] ?? {}), [objId]: verdict } }));
   }
 
   function cancelEdit(controlId: string) {
@@ -295,6 +331,97 @@ export default function AssessmentReviewPanel({
                 </div>
               </div>
 
+              {/* Per-objective breakdown (NIST SP 800-171A) */}
+              {item.objectives.length > 0 && (() => {
+                const aiResultMap: Record<string, { met: string; note?: string }> = {};
+                for (const r of item.aiObjectiveResults) aiResultMap[r.id] = r;
+                const savedOrEdit = isEditing ? (objEdits[item.controlId] ?? {}) : item.objectiveVerdicts;
+                const isOpen = expanded[item.controlId] ?? false;
+                return (
+                  <div style={{ marginBottom: 14 }}>
+                    <button
+                      onClick={() => setExpanded((prev) => ({ ...prev, [item.controlId]: !isOpen }))}
+                      style={{
+                        display: "flex", alignItems: "center", gap: 8, width: "100%", textAlign: "left",
+                        padding: "8px 12px", borderRadius: 8, cursor: "pointer",
+                        background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
+                        color: "rgba(255,255,255,0.6)", fontSize: 11, fontWeight: 600,
+                        textTransform: "uppercase", letterSpacing: "1px",
+                      }}
+                    >
+                      <span style={{ color: "#00C9FF" }}>{isOpen ? "▾" : "▸"}</span>
+                      Assessment Objectives ({item.objectives.length})
+                      <span style={{ marginLeft: "auto", textTransform: "none", letterSpacing: 0, color: "rgba(255,255,255,0.35)" }}>
+                        {isEditing ? "click each to set your verdict" : "every objective must be Met"}
+                      </span>
+                    </button>
+                    {isOpen && (
+                      <div style={{ marginTop: 8, display: "flex", flexDirection: "column", gap: 6 }}>
+                        {item.objectives.map((obj) => {
+                          const aiRes = aiResultMap[obj.id];
+                          const current = savedOrEdit[obj.id];
+                          return (
+                            <div key={obj.id} style={{
+                              ...innerCard, display: "flex", alignItems: "flex-start", gap: 10, flexWrap: "wrap",
+                            }}>
+                              <span style={{ fontFamily: "monospace", fontSize: 11, color: "#00C9FF", fontWeight: 700, minWidth: 56 }}>
+                                {obj.id.replace(item.controlId, "")}
+                              </span>
+                              <span style={{ fontSize: 12, color: "rgba(255,255,255,0.65)", lineHeight: 1.5, flex: 1, minWidth: 180 }}>
+                                {obj.text}
+                                {aiRes?.note && (
+                                  <span style={{ display: "block", fontSize: 11, color: "rgba(255,255,255,0.35)", fontStyle: "italic", marginTop: 2 }}>
+                                    AI: {aiRes.note}
+                                  </span>
+                                )}
+                              </span>
+                              {/* AI result chip */}
+                              {aiRes && (
+                                <span style={{
+                                  fontSize: 10, padding: "2px 8px", borderRadius: 5, whiteSpace: "nowrap",
+                                  color: OBJ_VERDICTS.find((v) => v.val === aiRes.met)?.color ?? "#888",
+                                  background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)",
+                                }}>
+                                  AI: {OBJ_VERDICTS.find((v) => v.val === aiRes.met)?.label ?? aiRes.met}
+                                </span>
+                              )}
+                              {/* Assessor per-objective toggle (edit) or saved chip */}
+                              {isEditing ? (
+                                <span style={{ display: "flex", gap: 4 }}>
+                                  {OBJ_VERDICTS.map((v) => (
+                                    <button
+                                      key={v.val}
+                                      onClick={() => setObjVerdict(item.controlId, obj.id, v.val)}
+                                      style={{
+                                        fontSize: 10, fontWeight: 700, padding: "3px 9px", borderRadius: 5, cursor: "pointer",
+                                        color: current === v.val ? "#0A1428" : v.color,
+                                        background: current === v.val ? v.color : "transparent",
+                                        border: `1px solid ${v.color}55`,
+                                      }}
+                                    >
+                                      {v.label}
+                                    </button>
+                                  ))}
+                                </span>
+                              ) : current ? (
+                                <span style={{
+                                  fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 5, whiteSpace: "nowrap",
+                                  color: OBJ_VERDICTS.find((v) => v.val === current)?.color ?? "#888",
+                                  background: `${OBJ_VERDICTS.find((v) => v.val === current)?.color ?? "#888"}18`,
+                                  border: `1px solid ${OBJ_VERDICTS.find((v) => v.val === current)?.color ?? "#888"}33`,
+                                }}>
+                                  {OBJ_VERDICTS.find((v) => v.val === current)?.label ?? current}
+                                </span>
+                              ) : null}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+
               {/* Assessor determination */}
               <div style={{
                 background: "rgba(0,0,0,0.15)", border: "1px solid rgba(255,255,255,0.07)",
@@ -387,6 +514,22 @@ export default function AssessmentReviewPanel({
                           <option value="not_met">Not Met</option>
                           <option value="needs_review">Needs Review</option>
                         </select>
+                        {item.objectives.length > 0 && (
+                          <button
+                            onClick={() =>
+                              setEditMode((prev) => ({
+                                ...prev,
+                                [item.controlId]: { ...prev[item.controlId]!, verdict: deriveVerdict(objEdits[item.controlId] ?? {}, item.objectives) },
+                              }))
+                            }
+                            style={{
+                              marginTop: 8, width: "100%", padding: "6px 10px", borderRadius: 6, fontSize: 11, cursor: "pointer",
+                              background: "rgba(0,201,255,0.08)", border: "1px solid rgba(0,201,255,0.2)", color: "#00C9FF",
+                            }}
+                          >
+                            ⟳ Derive from objectives
+                          </button>
+                        )}
                       </div>
                       <div>
                         <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginBottom: 6 }}>Notes (optional)</div>
@@ -408,7 +551,7 @@ export default function AssessmentReviewPanel({
                     </div>
                     <div style={{ display: "flex", gap: 8 }}>
                       <button
-                        onClick={() => save(item.controlId, edit.verdict, edit.notes)}
+                        onClick={() => save(item.controlId, edit.verdict, edit.notes, objEdits[item.controlId])}
                         disabled={isSaving}
                         style={{
                           padding: "7px 20px", borderRadius: 7, fontSize: 12, fontWeight: 700, cursor: "pointer",

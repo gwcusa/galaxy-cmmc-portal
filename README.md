@@ -60,6 +60,7 @@ Apply in order via Supabase SQL Editor. **Take a backup before running 009.**
 | `016_assessor_role.sql` | Dedicated `assessor` role (separate from `admin`) |
 | `017_remediation_automation.sql` | Consolidated intake (`ai_intake_package`), `responsibility_matrix` artifact type, `generated_artifacts.covers_controls`, document provenance (`documents.source` / `source_artifact_id`) |
 | `018_reaffirmation.sql` | `assessments.reaffirmation_reminded_at` for the annual re-affirmation reminder cron |
+| `019_objective_determinations.sql` | `assessor_determinations.objective_verdicts` for per-objective (NIST 800-171A) assessor verdicts |
 
 See `docs/upgrade-2026-07.md` for full deploy checklist.
 
@@ -93,7 +94,8 @@ File naming: `[control-id]-[Company-Slug]-POLICY-[Title].{txt,pdf}` / `[control-
 ## Architecture Notes
 
 - Clients **never** see scores, AI verdicts, synthesis, or analytics — assessor-only
-- Control "met" only if all 800-171A objectives satisfied
+- Control "met" only if all 800-171A objectives satisfied — the AI evaluates every objective, and assessors can now record a verdict **per objective** (rolled up to the control) in the review panel
+- Assessment-objective data (`data/assessment-objectives.json`) carries the full NIST SP 800-171A **Examine / Interview / Test** methods per requirement; the AI review notes when an objective needs a live interview/test to confirm
 - SPRS math computed locally (`lib/scoring.ts`), never by the LLM
 - SPRS range: 110 − deductions, floor −203; partial credit for 3.5.3 and 3.13.11
 - **POA&M eligibility** follows 32 CFR 170.21(a)(2): a Conditional Level 2 needs score ≥ 88 (80%) and every open gap POA&M-eligible. Only 1-point items may ride on a POA&M (plus 3.13.11 at a 3-point deduction), **except the six requirements that can never be deferred** — 3.1.20, 3.1.22, 3.10.3, 3.10.4, 3.10.5, 3.12.4 (`POAM_INELIGIBLE_CONTROLS` in `lib/scoring.ts`)

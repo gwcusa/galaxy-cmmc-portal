@@ -20,6 +20,8 @@ type ControlRecord = {
 type ObjectiveRecord = {
   discussion: string;
   examine: string;
+  interview?: string;
+  test?: string;
   objectives: { id: string; text: string }[];
 };
 
@@ -241,7 +243,10 @@ Requirement: ${control.description}
 ${objInfo?.discussion ? `\nDiscussion (from NIST SP 800-171):\n${objInfo.discussion.slice(0, 1500)}\n` : ""}
 ### Assessment objectives (NIST SP 800-171A) — evaluate each one:
 ${objectiveList || "(none — evaluate the requirement as a whole)"}
-${objInfo?.examine ? `\nTypical evidence an assessor examines: ${objInfo.examine.slice(0, 600)}` : ""}
+${objInfo?.examine ? `\nNIST 800-171A methods — EXAMINE (documents an assessor reviews): ${objInfo.examine.slice(0, 600)}` : ""}
+${objInfo?.interview ? `NIST 800-171A methods — INTERVIEW (roles an assessor would question): ${objInfo.interview.slice(0, 400)}` : ""}
+${objInfo?.test ? `NIST 800-171A methods — TEST (mechanisms/processes an assessor would exercise): ${objInfo.test.slice(0, 400)}` : ""}
+${objInfo?.interview || objInfo?.test ? `\nThe client's evidence is documentary (the EXAMINE method). Where an objective can only be fully confirmed by INTERVIEW or TEST, you may mark it "met" if the documents strongly demonstrate it, but note in your feedback that a live interview/test is still required at the formal assessment to confirm it.` : ""}
 
 ---
 

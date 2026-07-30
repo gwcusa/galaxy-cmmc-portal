@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await serviceSupabase
     .from("assessor_determinations")
-    .select("control_id, ai_verdict, ai_feedback, assessor_verdict, assessor_notes, reviewed_at, updated_at")
+    .select("control_id, ai_verdict, ai_feedback, assessor_verdict, assessor_notes, objective_verdicts, reviewed_at, updated_at")
     .eq("assessment_id", assessmentId)
     .order("reviewed_at", { ascending: false });
 
@@ -29,13 +29,24 @@ export async function POST(req: NextRequest) {
   if ("error" in auth) return NextResponse.json({ error: auth.error }, { status: auth.status });
   const { user, svc: serviceSupabase, role: actorRole } = auth;
 
-  const { assessmentId, controlId, assessorVerdict, assessorNotes } = await req.json();
+  const { assessmentId, controlId, assessorVerdict, assessorNotes, objectiveVerdicts } = await req.json();
 
   if (!assessmentId || !controlId || !assessorVerdict) {
     return NextResponse.json({ error: "assessmentId, controlId, assessorVerdict required" }, { status: 400 });
   }
   if (!["met", "partially_met", "not_met", "needs_review"].includes(assessorVerdict)) {
     return NextResponse.json({ error: "Invalid verdict value" }, { status: 400 });
+  }
+  // objectiveVerdicts (optional): { "<objectiveId>": "met" | "not_met" | "unclear" }
+  let objVerdicts: Record<string, string> | null = null;
+  if (objectiveVerdicts && typeof objectiveVerdicts === "object") {
+    const valid = ["met", "not_met", "unclear"];
+    objVerdicts = Object.fromEntries(
+      Object.entries(objectiveVerdicts as Record<string, unknown>).filter(
+        ([, v]) => typeof v === "string" && valid.includes(v)
+      )
+    ) as Record<string, string>;
+    if (Object.keys(objVerdicts).length === 0) objVerdicts = null;
   }
 
   // Snapshot current AI recommendation for audit trail
@@ -58,6 +69,7 @@ export async function POST(req: NextRequest) {
         ai_feedback: aiData?.feedback ?? null,
         assessor_verdict: assessorVerdict,
         assessor_notes: assessorNotes ?? null,
+        objective_verdicts: objVerdicts,
         reviewed_by: user.id,
         reviewed_at: now,
         updated_at: now,

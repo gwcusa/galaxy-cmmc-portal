@@ -18,6 +18,7 @@ import AssessmentSummaryPanel, { AssessmentSummary } from "./AssessmentSummaryPa
 import IntakeQuestionsPanel from "./IntakeQuestionsPanel";
 import AssignAssessorSelect from "./AssignAssessorSelect";
 import { formatScopingForPrompt } from "@/lib/scoping-questions";
+import objectivesData from "@/data/assessment-objectives.json";
 
 const controlsMap = new Map(CONTROLS.map((c) => [c.id, c]));
 const domainsMap = new Map(DOMAINS.map((d) => [d.code, d]));
@@ -112,21 +113,21 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
   }
 
   // AI feedback
-  const aiFeedbackMap: Record<string, { verdict: string; feedback: string; generated_at: string }> = {};
+  const aiFeedbackMap: Record<string, { verdict: string; feedback: string; generated_at: string; objective_results: { id: string; met: string; note?: string }[] | null }> = {};
   if (activeAssessment) {
     const { data } = await supabase
       .from("control_ai_feedback")
-      .select("control_id, verdict, feedback, generated_at")
+      .select("control_id, verdict, feedback, generated_at, objective_results")
       .eq("assessment_id", activeAssessment.id);
     for (const f of data ?? []) aiFeedbackMap[f.control_id] = f;
   }
 
   // Assessor determinations
-  const determinationsMap: Record<string, { assessor_verdict: string; assessor_notes: string | null; reviewed_at: string }> = {};
+  const determinationsMap: Record<string, { assessor_verdict: string; assessor_notes: string | null; objective_verdicts: Record<string, string> | null; reviewed_at: string }> = {};
   if (activeAssessment) {
     const { data } = await supabase
       .from("assessor_determinations")
-      .select("control_id, assessor_verdict, assessor_notes, reviewed_at")
+      .select("control_id, assessor_verdict, assessor_notes, objective_verdicts, reviewed_at")
       .eq("assessment_id", activeAssessment.id);
     for (const d of data ?? []) determinationsMap[d.control_id] = d;
   }
@@ -156,6 +157,9 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         assessorVerdict: det?.assessor_verdict ?? null,
         assessorNotes: det?.assessor_notes ?? null,
         reviewedAt: det?.reviewed_at ?? null,
+        objectives: (objectivesData as Record<string, { objectives: { id: string; text: string }[] }>)[r.control_id]?.objectives ?? [],
+        aiObjectiveResults: ai?.objective_results ?? [],
+        objectiveVerdicts: det?.objective_verdicts ?? {},
       };
     })
     .sort((a, b) => {

@@ -100,6 +100,9 @@ const aRows = XLSX.utils.sheet_to_json(aWb.Sheets["SP800-171A"], { header: 1 }).
 
 const objectives = {}; // "3.1.1" -> [{ id: "3.1.1[a]", text }]
 const examineMethods = {}; // "3.1.1" -> "SELECT FROM: ..."
+const interviewMethods = {}; // "3.1.1" -> "Personnel with ..."
+const testMethods = {}; // "3.1.1" -> "Mechanisms for ..."
+const stripSelect = (s) => String(s ?? "").trim().replace(/^\[SELECT FROM:\s*/i, "").replace(/\]$/, "");
 for (const row of aRows) {
   const rawId = String(row[1] ?? "").trim();
   const objText = String(row[4] ?? "").trim();
@@ -109,6 +112,11 @@ for (const row of aRows) {
     const id = parentMatch[1];
     const examine = String(row[5] ?? "").trim();
     if (examine) examineMethods[id] = examine.replace(/^\[SELECT FROM:\s*/i, "").replace(/\]$/, "");
+    // 800-171A columns 6/7: Interview and Test methods (a few requirements have none)
+    const interview = stripSelect(row[6]);
+    const test = stripSelect(row[7]);
+    if (interview) interviewMethods[id] = interview;
+    if (test) testMethods[id] = test;
     // 24 requirements have a single objective embedded in the parent row
     // ("Determine if <objective text>") instead of [a]/[b] sub-rows.
     const embedded = objText.replace(/^Determine if:?\s*/i, "").trim();
@@ -231,6 +239,8 @@ for (const req of requirements) {
   serverData[req.id] = {
     discussion: req.discussion,
     examine: examineMethods[req.id] ?? "",
+    ...(interviewMethods[req.id] ? { interview: interviewMethods[req.id] } : {}),
+    ...(testMethods[req.id] ? { test: testMethods[req.id] } : {}),
     objectives: objectives[req.id],
   };
 }
