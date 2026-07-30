@@ -345,6 +345,21 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         </div>
       )}
 
+      {activeAssessment && (
+        <div style={{ marginBottom: 24 }}>
+          <a
+            href={`/api/admin/reports/sprs-worksheet?assessmentId=${activeAssessment.id}`}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 16px", borderRadius: 8,
+              fontSize: 12, fontWeight: 600, textDecoration: "none",
+              background: "rgba(0,201,255,0.1)", border: "1px solid rgba(0,201,255,0.25)", color: "#00C9FF",
+            }}
+          >
+            ⬇ Download SPRS Submission Worksheet
+          </a>
+        </div>
+      )}
+
       {/* Engagement-level readiness synthesis */}
       {summary && <AssessmentSummaryPanel summary={summary} />}
 

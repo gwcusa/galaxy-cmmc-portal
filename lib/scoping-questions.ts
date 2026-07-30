@@ -88,6 +88,20 @@ export const SCOPING_QUESTIONS: ScopingQuestion[] = [
     type: "textarea",
     placeholder: "e.g., Single office VLAN, guest Wi-Fi isolated, CUI file server on separate subnet behind internal firewall...",
   },
+  {
+    id: "asset_inventory",
+    label: "In-scope asset inventory — the systems, servers, and endpoints that store, process, or transmit CUI/FCI",
+    type: "textarea",
+    placeholder: "e.g., 12 Windows 11 laptops (Intune-managed), 1 on-prem file server (Server 2022), SharePoint Online GCC High, 2 network printers...",
+    help: "List the main assets in your CMMC boundary — counts, OS/versions, and role. This defines the system boundary in your SSP.",
+  },
+  {
+    id: "external_providers",
+    label: "External Service Providers (ESPs) that handle, or whose systems process, your CUI/FCI",
+    type: "textarea",
+    placeholder: "e.g., Managed by Acme MSP (help desk + patching); Microsoft 365 GCC High (email/storage); Datto (backup)...",
+    help: "Name each provider and what they do. Drives the Customer Responsibility Matrix — which controls are yours vs. theirs.",
+  },
 ];
 
 export function formatScopingForPrompt(answers: Record<string, unknown>): string {

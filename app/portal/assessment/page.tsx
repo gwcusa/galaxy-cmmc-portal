@@ -592,14 +592,17 @@ export default function AssessmentPage() {
         {/* Implementation Statement */}
         <div style={{ marginBottom: needsEvidence ? 20 : 24 }}>
           <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 6 }}>
-            Implementation Statement
+            {currentResponse === "na" ? "Applicability Justification" : "Implementation Statement"}
             {needsEvidence && <span style={{ color: "rgba(255,255,255,0.2)", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}> (required)</span>}
+            {currentResponse === "na" && <span style={{ color: "#FFB347", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}> (recommended — an assessor must validate every N/A)</span>}
           </div>
           <textarea
             value={currentNote}
             onChange={(e) => handleNote(e.target.value)}
             onBlur={handleNoteBlur}
-            placeholder="Describe specifically how this control is implemented in your environment — what processes, technical controls, or systems are in place to meet this requirement fully or partially..."
+            placeholder={currentResponse === "na"
+              ? "Explain why this control does not apply to your environment — e.g., 'We operate no wireless networks, so wireless-specific requirements are not applicable.' Your assessor must confirm each N/A."
+              : "Describe specifically how this control is implemented in your environment — what processes, technical controls, or systems are in place to meet this requirement fully or partially..."}
             style={{
               width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
               borderRadius: 8, padding: 12, color: "#E2E8F0", fontSize: 13,

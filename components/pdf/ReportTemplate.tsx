@@ -6,6 +6,10 @@ import {
   StyleSheet,
   renderToBuffer,
   Styles,
+  Svg,
+  Ellipse,
+  Circle,
+  G,
 } from "@react-pdf/renderer";
 import { AssessmentScore, ResponseMap } from "@/lib/scoring";
 import { CONTROLS } from "@/lib/controls";
@@ -414,6 +418,21 @@ function CoverPage({
       <View style={styles.coverHeader} />
       <View style={styles.coverBody}>
         <View style={styles.logoBox}>
+          {/* Galaxy orbit mark */}
+          <Svg width={44} height={44} viewBox="0 0 80 80" style={{ marginBottom: 10 }}>
+            <G transform="rotate(-25 40 40)">
+              <Ellipse cx={40} cy={40} rx={36} ry={16} stroke="#4A90D9" strokeWidth={1.5} fill="none" />
+            </G>
+            <G transform="rotate(20 40 40)">
+              <Ellipse cx={40} cy={40} rx={26} ry={11} stroke="#C0C8D8" strokeWidth={1.2} fill="none" />
+            </G>
+            <G transform="rotate(-10 40 40)">
+              <Ellipse cx={40} cy={40} rx={16} ry={7} stroke="#4A90D9" strokeWidth={1} fill="none" />
+            </G>
+            <Circle cx={40} cy={40} r={7} fill="#2E6DB4" />
+            <Circle cx={40} cy={40} r={4.5} fill="#4A90D9" />
+            <Circle cx={40} cy={40} r={2} fill="#FFFFFF" />
+          </Svg>
           <Text style={styles.logoGalaxy}>GALAXY</Text>
           <Text style={styles.logoConsulting}>CONSULTING</Text>
           <Text style={styles.logoLLC}>LLC</Text>

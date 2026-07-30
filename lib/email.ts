@@ -217,3 +217,25 @@ export async function sendInfoRequestResponseEmail(params: {
 
   await send(ADMIN_EMAIL, `[Galaxy] ${companyName} — Info Request Response: ${subject}`, html);
 }
+
+// ---------------------------------------------------------------------------
+// 5. Client notification: annual re-affirmation due
+// ---------------------------------------------------------------------------
+export async function sendReaffirmationReminderEmail(params: {
+  clientEmail: string;
+  clientName: string;
+  companyName: string;
+  finalizedOn: string;
+}) {
+  const { clientEmail, clientName, companyName, finalizedOn } = params;
+  const html = baseTemplate(`
+    ${heading("Annual CMMC Re-Affirmation Due")}
+    ${para(`Hi ${clientName},`)}
+    ${para(`Your CMMC self-assessment for <strong style="color:#fff;">${companyName}</strong> was finalized on <strong style="color:#fff;">${finalizedOn}</strong>. CMMC requires a senior official to affirm continuing compliance <strong style="color:#fff;">annually</strong> in SPRS.`)}
+    ${divider()}
+    <div style="margin-bottom:16px;">${badge("Action Needed", "#FFB347")}</div>
+    ${para("Please review your environment for any changes, refresh your assessment where needed, and submit your annual affirmation in SPRS. Galaxy Consulting can help you re-assess — reply to your assessor or start in the portal.")}
+    ${ctaButton("Review in Your Portal →", `${APP_URL}/portal/dashboard`)}
+  `);
+  await send(clientEmail, `[Galaxy] Annual CMMC Re-Affirmation Due — ${companyName}`, html);
+}

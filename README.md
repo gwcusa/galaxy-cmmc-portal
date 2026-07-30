@@ -36,7 +36,10 @@ RESEND_API_KEY=
 ADMIN_NOTIFY_EMAIL=
 EMAIL_FROM=
 NEXT_PUBLIC_APP_URL=
+CRON_SECRET=
 ```
+
+`CRON_SECRET` protects the daily re-affirmation reminder endpoint (`/api/cron/reaffirmation`), invoked by the Vercel Cron defined in `vercel.json`.
 
 ## Database Migrations
 
@@ -56,6 +59,7 @@ Apply in order via Supabase SQL Editor. **Take a backup before running 009.**
 | `015_reports_unique_assessment.sql` | Unique constraint on `reports.assessment_id` (idempotent) |
 | `016_assessor_role.sql` | Dedicated `assessor` role (separate from `admin`) |
 | `017_remediation_automation.sql` | Consolidated intake (`ai_intake_package`), `responsibility_matrix` artifact type, `generated_artifacts.covers_controls`, document provenance (`documents.source` / `source_artifact_id`) |
+| `018_reaffirmation.sql` | `assessments.reaffirmation_reminded_at` for the annual re-affirmation reminder cron |
 
 See `docs/upgrade-2026-07.md` for full deploy checklist.
 
@@ -116,6 +120,14 @@ For `remediation`-tier clients, the assessor can produce the full document packa
 - **Customer Responsibility Matrix** — maps every control to the responsible party (Client / MSP-ESP / Cloud Provider / Shared), grounded in the scoping profile.
 - **Close-the-loop** — publishing a Policy bundle or SSP materializes it as a mapped evidence document (`documents` + confirmed `document_control_links`) so the next assessment automatically sees it. Idempotent via `documents.source_artifact_id`.
 - Generators live in `lib/remediation-artifacts.ts` (shared by the single-artifact and package routes).
+
+## Reporting & Compliance Lifecycle
+
+- **SPRS submission worksheet** — `GET /api/admin/reports/sprs-worksheet?assessmentId=…` downloads a submission-ready worksheet (score, itemized deductions, POA&M eligibility, senior-official affirmation block). Built by `lib/sprs-worksheet.ts`; linked from the admin client page.
+- **Annual re-affirmation reminders** — a daily Vercel Cron (`vercel.json` → `/api/cron/reaffirmation`) emails clients ~11 months after finalization, once per cycle (tracked by `assessments.reaffirmation_reminded_at`).
+- **Scoping asset inventory** — the scoping profile captures the in-scope asset inventory and external service providers, feeding the SSP system boundary and the Customer Responsibility Matrix.
+- **N/A justification** — selecting N/A on a control prompts the client for the applicability justification an assessor must validate.
+- **Branding** — Galaxy Consulting logo in the portal (sidebar + login) and on the PDF report cover (vector mark).
 
 ## Assessment Lifecycle
 

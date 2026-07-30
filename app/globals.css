@@ -14,12 +14,53 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { scroll-behavior: smooth; }
+
 body {
-  background: #050B18;
+  /* Subtle depth: two faint brand-tinted glows over the base navy */
+  background:
+    radial-gradient(1100px 600px at 12% -8%, rgba(0, 201, 255, 0.08), transparent 60%),
+    radial-gradient(1000px 620px at 100% 0%, rgba(77, 255, 160, 0.06), transparent 55%),
+    #050B18;
+  background-attachment: fixed;
   color: #E2E8F0;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-textarea, input {
-  font-family: inherit;
+textarea, input, select, button { font-family: inherit; }
+
+/* Crisper text selection */
+::selection { background: rgba(0, 201, 255, 0.28); color: #fff; }
+
+/* Slim, dark scrollbars that match the theme */
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.18) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.26); background-clip: content-box; }
+
+/* Accessible focus ring on keyboard navigation (doesn't affect mouse clicks) */
+a:focus-visible, button:focus-visible, input:focus-visible,
+textarea:focus-visible, select:focus-visible {
+  outline: 2px solid rgba(0, 201, 255, 0.6);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Gentle, consistent interaction feedback across the app's inline-styled UI */
+a, button { transition: filter 0.15s ease, opacity 0.15s ease, transform 0.15s ease, background 0.15s ease, border-color 0.15s ease; }
+button:not(:disabled):hover { filter: brightness(1.08); }
+button:not(:disabled):active { transform: translateY(0.5px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  a, button { transition: none; }
 }
