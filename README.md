@@ -25,7 +25,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Environment Variables
 
-Copy `.env.local.example` to `.env.local` and fill in:
+Copy `.env.example` to `.env.local` and fill in:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=
@@ -52,6 +52,10 @@ Apply in order via Supabase SQL Editor. **Take a backup before running 009.**
 | `011_engine_v2.sql` | Objective results, tracked AI runs, summaries |
 | `012_remediation_studio.sql` | Intake questions, artifact versioning + publish |
 | `013_audit_ops.sql` | Audit log, assessor assignment |
+| `014_evidence_types.sql` | Evidence/artifact type refinements |
+| `015_reports_unique_assessment.sql` | Unique constraint on `reports.assessment_id` (idempotent) |
+| `016_assessor_role.sql` | Dedicated `assessor` role (separate from `admin`) |
+| `017_remediation_automation.sql` | Consolidated intake (`ai_intake_package`), `responsibility_matrix` artifact type, `generated_artifacts.covers_controls`, document provenance (`documents.source` / `source_artifact_id`) |
 
 See `docs/upgrade-2026-07.md` for full deploy checklist.
 
@@ -71,23 +75,16 @@ node scripts/build-catalog.mjs <dir containing sp800-171r2-reqs.xlsx and sp800-1
 
 ## CMMC Test Files
 
-`CMMC-Test-Files/` contains 1,101 synthetic evidence files for testing and demos:
+`CMMC-Test-Files/` contains synthetic evidence files for testing and demos, organized into one folder per fictional company:
 
-- **5 fictional defense contractor companies**
+- **5 fictional defense contractor companies** (one subfolder each)
 - **110 NIST SP 800-171 Rev 2 controls** (all 14 domains: AC, AT, AU, CM, IA, IR, MA, MP, PE, PS, RA, CA, SC, SI)
-- **2 files per control per company:** a POLICY document and an Implementation Evidence PROOF document
-- Total: 110 controls × 5 companies × 2 files = 1,100 content files + 1 index = **1,101 files**
+- Per control per company: a POLICY document and an Implementation Evidence PROOF document, each in both **`.txt` and `.pdf`** — 440 files per company
+- Total: **2,200 evidence files + `00-INDEX.txt`**
 
-Test companies:
-| Slug | Company | IT Contact |
-|------|---------|------------|
-| ASJ-Realty | ASJ Realty | Sandra Okonkwo |
-| Bumpass-Fire | Bumpass Fire & Rescue | Mike Sadler |
-| Keith-Drone-Guy | Keith the Drone Guy LLC | Keith Merritt |
-| Money-Straight-Talk | Money Straight Talk LLC | Terrell Banks |
-| Blue-Ridge-Tech | Blue Ridge Technology Solutions LLC | Nathan Cruz |
+Test companies (folders): `ASJ Realty`, `Bumpass Fire`, `Keith Drone Guy`, `Money Straight Talk`, `Blue Ridge Tech`.
 
-File naming: `[control-id]-[Company-Slug]-POLICY-[Title].txt` / `[control-id]-[Company-Slug]-PROOF-[Title].txt`
+File naming: `[control-id]-[Company-Slug]-POLICY-[Title].{txt,pdf}` / `[control-id]-[Company-Slug]-PROOF-[Title].{txt,pdf}`
 
 ## Architecture Notes
 
@@ -95,18 +92,30 @@ File naming: `[control-id]-[Company-Slug]-POLICY-[Title].txt` / `[control-id]-[C
 - Control "met" only if all 800-171A objectives satisfied
 - SPRS math computed locally (`lib/scoring.ts`), never by the LLM
 - SPRS range: 110 − deductions, floor −203; partial credit for 3.5.3 and 3.13.11
+- **POA&M eligibility** follows 32 CFR 170.21(a)(2): a Conditional Level 2 needs score ≥ 88 (80%) and every open gap POA&M-eligible. Only 1-point items may ride on a POA&M (plus 3.13.11 at a 3-point deduction), **except the six requirements that can never be deferred** — 3.1.20, 3.1.22, 3.10.3, 3.10.4, 3.10.5, 3.12.4 (`POAM_INELIGIBLE_CONTROLS` in `lib/scoring.ts`)
 
 ## Roles
 
 | Role | Access |
 |------|--------|
-| `admin` | Galaxy assessors — full admin panel, AI review, client management |
-| `client` | Defense contractors — submit assessments, view deliverables |
+| `admin` | Galaxy staff — full admin panel, AI review, client & team management |
+| `assessor` | Galaxy assessors — assigned clients: review, determinations, artifact generation |
+| `client` | Defense contractors — submit assessments, answer intake, view deliverables |
 
 ## Product Tiers (`clients.engagement_type`)
 
 - `assessment`: Submit → AI review → Assessor review → Report
 - `remediation`: Above + intake questions, artifact generation, publish deliverables
+
+## Remediation Automation
+
+For `remediation`-tier clients, the assessor can produce the full document package with minimal clicks:
+
+- **Consolidated intake** (`POST /api/admin/remediation/intake-package/generate`) — one de-duplicated questionnaire covering **every** gap at once; each question is tagged with the controls it informs, so an answer asked once (e.g. "which MFA tool?") feeds every control it touches.
+- **One-click full package** (`POST /api/admin/remediation/package/generate`) — drafts the **SSP, POA&M, Policy & Procedure templates, and Customer Responsibility Matrix** in a single run. Per-control **configuration baselines** stay on-demand.
+- **Customer Responsibility Matrix** — maps every control to the responsible party (Client / MSP-ESP / Cloud Provider / Shared), grounded in the scoping profile.
+- **Close-the-loop** — publishing a Policy bundle or SSP materializes it as a mapped evidence document (`documents` + confirmed `document_control_links`) so the next assessment automatically sees it. Idempotent via `documents.source_artifact_id`.
+- Generators live in `lib/remediation-artifacts.ts` (shared by the single-artifact and package routes).
 
 ## Assessment Lifecycle
 

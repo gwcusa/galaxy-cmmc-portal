@@ -40,13 +40,13 @@ export default function LoginPage() {
       <div style={{ width: "100%", maxWidth: 400 }}>
         {/* Logo */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{
-            width: 52, height: 52, background: "linear-gradient(135deg, #00C9FF, #4DFFA0)",
-            borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 26, margin: "0 auto 16px",
-          }}>🌌</div>
-          <div style={{ fontSize: 22, fontWeight: 700, color: "#fff" }}>Galaxy CMMC Portal</div>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>Galaxy Consulting, LLC</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo/galaxy-consulting-logo-dark-bg.svg"
+            alt="Galaxy Consulting"
+            style={{ width: "100%", maxWidth: 280, height: "auto", margin: "0 auto 16px", display: "block" }}
+          />
+          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", letterSpacing: "1px", textTransform: "uppercase" }}>CMMC Portal</div>
         </div>
 
         {/* Form */}

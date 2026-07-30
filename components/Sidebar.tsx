@@ -36,13 +36,13 @@ export default function Sidebar({ items, userName, userRole }: Props) {
     }}>
       {/* Logo */}
       <div style={{ padding: "24px 20px 20px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{
-          width: 36, height: 36, background: "linear-gradient(135deg, #00C9FF, #4DFFA0)",
-          borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 18, marginBottom: 10,
-        }}>🌌</div>
-        <div style={{ fontSize: 14, fontWeight: 700, color: "#fff", letterSpacing: "0.5px" }}>Galaxy Consulting</div>
-        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: "1px", textTransform: "uppercase", marginTop: 2 }}>CMMC Portal</div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo/galaxy-consulting-logo-dark-bg.svg"
+          alt="Galaxy Consulting"
+          style={{ width: "100%", maxWidth: 200, height: "auto", display: "block", marginBottom: 8 }}
+        />
+        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", letterSpacing: "1px", textTransform: "uppercase" }}>CMMC Portal</div>
       </div>
 
       {/* Nav */}
