@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
 import { createClient } from "@supabase/supabase-js";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { validateUpload, sanitizeFilename } from "@/lib/uploads";
@@ -41,7 +42,7 @@ export async function GET(req: NextRequest) {
 
   const { data: docs, error } = await svc
     .from("documents")
-    .select("id, file_name, title, doc_type, file_size, mime_type, uploaded_at, storage_path, document_control_links(id, control_id, status, source, confidence, rationale)")
+    .select("id, file_name, title, doc_type, file_size, mime_type, uploaded_at, storage_path, sha256, document_control_links(id, control_id, status, source, confidence, rationale)")
     .eq("client_id", clientId)
     .order("uploaded_at", { ascending: false });
 
@@ -86,6 +87,7 @@ export async function POST(req: NextRequest) {
 
   const storagePath = `${clientId}/${Date.now()}-${sanitizeFilename(file.name)}`;
   const buffer = Buffer.from(await file.arrayBuffer());
+  const sha256 = createHash("sha256").update(buffer).digest("hex");
 
   const { error: uploadError } = await storage.storage
     .from(BUCKET)
@@ -101,6 +103,7 @@ export async function POST(req: NextRequest) {
       storage_path: storagePath,
       file_size: file.size,
       mime_type: file.type || null,
+      sha256,
       uploaded_by: user.id,
     })
     .select("id, file_name, title, doc_type, file_size, mime_type, uploaded_at")
@@ -117,7 +120,7 @@ export async function POST(req: NextRequest) {
     action: "document.uploaded",
     entityType: "document",
     entityId: doc.id,
-    metadata: { clientId, fileName: file.name, fileSize: file.size },
+    metadata: { clientId, fileName: file.name, fileSize: file.size, sha256 },
   });
 
   return NextResponse.json({ document: doc });

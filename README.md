@@ -61,6 +61,7 @@ Apply in order via Supabase SQL Editor. **Take a backup before running 009.**
 | `017_remediation_automation.sql` | Consolidated intake (`ai_intake_package`), `responsibility_matrix` artifact type, `generated_artifacts.covers_controls`, document provenance (`documents.source` / `source_artifact_id`) |
 | `018_reaffirmation.sql` | `assessments.reaffirmation_reminded_at` for the annual re-affirmation reminder cron |
 | `019_objective_determinations.sql` | `assessor_determinations.objective_verdicts` for per-objective (NIST 800-171A) assessor verdicts |
+| `020_evidence_integrity.sql` | `sha256` on `artifacts` and `documents` for tamper-evident evidence |
 
 See `docs/upgrade-2026-07.md` for full deploy checklist.
 
@@ -125,7 +126,10 @@ For `remediation`-tier clients, the assessor can produce the full document packa
 
 ## Reporting & Compliance Lifecycle
 
-- **SPRS submission worksheet** — `GET /api/admin/reports/sprs-worksheet?assessmentId=…` downloads a submission-ready worksheet (score, itemized deductions, POA&M eligibility, senior-official affirmation block). Built by `lib/sprs-worksheet.ts`; linked from the admin client page.
+- **SPRS submission worksheet** — `GET /api/admin/reports/sprs-worksheet?assessmentId=…` downloads a submission-ready worksheet (score, itemized deductions, POA&M eligibility, senior-official affirmation block). Built by `lib/sprs-worksheet.ts`; linked from the admin client page. (Assessor-only — clients never see scores.)
+- **Full assessment CSV** — `GET /api/admin/reports/assessment-csv?assessmentId=…` exports every in-scope control with the client response, AI verdict, assessor verdict, per-objective roll-up, and notes.
+- **Evidence integrity** — every uploaded artifact/document is SHA-256 hashed at upload (`artifacts.sha256`, `documents.sha256`), recorded in the audit log, so a policy/proof file is tamper-evident.
+- **Branded PDF** — the report cover and every content-page running header carry the Galaxy orbit mark (vector, via react-pdf primitives).
 - **Annual re-affirmation reminders** — a daily Vercel Cron (`vercel.json` → `/api/cron/reaffirmation`) emails clients ~11 months after finalization, once per cycle (tracked by `assessments.reaffirmation_reminded_at`).
 - **Scoping asset inventory** — the scoping profile captures the in-scope asset inventory and external service providers, feeding the SSP system boundary and the Customer Responsibility Matrix.
 - **N/A justification** — selecting N/A on a control prompts the client for the applicability justification an assessor must validate.

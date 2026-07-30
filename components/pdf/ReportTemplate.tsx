@@ -356,6 +356,31 @@ const styles = StyleSheet.create({
   },
 });
 
+// Small Galaxy orbit mark for the running page header.
+function BrandMark({ size = 22 }: { size?: number }) {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 80 80" style={{ marginRight: 8 }}>
+      <G transform="rotate(-25 40 40)"><Ellipse cx={40} cy={40} rx={36} ry={16} stroke="#4A90D9" strokeWidth={2} fill="none" /></G>
+      <G transform="rotate(20 40 40)"><Ellipse cx={40} cy={40} rx={26} ry={11} stroke="#C0C8D8" strokeWidth={1.6} fill="none" /></G>
+      <Circle cx={40} cy={40} r={7} fill="#2E6DB4" />
+      <Circle cx={40} cy={40} r={4.5} fill="#4A90D9" />
+      <Circle cx={40} cy={40} r={2} fill="#FFFFFF" />
+    </Svg>
+  );
+}
+
+function PageHeader({ title, company }: { title: string; company: string }) {
+  return (
+    <View style={styles.pageHeader}>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <BrandMark />
+        <Text style={styles.pageTitle}>{title}</Text>
+      </View>
+      <Text style={styles.pageCompanyLabel}>{company}</Text>
+    </View>
+  );
+}
+
 function getScoreInterpretation(score: number): { title: string; text: string; color: string } {
   if (score >= 70) {
     return {
@@ -463,10 +488,7 @@ function ExecutiveSummaryPage({
   const interp = getScoreInterpretation(score.overallScore);
   return (
     <Page size="A4" style={styles.contentPage}>
-      <View style={styles.pageHeader}>
-        <Text style={styles.pageTitle}>Executive Summary</Text>
-        <Text style={styles.pageCompanyLabel}>{companyName}</Text>
-      </View>
+      <PageHeader title="Executive Summary" company={companyName} />
 
       <View style={styles.statsRow}>
         {score.sprs && (
@@ -534,10 +556,7 @@ function DomainBreakdownPage({
 }: Pick<ReportTemplateProps, "companyName" | "score">) {
   return (
     <Page size="A4" style={styles.contentPage}>
-      <View style={styles.pageHeader}>
-        <Text style={styles.pageTitle}>Domain Compliance Breakdown</Text>
-        <Text style={styles.pageCompanyLabel}>{companyName}</Text>
-      </View>
+      <PageHeader title="Domain Compliance Breakdown" company={companyName} />
 
       <View style={styles.table}>
         <View style={styles.tableHeader}>
@@ -602,10 +621,7 @@ function PriorityGapsPage({
 
   return (
     <Page size="A4" style={styles.contentPage}>
-      <View style={styles.pageHeader}>
-        <Text style={styles.pageTitle}>Priority Gaps & Recommendations</Text>
-        <Text style={styles.pageCompanyLabel}>{companyName}</Text>
-      </View>
+      <PageHeader title="Priority Gaps & Recommendations" company={companyName} />
 
       {gaps.length === 0 ? (
         <View style={styles.noGapsBox}>

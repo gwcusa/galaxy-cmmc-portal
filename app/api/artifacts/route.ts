@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
 import { createClient } from "@supabase/supabase-js";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
+import { logAudit } from "@/lib/audit";
 
 const ALLOWED_TYPES = [
   "application/pdf",
@@ -63,7 +65,7 @@ export async function GET(req: NextRequest) {
 
   const { data: artifactRows, error } = await serviceSupabase
     .from("artifacts")
-    .select("id, file_name, file_size, mime_type, storage_path, uploaded_at, artifact_type")
+    .select("id, file_name, file_size, mime_type, storage_path, uploaded_at, artifact_type, sha256")
     .eq("assessment_id", assessmentId)
     .eq("control_id", controlId)
     .order("uploaded_at", { ascending: true });
@@ -83,6 +85,7 @@ export async function GET(req: NextRequest) {
         mime_type: a.mime_type,
         uploaded_at: a.uploaded_at,
         artifact_type: a.artifact_type as "policy" | "implementation" | null,
+        sha256: a.sha256 ?? null,
         signedUrl: signed?.signedUrl ?? "",
       };
     })
@@ -142,6 +145,7 @@ export async function POST(req: NextRequest) {
   // Upload file
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
+  const sha256 = createHash("sha256").update(buffer).digest("hex");
 
   const { error: uploadError } = await storageClient.storage
     .from("artifacts")
@@ -162,6 +166,7 @@ export async function POST(req: NextRequest) {
       file_size: file.size,
       mime_type: file.type || null,
       artifact_type: artifactType,
+      sha256,
       uploaded_by: user.id,
       uploaded_at: new Date().toISOString(),
     })
@@ -173,6 +178,16 @@ export async function POST(req: NextRequest) {
     await storageClient.storage.from("artifacts").remove([storagePath]);
     return NextResponse.json({ error: dbError.message }, { status: 500 });
   }
+
+  // Record the integrity hash in the tamper-evident audit trail
+  logAudit({
+    actorId: user.id,
+    actorRole: "client",
+    action: "artifact.uploaded",
+    entityType: "artifact",
+    entityId: artifact.id,
+    metadata: { assessmentId, controlId, fileName: file.name, sha256 },
+  });
 
   // Generate signed URL for immediate display
   const { data: signed } = await storageClient.storage
