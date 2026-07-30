@@ -85,10 +85,35 @@ describe("SPRS scoring (DoD Assessment Methodology)", () => {
     expect(score.sprs!.scoreable).toBe(false); // includes 3.12.4
   });
 
+  it("blocks POA&M for the six mandatory 1-point requirements (32 CFR 170.21)", () => {
+    for (const id of ["3.1.20", "3.1.22", "3.10.3", "3.10.4", "3.10.5"]) {
+      const responses = allYes();
+      responses[id] = "no";
+      const score = calculateScore(responses, 2);
+      // still a 1-point deduction...
+      expect(score.sprs!.score).toBe(109);
+      // ...but it can never ride on a POA&M, so conditional status is blocked
+      expect(score.sprs!.poamBlockers).toContain(id);
+      expect(score.sprs!.poamEligible).toBe(false);
+    }
+  });
+
+  it("still allows POA&M for an ordinary 1-point gap not on the mandatory list", () => {
+    const responses = allYes();
+    responses["3.1.3"] = "no"; // 1-point, not in the ineligible set
+    const score = calculateScore(responses, 2);
+    expect(score.sprs!.poamBlockers).toHaveLength(0);
+    expect(score.sprs!.poamEligible).toBe(true);
+  });
+
   it("blocks POA&M below the 88-point minimum even with only 1-point gaps", () => {
     const responses = allYes();
-    // 23 one-point gaps → 110-23 = 87 < 88
-    const onePointers = getControlsForLevel(2).filter((c) => c.weight === 1).slice(0, 23);
+    // 23 one-point gaps → 110-23 = 87 < 88. Exclude the six mandatory
+    // requirements, which would block the POA&M for a different reason.
+    const mandatory = new Set(["3.1.20", "3.1.22", "3.10.3", "3.10.4", "3.10.5", "3.12.4"]);
+    const onePointers = getControlsForLevel(2)
+      .filter((c) => c.weight === 1 && !mandatory.has(c.id))
+      .slice(0, 23);
     for (const c of onePointers) responses[c.id] = "no";
     const score = calculateScore(responses, 2);
     expect(score.sprs!.score).toBe(87);

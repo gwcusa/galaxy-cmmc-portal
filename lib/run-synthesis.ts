@@ -126,7 +126,7 @@ export async function runSynthesis(assessmentId: string): Promise<void> {
 
   const sprsText = score.sprs
     ? `SPRS score (DoD Assessment Methodology): ${score.sprs.scoreable ? score.sprs.score : "NOT SCOREABLE — no SSP (3.12.4)"} of 110.
-POA&M eligible for CMMC Level 2 Conditional status: ${score.sprs.poamEligible ? "YES" : "NO"}${score.sprs.poamBlockers.length > 0 ? ` (blockers on 3/5-point items: ${score.sprs.poamBlockers.join(", ")})` : ""}.
+POA&M eligible for CMMC Level 2 Conditional status: ${score.sprs.poamEligible ? "YES" : "NO"}${score.sprs.poamBlockers.length > 0 ? ` (must-fix gaps that cannot be placed on a POA&M — 3/5-point items or the six mandatory 1-point requirements: ${score.sprs.poamBlockers.join(", ")})` : ""}.
 Unanswered controls: ${score.sprs.unansweredCount}.`
     : `CMMC Level 1 engagement (17 FAR practices) — no SPRS score; all practices must be MET (no POA&M permitted at Level 1).`;
 

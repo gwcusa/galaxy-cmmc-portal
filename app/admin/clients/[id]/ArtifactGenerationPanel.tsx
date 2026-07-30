@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 
-type ArtifactType = "ssp" | "poam" | "policy_template" | "config_baseline";
+type ArtifactType = "ssp" | "poam" | "policy_template" | "config_baseline" | "responsibility_matrix";
 type ArtifactStatus = "draft" | "finalized" | "published";
 
 type GeneratedArtifact = {
@@ -38,6 +38,12 @@ const CORE_DEFS: { type: Exclude<ArtifactType, "config_baseline">; label: string
     description: "Policies covering the domains with identified gaps, referencing the client's actual tooling.",
     icon: "📜",
   },
+  {
+    type: "responsibility_matrix",
+    label: "Customer Responsibility Matrix",
+    description: "Maps every control to the responsible party — client, MSP/ESP, cloud provider, or shared — grounded in the scoping profile.",
+    icon: "🤝",
+  },
 ];
 
 const card: React.CSSProperties = {
@@ -70,6 +76,9 @@ export default function ArtifactGenerationPanel({
   const [statusBusy, setStatusBusy] = useState(false);
   const [configControl, setConfigControl] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [packageBusy, setPackageBusy] = useState(false);
+  const [intakeBusy, setIntakeBusy] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     const res = await fetch(`/api/admin/artifacts?assessmentId=${assessmentId}`);
@@ -106,6 +115,40 @@ export default function ArtifactGenerationPanel({
     setGenerating(null);
   }
 
+  async function generatePackage() {
+    setPackageBusy(true);
+    setError(null);
+    setNotice(null);
+    const res = await fetch("/api/admin/remediation/package/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ assessmentId }),
+    });
+    const data = await res.json();
+    if (!res.ok) setError(data.error ?? "Package generation failed");
+    else {
+      await load();
+      const failedNote = data.failed?.length ? ` (failed: ${data.failed.join(", ")} — retry individually)` : "";
+      setNotice(`Generated ${data.generated?.length ?? 0} draft deliverable(s)${failedNote}. Review, then finalize & publish each.`);
+    }
+    setPackageBusy(false);
+  }
+
+  async function sendIntakePackage() {
+    setIntakeBusy(true);
+    setError(null);
+    setNotice(null);
+    const res = await fetch("/api/admin/remediation/intake-package/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ assessmentId }),
+    });
+    const data = await res.json();
+    if (!res.ok) setError(data.error ?? "Intake generation failed");
+    else setNotice(`Sent a ${data.request?.questions?.length ?? 0}-question intake covering ${data.gapCount ?? 0} gap(s). The client will answer in their portal.`);
+    setIntakeBusy(false);
+  }
+
   async function saveEdit() {
     if (!active) return;
     setSaving(true);
@@ -138,9 +181,46 @@ export default function ArtifactGenerationPanel({
   return (
     <div>
       {error && <div style={{ color: "#F87171", fontSize: 13, marginBottom: 12 }}>{error}</div>}
+      {notice && <div style={{ color: "#4DFFA0", fontSize: 13, marginBottom: 12, background: "rgba(77,255,160,0.06)", border: "1px solid rgba(77,255,160,0.2)", borderRadius: 8, padding: "8px 12px" }}>{notice}</div>}
+
+      {/* One-click remediation package */}
+      <div style={{ ...card, padding: 18, marginBottom: 16, background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.22)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>⚡ One-Click Remediation Package</div>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginTop: 3, maxWidth: 560, lineHeight: 1.5 }}>
+              Send one consolidated intake covering every gap, then draft the whole package (SSP, POA&amp;M, policies, and the responsibility matrix) in a single run. Configuration baselines stay per-control below.
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            <button
+              onClick={sendIntakePackage}
+              disabled={intakeBusy}
+              style={{
+                padding: "9px 16px", borderRadius: 8, fontSize: 12, fontWeight: 600, whiteSpace: "nowrap",
+                background: "rgba(0,201,255,0.12)", border: "1px solid rgba(0,201,255,0.3)", color: "#00C9FF",
+                cursor: intakeBusy ? "not-allowed" : "pointer", opacity: intakeBusy ? 0.6 : 1,
+              }}
+            >
+              {intakeBusy ? "Building intake…" : "① Send Consolidated Intake"}
+            </button>
+            <button
+              onClick={generatePackage}
+              disabled={packageBusy}
+              style={{
+                padding: "9px 16px", borderRadius: 8, fontSize: 12, fontWeight: 700, whiteSpace: "nowrap",
+                background: "rgba(167,139,250,0.16)", border: "1px solid rgba(167,139,250,0.4)", color: "#A78BFA",
+                cursor: packageBusy ? "not-allowed" : "pointer", opacity: packageBusy ? 0.6 : 1,
+              }}
+            >
+              {packageBusy ? "Generating package (1-2 min)…" : "② Generate Full Package"}
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Core document cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12, marginBottom: 16 }}>
         {CORE_DEFS.map((def) => {
           const artifact = coreArtifact(def.type);
           const isGenerating = generating === def.type;

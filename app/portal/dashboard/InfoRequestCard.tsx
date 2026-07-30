@@ -34,7 +34,7 @@ export default function InfoRequestCard({ req }: { req: InfoReq }) {
 
   const isPending = req.status === "pending";
   const isResponded = req.status === "responded";
-  const questions = req.request_type === "ai_intake" ? (req.questions ?? []) : [];
+  const questions = ["ai_intake", "ai_intake_package"].includes(req.request_type ?? "") ? (req.questions ?? []) : [];
   const isStructured = questions.length > 0;
 
   const canSubmit = isStructured

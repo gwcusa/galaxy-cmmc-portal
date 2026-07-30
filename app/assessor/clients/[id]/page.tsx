@@ -270,7 +270,7 @@ export default async function AssessorClientDetailPage({ params }: { params: { i
             ? "SPRS score cannot be calculated: 3.12.4 (System Security Plan) is not in place."
             : score.sprs.poamEligible
             ? `POA&M eligible for CMMC Level 2 Conditional status.`
-            : `Not POA&M eligible: ${score.sprs.score < 88 ? `score ${score.sprs.score} below 88-point minimum` : ""}${score.sprs.poamBlockers.length > 0 ? ` — ${score.sprs.poamBlockers.length} high-weight gap(s)` : ""}`}
+            : `Not POA&M eligible: ${score.sprs.score < 88 ? `score ${score.sprs.score} below 88-point minimum` : ""}${score.sprs.poamBlockers.length > 0 ? ` — ${score.sprs.poamBlockers.length} must-fix gap(s) that cannot ride on a POA&M` : ""}`}
         </div>
       )}
       {targetLevel === 1 && (

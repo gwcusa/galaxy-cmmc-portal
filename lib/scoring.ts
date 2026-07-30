@@ -35,7 +35,8 @@ export type SprsResult = {
   /** CMMC Level 2 conditional certification: score >= 88 (80%) and every open
    * gap is POA&M-eligible (1-point items, or 3.13.11 at a 3-point deduction). */
   poamEligible: boolean;
-  /** Open gaps that disqualify a POA&M (3- or 5-point items). */
+  /** Open gaps that disqualify a POA&M: 3- or 5-point items, plus the six
+   * requirements in POAM_INELIGIBLE_CONTROLS that can never be deferred. */
   poamBlockers: string[];
   unansweredCount: number;
 };
@@ -65,6 +66,23 @@ const PROGRESS_POINTS: Record<string, number> = {
 
 const SPRS_MIN = -203;
 const POAM_MIN_SCORE = 88; // 80% of 110
+
+/**
+ * Requirements that can NEVER be placed on a POA&M for Conditional Level 2
+ * status, per 32 CFR 170.21(a)(2)(iii) — even though several are only worth
+ * 1 point. An open gap on any of these makes an OSA ineligible for conditional
+ * (POA&M) status; they must be fully MET before the assessment.
+ * (3.12.4 is also handled by the SSP `scoreable` gate above, but is listed
+ * here for completeness.)
+ */
+export const POAM_INELIGIBLE_CONTROLS = new Set<string>([
+  "3.1.20", // AC.L2 — External Connections (CUI Data)
+  "3.1.22", // AC.L2 — Control Public Information (CUI Data)
+  "3.10.3", // PE.L2 — Escort Visitors (CUI Data)
+  "3.10.4", // PE.L2 — Physical Access Logs (CUI Data)
+  "3.10.5", // PE.L2 — Manage Physical Access (CUI Data)
+  "3.12.4", // CA.L2 — System Security Plan
+]);
 
 function computeSprs(
   controls: ReturnType<typeof getControlsForLevel>,
@@ -101,9 +119,12 @@ function computeSprs(
 
     deductions.push({ controlId: control.id, points, reason });
 
-    // POA&M eligibility: only 1-point deductions may ride on a POA&M,
-    // except 3.13.11 when deducted at 3 points.
-    const poamAllowed = points === 1 || (control.id === "3.13.11" && points === 3);
+    // POA&M eligibility per 32 CFR 170.21(a)(2): only 1-point deductions may
+    // ride on a POA&M (except 3.13.11 at a 3-point deduction), AND the six
+    // requirements in POAM_INELIGIBLE_CONTROLS may never be deferred at all.
+    const poamAllowed =
+      !POAM_INELIGIBLE_CONTROLS.has(control.id) &&
+      (points === 1 || (control.id === "3.13.11" && points === 3));
     if (!poamAllowed) poamBlockers.push(control.id);
   }
 

@@ -328,8 +328,8 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
           {!score.sprs.scoreable
             ? "SPRS score cannot be calculated: 3.12.4 (System Security Plan) is not in place. An SSP is a precondition for a DoD assessment."
             : score.sprs.poamEligible
-            ? `POA&M eligible for CMMC Level 2 Conditional status (score ≥ 88, all open gaps are 1-point items). Deductions: ${score.sprs.deductions.reduce((n, d) => n + d.points, 0)} points across ${score.sprs.deductions.length} requirements.`
-            : `Not POA&M eligible: ${score.sprs.score < 88 ? `score ${score.sprs.score} is below the 88-point minimum` : ""}${score.sprs.score < 88 && score.sprs.poamBlockers.length > 0 ? "; " : ""}${score.sprs.poamBlockers.length > 0 ? `${score.sprs.poamBlockers.length} gap(s) on 3/5-point requirements (${score.sprs.poamBlockers.slice(0, 6).join(", ")}${score.sprs.poamBlockers.length > 6 ? "…" : ""})` : ""}`}
+            ? `POA&M eligible for CMMC Level 2 Conditional status (score ≥ 88, all open gaps are POA&M-eligible 1-point items). Deductions: ${score.sprs.deductions.reduce((n, d) => n + d.points, 0)} points across ${score.sprs.deductions.length} requirements.`
+            : `Not POA&M eligible: ${score.sprs.score < 88 ? `score ${score.sprs.score} is below the 88-point minimum` : ""}${score.sprs.score < 88 && score.sprs.poamBlockers.length > 0 ? "; " : ""}${score.sprs.poamBlockers.length > 0 ? `${score.sprs.poamBlockers.length} must-fix gap(s) that cannot be placed on a POA&M (${score.sprs.poamBlockers.slice(0, 6).join(", ")}${score.sprs.poamBlockers.length > 6 ? "…" : ""})` : ""}`}
         </div>
       )}
       {targetLevel === 1 && (

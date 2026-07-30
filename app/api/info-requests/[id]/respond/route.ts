@@ -47,7 +47,7 @@ export async function POST(
   let responseText: string;
   let answersJson: Record<string, string> | null = null;
 
-  if (infoReq.request_type === "ai_intake" && answers && typeof answers === "object") {
+  if (["ai_intake", "ai_intake_package"].includes(infoReq.request_type) && answers && typeof answers === "object") {
     const questions = (infoReq.questions ?? []) as { id: string; question: string }[];
     const answered = questions.filter((q) => String(answers[q.id] ?? "").trim());
     if (answered.length === 0) {
