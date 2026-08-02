@@ -13,8 +13,8 @@ import ArtifactGenerationPanel from "@/app/admin/clients/[id]/ArtifactGeneration
 import RunAiButton from "@/app/admin/clients/[id]/RunAiButton";
 import AssessmentSummaryPanel, { AssessmentSummary } from "@/app/admin/clients/[id]/AssessmentSummaryPanel";
 import IntakeQuestionsPanel from "@/app/admin/clients/[id]/IntakeQuestionsPanel";
-import NextStepBanner, { NextStep } from "./NextStepBanner";
-import CollapsibleSection from "./CollapsibleSection";
+import NextStepBanner, { NextStep } from "@/components/NextStepBanner";
+import CollapsibleSection from "@/components/CollapsibleSection";
 import { formatScopingForPrompt } from "@/lib/scoping-questions";
 import objectivesData from "@/data/assessment-objectives.json";
 

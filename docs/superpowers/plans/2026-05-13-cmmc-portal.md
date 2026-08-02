@@ -2186,4 +2186,36 @@ After this plan is complete, the following remain:
 
 ---
 
-*Plan Version: 1.0 | Galaxy CMMC Portal | Galaxy Consulting, LLC | Confidential*
+## Post-Scaffold Feature Log
+
+Features delivered after the initial scaffold, in the order they shipped. Each entry records the requirement and the files that satisfy it.
+
+### Assessor Role & Team Management
+
+**Requirement:** Galaxy staff need a non-admin "assessor" role. Assessors can fully review client assessments — run AI, record determinations, write remediation guidance, send information requests, and generate compliance artifacts — but **cannot** add, edit, disable, or delete client accounts. Admins manage the roster of assessors and can reset any team member's password directly.
+
+**Implementation:**
+- `supabase/migrations/016_assessor_role.sql` — adds `'assessor'` to the `user_roles.role` CHECK constraint (`admin | assessor | client`).
+- `lib/auth-helpers.ts` — `requireAdmin()` and `requireAdminOrAssessor()` gate API routes by role.
+- `app/assessor/*` — assessor route group (layout gate, client list dashboard, per-client review page) mirroring the admin review tools but with **no** client-account management (`ClientAccountActions`, `AssignAssessorSelect`, `ResetPasswordButton`, `ClientInfoEditor` are all excluded).
+- `app/admin/team/page.tsx` + `app/api/admin/assessors/route.ts` — invite/list team members; inline **Reset Password** sets a new password directly via `auth.admin.updateUserById` (no email — avoids Supabase's 2/hour SMTP rate limit).
+- Admin/assessor-review API routes (`determinations`, `info-requests`, `assessment/[id]/status|run-ai|assign`, `artifacts`, `intake/generate`, …) accept both `admin` and `assessor`.
+
+> **RLS note:** privileged reads/writes to `user_roles` must use a `createClient()` (supabase-js) service client, **not** `createServiceSupabaseClient()` from `@supabase/ssr` — the SSR client forwards the caller's auth cookie, so RLS still applies and silently filters/blocks the query.
+
+### Guided Next-Step Workflow (Assessor + Admin client page)
+
+**Requirement:** Reviewers were confused by the client detail page — every work section rendered at once, with no indication of what to do next. Confusion worsened for Remediation-Package clients (up to 6 sections). Make the page tell the reviewer the single next action and hide/gate what isn't relevant yet, without locking experts into a rigid wizard.
+
+**Implementation:**
+- `components/NextStepBanner.tsx` — a top banner that computes the one most-important action from the assessment `status` and control-review progress (Begin Review → finish N remaining determinations → Approve/Request Remediation → Finalize), with a smooth-scroll CTA to the relevant section (`#lifecycle` / `#control-review`). Tone-colored: action (cyan), waiting (amber), done (green).
+- `components/CollapsibleSection.tsx` — numbered, collapsible work sections with a progress badge (e.g. `9/12 done`, `2 gaps`) and an optional locked state.
+- Applied to both `app/assessor/clients/[id]/page.tsx` and `app/admin/clients/[id]/page.tsx`:
+  - Sections numbered 1–5 in true workflow order (Control Review → Gap Remediation → Information Requests → Gap Intake → Compliance Artifacts).
+  - Control Review / Gap Remediation auto-expand during review stages.
+  - The three Remediation-Package sections stay **locked** until a determination is recorded for every control (`determinationsComplete`), so artifacts can't be generated prematurely. Assessment-Only clients never see sections 3–5.
+  - Admin page additionally wraps its **Evidence Artifacts** reference block as a collapsible section.
+
+---
+
+*Plan Version: 1.1 | Galaxy CMMC Portal | Galaxy Consulting, LLC | Confidential*

@@ -17,6 +17,8 @@ import RunAiButton from "./RunAiButton";
 import AssessmentSummaryPanel, { AssessmentSummary } from "./AssessmentSummaryPanel";
 import IntakeQuestionsPanel from "./IntakeQuestionsPanel";
 import AssignAssessorSelect from "./AssignAssessorSelect";
+import NextStepBanner, { NextStep } from "@/components/NextStepBanner";
+import CollapsibleSection from "@/components/CollapsibleSection";
 import { formatScopingForPrompt } from "@/lib/scoping-questions";
 import objectivesData from "@/data/assessment-objectives.json";
 
@@ -228,6 +230,61 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
   const determinationCount = Object.keys(determinationsMap).length;
 
   const score = calculateScore(effectiveResponses, targetLevel);
+
+  // ---- Progress + next-step guidance ----
+  const totalReview = reviewItems.length;
+  const reviewedCount = reviewItems.filter((i) => i.assessorVerdict !== null).length;
+  const remainingReview = totalReview - reviewedCount;
+  const determinationsComplete = totalReview === 0 ? true : reviewedCount === totalReview;
+  const isRemediation = client.engagement_type === "remediation";
+  const status = activeAssessment?.status ?? null;
+
+  let nextStep: NextStep;
+  if (!activeAssessment) {
+    nextStep = { title: "No assessment started", body: "This client hasn't started an assessment yet. Nothing to review.", tone: "wait" };
+  } else if (status === "in_progress") {
+    nextStep = { title: "Assessment in progress", body: "The client is still completing their assessment and hasn't submitted it yet. Check back once they submit.", tone: "wait" };
+  } else if (status === "submitted") {
+    nextStep = { title: "Ready to review", body: "The client has submitted. Click Begin Review in the status bar to start assessing their controls.", cta: { label: "Go to status bar", anchor: "#lifecycle" }, tone: "action" };
+  } else if (status === "resubmitted") {
+    nextStep = { title: "Ready to re-review", body: "The client resubmitted after remediation. Click Begin Re-Review in the status bar to continue.", cta: { label: "Go to status bar", anchor: "#lifecycle" }, tone: "action" };
+  } else if (status === "under_review") {
+    if (totalReview > 0 && remainingReview > 0) {
+      nextStep = {
+        title: `${reviewedCount} of ${totalReview} controls reviewed`,
+        body: `Record a determination for the remaining ${remainingReview} control${remainingReview === 1 ? "" : "s"} in Control Review, then approve or request remediation.`,
+        cta: { label: "Go to Control Review", anchor: "#control-review" },
+        tone: "action",
+      };
+    } else {
+      nextStep = {
+        title: "All controls reviewed",
+        body: "Every control has a determination. Approve the assessment or request remediation in the status bar.",
+        cta: { label: "Go to status bar", anchor: "#lifecycle" },
+        tone: "action",
+      };
+    }
+  } else if (status === "remediation_required") {
+    nextStep = {
+      title: "Remediation requested",
+      body: isRemediation
+        ? "Waiting for the client to address the gaps and resubmit. Meanwhile, you can send information requests, collect gap intake, and generate artifacts below."
+        : "Waiting for the client to address the gaps and resubmit their assessment.",
+      tone: "wait",
+    };
+  } else if (status === "approved") {
+    nextStep = { title: "Assessment approved", body: "Finalize the assessment in the status bar to complete the engagement.", cta: { label: "Go to status bar", anchor: "#lifecycle" }, tone: "action" };
+  } else if (status === "finalized") {
+    nextStep = { title: "Assessment finalized", body: "This engagement is complete. No further action is required.", tone: "done" };
+  } else {
+    nextStep = { title: status?.replace(/_/g, " ") ?? "Unknown", body: "", tone: "wait" };
+  }
+
+  const reviewOpen = status === "under_review" || status === "resubmitted";
+  const controlBadge = totalReview === 0
+    ? null
+    : { text: `${reviewedCount}/${totalReview} done`, color: determinationsComplete ? "#4DFFA0" : "#FFB347" };
+
   const card: React.CSSProperties = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
   const stageColor: Record<string, string> = { lead: "#FFB347", active: "#00C9FF", completed: "#4DFFA0" };
 
@@ -267,13 +324,18 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         </div>
       </div>
 
+      {/* What to do next */}
+      <NextStepBanner step={nextStep} />
+
       {/* Assessment lifecycle bar — only when assessment exists and not in_progress */}
-      {activeAssessment && activeAssessment.status !== "in_progress" && (
-        <AssessmentLifecycleBar
-          assessmentId={activeAssessment.id}
-          currentStatus={activeAssessment.status}
-        />
-      )}
+      <div id="lifecycle">
+        {activeAssessment && activeAssessment.status !== "in_progress" && (
+          <AssessmentLifecycleBar
+            assessmentId={activeAssessment.id}
+            currentStatus={activeAssessment.status}
+          />
+        )}
+      </div>
       {activeAssessment?.status === "in_progress" && (
         <div style={{
           fontSize: 12, color: "#00C9FF", background: "rgba(0,201,255,0.06)",
@@ -281,15 +343,6 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
           marginBottom: 24,
         }}>
           Assessment is in progress — client has not yet submitted.
-        </div>
-      )}
-      {!activeAssessment && (
-        <div style={{
-          fontSize: 12, color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.03)",
-          border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "10px 16px",
-          marginBottom: 24,
-        }}>
-          No assessment started yet.
         </div>
       )}
 
@@ -463,14 +516,19 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         />
       </div>
 
-      {/* Assessment Review Panel */}
-      <div style={{ marginBottom: 40 }}>
-        <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", marginBottom: 6 }}>
-          Control Review
-        </div>
-        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 16 }}>
-          Recommendations for controls the client answered Yes or Partial. Accept or override each determination.
-        </div>
+      {/* Workflow */}
+      <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: 14 }}>
+        Assessment Workflow
+      </div>
+
+      {/* 1. Control Review */}
+      <CollapsibleSection
+        id="control-review"
+        title="1. Control Review"
+        subtitle="Recommendations for controls the client answered Yes or Partial. Accept or override each determination."
+        badge={controlBadge}
+        defaultOpen={reviewOpen}
+      >
         {activeAssessment && (
           <div style={{ marginBottom: 20 }}>
             <RunAiButton assessmentId={activeAssessment.id} />
@@ -483,16 +541,15 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         ) : (
           <AssessmentReviewPanel assessmentId={activeAssessment!.id} items={reviewItems} />
         )}
-      </div>
+      </CollapsibleSection>
 
-      {/* Gap Remediation Panel */}
-      <div style={{ marginBottom: 40 }}>
-        <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", marginBottom: 6 }}>
-          Gap Remediation
-        </div>
-        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 20 }}>
-          Controls the client marked Not Implemented. Write and approve remediation guidance visible to the client.
-        </div>
+      {/* 2. Gap Remediation */}
+      <CollapsibleSection
+        title="2. Gap Remediation"
+        subtitle="Controls the client marked Not Implemented. Write and approve remediation guidance visible to the client."
+        badge={gapControls.length > 0 ? { text: `${gapControls.length} gap${gapControls.length === 1 ? "" : "s"}`, color: "#F87171" } : { text: "No gaps", color: "#4DFFA0" }}
+        defaultOpen={reviewOpen && gapControls.length > 0}
+      >
         {gapControls.length === 0 ? (
           <div style={{ ...card, fontSize: 14, color: "rgba(255,255,255,0.3)", textAlign: "center", padding: 32 }}>
             No gaps to remediate.
@@ -500,80 +557,73 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         ) : (
           <GapRemediationPanel assessmentId={activeAssessment!.id} gaps={gapControls} />
         )}
-      </div>
+      </CollapsibleSection>
 
-      {/* Information Requests — remediation package only */}
-      {client.engagement_type === "remediation" && activeAssessment && (
-        <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", marginBottom: 6 }}>
-            Information Requests
-          </div>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 20 }}>
-            Request additional information from the client. They will see and respond to requests from their dashboard.
-          </div>
-          <InformationRequestsPanel assessmentId={activeAssessment.id} />
-        </div>
+      {/* Remediation package only: steps 3–5, locked until determinations complete */}
+      {isRemediation && activeAssessment && (
+        <>
+          <CollapsibleSection
+            title="3. Information Requests"
+            subtitle="Request additional information from the client. They will see and respond to requests from their dashboard."
+            locked={!determinationsComplete}
+            lockedReason="Available once you've recorded a determination for every control in Control Review."
+          >
+            <InformationRequestsPanel assessmentId={activeAssessment.id} />
+          </CollapsibleSection>
+
+          <CollapsibleSection
+            title="4. Gap Intake Questions"
+            subtitle="One click generates plain-language questions about a gap, grounded in everything the client already submitted. Their answers feed artifact generation."
+            locked={!determinationsComplete}
+            lockedReason="Available once you've recorded a determination for every control in Control Review."
+          >
+            <IntakeQuestionsPanel
+              assessmentId={activeAssessment.id}
+              gaps={responseRows
+                .filter((r) => {
+                  const aiVerdict = aiFeedbackMap[r.control_id]?.verdict;
+                  return r.response === "no" || r.response === "partial" ||
+                    aiVerdict === "not_met" || aiVerdict === "partially_met";
+                })
+                .map((r) => ({
+                  id: r.control_id,
+                  description: controlsMap.get(r.control_id)?.description ?? r.control_id,
+                  verdict: aiFeedbackMap[r.control_id]?.verdict ?? r.response,
+                }))
+                .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }))}
+            />
+          </CollapsibleSection>
+
+          <CollapsibleSection
+            title="5. Compliance Artifacts"
+            subtitle="Generate SSP, POA&M, and policy templates based on this client's assessment data and determinations."
+            locked={!determinationsComplete}
+            lockedReason="Available once you've recorded a determination for every control in Control Review."
+          >
+            <ArtifactGenerationPanel
+              assessmentId={activeAssessment.id}
+              gaps={responseRows
+                .filter((r) => {
+                  const aiVerdict = aiFeedbackMap[r.control_id]?.verdict;
+                  return r.response === "no" || r.response === "partial" ||
+                    aiVerdict === "not_met" || aiVerdict === "partially_met";
+                })
+                .map((r) => ({
+                  id: r.control_id,
+                  description: controlsMap.get(r.control_id)?.description ?? r.control_id,
+                }))
+                .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }))}
+            />
+          </CollapsibleSection>
+        </>
       )}
 
-      {/* Gap Intake Questions — remediation package only */}
-      {client.engagement_type === "remediation" && activeAssessment && (
-        <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", marginBottom: 6 }}>
-            Gap Intake Questions
-          </div>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 20 }}>
-            One click generates plain-language questions about a gap, grounded in everything the client
-            already submitted. Their answers feed artifact generation below.
-          </div>
-          <IntakeQuestionsPanel
-            assessmentId={activeAssessment.id}
-            gaps={responseRows
-              .filter((r) => {
-                const aiVerdict = aiFeedbackMap[r.control_id]?.verdict;
-                return r.response === "no" || r.response === "partial" ||
-                  aiVerdict === "not_met" || aiVerdict === "partially_met";
-              })
-              .map((r) => ({
-                id: r.control_id,
-                description: controlsMap.get(r.control_id)?.description ?? r.control_id,
-                verdict: aiFeedbackMap[r.control_id]?.verdict ?? r.response,
-              }))
-              .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }))}
-          />
-        </div>
-      )}
-
-      {/* Artifact Generation — remediation package only */}
-      {client.engagement_type === "remediation" && activeAssessment && (
-        <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", marginBottom: 6 }}>
-            Compliance Artifacts
-          </div>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginBottom: 20 }}>
-            Generate SSP, POA&amp;M, and policy templates based on this client&apos;s assessment data and determinations.
-          </div>
-          <ArtifactGenerationPanel
-            assessmentId={activeAssessment.id}
-            gaps={responseRows
-              .filter((r) => {
-                const aiVerdict = aiFeedbackMap[r.control_id]?.verdict;
-                return r.response === "no" || r.response === "partial" ||
-                  aiVerdict === "not_met" || aiVerdict === "partially_met";
-              })
-              .map((r) => ({
-                id: r.control_id,
-                description: controlsMap.get(r.control_id)?.description ?? r.control_id,
-              }))
-              .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }))}
-          />
-        </div>
-      )}
-
-      {/* Evidence Artifacts */}
-      <div style={{ marginBottom: 40 }}>
-        <div style={{ fontSize: 20, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", marginBottom: 20 }}>
-          Evidence Artifacts
-        </div>
+      {/* Evidence Artifacts — reference */}
+      <CollapsibleSection
+        title="Evidence Artifacts"
+        subtitle="Files the client uploaded as evidence, grouped by control."
+        badge={artifactsWithUrls.length > 0 ? { text: `${artifactsWithUrls.length} file${artifactsWithUrls.length === 1 ? "" : "s"}`, color: "#00C9FF" } : null}
+      >
         {artifactsWithUrls.length === 0 ? (
           <div style={{ ...card, fontSize: 13, color: "rgba(255,255,255,0.3)", textAlign: "center", padding: 32 }}>
             No evidence uploaded yet.
@@ -632,7 +682,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
             ))}
           </div>
         )}
-      </div>
+      </CollapsibleSection>
     </div>
   );
 }
