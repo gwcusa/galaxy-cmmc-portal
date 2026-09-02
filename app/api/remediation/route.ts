@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const svcCheck = createServiceSupabaseClient();
   const { data: roleRow } = await svcCheck.from("user_roles").select("role").eq("user_id", user.id).single();
-  if (roleRow?.role !== "admin") {
+  if (!["admin", "assessor"].includes(roleRow?.role ?? "")) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const svcCheck = createServiceSupabaseClient();
   const { data: roleRow } = await svcCheck.from("user_roles").select("role").eq("user_id", user.id).single();
-  if (roleRow?.role !== "admin") {
+  if (!["admin", "assessor"].includes(roleRow?.role ?? "")) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

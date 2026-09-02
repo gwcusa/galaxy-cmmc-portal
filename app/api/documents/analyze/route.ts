@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
 
   const svc = createServiceSupabaseClient();
   const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
-  const isAdmin = role?.role === "admin";
+  const isStaff = ["admin", "assessor"].includes(role?.role ?? "");
 
   const { data: doc } = await svc
     .from("documents")
@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
   if (!doc) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const owner = Array.isArray(doc.clients) ? doc.clients[0] : doc.clients;
-  if (!isAdmin && (owner as { user_id: string } | null)?.user_id !== user.id) {
+  if (!isStaff && (owner as { user_id: string } | null)?.user_id !== user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

@@ -5,18 +5,18 @@ import { CONTROLS } from "@/lib/controls";
 async function authorize(documentId: string, userId: string) {
   const svc = createServiceSupabaseClient();
   const { data: role } = await svc.from("user_roles").select("role").eq("user_id", userId).single();
-  const isAdmin = role?.role === "admin";
+  const isStaff = ["admin", "assessor"].includes(role?.role ?? "");
 
   const { data: doc } = await svc
     .from("documents")
     .select("id, clients(user_id)")
     .eq("id", documentId)
     .single();
-  if (!doc) return { svc, allowed: false, isAdmin };
+  if (!doc) return { svc, allowed: false, isStaff };
 
   const owner = Array.isArray(doc.clients) ? doc.clients[0] : doc.clients;
-  const allowed = isAdmin || (owner as { user_id: string } | null)?.user_id === userId;
-  return { svc, allowed, isAdmin };
+  const allowed = isStaff || (owner as { user_id: string } | null)?.user_id === userId;
+  return { svc, allowed, isStaff };
 }
 
 // POST /api/documents/links
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unknown control" }, { status: 400 });
   }
 
-  const { svc, allowed, isAdmin } = await authorize(documentId, user.id);
+  const { svc, allowed, isStaff } = await authorize(documentId, user.id);
   if (!allowed) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   if (action === "add") {
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
         document_id: documentId,
         control_id: controlId,
         status: "confirmed",
-        source: isAdmin ? "assessor" : "client",
+        source: isStaff ? "assessor" : "client",
       },
       { onConflict: "document_id,control_id" }
     );

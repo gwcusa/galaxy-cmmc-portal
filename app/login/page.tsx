@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
+import { landingPathForRole, resolveUserRole } from "@/lib/roles";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -27,8 +28,9 @@ export default function LoginPage() {
       return;
     }
 
-    const role = data.user?.user_metadata?.role ?? "client";
-    router.push(role === "admin" ? "/admin/dashboard" : "/portal/dashboard");
+    const user = data.user;
+    const role = user ? await resolveUserRole(supabase, user.id, user.user_metadata?.role) : "client";
+    router.push(landingPathForRole(role));
     router.refresh();
   }
 

@@ -4,18 +4,18 @@ import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/s
 async function authorizeAssessment(assessmentId: string, userId: string) {
   const svc = createServiceSupabaseClient();
   const { data: role } = await svc.from("user_roles").select("role").eq("user_id", userId).single();
-  const isAdmin = role?.role === "admin";
+  const isStaff = ["admin", "assessor"].includes(role?.role ?? "");
 
   const { data: assessment } = await svc
     .from("assessments")
     .select("id, status, clients(user_id)")
     .eq("id", assessmentId)
     .single();
-  if (!assessment) return { svc, allowed: false, isAdmin, status: null as string | null };
+  if (!assessment) return { svc, allowed: false, isStaff, status: null as string | null };
 
   const owner = Array.isArray(assessment.clients) ? assessment.clients[0] : assessment.clients;
-  const allowed = isAdmin || (owner as { user_id: string } | null)?.user_id === userId;
-  return { svc, allowed, isAdmin, status: assessment.status as string };
+  const allowed = isStaff || (owner as { user_id: string } | null)?.user_id === userId;
+  return { svc, allowed, isStaff, status: assessment.status as string };
 }
 
 // GET /api/scoping?assessmentId=xxx
@@ -50,11 +50,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "assessmentId and answers required" }, { status: 400 });
   }
 
-  const { svc, allowed, isAdmin, status } = await authorizeAssessment(assessmentId, user.id);
+  const { svc, allowed, isStaff, status } = await authorizeAssessment(assessmentId, user.id);
   if (!allowed) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   // Clients can only edit scoping while the assessment is editable
-  if (!isAdmin && status && !["in_progress", "remediation_required"].includes(status)) {
+  if (!isStaff && status && !["in_progress", "remediation_required"].includes(status)) {
     return NextResponse.json({ error: "Assessment is not editable in its current state" }, { status: 400 });
   }
 

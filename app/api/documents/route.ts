@@ -17,7 +17,8 @@ function getStorageClient() {
 async function resolveClient(userId: string) {
   const svc = createServiceSupabaseClient();
   const { data: role } = await svc.from("user_roles").select("role").eq("user_id", userId).single();
-  return { svc, isAdmin: role?.role === "admin" };
+  const actorRole = (role?.role ?? "client") as "admin" | "assessor" | "client";
+  return { svc, isStaff: actorRole === "admin" || actorRole === "assessor", actorRole };
 }
 
 async function getOwnedClientId(svc: ReturnType<typeof createServiceSupabaseClient>, userId: string) {
@@ -31,10 +32,10 @@ export async function GET(req: NextRequest) {
   const { data: { user } } = await authSupabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const { svc, isAdmin } = await resolveClient(user.id);
+  const { svc, isStaff } = await resolveClient(user.id);
 
   let clientId = req.nextUrl.searchParams.get("clientId");
-  if (!isAdmin) {
+  if (!isStaff) {
     clientId = await getOwnedClientId(svc, user.id);
     if (!clientId) return NextResponse.json({ error: "No client record" }, { status: 403 });
   }
@@ -75,9 +76,9 @@ export async function POST(req: NextRequest) {
   const validationError = validateUpload(file);
   if (validationError) return NextResponse.json({ error: validationError }, { status: 400 });
 
-  const { svc, isAdmin } = await resolveClient(user.id);
+  const { svc, isStaff, actorRole } = await resolveClient(user.id);
   let clientId = formData.get("clientId") as string | null;
-  if (!isAdmin) {
+  if (!isStaff) {
     clientId = await getOwnedClientId(svc, user.id);
   }
   if (!clientId) return NextResponse.json({ error: "No client record" }, { status: 403 });
@@ -116,7 +117,7 @@ export async function POST(req: NextRequest) {
 
   logAudit({
     actorId: user.id,
-    actorRole: isAdmin ? "admin" : "client",
+    actorRole,
     action: "document.uploaded",
     entityType: "document",
     entityId: doc.id,
@@ -135,7 +136,7 @@ export async function DELETE(req: NextRequest) {
   const documentId = req.nextUrl.searchParams.get("documentId");
   if (!documentId) return NextResponse.json({ error: "documentId required" }, { status: 400 });
 
-  const { svc, isAdmin } = await resolveClient(user.id);
+  const { svc, isStaff, actorRole } = await resolveClient(user.id);
   const { data: doc } = await svc
     .from("documents")
     .select("id, storage_path, client_id, clients(user_id)")
@@ -144,7 +145,7 @@ export async function DELETE(req: NextRequest) {
   if (!doc) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const owner = Array.isArray(doc.clients) ? doc.clients[0] : doc.clients;
-  if (!isAdmin && (owner as { user_id: string } | null)?.user_id !== user.id) {
+  if (!isStaff && (owner as { user_id: string } | null)?.user_id !== user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -155,7 +156,7 @@ export async function DELETE(req: NextRequest) {
 
   logAudit({
     actorId: user.id,
-    actorRole: isAdmin ? "admin" : "client",
+    actorRole,
     action: "document.deleted",
     entityType: "document",
     entityId: documentId,

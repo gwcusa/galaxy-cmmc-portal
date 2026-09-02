@@ -14,7 +14,7 @@ export async function GET(
 
   const svc = createServiceSupabaseClient();
   const { data: role } = await svc.from("user_roles").select("role").eq("user_id", user.id).single();
-  const isAdmin = role?.role === "admin";
+  const isStaff = ["admin", "assessor"].includes(role?.role ?? "");
 
   const { data: artifact } = await svc
     .from("generated_artifacts")
@@ -28,7 +28,7 @@ export async function GET(
     ? (Array.isArray(assessment.clients) ? assessment.clients[0] : assessment.clients)
     : null;
 
-  if (!isAdmin) {
+  if (!isStaff) {
     const owned = (client as { user_id: string } | null)?.user_id === user.id;
     if (!owned || artifact.status !== "published") {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });

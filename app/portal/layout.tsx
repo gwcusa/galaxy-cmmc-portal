@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
+import { landingPathForRole } from "@/lib/roles";
 import Sidebar from "@/components/Sidebar";
 
 const CLIENT_NAV = [
@@ -17,6 +18,13 @@ export default async function PortalLayout({ children }: { children: React.React
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) redirect("/login");
+
+  // Staff (admin / assessor) have no client record here — send them to their own home.
+  const svc = createServiceSupabaseClient();
+  const { data: roleRow } = await svc.from("user_roles").select("role").eq("user_id", user.id).maybeSingle();
+  if (roleRow?.role === "admin" || roleRow?.role === "assessor") {
+    redirect(landingPathForRole(roleRow.role));
+  }
 
   const userName = user.user_metadata?.full_name || user.email || "User";
 

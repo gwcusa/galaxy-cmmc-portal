@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase";
+import { landingPathForRole, resolveUserRole } from "@/lib/roles";
 
 function UpdatePasswordForm() {
   const router = useRouter();
@@ -65,7 +66,11 @@ function UpdatePasswordForm() {
       setError(updateError.message);
     } else {
       setSuccess(true);
-      setTimeout(() => router.push("/portal/dashboard"), 2000);
+      const { data: { user } } = await supabase.auth.getUser();
+      const destination = user
+        ? landingPathForRole(await resolveUserRole(supabase, user.id, user.user_metadata?.role))
+        : "/portal/dashboard";
+      setTimeout(() => router.push(destination), 2000);
     }
   }
 
