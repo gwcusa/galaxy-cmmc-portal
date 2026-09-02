@@ -19,6 +19,7 @@ import IntakeQuestionsPanel from "./IntakeQuestionsPanel";
 import AssignAssessorSelect from "./AssignAssessorSelect";
 import NextStepBanner, { NextStep } from "@/components/NextStepBanner";
 import CollapsibleSection from "@/components/CollapsibleSection";
+import EvidenceArtifactsSection from "@/components/EvidenceArtifactsSection";
 import { formatScopingForPrompt } from "@/lib/scoping-questions";
 import objectivesData from "@/data/assessment-objectives.json";
 
@@ -108,11 +109,6 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
     })
   );
 
-  const artifactsByControl: Record<string, typeof artifactsWithUrls> = {};
-  for (const a of artifactsWithUrls) {
-    if (!artifactsByControl[a.control_id]) artifactsByControl[a.control_id] = [];
-    artifactsByControl[a.control_id].push(a);
-  }
 
   // AI feedback
   const aiFeedbackMap: Record<string, { verdict: string; feedback: string; generated_at: string; objective_results: { id: string; met: string; note?: string }[] | null }> = {};
@@ -618,71 +614,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         </>
       )}
 
-      {/* Evidence Artifacts — reference */}
-      <CollapsibleSection
-        title="Evidence Artifacts"
-        subtitle="Files the client uploaded as evidence, grouped by control."
-        badge={artifactsWithUrls.length > 0 ? { text: `${artifactsWithUrls.length} file${artifactsWithUrls.length === 1 ? "" : "s"}`, color: "#00C9FF" } : null}
-      >
-        {artifactsWithUrls.length === 0 ? (
-          <div style={{ ...card, fontSize: 13, color: "rgba(255,255,255,0.3)", textAlign: "center", padding: 32 }}>
-            No evidence uploaded yet.
-          </div>
-        ) : (
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {Object.entries(artifactsByControl).map(([controlId, items]) => (
-              <div key={controlId} style={card}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-                  <span style={{ fontFamily: "monospace", fontSize: 13, fontWeight: 700, color: "#00C9FF" }}>{controlId}</span>
-                  <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", background: "rgba(255,255,255,0.06)", borderRadius: 6, padding: "2px 8px" }}>
-                    {items.length} file{items.length !== 1 ? "s" : ""}
-                  </span>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  {items.map((artifact) => {
-                    const typeConfig = artifact.artifact_type === "policy"
-                      ? { label: "Policy", color: "#A78BFA", bg: "rgba(167,139,250,0.08)", border: "rgba(167,139,250,0.25)" }
-                      : artifact.artifact_type === "implementation"
-                      ? { label: "Implementation", color: "#00C9FF", bg: "rgba(0,201,255,0.08)", border: "rgba(0,201,255,0.25)" }
-                      : { label: "Uncategorized", color: "rgba(255,255,255,0.35)", bg: "rgba(255,255,255,0.04)", border: "rgba(255,255,255,0.1)" };
-                    return (
-                    <div key={artifact.id} style={{
-                      display: "flex", alignItems: "center", justifyContent: "space-between",
-                      background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: "10px 14px",
-                      border: "1px solid rgba(255,255,255,0.06)",
-                    }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <span style={{ fontSize: 16 }}>📎</span>
-                        <div>
-                          {artifact.signedUrl ? (
-                            <a href={artifact.signedUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, color: "#00C9FF", textDecoration: "none", fontWeight: 500 }}>
-                              {artifact.file_name}
-                            </a>
-                          ) : (
-                            <span style={{ fontSize: 13, color: "#E2E8F0" }}>{artifact.file_name}</span>
-                          )}
-                          <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 2 }}>
-                            {artifact.file_size ? `${(artifact.file_size / 1024).toFixed(1)} KB · ` : ""}
-                            {new Date(artifact.uploaded_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
-                          </div>
-                        </div>
-                      </div>
-                      <span style={{
-                        fontSize: 11, fontWeight: 600, padding: "2px 9px", borderRadius: 12,
-                        color: typeConfig.color, background: typeConfig.bg, border: `1px solid ${typeConfig.border}`,
-                        flexShrink: 0,
-                      }}>
-                        {typeConfig.label}
-                      </span>
-                    </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </CollapsibleSection>
+      <EvidenceArtifactsSection artifacts={artifactsWithUrls} />
     </div>
   );
 }

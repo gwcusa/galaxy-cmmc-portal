@@ -15,6 +15,7 @@ import AssessmentSummaryPanel, { AssessmentSummary } from "@/app/admin/clients/[
 import IntakeQuestionsPanel from "@/app/admin/clients/[id]/IntakeQuestionsPanel";
 import NextStepBanner, { NextStep } from "@/components/NextStepBanner";
 import CollapsibleSection from "@/components/CollapsibleSection";
+import EvidenceArtifactsSection from "@/components/EvidenceArtifactsSection";
 import { formatScopingForPrompt } from "@/lib/scoping-questions";
 import objectivesData from "@/data/assessment-objectives.json";
 
@@ -343,6 +344,31 @@ export default async function AssessorClientDetailPage({ params }: { params: { i
         </div>
       )}
 
+      {activeAssessment && (
+        <div style={{ marginBottom: 24, display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <a
+            href={`/api/admin/reports/sprs-worksheet?assessmentId=${activeAssessment.id}`}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 16px", borderRadius: 8,
+              fontSize: 12, fontWeight: 600, textDecoration: "none",
+              background: "rgba(0,201,255,0.1)", border: "1px solid rgba(0,201,255,0.25)", color: "#00C9FF",
+            }}
+          >
+            ⬇ SPRS Submission Worksheet
+          </a>
+          <a
+            href={`/api/admin/reports/assessment-csv?assessmentId=${activeAssessment.id}`}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 16px", borderRadius: 8,
+              fontSize: 12, fontWeight: 600, textDecoration: "none",
+              background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(255,255,255,0.6)",
+            }}
+          >
+            ⬇ Full Assessment (CSV)
+          </a>
+        </div>
+      )}
+
       {summary && <AssessmentSummaryPanel summary={summary} />}
 
       {scopingText && (
@@ -494,6 +520,8 @@ export default async function AssessorClientDetailPage({ params }: { params: { i
           </CollapsibleSection>
         </>
       )}
+
+      <EvidenceArtifactsSection artifacts={artifactsWithUrls} />
     </div>
   );
 }

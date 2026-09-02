@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "smoke": "node scripts/smoke-test.mjs",
+    "smoke:cleanup": "node scripts/smoke-test.mjs --cleanup"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
