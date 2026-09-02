@@ -76,14 +76,11 @@ export default async function AssessorDashboardPage() {
               href={`/assessor/clients/${client.id}`}
               style={{ textDecoration: "none" }}
             >
-              <div style={{
+              <div className="hover-card" style={{
                 ...card,
                 display: "flex", alignItems: "center", gap: 20, cursor: "pointer",
                 transition: "border-color 0.15s",
-              }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.18)")}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.08)")}
-              >
+              }}>
                 <div style={{
                   width: 44, height: 44, borderRadius: "50%", flexShrink: 0,
                   background: "linear-gradient(135deg, #A78BFA, #00C9FF)",

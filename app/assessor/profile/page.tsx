@@ -1,7 +1,7 @@
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import ProfileView from "@/components/ProfileView";
 
-export default async function ProfilePage() {
+export default async function AssessorProfilePage() {
   const supabase = createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -9,8 +9,7 @@ export default async function ProfilePage() {
     <ProfileView
       email={user?.email}
       fullName={user?.user_metadata?.full_name ?? null}
-      role="client"
-      note="Contact Galaxy Consulting to update your account details."
+      role="assessor"
     />
   );
 }

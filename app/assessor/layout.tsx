@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar";
 
 const ASSESSOR_NAV = [
   { id: "dashboard", href: "/assessor/dashboard", icon: "⊞", label: "Clients" },
+  { id: "profile", href: "/assessor/profile", icon: "◉", label: "Profile" },
 ];
 
 export default async function AssessorLayout({ children }: { children: React.ReactNode }) {
