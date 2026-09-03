@@ -73,6 +73,33 @@ npm test
 
 Covers: SPRS scoring rules, catalog integrity (110 requirements, 17 Level 1 practices, 320 assessment objectives), upload validation.
 
+### Route smoke test
+
+```bash
+npm run build && npm start          # in one shell
+npm run smoke                       # http://localhost:3000 by default
+npm run smoke https://galaxy-cmmc-portal.vercel.app
+npm run smoke:cleanup               # only if a run was killed mid-flight
+```
+
+Signs in as an admin, an assessor and a client, then requests **every**
+app-router page as the role that owns it, plus: the portal pages with no client
+record (empty-state branches), each role reaching another role's area, and
+signed-out access. Routes are discovered from `app/**/page.tsx`, so a new page
+is covered without editing the script.
+
+This catches what `npm test` and `next build` structurally cannot. A server
+component that renders something React rejects — an `onMouseEnter` on a DOM
+node, for instance — compiles cleanly and only throws at request time, and only
+when that branch actually renders. That exact bug shipped once: the assessor
+dashboard's row markup was unreachable while assessors saw zero clients, and
+surfaced as a 500 the moment they could see any.
+
+Note: there is one Supabase project, so the smoke test writes to the real
+database whichever `baseUrl` you point it at. It creates one throwaway user per
+role plus a temporary client record (`ZZ Smoke Test (delete me)`) and removes
+them in a `finally` block.
+
 ## Regenerating the Control Catalog
 
 ```bash
@@ -97,17 +124,38 @@ File naming: `[control-id]-[Company-Slug]-POLICY-[Title].{txt,pdf}` / `[control-
 - Clients **never** see scores, AI verdicts, synthesis, or analytics — assessor-only
 - Control "met" only if all 800-171A objectives satisfied — the AI evaluates every objective, and assessors can now record a verdict **per objective** (rolled up to the control) in the review panel
 - Assessment-objective data (`data/assessment-objectives.json`) carries the full NIST SP 800-171A **Examine / Interview / Test** methods per requirement; the AI review notes when an objective needs a live interview/test to confirm
+- **Server-side Supabase clients** (`lib/supabase-server.ts`) — `createServerSupabaseClient()` is cookie-backed and is the only thing that may read auth (`auth.getUser()`). `createServiceSupabaseClient()` must **never** be given cookies: supabase-js prefers a session's access token over the API key, so a cookie-backed "service" client silently runs as the logged-in user with RLS enforced. That bug hid every client from assessors while admins worked fine, because the RLS policies whitelist `role = 'admin'` and never mention `assessor`.
+- **RLS is not the authorization model.** The policies in `001_initial.sql` only know `admin` and the record owner. Assessor access is granted in application code (`requireAdminOrAssessor()` in `lib/auth-helpers.ts`, `isStaff` checks in the route handlers) on top of a service-role client that bypasses RLS. A new staff-facing route must gate itself — do not rely on RLS to scope it, and do not add a browser-side query to a staff page, which would come back empty.
 - SPRS math computed locally (`lib/scoring.ts`), never by the LLM
 - SPRS range: 110 − deductions, floor −203; partial credit for 3.5.3 and 3.13.11
 - **POA&M eligibility** follows 32 CFR 170.21(a)(2): a Conditional Level 2 needs score ≥ 88 (80%) and every open gap POA&M-eligible. Only 1-point items may ride on a POA&M (plus 3.13.11 at a 3-point deduction), **except the six requirements that can never be deferred** — 3.1.20, 3.1.22, 3.10.3, 3.10.4, 3.10.5, 3.12.4 (`POAM_INELIGIBLE_CONTROLS` in `lib/scoring.ts`)
 
 ## Roles
 
+Roles live in the `user_roles` table. That table is **authoritative** —
+`auth.users.user_metadata.role` is a copy that can drift, so gates and redirects
+must read `user_roles` (see `lib/roles.ts`).
+
 | Role | Access |
 |------|--------|
-| `admin` | Galaxy staff — full admin panel, AI review, client & team management |
-| `assessor` | Galaxy assessors — assigned clients: review, determinations, artifact generation |
+| `admin` | Galaxy staff — everything below, plus account administration: create/edit/disable/delete client accounts, reset client passwords, invite assessors, assign an assessor to an assessment |
+| `assessor` | Galaxy assessors — **every** client, not just assigned ones: full assessment work at `/assessor/*` — control review, per-objective determinations, lifecycle transitions, AI review, gap remediation, information requests, gap intake, artifact generation, evidence viewing, SPRS worksheet and assessment CSV export |
 | `client` | Defense contractors — submit assessments, answer intake, view deliverables |
+
+Assessors have parity with admins on **client work**; the `/admin/*` area stays
+admin-only because it is account administration. `/admin/clients/[id]` and
+`/assessor/clients/[id]` are separate files that import the same panel
+components, so they *can* drift — and have: the assessor page fetched the
+client's evidence and then never rendered it. When you add a capability to one,
+add it to the other, and prefer extracting shared markup into a component (as
+`EvidenceArtifactsSection` now is) over copying it.
+
+Every role changes its own password at `/portal/profile`, `/admin/profile` or
+`/assessor/profile` via `POST /api/account/password`. The route verifies the
+current password on a throwaway client, then updates through the caller's own
+session — **not** `auth.admin.updateUserById()`, which revokes every session
+including the caller's and would dump them at the login screen. The user stays
+signed in here; their other devices are signed out. Logged to `audit_log`.
 
 ## Product Tiers (`clients.engagement_type`)
 
@@ -126,7 +174,7 @@ For `remediation`-tier clients, the assessor can produce the full document packa
 
 ## Reporting & Compliance Lifecycle
 
-- **SPRS submission worksheet** — `GET /api/admin/reports/sprs-worksheet?assessmentId=…` downloads a submission-ready worksheet (score, itemized deductions, POA&M eligibility, senior-official affirmation block). Built by `lib/sprs-worksheet.ts`; linked from the admin client page. (Assessor-only — clients never see scores.)
+- **SPRS submission worksheet** — `GET /api/admin/reports/sprs-worksheet?assessmentId=…` downloads a submission-ready worksheet (score, itemized deductions, POA&M eligibility, senior-official affirmation block). Built by `lib/sprs-worksheet.ts`; linked from both the admin and assessor client pages. (Assessor-only — clients never see scores.)
 - **Full assessment CSV** — `GET /api/admin/reports/assessment-csv?assessmentId=…` exports every in-scope control with the client response, AI verdict, assessor verdict, per-objective roll-up, and notes.
 - **Evidence integrity** — every uploaded artifact/document is SHA-256 hashed at upload (`artifacts.sha256`, `documents.sha256`), recorded in the audit log, so a policy/proof file is tamper-evident.
 - **Branded PDF** — the report cover and every content-page running header carry the Galaxy orbit mark (vector, via react-pdf primitives).
