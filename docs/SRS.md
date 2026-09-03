@@ -735,6 +735,11 @@ Next.js `buildId` at the production URL, not by elapsed time.
 routing, `npm run smoke` **shall** be run against the production URL, followed
 by `npm run smoke:cleanup` verification that no test records remain.
 
+**OPS-05** — This specification is maintained as Markdown and rendered to Word
+for distribution. Any change to the Markdown **shall** be followed by
+`npm run docs:srs-docx` in the same commit, so the distributed document cannot
+fall behind the source.
+
 ---
 
 ## 16. Change Log
