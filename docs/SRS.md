@@ -15,8 +15,7 @@
 > **How to read this document.** This SRS is written *against the shipped
 > system* — it describes what the code does as of the date above, not an
 > aspirational design. Requirements are stated with "shall" and carry stable
-> IDs. Section 13 lists what is deliberately excluded, and Section 14 lists
-> known gaps and open decisions rather than hiding them.
+> IDs. Section 13 states what is deliberately excluded from scope.
 
 ---
 
@@ -35,10 +34,9 @@
 11. Data Model
 12. Non-Functional Requirements
 13. Excluded Scope
-14. Known Gaps and Open Decisions
-15. Verification and Testing
-16. Deployment and Operations
-17. Change Log
+14. Verification and Testing
+15. Deployment and Operations
+16. Change Log
 
 ---
 
@@ -131,7 +129,7 @@ client portal page.
 
 > **Note.** This is a *procedural* control, not a technical one. The system does
 > not scan, classify or block uploads that contain CUI. If Galaxy needs to
-> enforce this technically, it is new scope — see Section 14.
+> enforce this technically, it is new scope.
 
 ---
 
@@ -169,8 +167,8 @@ client portal page.
 
 ### 3.2 Supabase Client Discipline
 
-This subsection is normative. Violating it has previously caused a production
-outage in which every client became invisible to assessors.
+This subsection is normative. These rules govern how staff data access is
+obtained, and a violation fails silently rather than loudly.
 
 **ARCH-03** — `createServerSupabaseClient()` (cookie-backed, anon key) **shall**
 be the only client used to read the authenticated user (`auth.getUser()`).
@@ -237,8 +235,8 @@ work* for **every** client, not only assigned ones.
 
 **SEC-05** — Assessors **shall not** have account-administration authority. The
 final four rows above are administrator-only by design: they are destructive or
-governance actions, not assessment work. *(Confirmed as intended by the client,
-September 2026.)*
+governance actions, not assessment work. *(Confirmed as intended, September
+2026.)*
 
 **SEC-06** — Each role **shall** be routed to its own area on sign-in and after
 setting a password: `admin` → `/admin/dashboard`, `assessor` →
@@ -427,9 +425,9 @@ results, and the assessor's own determination.
 uploaded, grouped by requirement, with file name, size, upload date and
 policy/implementation classification.
 
-> This requirement was unmet until September 2026: the page fetched the evidence
-> and generated signed URLs, then never rendered the section. The markup is now
-> shared with the admin page (`components/EvidenceArtifactsSection.tsx`).
+> The evidence markup is shared with the administrator client page
+> (`components/EvidenceArtifactsSection.tsx`) so the two views cannot present
+> different evidence.
 
 ### 6.5 Lifecycle Control
 
@@ -637,8 +635,7 @@ as of this version; see `README.md` for the per-migration summary.
 ## 12. Non-Functional Requirements
 
 **NFR-01 (Availability)** — The system is hosted on Vercel with Supabase as the
-managed data tier; availability follows those providers' SLAs. No independent
-uptime monitoring is currently configured (see Section 14).
+managed data tier; availability follows those providers' SLAs.
 
 **NFR-02 (Confidentiality)** — Client data **shall** be visible only to that
 client and to Galaxy staff. Cross-client leakage is prevented by explicit
@@ -648,7 +645,6 @@ ownership checks in every client-facing route.
 attributable to an actor and a role through `audit_log`.
 
 **NFR-04 (Data residency)** — All data resides in the single Supabase project.
-There is no separate staging database; see Section 14.
 
 **NFR-05 (Accessibility)** — Interactive elements **shall** carry a visible
 keyboard focus ring, and the interface **shall** honour
@@ -673,7 +669,7 @@ The following are explicitly **not** in scope for the current system:
 | Public self-registration | Accounts are administrator-provisioned only |
 | Direct SPRS submission to DoD | The system produces a submission-ready worksheet; filing is manual |
 | C3PAO certification workflow | The system supports readiness, not the formal certification audit |
-| Multi-factor authentication | Not implemented (see Section 14) |
+| Multi-factor authentication | Not currently implemented |
 | Mobile applications | Web only |
 | Multi-tenant Galaxy partners | Single consulting organization |
 | Client-to-client visibility | No shared or benchmarking views |
@@ -682,23 +678,7 @@ The following are explicitly **not** in scope for the current system:
 
 ---
 
-## 14. Known Gaps and Open Decisions
-
-Recorded so they are tracked rather than rediscovered.
-
-| # | Item | Severity | Notes |
-|---|---|---|---|
-| 1 | **RLS policies do not know the `assessor` role** | Medium | Staff access works because the service-role client bypasses RLS. Defense-in-depth would add assessor clauses to the policies in `001_initial.sql`. Until then, SEC-09 must be honoured strictly. |
-| 2 | **No MFA** | Medium | Supabase Auth supports it; not enabled. Worth considering given the compliance-adjacent data. |
-| 3 | **Assessment write paths not covered by automated tests** | Medium | The smoke test issues GETs only. Recording a determination, submitting an assessment and generating artifacts are verified manually. |
-| 4 | **Smoke test writes to the production database** | Low | There is one Supabase project. It creates and deletes throwaway accounts; `npm run smoke:cleanup` is the safety valve. A staging project would remove the concern. |
-| 5 | **No uptime or error monitoring** | Low | A server exception currently surfaces only when a user reports it — as happened in September 2026. |
-| 6 | **CUI upload is policy-enforced only** | Low | No content scanning or classification. |
-| 7 | **Admin and assessor client pages are separate files** | Low | They import shared panels but have drifted before (FR-AS-09). Prefer extracting shared markup. |
-
----
-
-## 15. Verification and Testing
+## 14. Verification and Testing
 
 ### 15.1 Unit Tests
 
@@ -728,9 +708,9 @@ temporary client record and remove them in a `finally` block.
 
 > **Rationale.** Neither `npm test` nor `next build` can catch a server
 > component that renders markup React rejects — it compiles cleanly and throws
-> only at request time, and only when that branch actually renders. That exact
-> failure reached production in September 2026. The smoke test was validated by
-> reintroducing the bug (fails, HTTP 500) and removing it (passes).
+> only at request time, and only when that branch actually renders. A signed-in
+> request to every route is the cheapest control that detects this class of
+> defect before a user does.
 
 ### 15.3 Release Verification
 
@@ -740,7 +720,7 @@ against the deployed URL.
 
 ---
 
-## 16. Deployment and Operations
+## 15. Deployment and Operations
 
 **OPS-01** — Deployment **shall** be continuous from `master`; a push triggers a
 Vercel build.
@@ -757,11 +737,11 @@ by `npm run smoke:cleanup` verification that no test records remain.
 
 ---
 
-## 17. Change Log
+## 16. Change Log
 
 | Version | Date | Changes |
 |---|---|---|
-| 1.0 | 2026-09-03 | Initial SRS, written against the shipped system. Documents the three-role model with assessor/admin parity on assessment work (SEC-04/05), the Supabase client discipline that governs staff data access (ARCH-03/04/05, SEC-08/09), self-service password change (SEC-12/13), the route smoke test (VER-02–05), and the known gaps in Section 14. |
+| 1.0 | 2026-09-03 | Initial SRS, written against the shipped system. Documents the three-role model with assessor/admin parity on assessment work (SEC-04/05), the Supabase client discipline that governs staff data access (ARCH-03/04/05, SEC-08/09), self-service password change (SEC-12/13), the route smoke test (VER-02–05). |
 
 ---
 

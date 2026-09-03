@@ -8,9 +8,15 @@ Full-stack CMMC 2.0 compliance assessment platform for Galaxy Consulting, LLC.
 
 - **[docs/SRS.md](docs/SRS.md)** — System Requirements Specification (v1.0). The
   formal spec: roles and the capability matrix, regulatory rules implemented,
-  functional requirements per role, data model, excluded scope, and known gaps.
-  Written against the shipped system — where it and the code disagree, the code
-  is authoritative and the SRS is a defect.
+  functional requirements per role, data model and excluded scope. Written
+  against the shipped system — where it and the code disagree, the code is
+  authoritative and the SRS is a defect. **Safe to share externally**; a Word
+  copy for clients and auditors is generated alongside it
+  (`docs/Galaxy_CMMC_Portal_SRS_v1.0.docx`, rebuild with
+  `npm run docs:srs-docx`).
+- **[docs/SRS-known-gaps.md](docs/SRS-known-gaps.md)** — **INTERNAL ONLY.** The
+  candid companion: known weaknesses, what compensates for each, and what
+  closing it would take. Do not share with clients, prospects, or a C3PAO.
 - [docs/upgrade-2026-07.md](docs/upgrade-2026-07.md) — deploy checklist for the
   July 2026 upgrade.
 

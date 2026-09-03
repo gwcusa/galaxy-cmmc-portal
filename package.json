@@ -9,7 +9,8 @@
     "lint": "next lint",
     "test": "vitest run",
     "smoke": "node scripts/smoke-test.mjs",
-    "smoke:cleanup": "node scripts/smoke-test.mjs --cleanup"
+    "smoke:cleanup": "node scripts/smoke-test.mjs --cleanup",
+    "docs:srs-docx": "node scripts/build-srs-docx.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
