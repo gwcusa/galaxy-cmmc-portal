@@ -4,6 +4,19 @@ Full-stack CMMC 2.0 compliance assessment platform for Galaxy Consulting, LLC.
 
 **Live:** https://galaxy-cmmc-portal.vercel.app
 
+## Documentation
+
+- **[docs/SRS.md](docs/SRS.md)** — System Requirements Specification (v1.0). The
+  formal spec: roles and the capability matrix, regulatory rules implemented,
+  functional requirements per role, data model, excluded scope, and known gaps.
+  Written against the shipped system — where it and the code disagree, the code
+  is authoritative and the SRS is a defect.
+- [docs/upgrade-2026-07.md](docs/upgrade-2026-07.md) — deploy checklist for the
+  July 2026 upgrade.
+
+This README covers day-to-day development: setup, migrations, tests, and the
+architecture notes you need before touching auth or data access.
+
 ## Tech Stack
 
 - **Frontend/Backend:** Next.js 14 App Router (TypeScript)
