@@ -29,8 +29,11 @@ export async function GET(req: NextRequest) {
     .limit(1)
     .single();
 
-  // Create a new assessment only if none exists or the latest is finalized
-  if (!assessment || assessment.status === "finalized") {
+  // Create a client's very first assessment automatically. Once an assessment is
+  // finalized, the next cycle only starts when an admin/assessor explicitly kicks
+  // off a reassessment (carrying forward the client's previous answers) — see
+  // /api/admin/assessment/[id]/reassess.
+  if (!assessment) {
     const { data: newAssessment, error } = await supabase
       .from("assessments")
       .insert({ client_id: clientId, status: "in_progress" })

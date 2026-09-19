@@ -49,10 +49,13 @@ export default function AssessmentLifecycleBar({
   currentStatus: string;
 }) {
   const [transitioning, setTransitioning] = useState<string | null>(null);
+  const [reassessing, setReassessing] = useState(false);
+  const [reassessError, setReassessError] = useState<string | null>(null);
   const router = useRouter();
 
   const transitions = TRANSITIONS[currentStatus] ?? [];
   const showArchive = !["archived", "finalized", "in_progress"].includes(currentStatus);
+  const showReassess = currentStatus === "finalized";
   const statusDisplay = STATUS_DISPLAY[currentStatus];
 
   async function transition(newStatus: string) {
@@ -66,7 +69,21 @@ export default function AssessmentLifecycleBar({
     setTransitioning(null);
   }
 
-  if (transitions.length === 0 && !showArchive) return null;
+  async function startReassessment() {
+    setReassessing(true);
+    setReassessError(null);
+    const res = await fetch(`/api/admin/assessment/${assessmentId}/reassess`, { method: "POST" });
+    const data = await res.json();
+    if (!res.ok) {
+      setReassessError(data.error ?? "Failed to start reassessment.");
+      setReassessing(false);
+      return;
+    }
+    router.refresh();
+    setReassessing(false);
+  }
+
+  if (transitions.length === 0 && !showArchive && !showReassess) return null;
 
   return (
     <div style={{
@@ -92,8 +109,26 @@ export default function AssessmentLifecycleBar({
         {statusDisplay?.label ?? currentStatus.replace(/_/g, " ")}
       </span>
 
-      {transitions.length > 0 && (
+      {(transitions.length > 0 || showReassess) && (
         <div style={{ width: 1, height: 22, background: "rgba(255,255,255,0.08)", marginLeft: 4 }} />
+      )}
+
+      {showReassess && (
+        <button
+          onClick={startReassessment}
+          disabled={reassessing}
+          style={{
+            padding: "7px 18px", borderRadius: 8, fontSize: 12, fontWeight: 700,
+            cursor: reassessing ? "not-allowed" : "pointer",
+            background: "rgba(0,201,255,0.1)", border: "1px solid rgba(0,201,255,0.35)", color: "#00C9FF",
+            opacity: reassessing ? 0.5 : 1,
+          }}
+        >
+          {reassessing ? "Starting..." : "Start Reassessment"}
+        </button>
+      )}
+      {reassessError && (
+        <span style={{ fontSize: 11, color: "#F87171" }}>{reassessError}</span>
       )}
 
       {transitions.map((t) => (

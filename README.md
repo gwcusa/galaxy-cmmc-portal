@@ -82,6 +82,7 @@ Apply in order via Supabase SQL Editor. **Take a backup before running 009.**
 | `019_objective_determinations.sql` | `assessor_determinations.objective_verdicts` for per-objective (NIST 800-171A) assessor verdicts |
 | `020_evidence_integrity.sql` | `sha256` on `artifacts` and `documents` for tamper-evident evidence |
 | `021_report_staff_downloads.sql` | `reports.staff_downloaded_at` / `staff_downloaded_by` — track admin/assessor report downloads separately from the client's own |
+| `022_reassessment.sql` | `assessments.previous_assessment_id` — links a reassessment cycle back to the finalized cycle its answers were carried forward from |
 
 See `docs/upgrade-2026-07.md` for full deploy checklist.
 

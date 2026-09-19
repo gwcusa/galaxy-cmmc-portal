@@ -51,7 +51,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
 
   const { data: assessments } = await supabase
     .from("assessments")
-    .select("id, status, started_at, completed_at, assigned_to")
+    .select("id, status, started_at, completed_at, assigned_to, previous_assessment_id")
     .eq("client_id", params.id)
     .order("started_at", { ascending: false });
 
@@ -73,6 +73,28 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
       responseRows = data as typeof responseRows;
       responses = Object.fromEntries(data.map((r) => [r.control_id, r.response])) as ResponseMap;
       gapControlIds = data.filter((r) => r.response === "no").map((r) => r.control_id);
+    }
+  }
+
+  // If this is a reassessment cycle, diff against the prior cycle's answers so the
+  // assessor can focus review on what actually changed.
+  const changedControlIds = new Set<string>();
+  const previousAssessmentId = (activeAssessment as { previous_assessment_id?: string | null } | undefined)?.previous_assessment_id;
+  if (previousAssessmentId) {
+    const { data: prevData } = await supabase
+      .from("assessment_responses")
+      .select("control_id, response, notes, no_artifacts, no_policy_document, no_implementation_artifact")
+      .eq("assessment_id", previousAssessmentId);
+    const prevMap = new Map((prevData ?? []).map((r) => [r.control_id, r]));
+    for (const r of responseRows) {
+      const prev = prevMap.get(r.control_id);
+      const changed = !prev
+        || prev.response !== r.response
+        || (prev.notes ?? "") !== (r.notes ?? "")
+        || !!prev.no_artifacts !== !!r.no_artifacts
+        || !!prev.no_policy_document !== !!r.no_policy_document
+        || !!prev.no_implementation_artifact !== !!r.no_implementation_artifact;
+      if (changed) changedControlIds.add(r.control_id);
     }
   }
 
@@ -159,6 +181,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         objectives: (objectivesData as Record<string, { objectives: { id: string; text: string }[] }>)[r.control_id]?.objectives ?? [],
         aiObjectiveResults: ai?.objective_results ?? [],
         objectiveVerdicts: det?.objective_verdicts ?? {},
+        changedSincePrevious: previousAssessmentId ? changedControlIds.has(r.control_id) : null,
       };
     })
     .sort((a, b) => {

@@ -310,8 +310,9 @@ export default function AssessmentPage() {
           Assessment {statusLabel[assessmentStatus] ?? assessmentStatus.replace(/_/g, " ")}
         </div>
         <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", textAlign: "center", maxWidth: 420 }}>
-          Your assessment has been submitted and is no longer editable.
-          Return to your dashboard to check the status.
+          {assessmentStatus === "finalized"
+            ? "Your assessment is finalized and no longer editable. When it's time to reassess your environment, Galaxy Consulting will start a new cycle for you — your previous answers will carry forward automatically."
+            : "Your assessment has been submitted and is no longer editable. Return to your dashboard to check the status."}
         </div>
         <a href="/portal/dashboard" style={{
           marginTop: 8, padding: "11px 24px", borderRadius: 8, fontSize: 13, fontWeight: 600,

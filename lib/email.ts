@@ -239,3 +239,24 @@ export async function sendReaffirmationReminderEmail(params: {
   `);
   await send(clientEmail, `[Galaxy] Annual CMMC Re-Affirmation Due — ${companyName}`, html);
 }
+
+// ---------------------------------------------------------------------------
+// 6. Client notification: assessor started a new reassessment cycle
+// ---------------------------------------------------------------------------
+export async function sendReassessmentStartedEmail(params: {
+  clientEmail: string;
+  clientName: string;
+  companyName: string;
+}) {
+  const { clientEmail, clientName, companyName } = params;
+  const html = baseTemplate(`
+    ${heading("New Assessment Cycle Started")}
+    ${para(`Hi ${clientName},`)}
+    ${para(`Galaxy Consulting has started a new assessment cycle for <strong style="color:#fff;">${companyName}</strong>. Your previous answers have been carried forward — you only need to update the controls that have changed since your last assessment.`)}
+    ${divider()}
+    <div style="margin-bottom:16px;">${badge("Action Needed", "#FFB347")}</div>
+    ${para("Log in to your portal, review each control, update anything that's changed in your environment, and resubmit when ready.")}
+    ${ctaButton("Review in Your Portal →", `${APP_URL}/portal/assessment`)}
+  `);
+  await send(clientEmail, `[Galaxy] New Assessment Cycle Started — ${companyName}`, html);
+}

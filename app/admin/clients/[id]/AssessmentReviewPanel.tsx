@@ -23,6 +23,8 @@ export type ControlReviewItem = {
   objectives: { id: string; text: string }[];
   aiObjectiveResults: { id: string; met: string; note?: string }[];
   objectiveVerdicts: Record<string, string>;
+  // null = not a reassessment cycle (nothing to diff against); true/false = changed since the prior finalized cycle
+  changedSincePrevious: boolean | null;
 };
 
 const OBJ_VERDICTS = [
@@ -83,15 +85,18 @@ export default function AssessmentReviewPanel({
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [saving, setSaving] = useState<Record<string, boolean>>({});
   const [bulkSaving, setBulkSaving] = useState(false);
-  const [filter, setFilter] = useState<"all" | "pending" | "reviewed">("all");
+  const [filter, setFilter] = useState<"all" | "pending" | "reviewed" | "changed">("all");
 
   const reviewedCount = items.filter((i) => i.assessorVerdict !== null).length;
   const pendingAiCount = items.filter((i) => i.aiVerdict === null).length;
   const unreviewedCount = items.length - reviewedCount;
+  const isReassessment = items.some((i) => i.changedSincePrevious !== null);
+  const changedCount = items.filter((i) => i.changedSincePrevious === true).length;
 
   const visibleItems = items.filter((i) => {
     if (filter === "pending") return i.assessorVerdict === null;
     if (filter === "reviewed") return i.assessorVerdict !== null;
+    if (filter === "changed") return i.changedSincePrevious === true;
     return true;
   });
 
@@ -189,7 +194,7 @@ export default function AssessmentReviewPanel({
           )}
           {/* Filter tabs */}
           <div style={{ display: "flex", gap: 4 }}>
-            {(["all", "pending", "reviewed"] as const).map((f) => (
+            {(["all", "pending", "reviewed", ...(isReassessment ? (["changed"] as const) : [])] as const).map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
@@ -201,7 +206,7 @@ export default function AssessmentReviewPanel({
                   textTransform: "capitalize",
                 }}
               >
-                {f === "pending" ? `Pending (${unreviewedCount})` : f === "reviewed" ? `Reviewed (${reviewedCount})` : "All"}
+                {f === "pending" ? `Pending (${unreviewedCount})` : f === "reviewed" ? `Reviewed (${reviewedCount})` : f === "changed" ? `Changed (${changedCount})` : "All"}
               </button>
             ))}
           </div>
@@ -258,6 +263,15 @@ export default function AssessmentReviewPanel({
                 }}>
                   {item.domain}
                 </span>
+                {item.changedSincePrevious === true && (
+                  <span style={{
+                    fontSize: 11, padding: "2px 8px", borderRadius: 6, fontWeight: 700,
+                    background: "rgba(255,179,71,0.12)", color: "#FFB347",
+                    border: "1px solid rgba(255,179,71,0.35)",
+                  }}>
+                    Changed
+                  </span>
+                )}
                 {isReviewed && (
                   <span style={{ marginLeft: "auto", fontSize: 11, color: "rgba(255,255,255,0.3)" }}>
                     Reviewed {new Date(item.reviewedAt!).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
