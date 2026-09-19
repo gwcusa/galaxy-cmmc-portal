@@ -12,6 +12,7 @@ import AssessmentLifecycleBar from "./AssessmentLifecycleBar";
 import AssessmentReviewPanel, { ControlReviewItem } from "./AssessmentReviewPanel";
 import InformationRequestsPanel from "./InformationRequestsPanel";
 import ArtifactGenerationPanel from "./ArtifactGenerationPanel";
+import ClientReportButton from "./ClientReportButton";
 import ClientInfoEditor from "./ClientInfoEditor";
 import RunAiButton from "./RunAiButton";
 import AssessmentSummaryPanel, { AssessmentSummary } from "./AssessmentSummaryPanel";
@@ -420,6 +421,7 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
           >
             ⬇ Full Assessment (CSV)
           </a>
+          <ClientReportButton assessmentId={activeAssessment.id} />
         </div>
       )}
 

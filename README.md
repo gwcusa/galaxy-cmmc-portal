@@ -81,6 +81,7 @@ Apply in order via Supabase SQL Editor. **Take a backup before running 009.**
 | `018_reaffirmation.sql` | `assessments.reaffirmation_reminded_at` for the annual re-affirmation reminder cron |
 | `019_objective_determinations.sql` | `assessor_determinations.objective_verdicts` for per-objective (NIST 800-171A) assessor verdicts |
 | `020_evidence_integrity.sql` | `sha256` on `artifacts` and `documents` for tamper-evident evidence |
+| `021_report_staff_downloads.sql` | `reports.staff_downloaded_at` / `staff_downloaded_by` — track admin/assessor report downloads separately from the client's own |
 
 See `docs/upgrade-2026-07.md` for full deploy checklist.
 

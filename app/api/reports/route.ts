@@ -64,9 +64,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Client not found" }, { status: 404 });
   }
 
-  // Only the owning user (or service admin) may generate reports
+  // Only the owning client, or an admin/assessor, may generate reports
   if (client.user_id !== user.id) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    const { data: role } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", user.id)
+      .single();
+    if (!["admin", "assessor"].includes(role?.role ?? "")) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
   }
 
   // Load responses
@@ -202,8 +209,16 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Client not found" }, { status: 404 });
   }
 
-  if (client.user_id !== user.id) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const isOwner = client.user_id === user.id;
+  if (!isOwner) {
+    const { data: role } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", user.id)
+      .single();
+    if (!["admin", "assessor"].includes(role?.role ?? "")) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
   }
 
   // Fetch latest report for this assessment
@@ -229,10 +244,14 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Failed to create signed URL" }, { status: 500 });
   }
 
-  // Record download timestamp
+  // Record download timestamp — client downloads vs. staff (admin/assessor) downloads tracked separately
   await supabase
     .from("reports")
-    .update({ downloaded_at: new Date().toISOString() })
+    .update(
+      isOwner
+        ? { downloaded_at: new Date().toISOString() }
+        : { staff_downloaded_at: new Date().toISOString(), staff_downloaded_by: user.id }
+    )
     .eq("id", report.id);
 
   return NextResponse.json({
