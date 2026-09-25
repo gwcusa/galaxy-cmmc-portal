@@ -383,7 +383,7 @@ export default async function DashboardPage() {
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {infoRequests.map((req) => (
-                  <InfoRequestCard key={req.id} req={req} />
+                  <InfoRequestCard key={req.id} req={req} disabled={!entitlement.canEdit} />
                 ))}
               </div>
             </div>

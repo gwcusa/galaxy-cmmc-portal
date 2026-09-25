@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { isLicenseInactiveResponse } from "@/components/LicenseBanner";
 
 type IntakeQuestion = { id: string; question: string; hint?: string };
 
@@ -24,12 +25,13 @@ const textareaStyle: React.CSSProperties = {
   resize: "vertical", outline: "none", boxSizing: "border-box",
 };
 
-export default function InfoRequestCard({ req }: { req: InfoReq }) {
+export default function InfoRequestCard({ req, disabled = false }: { req: InfoReq; disabled?: boolean }) {
   const [expanded, setExpanded] = useState(req.status === "pending");
   const [response, setResponse] = useState("");
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const isPending = req.status === "pending";
@@ -42,8 +44,9 @@ export default function InfoRequestCard({ req }: { req: InfoReq }) {
     : response.trim().length > 0;
 
   async function submit() {
-    if (!canSubmit) return;
+    if (!canSubmit || disabled) return;
     setSubmitting(true);
+    setError(null);
     const res = await fetch(`/api/info-requests/${req.id}/respond`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -52,6 +55,13 @@ export default function InfoRequestCard({ req }: { req: InfoReq }) {
     if (res.ok) {
       setSubmitted(true);
       router.refresh();
+    } else {
+      const body = (await res.json().catch(() => null)) as { error?: string } | null;
+      setError(
+        isLicenseInactiveResponse(res, body)
+          ? "Your license is inactive. Contact Galaxy to renew before responding."
+          : body?.error ?? "Could not submit your response. Please try again."
+      );
     }
     setSubmitting(false);
   }
@@ -120,7 +130,8 @@ export default function InfoRequestCard({ req }: { req: InfoReq }) {
                     value={answers[q.id] ?? ""}
                     onChange={(e) => setAnswers((a) => ({ ...a, [q.id]: e.target.value }))}
                     rows={2}
-                    style={{ ...textareaStyle, minHeight: 48 }}
+                    disabled={disabled}
+                    style={{ ...textareaStyle, minHeight: 48, opacity: disabled ? 0.5 : 1 }}
                   />
                 </div>
               ))}
@@ -137,24 +148,35 @@ export default function InfoRequestCard({ req }: { req: InfoReq }) {
                 onChange={(e) => setResponse(e.target.value)}
                 placeholder="Type your response here..."
                 rows={4}
-                style={{ ...textareaStyle, minHeight: 90 }}
+                disabled={disabled}
+                style={{ ...textareaStyle, minHeight: 90, opacity: disabled ? 0.5 : 1 }}
               />
             </>
+          )}
+
+          {isPending && !submitted && disabled && (
+            <div style={{ fontSize: 12, color: "#FFB347", marginTop: 10 }}>
+              Your license is inactive. Contact Galaxy to renew before responding.
+            </div>
           )}
 
           {isPending && !submitted && (
             <button
               onClick={submit}
-              disabled={submitting || !canSubmit}
+              disabled={submitting || !canSubmit || disabled}
               style={{
                 marginTop: 10, padding: "9px 22px", borderRadius: 8, fontSize: 13, fontWeight: 600,
                 background: "rgba(0,201,255,0.12)", border: "1px solid rgba(0,201,255,0.3)", color: "#00C9FF",
-                cursor: submitting || !canSubmit ? "not-allowed" : "pointer",
-                opacity: submitting || !canSubmit ? 0.5 : 1,
+                cursor: submitting || !canSubmit || disabled ? "not-allowed" : "pointer",
+                opacity: submitting || !canSubmit || disabled ? 0.5 : 1,
               }}
             >
               {submitting ? "Submitting..." : isStructured ? "Submit Answers" : "Submit Response"}
             </button>
+          )}
+
+          {error && (
+            <div style={{ fontSize: 12, color: "#F87171", marginTop: 8 }}>{error}</div>
           )}
 
           {submitted && (
