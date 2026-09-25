@@ -18,6 +18,7 @@ import RunAiButton from "./RunAiButton";
 import AssessmentSummaryPanel, { AssessmentSummary } from "./AssessmentSummaryPanel";
 import IntakeQuestionsPanel from "./IntakeQuestionsPanel";
 import AssignAssessorSelect from "./AssignAssessorSelect";
+import LicensingPanel from "./LicensingPanel";
 import NextStepBanner, { NextStep } from "@/components/NextStepBanner";
 import CollapsibleSection from "@/components/CollapsibleSection";
 import EvidenceArtifactsSection from "@/components/EvidenceArtifactsSection";
@@ -346,6 +347,9 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
 
       {/* What to do next */}
       <NextStepBanner step={nextStep} />
+
+      {/* Licensing — entitlement, purchase history, assign and void */}
+      <LicensingPanel clientId={params.id} />
 
       {/* Assessment lifecycle bar — only when assessment exists and not in_progress */}
       <div id="lifecycle">

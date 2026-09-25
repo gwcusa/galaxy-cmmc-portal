@@ -1,13 +1,16 @@
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import Link from "next/link";
+import { computeEntitlement, entitlementSummary, toLicenseRows } from "@/lib/licensing";
 
 export default async function AdminClientsPage() {
   const supabase = createServerSupabaseClient();
 
   const { data: clients } = await supabase
     .from("clients")
-    .select("id, company_name, contact_name, phone, cmmc_target_level, engagement_stage, created_at")
+    .select("id, company_name, contact_name, phone, cmmc_target_level, engagement_stage, created_at, client_licenses(id, type, starts_at, expires_at, voided_at, packages(name))")
     .order("created_at", { ascending: false });
+
+  const now = new Date();
 
   const stageColor: Record<string, string> = { lead: "#FFB347", active: "#00C9FF", completed: "#4DFFA0" };
   const card = { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 24 };
@@ -25,7 +28,7 @@ export default async function AdminClientsPage() {
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
-              {["Company", "Contact", "Phone", "CMMC Level", "Stage", "Action"].map((h) => (
+              {["Company", "Contact", "Phone", "CMMC Level", "Stage", "License", "Action"].map((h) => (
                 <th key={h} style={{ textAlign: "left", fontSize: 11, color: "rgba(255,255,255,0.35)", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", padding: "0 0 12px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>{h}</th>
               ))}
             </tr>
@@ -45,6 +48,16 @@ export default async function AdminClientsPage() {
                     <span style={{ fontSize: 11, padding: "3px 10px", borderRadius: 20, background: `${color}18`, color, fontWeight: 600, textTransform: "capitalize" }}>
                       {c.engagement_stage}
                     </span>
+                  </td>
+                  <td style={{ padding: "12px 8px" }}>
+                    {(() => {
+                      const lic = entitlementSummary(computeEntitlement(
+                        toLicenseRows(((c as { client_licenses?: unknown }).client_licenses ?? []) as Parameters<typeof toLicenseRows>[0]),
+                        null,
+                        now,
+                      ));
+                      return <span style={{ fontSize: 12, fontWeight: 600, color: lic.color }}>{lic.label}</span>;
+                    })()}
                   </td>
                   <td style={{ padding: "12px 0" }}>
                     <Link href={`/admin/clients/${c.id}`} style={{
