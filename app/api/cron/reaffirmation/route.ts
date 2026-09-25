@@ -1,12 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServiceSupabaseClient } from "@/lib/supabase-server";
-import { sendReaffirmationReminderEmail } from "@/lib/email";
+import { sendReaffirmationReminderEmail, sendLicenseExpiringEmail } from "@/lib/email";
 import { logAudit } from "@/lib/audit";
+import { formatLongDate } from "@/lib/licensing";
 
 export const maxDuration = 60;
 
 // Remind clients ~11 months after finalization (annual affirmation cycle).
 const REMIND_AFTER_DAYS = 335;
+
+// Remind clients (and the admin) this many days before their license expires.
+const LICENSE_EXPIRY_WINDOW_DAYS = 14;
 
 // GET /api/cron/reaffirmation
 // Runs daily (Vercel Cron). Emails clients whose finalized assessment is nearing
@@ -63,5 +67,74 @@ export async function GET(req: NextRequest) {
     sent++;
   }
 
-  return NextResponse.json({ success: true, reminded: sent, considered: due?.length ?? 0 });
+  // ---- Job 2: license expiry reminders — once per license, 14 days out ----
+  const nowIso = new Date().toISOString();
+  const windowEndIso = new Date(Date.now() + LICENSE_EXPIRY_WINDOW_DAYS * 24 * 60 * 60 * 1000).toISOString();
+
+  const { data: expiring, error: licenseError } = await svc
+    .from("client_licenses")
+    .select("id, client_id, starts_at, expires_at, clients(company_name, contact_name, user_id), packages(name)")
+    .is("voided_at", null)
+    .is("expiry_reminded_at", null)
+    .gt("expires_at", nowIso)
+    .lte("expires_at", windowEndIso)
+    .limit(100);
+
+  if (licenseError) return NextResponse.json({ error: licenseError.message }, { status: 500 });
+
+  let licensesReminded = 0;
+  for (const l of expiring ?? []) {
+    // Skip rows that are no longer the client's current license (a newer
+    // non-voided row exists) and stamp them so they are not reconsidered.
+    const { data: newer } = await svc
+      .from("client_licenses")
+      .select("id")
+      .eq("client_id", l.client_id)
+      .is("voided_at", null)
+      .gt("starts_at", l.starts_at)
+      .limit(1);
+    if ((newer ?? []).length > 0) {
+      await svc.from("client_licenses").update({ expiry_reminded_at: nowIso }).eq("id", l.id);
+      continue;
+    }
+
+    const client = (Array.isArray(l.clients) ? l.clients[0] : l.clients) as {
+      company_name: string;
+      contact_name: string;
+      user_id: string;
+    } | null;
+    const pkg = (Array.isArray(l.packages) ? l.packages[0] : l.packages) as { name: string } | null;
+
+    if (client) {
+      const { data: authUser } = await svc.auth.admin.getUserById(client.user_id);
+      if (authUser?.user?.email) {
+        await sendLicenseExpiringEmail({
+          clientEmail: authUser.user.email,
+          clientName: client.contact_name,
+          companyName: client.company_name,
+          packageName: pkg?.name ?? "Assessment",
+          expiresOn: formatLongDate(l.expires_at as string),
+        });
+      }
+    }
+
+    await svc.from("client_licenses").update({ expiry_reminded_at: nowIso }).eq("id", l.id);
+    logAudit({
+      actorId: null,
+      actorRole: "system",
+      action: "license.expiry_reminded",
+      entityType: "license",
+      entityId: l.id,
+      metadata: { clientId: l.client_id, expiresAt: l.expires_at },
+    });
+    licensesReminded++;
+  }
+
+  return NextResponse.json({
+    success: true,
+    reminded: sent,
+    considered: due?.length ?? 0,
+    licensesReminded,
+    licensesConsidered: expiring?.length ?? 0,
+  });
 }
