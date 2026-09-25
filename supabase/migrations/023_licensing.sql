@@ -65,14 +65,17 @@ create unique index if not exists client_licenses_one_single
 alter table packages enable row level security;
 alter table client_licenses enable row level security;
 
+drop policy if exists "packages_read_authenticated" on packages;
 create policy "packages_read_authenticated" on packages
   for select to authenticated using (true);
 
+drop policy if exists "client_licenses_client_read" on client_licenses;
 create policy "client_licenses_client_read" on client_licenses
   for select using (
     exists (select 1 from clients c where c.id = client_licenses.client_id and c.user_id = auth.uid())
   );
 
+drop policy if exists "client_licenses_staff_read" on client_licenses;
 create policy "client_licenses_staff_read" on client_licenses
   for select using (
     exists (select 1 from user_roles where user_id = auth.uid() and role in ('admin', 'assessor'))
