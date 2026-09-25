@@ -157,7 +157,7 @@ export default function LicensingPanel({ clientId, readOnly = false }: { clientI
       });
       const body = await res.json();
       if (!res.ok) {
-        setAssignError(REASON_TEXT[body.error] ?? body.error ?? "Something went wrong.");
+        setAssignError(body.message ?? REASON_TEXT[body.error] ?? body.error ?? "Something went wrong.");
         setConfirming(false);
       } else {
         setAssignOpen(false);

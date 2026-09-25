@@ -64,6 +64,10 @@ export async function startReassessmentCycle(input: StartReassessmentCycleInput)
     .select("id")
     .single();
 
+  // 23505: assessments_one_successor — a concurrent call opened the successor first.
+  if (insertError?.code === "23505") {
+    return { ok: false, status: 400, error: "A newer assessment cycle already exists for this client" };
+  }
   if (insertError || !newAssessment) {
     return { ok: false, status: 500, error: insertError?.message ?? "Failed to create assessment" };
   }

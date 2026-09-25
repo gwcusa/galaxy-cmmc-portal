@@ -44,6 +44,21 @@ create table if not exists client_licenses (
 
 create index if not exists client_licenses_client_starts on client_licenses (client_id, starts_at desc);
 
+-- One live successor cycle per assessment: prevents two concurrent start-cycle
+-- calls opening duplicate cycles. The app has always enforced one successor in
+-- lib/reassessment.ts (only the client's latest non-archived cycle can be
+-- reassessed), so existing data cannot violate this. Archived successors are
+-- excluded: if a successor is archived, its predecessor becomes the latest
+-- non-archived cycle again and may legitimately be reassessed a second time.
+create unique index if not exists assessments_one_successor
+  on assessments (previous_assessment_id)
+  where previous_assessment_id is not null and status <> 'archived';
+
+-- At most one live Single license per client (FR-LC-04), enforced even under concurrent assigns.
+create unique index if not exists client_licenses_one_single
+  on client_licenses (client_id)
+  where type = 'single' and voided_at is null;
+
 -- ---------------------------------------------------------------------------
 -- RLS. Reads only; all writes go through the service-role client in API routes.
 -- ---------------------------------------------------------------------------

@@ -9,6 +9,9 @@
  *   from(table).delete().eq(...)
  *   auth.admin.getUserById(id)
  *
+ * A test can make the next insert into a table fail by setting
+ * `state.insertErrors[table]` (consumed on use), e.g. `{ message, code: "23505" }`.
+ *
  * Embedded many-to-one selects such as `clients(user_id)` are resolved through
  * RELATIONS. Every builder is a thenable, so `await svc.from(...)...` works.
  */
@@ -18,6 +21,8 @@ export type FakeState = {
   user: { id: string } | null;
   tables: Record<string, Row[]>;
   users: { id: string; email: string }[];
+  /** One-shot insert failures by table, e.g. a unique violation `{ code: "23505" }`. */
+  insertErrors?: Record<string, { message: string; code?: string }>;
 };
 
 const RELATIONS: Record<string, Record<string, { table: string; localKey: string }>> = {
@@ -156,6 +161,11 @@ class FakeQuery implements PromiseLike<FakeResult> {
 
   private run(): FakeResult {
     if (this.op === "insert") {
+      const injected = this.state.insertErrors?.[this.table];
+      if (injected) {
+        delete this.state.insertErrors![this.table];
+        return { data: null, error: injected };
+      }
       const list = (Array.isArray(this.payload) ? this.payload : [this.payload as Row]).map((r) => ({
         id: crypto.randomUUID(),
         created_at: new Date().toISOString(),

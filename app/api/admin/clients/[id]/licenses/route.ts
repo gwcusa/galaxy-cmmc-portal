@@ -191,6 +191,13 @@ export async function POST(
     .select("id, package_id, type, price_paid_usd, starts_at, expires_at, granted_by, notes, assessment_id, voided_at, void_reason, created_at")
     .single();
 
+  // 23505: client_licenses_one_single — a concurrent assign recorded the Single first.
+  if (insertError?.code === "23505") {
+    return NextResponse.json(
+      { error: "single_already_assigned", message: "This client already has a Single license." },
+      { status: 409 }
+    );
+  }
   if (insertError || !license) {
     return NextResponse.json({ error: insertError?.message ?? "Failed to record license" }, { status: 500 });
   }
