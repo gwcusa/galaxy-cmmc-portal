@@ -48,6 +48,7 @@ import { POST as saveAnswer } from "@/app/api/assessment/route";
 import { POST as submitAssessment } from "@/app/api/assessment/submit/route";
 import { POST as uploadArtifact } from "@/app/api/artifacts/route";
 import { POST as saveScoping } from "@/app/api/scoping/route";
+import { POST as startCycle } from "@/app/api/assessment/start-cycle/route";
 
 // ---------------------------------------------------------------- fixture
 
@@ -281,5 +282,49 @@ describe("POST /api/scoping", () => {
     const res = await saveScoping(jsonRequest("/api/scoping", body));
     expect(res.status).toBe(200);
     expect(tables().assessment_scoping).toHaveLength(1);
+  });
+});
+
+describe("POST /api/assessment/start-cycle", () => {
+  const request = () => new NextRequest("http://localhost/api/assessment/start-cycle", { method: "POST" });
+
+  it("allows the owning client with an active Unlimited license and a finalized cycle", async () => {
+    seed({ license: "active", licenseType: "unlimited", assessmentStatus: "finalized" });
+    tables().assessment_responses.push({ id: "r1", assessment_id: ASSESSMENT_ID, control_id: "3.1.1", response: "yes", notes: null, no_artifacts: false, no_policy_document: false, no_implementation_artifact: false });
+    signIn(OWNER);
+    const res = await startCycle(request());
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(typeof body.assessmentId).toBe("string");
+    const created = tables().assessments.find((a) => a.id === body.assessmentId);
+    expect(created?.previous_assessment_id).toBe(ASSESSMENT_ID);
+    expect(created?.status).toBe("in_progress");
+    expect(tables().assessment_responses.filter((r) => r.assessment_id === body.assessmentId)).toHaveLength(1);
+  });
+
+  it("returns 403 license_inactive for the owning client with an expired license", async () => {
+    seed({ license: "expired", licenseType: "unlimited", assessmentStatus: "finalized" });
+    signIn(OWNER);
+    const res = await startCycle(request());
+    expect(res.status).toBe(403);
+    expect(await res.json()).toEqual({ error: "license_inactive" });
+    expect(tables().assessments).toHaveLength(1);
+  });
+
+  it("returns 403 Forbidden for a client user with no client record", async () => {
+    seed({ license: "active", licenseType: "unlimited", assessmentStatus: "finalized" });
+    tables().clients = tables().clients.filter((c) => c.id !== OTHER_CLIENT_ID);
+    signIn(OTHER);
+    const res = await startCycle(request());
+    expect(res.status).toBe(403);
+    expect(await res.json()).toEqual({ error: "Forbidden" });
+  });
+
+  it("returns 403 Forbidden for an admin (client-only route)", async () => {
+    seed({ license: "active", licenseType: "unlimited", assessmentStatus: "finalized" });
+    signIn(ADMIN);
+    const res = await startCycle(request());
+    expect(res.status).toBe(403);
+    expect(await res.json()).toEqual({ error: "Forbidden" });
   });
 });
