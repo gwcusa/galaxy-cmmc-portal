@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase";
 import { SCOPING_QUESTIONS } from "@/lib/scoping-questions";
+import LicenseBanner, { NO_LICENSE, isLicenseInactiveResponse, markInactive, type PortalEntitlement } from "@/components/LicenseBanner";
 
 const card: React.CSSProperties = {
   background: "rgba(255,255,255,0.04)",
@@ -25,7 +26,8 @@ const inputStyle: React.CSSProperties = {
 export default function ScopingPage() {
   const [answers, setAnswers] = useState<Record<string, string | boolean>>({});
   const [assessmentId, setAssessmentId] = useState<string | null>(null);
-  const [editable, setEditable] = useState(true);
+  const [statusEditable, setStatusEditable] = useState(true);
+  const [entitlement, setEntitlement] = useState<PortalEntitlement>(NO_LICENSE);
   const [loaded, setLoaded] = useState(false);
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
@@ -47,7 +49,8 @@ export default function ScopingPage() {
       const data = await res.json();
       if (!data.assessmentId) { setLoaded(true); return; }
       setAssessmentId(data.assessmentId);
-      setEditable(["in_progress", "remediation_required"].includes(data.assessmentStatus ?? "in_progress"));
+      setStatusEditable(["in_progress", "remediation_required"].includes(data.assessmentStatus ?? "in_progress"));
+      setEntitlement(data.entitlement ?? NO_LICENSE);
 
       const scopingRes = await fetch(`/api/scoping?assessmentId=${data.assessmentId}`);
       if (scopingRes.ok) {
@@ -61,7 +64,7 @@ export default function ScopingPage() {
   }, []);
 
   async function save() {
-    if (!assessmentId) return;
+    if (!assessmentId || !entitlement.canEdit) return;
     setSaving(true);
     setError(null);
     const res = await fetch("/api/scoping", {
@@ -71,12 +74,16 @@ export default function ScopingPage() {
     });
     if (!res.ok) {
       const data = await res.json();
-      setError(data.error ?? "Save failed");
+      if (isLicenseInactiveResponse(res, data)) setEntitlement(markInactive);
+      else setError(data.error ?? "Save failed");
     } else {
       setSavedAt(new Date().toLocaleTimeString());
     }
     setSaving(false);
   }
+
+  const licenseBlocked = !entitlement.canEdit;
+  const editable = statusEditable && !licenseBlocked;
 
   if (!loaded) return <div style={{ color: "rgba(255,255,255,0.4)" }}>Loading…</div>;
   if (!assessmentId) {
@@ -90,6 +97,7 @@ export default function ScopingPage() {
 
   return (
     <div style={{ maxWidth: 760 }}>
+      {entitlement.status !== "active" && <LicenseBanner status={entitlement.status} />}
       <div style={{ fontSize: 24, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Environment Scoping</div>
       <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 24, lineHeight: 1.6 }}>
         Tell us about your environment before answering the control questionnaire. This context makes
@@ -183,6 +191,10 @@ export default function ScopingPage() {
             </button>
             {savedAt && <span style={{ fontSize: 12, color: "#4DFFA0" }}>Saved at {savedAt}</span>}
             {error && <span style={{ fontSize: 12, color: "#F87171" }}>{error}</span>}
+          </div>
+        ) : licenseBlocked ? (
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>
+            Scoping is read-only until a package is assigned.
           </div>
         ) : (
           <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>

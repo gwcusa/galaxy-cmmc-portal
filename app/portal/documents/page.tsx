@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { CONTROLS } from "@/lib/controls";
+import LicenseBanner, { NO_LICENSE, isLicenseInactiveResponse, markInactive, type PortalEntitlement } from "@/components/LicenseBanner";
 
 type LinkItem = {
   id: string;
@@ -44,12 +45,15 @@ export default function DocumentsPage() {
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const [entitlement, setEntitlement] = useState<PortalEntitlement>(NO_LICENSE);
+  const licenseBlocked = !entitlement.canEdit;
 
   const load = useCallback(async () => {
     const res = await fetch("/api/documents");
     if (res.ok) {
       const data = await res.json();
       setDocuments(data.documents ?? []);
+      setEntitlement(data.entitlement ?? NO_LICENSE);
     }
     setLoaded(true);
   }, []);
@@ -57,6 +61,7 @@ export default function DocumentsPage() {
   useEffect(() => { load(); }, [load]);
 
   async function handleUpload(file: File) {
+    if (licenseBlocked) return;
     setUploading(true);
     setError(null);
     const form = new FormData();
@@ -64,7 +69,8 @@ export default function DocumentsPage() {
     const res = await fetch("/api/documents", { method: "POST", body: form });
     const data = await res.json();
     if (!res.ok) {
-      setError(data.error ?? "Upload failed");
+      if (isLicenseInactiveResponse(res, data)) setEntitlement(markInactive);
+      else setError(data.error ?? "Upload failed");
     } else {
       await load();
       // Kick off AI mapping right away so suggestions appear without an extra click
@@ -74,6 +80,7 @@ export default function DocumentsPage() {
   }
 
   async function analyze(documentId: string) {
+    if (licenseBlocked) return;
     setAnalyzing(documentId);
     setError(null);
     setNotice(null);
@@ -83,24 +90,38 @@ export default function DocumentsPage() {
       body: JSON.stringify({ documentId }),
     });
     const data = await res.json();
-    if (!res.ok) setError(data.error ?? "Analysis failed");
-    else setNotice(`Analysis complete: ${data.suggested} control suggestion(s). Review and confirm them below.`);
+    if (!res.ok) {
+      if (isLicenseInactiveResponse(res, data)) setEntitlement(markInactive);
+      else setError(data.error ?? "Analysis failed");
+    } else {
+      setNotice(`Analysis complete: ${data.suggested} control suggestion(s). Review and confirm them below.`);
+    }
     await load();
     setAnalyzing(null);
   }
 
   async function resolveLink(documentId: string, controlId: string, action: "confirm" | "reject") {
-    await fetch("/api/documents/links", {
+    if (licenseBlocked) return;
+    const res = await fetch("/api/documents/links", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ documentId, controlId, action }),
     });
+    if (!res.ok) {
+      const data = await res.json().catch(() => null);
+      if (isLicenseInactiveResponse(res, data)) setEntitlement(markInactive);
+    }
     await load();
   }
 
   async function removeDocument(documentId: string, fileName: string) {
+    if (licenseBlocked) return;
     if (!window.confirm(`Delete "${fileName}" and its control mappings?`)) return;
-    await fetch(`/api/documents?documentId=${documentId}`, { method: "DELETE" });
+    const res = await fetch(`/api/documents?documentId=${documentId}`, { method: "DELETE" });
+    if (!res.ok) {
+      const data = await res.json().catch(() => null);
+      if (isLicenseInactiveResponse(res, data)) setEntitlement(markInactive);
+    }
     await load();
   }
 
@@ -108,6 +129,7 @@ export default function DocumentsPage() {
 
   return (
     <div>
+      {loaded && entitlement.status !== "active" && <LicenseBanner status={entitlement.status} />}
       <div style={{ fontSize: 24, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Document Library</div>
       <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 24, maxWidth: 720, lineHeight: 1.6 }}>
         Upload your policies, procedures, plans, and configuration evidence once — we automatically
@@ -129,16 +151,16 @@ export default function DocumentsPage() {
         />
         <button
           onClick={() => fileRef.current?.click()}
-          disabled={uploading}
+          disabled={uploading || licenseBlocked}
           style={{
-            background: uploading ? "rgba(0,201,255,0.3)" : "#00C9FF",
+            background: uploading || licenseBlocked ? "rgba(0,201,255,0.3)" : "#00C9FF",
             color: "#050B18",
             fontWeight: 700,
             fontSize: 14,
             border: "none",
             borderRadius: 8,
             padding: "10px 24px",
-            cursor: uploading ? "default" : "pointer",
+            cursor: uploading || licenseBlocked ? "not-allowed" : "pointer",
           }}
         >
           {uploading ? "Uploading…" : "+ Upload Document"}
@@ -181,19 +203,22 @@ export default function DocumentsPage() {
               <div style={{ display: "flex", gap: 8 }}>
                 <button
                   onClick={() => analyze(doc.id)}
-                  disabled={analyzing === doc.id}
+                  disabled={analyzing === doc.id || licenseBlocked}
                   style={{
                     background: "rgba(0,201,255,0.12)", color: "#00C9FF", border: "1px solid rgba(0,201,255,0.35)",
-                    borderRadius: 6, padding: "6px 14px", fontSize: 12, cursor: "pointer",
+                    borderRadius: 6, padding: "6px 14px", fontSize: 12,
+                    cursor: licenseBlocked ? "not-allowed" : "pointer", opacity: licenseBlocked ? 0.5 : 1,
                   }}
                 >
                   {analyzing === doc.id ? "Analyzing…" : "Re-analyze"}
                 </button>
                 <button
                   onClick={() => removeDocument(doc.id, doc.file_name)}
+                  disabled={licenseBlocked}
                   style={{
                     background: "rgba(248,113,113,0.1)", color: "#F87171", border: "1px solid rgba(248,113,113,0.3)",
-                    borderRadius: 6, padding: "6px 14px", fontSize: 12, cursor: "pointer",
+                    borderRadius: 6, padding: "6px 14px", fontSize: 12,
+                    cursor: licenseBlocked ? "not-allowed" : "pointer", opacity: licenseBlocked ? 0.5 : 1,
                   }}
                 >
                   Delete
@@ -233,15 +258,17 @@ export default function DocumentsPage() {
                     <span style={{ color: "rgba(255,255,255,0.55)", flex: 1 }}>
                       {l.rationale ?? controlDesc(l.control_id)}
                     </span>
-                    <button onClick={() => resolveLink(doc.id, l.control_id, "confirm")} style={{
+                    <button onClick={() => resolveLink(doc.id, l.control_id, "confirm")} disabled={licenseBlocked} style={{
                       background: "rgba(77,255,160,0.12)", color: "#4DFFA0", border: "1px solid rgba(77,255,160,0.35)",
-                      borderRadius: 6, padding: "4px 12px", fontSize: 12, cursor: "pointer",
+                      borderRadius: 6, padding: "4px 12px", fontSize: 12,
+                      cursor: licenseBlocked ? "not-allowed" : "pointer", opacity: licenseBlocked ? 0.5 : 1,
                     }}>
                       Confirm
                     </button>
-                    <button onClick={() => resolveLink(doc.id, l.control_id, "reject")} style={{
+                    <button onClick={() => resolveLink(doc.id, l.control_id, "reject")} disabled={licenseBlocked} style={{
                       background: "transparent", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.15)",
-                      borderRadius: 6, padding: "4px 12px", fontSize: 12, cursor: "pointer",
+                      borderRadius: 6, padding: "4px 12px", fontSize: 12,
+                      cursor: licenseBlocked ? "not-allowed" : "pointer", opacity: licenseBlocked ? 0.5 : 1,
                     }}>
                       Dismiss
                     </button>
