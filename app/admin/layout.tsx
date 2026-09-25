@@ -7,6 +7,7 @@ const ADMIN_NAV = [
   { id: "dashboard", href: "/admin/dashboard", icon: "⊞", label: "All Clients" },
   { id: "clients", href: "/admin/clients", icon: "◈", label: "Clients" },
   { id: "reports", href: "/admin/reports", icon: "▤", label: "Analytics" },
+  { id: "packages", href: "/admin/packages", icon: "▣", label: "Packages" },
   { id: "team", href: "/admin/team", icon: "◎", label: "Team" },
   { id: "profile", href: "/admin/profile", icon: "◉", label: "Profile" },
 ];
