@@ -3,6 +3,7 @@ import { createHash } from "crypto";
 import { createClient } from "@supabase/supabase-js";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { logAudit } from "@/lib/audit";
+import { requireClientLicense } from "@/lib/licensing";
 
 const ALLOWED_TYPES = [
   "application/pdf",
@@ -133,6 +134,9 @@ export async function POST(req: NextRequest) {
   const clientId = await getClientIdForAssessment(serviceSupabase, assessmentId, user.id);
   if (!clientId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
+  const denied = await requireClientLicense(serviceSupabase, clientId);
+  if (denied) return denied;
+
   // Ensure bucket exists
   const storageClient = getStorageClient();
   await storageClient.storage.createBucket("artifacts", { public: false });
@@ -240,6 +244,9 @@ export async function DELETE(req: NextRequest) {
   if (!client || client.user_id !== user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
+
+  const denied = await requireClientLicense(serviceSupabase, (assessment as { client_id: string }).client_id);
+  if (denied) return denied;
 
   // Delete from storage
   const storageClient = getStorageClient();

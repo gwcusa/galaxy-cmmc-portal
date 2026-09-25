@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
+import { requireClientLicense } from "@/lib/licensing";
 
 async function authorizeAssessment(assessmentId: string, userId: string) {
   const svc = createServiceSupabaseClient();
@@ -8,14 +9,14 @@ async function authorizeAssessment(assessmentId: string, userId: string) {
 
   const { data: assessment } = await svc
     .from("assessments")
-    .select("id, status, clients(user_id)")
+    .select("id, status, client_id, clients(user_id)")
     .eq("id", assessmentId)
     .single();
-  if (!assessment) return { svc, allowed: false, isStaff, status: null as string | null };
+  if (!assessment) return { svc, allowed: false, isStaff, status: null as string | null, clientId: null as string | null };
 
   const owner = Array.isArray(assessment.clients) ? assessment.clients[0] : assessment.clients;
   const allowed = isStaff || (owner as { user_id: string } | null)?.user_id === userId;
-  return { svc, allowed, isStaff, status: assessment.status as string };
+  return { svc, allowed, isStaff, status: assessment.status as string, clientId: assessment.client_id as string };
 }
 
 // GET /api/scoping?assessmentId=xxx
@@ -50,12 +51,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "assessmentId and answers required" }, { status: 400 });
   }
 
-  const { svc, allowed, isStaff, status } = await authorizeAssessment(assessmentId, user.id);
+  const { svc, allowed, isStaff, status, clientId } = await authorizeAssessment(assessmentId, user.id);
   if (!allowed) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   // Clients can only edit scoping while the assessment is editable
   if (!isStaff && status && !["in_progress", "remediation_required"].includes(status)) {
     return NextResponse.json({ error: "Assessment is not editable in its current state" }, { status: 400 });
+  }
+
+  if (!isStaff && clientId) {
+    const denied = await requireClientLicense(svc, clientId);
+    if (denied) return denied;
   }
 
   const { error } = await svc.from("assessment_scoping").upsert(

@@ -5,6 +5,7 @@ import { runAssessmentReview, executeReviewRun } from "@/lib/run-assessment-revi
 import { sendAssessmentSubmittedEmail } from "@/lib/email";
 import { logAudit } from "@/lib/audit";
 import { getControlsForLevel } from "@/lib/controls";
+import { requireClientLicense } from "@/lib/licensing";
 
 export const maxDuration = 300;
 
@@ -40,6 +41,9 @@ export async function POST(req: NextRequest) {
   if (assessment.status !== "in_progress" && assessment.status !== "remediation_required") {
     return NextResponse.json({ error: "Assessment cannot be submitted in its current state" }, { status: 400 });
   }
+
+  const denied = await requireClientLicense(serviceSupabase, assessment.client_id as string);
+  if (denied) return denied;
 
   const newStatus = assessment.status === "remediation_required" ? "resubmitted" : "submitted";
 

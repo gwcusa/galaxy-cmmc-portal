@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
-import { getEntitlement } from "@/lib/licensing";
+import { getEntitlement, requireClientLicense } from "@/lib/licensing";
 
 // GET /api/assessment?clientId=xxx
 export async function GET(req: NextRequest) {
@@ -73,6 +73,8 @@ export async function GET(req: NextRequest) {
 }
 
 // POST /api/assessment
+// Saves one control response. Only the owning client may write, only while the
+// cycle is editable, and only under an active license.
 export async function POST(req: NextRequest) {
   const { data: { user } } = await createServerSupabaseClient().auth.getUser();
   const supabase = createServiceSupabaseClient();
@@ -84,6 +86,24 @@ export async function POST(req: NextRequest) {
   if (!assessmentId || !controlId || !response) {
     return NextResponse.json({ error: "assessmentId, controlId, response required" }, { status: 400 });
   }
+
+  const { data: assessment } = await supabase
+    .from("assessments")
+    .select("id, status, client_id, clients(user_id)")
+    .eq("id", assessmentId)
+    .single();
+
+  if (!assessment) return NextResponse.json({ error: "Assessment not found" }, { status: 404 });
+  const owner = Array.isArray(assessment.clients) ? assessment.clients[0] : assessment.clients;
+  if (!owner || (owner as { user_id: string }).user_id !== user.id) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+  if (assessment.status !== "in_progress" && assessment.status !== "remediation_required") {
+    return NextResponse.json({ error: "Assessment is not editable in its current state" }, { status: 400 });
+  }
+
+  const denied = await requireClientLicense(supabase, assessment.client_id as string);
+  if (denied) return denied;
 
   const { error } = await supabase
     .from("assessment_responses")
