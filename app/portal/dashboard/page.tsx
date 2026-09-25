@@ -1,8 +1,11 @@
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { redirect } from "next/navigation";
 import { getControlsForLevel } from "@/lib/controls";
+import { getEntitlement, formatLongDate, type Entitlement } from "@/lib/licensing";
 import Link from "next/link";
 import InfoRequestCard from "./InfoRequestCard";
+import RequestPackageButton from "@/components/RequestPackageButton";
+import StartCycleButton from "@/components/StartCycleButton";
 
 type AssessmentStatus =
   | "in_progress"
@@ -94,6 +97,21 @@ export default async function DashboardPage() {
     .select("id, company_name, cmmc_target_level, engagement_type, assessments(id, status, started_at)")
     .eq("user_id", session.user.id)
     .single();
+
+  // Entitlement is derived from the ledger. No client record → no license.
+  const entitlement: Entitlement = client
+    ? await getEntitlement(createServiceSupabaseClient(), client.id)
+    : { status: "none", canEdit: false, canStartCycle: false };
+
+  const licenseLine = entitlement.status === "active"
+    ? entitlement.type === "unlimited"
+      ? `Your ${entitlement.packageName} package lets you run assessments as often as you like until ${formatLongDate(entitlement.expiresAt)}.`
+      : `Your ${entitlement.packageName} package lets you submit one assessment by ${formatLongDate(entitlement.expiresAt)}.`
+    : entitlement.status === "expired"
+      ? `Your license expired on ${formatLongDate(entitlement.expiresAt)}.`
+      : "You do not have an active license.";
+  const licenseColor = entitlement.status === "active" ? "#4DFFA0" : entitlement.status === "expired" ? "#F87171" : "#8892A0";
+  const licenseStatusLabel = entitlement.status === "active" ? "Active" : entitlement.status === "expired" ? "Expired" : "No license";
 
   const ACTIVE_ORDER: AssessmentStatus[] = [
     "remediation_required", "under_review", "submitted",
@@ -195,6 +213,41 @@ export default async function DashboardPage() {
           )}
         </div>
       </div>
+
+      {/* License */}
+      <div style={{ ...card, marginBottom: 20, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>License</div>
+            <span style={{
+              fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20,
+              color: licenseColor, background: `${licenseColor}18`, border: `1px solid ${licenseColor}33`,
+            }}>
+              {licenseStatusLabel}
+            </span>
+          </div>
+          {entitlement.status !== "none" && (
+            <div style={{ fontSize: 13, color: "#E2E8F0", marginBottom: 4 }}>
+              {entitlement.packageName} · {entitlement.status === "active" ? "expires" : "expired"} {formatLongDate(entitlement.expiresAt)}
+            </div>
+          )}
+          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>{licenseLine}</div>
+        </div>
+        <RequestPackageButton />
+      </div>
+
+      {/* Unlimited: start the next cycle once the current one is finalized */}
+      {entitlement.canStartCycle && (
+        <div style={{ ...card, marginBottom: 20, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 4 }}>Start new assessment</div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>
+              Your previous answers carry forward. You only need to update the controls that changed since your last assessment.
+            </div>
+          </div>
+          <StartCycleButton />
+        </div>
+      )}
 
       {/* No assessment yet */}
       {!assessment && (

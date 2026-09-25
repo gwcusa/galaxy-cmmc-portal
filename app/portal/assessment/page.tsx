@@ -4,6 +4,10 @@ import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/lib/supabase";
 import { getControlsForLevel, getDomainsForLevel, getDomain } from "@/lib/controls";
 import type { ResponseMap } from "@/lib/scoring";
+import LicenseBanner, { NO_LICENSE, isLicenseInactiveResponse, markInactive, type PortalEntitlement } from "@/components/LicenseBanner";
+import StartCycleButton from "@/components/StartCycleButton";
+
+const RESPONSE_LABEL: Record<string, string> = { yes: "Yes", partial: "Partial", no: "No", na: "N/A" };
 
 type Response = "yes" | "partial" | "no" | "na";
 
@@ -35,6 +39,8 @@ export default function AssessmentPage() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [artifactError, setArtifactError] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [entitlement, setEntitlement] = useState<PortalEntitlement>(NO_LICENSE);
+  const [previousResponses, setPreviousResponses] = useState<Record<string, string>>({});
   const supabase = createClient();
 
   useEffect(() => {
@@ -77,6 +83,10 @@ export default function AssessmentPage() {
       setNotes(notesMap);
       setNoPolicyDocument(noPolicyMap);
       setNoImplementationArtifact(noImplMap);
+      setEntitlement(data.entitlement ?? NO_LICENSE);
+      const prevMap: Record<string, string> = {};
+      for (const r of data.previousResponses ?? []) prevMap[r.control_id] = r.response;
+      setPreviousResponses(prevMap);
 
       if (data.assessmentId) {
         const guidanceRes = await fetch(`/api/remediation/client?assessmentId=${data.assessmentId}`);
@@ -103,9 +113,9 @@ export default function AssessmentPage() {
     noPolicy: boolean,
     noImpl: boolean,
   ) => {
-    if (!assessmentId) return;
+    if (!assessmentId || !entitlement.canEdit) return;
     setSaving(true);
-    await fetch("/api/assessment", {
+    const res = await fetch("/api/assessment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -117,8 +127,12 @@ export default function AssessmentPage() {
         no_implementation_artifact: noImpl,
       }),
     });
+    if (!res.ok) {
+      const data = await res.json().catch(() => null);
+      if (isLicenseInactiveResponse(res, data)) setEntitlement(markInactive);
+    }
     setSaving(false);
-  }, [assessmentId]);
+  }, [assessmentId, entitlement.canEdit]);
 
   const controls = getControlsForLevel(targetLevel);
   const domains = getDomainsForLevel(targetLevel);
@@ -137,8 +151,11 @@ export default function AssessmentPage() {
   const policySatisfied = policyArtifacts.length > 0 || currentNoPolicyDocument;
   const implementationSatisfied = implementationArtifacts.length > 0 || currentNoImplementationArtifact;
   const evidenceSatisfied = needsEvidence ? (policySatisfied && implementationSatisfied) : true;
+  const licenseBlocked = !entitlement.canEdit;
+  const previousAnswer = previousResponses[control?.id ?? ""];
 
   function handleResponse(val: Response) {
+    if (licenseBlocked) return;
     setArtifactError(false);
     setResponses((r) => ({ ...r, [control.id]: val }));
     const noPolicy = noPolicyDocument[control.id] ?? false;
@@ -160,6 +177,7 @@ export default function AssessmentPage() {
   }
 
   function handleNoPolicyToggle(checked: boolean) {
+    if (licenseBlocked) return;
     setNoPolicyDocument((n) => ({ ...n, [control.id]: checked }));
     if (checked) setArtifactError(false);
     if (currentResponse) {
@@ -169,6 +187,7 @@ export default function AssessmentPage() {
   }
 
   function handleNoImplementationToggle(checked: boolean) {
+    if (licenseBlocked) return;
     setNoImplementationArtifact((n) => ({ ...n, [control.id]: checked }));
     if (checked) setArtifactError(false);
     if (currentResponse) {
@@ -197,7 +216,7 @@ export default function AssessmentPage() {
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>, artifactType: "policy" | "implementation") {
     const file = e.target.files?.[0];
-    if (!file || !assessmentId || !control) return;
+    if (!file || !assessmentId || !control || licenseBlocked) return;
     setUploading(true);
     setUploadError(null);
     const form = new FormData();
@@ -223,6 +242,8 @@ export default function AssessmentPage() {
         const noPolicy = noPolicyDocument[control.id] ?? false;
         if (currentResponse) saveResponse(control.id, currentResponse, currentNote, noPolicy, false);
       }
+    } else if (isLicenseInactiveResponse(res, data)) {
+      setEntitlement(markInactive);
     } else {
       setUploadError(data.error ?? "Upload failed");
     }
@@ -231,12 +252,16 @@ export default function AssessmentPage() {
   }
 
   async function handleDelete(artifactId: string, controlId: string) {
+    if (licenseBlocked) return;
     const res = await fetch(`/api/artifacts?artifactId=${artifactId}`, { method: "DELETE" });
     if (res.ok) {
       setArtifacts((prev) => ({
         ...prev,
         [controlId]: (prev[controlId] ?? []).filter((a) => a.id !== artifactId),
       }));
+    } else {
+      const data = await res.json().catch(() => null);
+      if (isLicenseInactiveResponse(res, data)) setEntitlement(markInactive);
     }
   }
 
@@ -255,7 +280,7 @@ export default function AssessmentPage() {
       setArtifactError(true);
       return;
     }
-    if (!assessmentId) return;
+    if (!assessmentId || licenseBlocked) return;
     setSaving(true);
     setSubmitError(null);
     const res = await fetch("/api/assessment/submit", {
@@ -266,7 +291,9 @@ export default function AssessmentPage() {
     const data = await res.json();
     setSaving(false);
     if (!res.ok) {
-      if (data.missingArtifacts) {
+      if (isLicenseInactiveResponse(res, data)) {
+        setEntitlement(markInactive);
+      } else if (data.missingArtifacts) {
         setSubmitError(`Evidence required for ${data.missingArtifacts.length} control(s): ${data.missingArtifacts.slice(0, 5).join(", ")}${data.missingArtifacts.length > 5 ? "…" : ""}. Please go back and provide both a policy document and implementation evidence for each, or mark each type as unavailable.`);
       } else {
         setSubmitError(data.error ?? "Submission failed");
@@ -311,9 +338,12 @@ export default function AssessmentPage() {
         </div>
         <div style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", textAlign: "center", maxWidth: 420 }}>
           {assessmentStatus === "finalized"
-            ? "Your assessment is finalized and no longer editable. When it's time to reassess your environment, Galaxy Consulting will start a new cycle for you — your previous answers will carry forward automatically."
+            ? entitlement.canStartCycle
+              ? "Your assessment is finalized. Your Unlimited package lets you start the next assessment cycle yourself — your previous answers carry forward, so you only update the controls that changed."
+              : "Your assessment is finalized and no longer editable. When it's time to reassess your environment, Galaxy Consulting will start a new cycle for you — your previous answers will carry forward automatically."
             : "Your assessment has been submitted and is no longer editable. Return to your dashboard to check the status."}
         </div>
+        {assessmentStatus === "finalized" && entitlement.canStartCycle && <StartCycleButton />}
         <a href="/portal/dashboard" style={{
           marginTop: 8, padding: "11px 24px", borderRadius: 8, fontSize: 13, fontWeight: 600,
           background: "linear-gradient(135deg, #00C9FF, #4DFFA0)", color: "#050B18",
@@ -407,9 +437,10 @@ export default function AssessmentPage() {
                 </div>
                 <button
                   onClick={() => handleDelete(artifact.id, control.id)}
+                  disabled={licenseBlocked}
                   style={{
-                    background: "none", border: "none", color: "rgba(248,113,113,0.6)",
-                    cursor: "pointer", fontSize: 18, padding: "0 4px", flexShrink: 0,
+                    background: "none", border: "none", color: licenseBlocked ? "rgba(255,255,255,0.15)" : "rgba(248,113,113,0.6)",
+                    cursor: licenseBlocked ? "not-allowed" : "pointer", fontSize: 18, padding: "0 4px", flexShrink: 0,
                   }}
                 >
                   ×
@@ -432,15 +463,15 @@ export default function AssessmentPage() {
             display: "inline-flex", alignItems: "center", gap: 8,
             padding: "8px 14px", borderRadius: 8, fontSize: 12, fontWeight: 500,
             border: "1px dashed rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.03)",
-            color: uploading ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.6)",
-            cursor: uploading ? "not-allowed" : "pointer", marginBottom: 4,
+            color: uploading || licenseBlocked ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.6)",
+            cursor: uploading || licenseBlocked ? "not-allowed" : "pointer", marginBottom: 4,
           }}>
             <span>{uploading ? "Uploading..." : `+ ${uploadLabel}`}</span>
             <input
               type="file"
               accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.txt"
               onChange={(e) => handleUpload(e, type)}
-              disabled={uploading}
+              disabled={uploading || licenseBlocked}
               style={{ display: "none" }}
             />
           </label>
@@ -462,6 +493,7 @@ export default function AssessmentPage() {
                 type="checkbox"
                 checked={noFlag}
                 onChange={(e) => onToggle(e.target.checked)}
+                disabled={licenseBlocked}
                 style={{ marginTop: 2, accentColor: "#F87171", width: 14, height: 14, flexShrink: 0 }}
               />
               <div>
@@ -481,6 +513,9 @@ export default function AssessmentPage() {
 
   return (
     <div>
+      {/* License inactive banner */}
+      {entitlement.status !== "active" && <LicenseBanner status={entitlement.status} />}
+
       {/* Remediation required banner */}
       {isResubmission && (
         <div style={{
@@ -561,9 +596,14 @@ export default function AssessmentPage() {
           </div>
         </div>
 
-        <div style={{ fontSize: 16, color: "#fff", lineHeight: 1.6, marginBottom: 28, fontWeight: 500 }}>
+        <div style={{ fontSize: 16, color: "#fff", lineHeight: 1.6, marginBottom: previousAnswer ? 8 : 28, fontWeight: 500 }}>
           {control.description}
         </div>
+        {previousAnswer && (
+          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", marginBottom: 24 }}>
+            Last cycle: <span style={{ color: "rgba(255,255,255,0.6)", fontWeight: 600 }}>{RESPONSE_LABEL[previousAnswer] ?? previousAnswer}</span>
+          </div>
+        )}
 
         {/* Response buttons */}
         <div style={{ marginBottom: 20 }}>
@@ -577,11 +617,13 @@ export default function AssessmentPage() {
               { val: "no" as Response, label: "No — Not Implemented" },
               { val: "na" as Response, label: "N/A" },
             ]).map((opt) => (
-              <button key={opt.val} onClick={() => handleResponse(opt.val)} style={{
-                flex: 1, padding: "10px 6px", borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: "pointer",
+              <button key={opt.val} onClick={() => handleResponse(opt.val)} disabled={licenseBlocked} style={{
+                flex: 1, padding: "10px 6px", borderRadius: 8, fontSize: 12, fontWeight: 600,
+                cursor: licenseBlocked ? "not-allowed" : "pointer",
                 border: `1px solid ${currentResponse === opt.val ? "rgba(0,201,255,0.6)" : "rgba(255,255,255,0.1)"}`,
                 background: currentResponse === opt.val ? "rgba(0,201,255,0.12)" : "rgba(255,255,255,0.03)",
                 color: currentResponse === opt.val ? "#00C9FF" : "rgba(255,255,255,0.5)",
+                opacity: licenseBlocked ? 0.6 : 1,
                 transition: "all 0.15s",
               }}>
                 {opt.label}
@@ -601,6 +643,7 @@ export default function AssessmentPage() {
             value={currentNote}
             onChange={(e) => handleNote(e.target.value)}
             onBlur={handleNoteBlur}
+            disabled={licenseBlocked}
             placeholder={currentResponse === "na"
               ? "Explain why this control does not apply to your environment — e.g., 'We operate no wireless networks, so wireless-specific requirements are not applicable.' Your assessor must confirm each N/A."
               : "Describe specifically how this control is implemented in your environment — what processes, technical controls, or systems are in place to meet this requirement fully or partially..."}
@@ -727,11 +770,12 @@ export default function AssessmentPage() {
           </button>
           <button
             onClick={step < controls.length - 1 ? handleNext : handleSubmit}
-            disabled={saving}
+            disabled={saving || (licenseBlocked && step === controls.length - 1)}
             style={{
-              padding: "11px 22px", borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: "pointer",
-              background: saving ? "rgba(0,201,255,0.3)" : "linear-gradient(135deg, #00C9FF, #4DFFA0)",
-              color: saving ? "rgba(255,255,255,0.5)" : "#050B18", border: "none",
+              padding: "11px 22px", borderRadius: 8, fontSize: 13, fontWeight: 600,
+              cursor: saving || (licenseBlocked && step === controls.length - 1) ? "not-allowed" : "pointer",
+              background: saving || (licenseBlocked && step === controls.length - 1) ? "rgba(0,201,255,0.3)" : "linear-gradient(135deg, #00C9FF, #4DFFA0)",
+              color: saving || (licenseBlocked && step === controls.length - 1) ? "rgba(255,255,255,0.5)" : "#050B18", border: "none",
             }}
           >
             {saving ? "Saving..." : step < controls.length - 1
