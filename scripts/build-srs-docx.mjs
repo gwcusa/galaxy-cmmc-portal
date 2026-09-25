@@ -23,7 +23,7 @@ import {
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SOURCE = path.join(ROOT, "docs", "SRS.md");
-const OUTPUT = path.join(ROOT, "docs", "Galaxy_CMMC_Portal_SRS_v1.0.docx");
+const OUTPUT = path.join(ROOT, "docs", "Galaxy_CMMC_Portal_SRS_v1.1.docx");
 
 // US Letter, 1" margins → 9360 DXA of content width.
 const CONTENT_WIDTH = 9360;
@@ -281,7 +281,7 @@ const body = parse(markdown);
 
 const doc = new Document({
   creator: "Galaxy Consulting LLC",
-  title: "Galaxy CMMC Portal — System Requirements Specification v1.0",
+  title: "Galaxy CMMC Portal — System Requirements Specification v1.1",
   description: "System Requirements Specification for the Galaxy CMMC 2.0 Compliance Portal",
   styles: {
     default: { document: { run: { font: "Arial", size: 21 } } },
@@ -334,7 +334,7 @@ const doc = new Document({
           alignment: AlignmentType.RIGHT,
           border: { bottom: { style: BorderStyle.SINGLE, size: 4, color: "CCCCCC", space: 6 } },
           children: [new TextRun({
-            text: "Galaxy CMMC Portal — SRS v1.0",
+            text: "Galaxy CMMC Portal — SRS v1.1",
             size: 17, color: "888888",
           })],
         })],

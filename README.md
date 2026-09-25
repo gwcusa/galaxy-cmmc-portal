@@ -6,13 +6,13 @@ Full-stack CMMC 2.0 compliance assessment platform for Galaxy Consulting, LLC.
 
 ## Documentation
 
-- **[docs/SRS.md](docs/SRS.md)** — System Requirements Specification (v1.0). The
+- **[docs/SRS.md](docs/SRS.md)** — System Requirements Specification (v1.1). The
   formal spec: roles and the capability matrix, regulatory rules implemented,
   functional requirements per role, data model and excluded scope. Written
   against the shipped system — where it and the code disagree, the code is
   authoritative and the SRS is a defect. **Safe to share externally**; a Word
   copy for clients and auditors is generated alongside it
-  (`docs/Galaxy_CMMC_Portal_SRS_v1.0.docx`, rebuild with
+  (`docs/Galaxy_CMMC_Portal_SRS_v1.1.docx`, rebuild with
   `npm run docs:srs-docx`).
 - **[docs/SRS-known-gaps.md](docs/SRS-known-gaps.md)** — **INTERNAL ONLY.** The
   candid companion: known weaknesses, what compensates for each, and what
@@ -83,6 +83,7 @@ Apply in order via Supabase SQL Editor. **Take a backup before running 009.**
 | `020_evidence_integrity.sql` | `sha256` on `artifacts` and `documents` for tamper-evident evidence |
 | `021_report_staff_downloads.sql` | `reports.staff_downloaded_at` / `staff_downloaded_by` — track admin/assessor report downloads separately from the client's own |
 | `022_reassessment.sql` | `assessments.previous_assessment_id` — links a reassessment cycle back to the finalized cycle its answers were carried forward from |
+| `023_licensing.sql` | `packages` catalog and `client_licenses` ledger with RLS, seed packages, grandfathered Single Assessment license for every client with an assessment |
 
 See `docs/upgrade-2026-07.md` for full deploy checklist.
 

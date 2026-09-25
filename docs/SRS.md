@@ -4,8 +4,8 @@
 
 | | |
 |---|---|
-| **Version** | 1.0 |
-| **Date** | September 3, 2026 |
+| **Version** | 1.1 |
+| **Date** | September 25, 2026 |
 | **Prepared for** | Galaxy Consulting LLC (SDVOSB) |
 | **System** | CMMC 2.0 assessment, remediation and reporting platform |
 | **Production URL** | `galaxy-cmmc-portal.vercel.app` |
@@ -223,18 +223,21 @@ policies.
 | Generate compliance artifacts | ✅ | ✅ | — |
 | Download SPRS worksheet / assessment CSV | ✅ | ✅ | — |
 | View SPRS scores, AI verdicts, analytics | ✅ | ✅ | — |
+| View licenses and purchase history | ✅ | ✅ | own only |
 | Change own password | ✅ | ✅ | ✅ |
 | **Create / edit / disable / delete client accounts** | ✅ | — | — |
 | **Reset a client's password** | ✅ | — | — |
 | **Invite assessor accounts** | ✅ | — | — |
 | **Assign an assessor to an assessment** | ✅ | — | — |
+| **Manage the package catalog** | ✅ | — | — |
+| **Assign and void client licenses** | ✅ | — | — |
 | **Access the `/admin/*` area** | ✅ | — | — |
 
 **SEC-04** — Assessors **shall** have parity with administrators on *assessment
 work* for **every** client, not only assigned ones.
 
 **SEC-05** — Assessors **shall not** have account-administration authority. The
-final four rows above are administrator-only by design: they are destructive or
+final six rows above are administrator-only by design: they are destructive or
 governance actions, not assessment work. *(Confirmed as intended, September
 2026.)*
 
@@ -346,7 +349,10 @@ justification, which an assessor must validate.
 and/or no implementation artifact exists for a requirement.
 
 **FR-CL-09** — Responses **shall** be saved incrementally (upsert per control),
-so a partially completed assessment is never lost.
+so a partially completed assessment is never lost. The server **shall** accept a
+save only from the assessment's owning client, only while the assessment is
+`in_progress` or `remediation_required`, and only under an active license
+(Section 10.4); other callers receive 403 and other states 400.
 
 **FR-CL-10** — Only requirements in scope for the client's CMMC target level
 (1 or 2) **shall** be presented.
@@ -577,6 +583,68 @@ finalization to prompt annual re-affirmation.
 **FR-RP-07** — Each client **shall** be reminded at most once per cycle, tracked
 by `assessments.reaffirmation_reminded_at`.
 
+### 10.4 Licensing and Packages
+
+Clients purchase one of three package types offline (invoice, purchase order or
+check). An administrator records the purchase in the portal, which activates
+the license. Entitlement is derived from the purchase ledger; nothing is stored
+on the client record.
+
+| Package | Duration | Allows |
+|---|---|---|
+| Single Assessment | 3 months | One assessment cycle |
+| Additional Assessment | 3 months | One more assessment cycle after a prior license |
+| Unlimited | 12 months | Any number of cycles; the client starts each new cycle |
+
+**FR-LC-01** — The system **shall** keep an admin-editable package catalog with
+name, type (single, additional, unlimited), price in USD, duration in months,
+description, and active flag, with at most one active package per type.
+
+**FR-LC-02** — The system **shall** record each purchase as an append-only
+license ledger row with package, type snapshot, price paid, start, expiry,
+granting admin, and notes.
+
+**FR-LC-03** — A license **shall** start when assigned and expire after the
+package duration in calendar months. A new license **shall not** stack on
+remaining time.
+
+**FR-LC-04** — A Single Assessment license **shall** be assignable only to a
+client with no prior non-voided license. An Additional Assessment license
+**shall** require at least one. An Unlimited license **shall** be assignable at
+any time.
+
+**FR-LC-05** — Assigning a Single or Additional license **shall** open a new
+cycle when the latest cycle is finalized, and reuse the latest cycle when it is
+unfinished.
+
+**FR-LC-06** — A client's entitlement **shall** be derived from their latest
+non-voided license by start date: none, active, or expired.
+
+**FR-LC-07** — Without an active license, a client **shall not** be able to save
+answers, upload or delete evidence, change the document library, save scoping,
+respond to information requests, or submit. The server **shall** return 403
+`license_inactive`.
+
+**FR-LC-08** — Without an active license, a client **shall** keep login, read
+access to past answers, and download access to existing reports and
+deliverables.
+
+**FR-LC-09** — A client with an active Unlimited license **shall** be able to
+start a new cycle once the latest cycle is finalized. Previous answers **shall**
+carry forward and be shown as a reference.
+
+**FR-LC-10** — An admin **shall** be able to void a license with a reason.
+Voided licenses **shall** be ignored for entitlement.
+
+**FR-LC-11** — The daily cron **shall** email the client and the admin once, 14
+days before a client's current license expires.
+
+**FR-LC-12** — Clients **shall** see their license status, expiry, and purchase
+history, and **shall** be able to request a package, which emails the admin.
+
+**FR-LC-13** — License assignment, voiding, requests, and expiry reminders
+**shall** be written to the audit log.
+
 ---
 
 ## 11. Data Model
@@ -603,6 +671,8 @@ by `assessments.reaffirmation_reminded_at`.
 | `information_requests` | Staff requests to the client and their responses |
 | `reports` | Generated PDF report records and download timestamps |
 | `audit_log` | Append-only action trail |
+| `packages` | Admin-editable package catalog: type, price, duration in months, description, active flag |
+| `client_licenses` | Append-only license ledger: one row per purchase with type snapshot, price paid, start, expiry, granting admin, linked cycle, void state |
 
 ### 11.2 Key Enumerations
 
@@ -612,6 +682,7 @@ by `assessments.reaffirmation_reminded_at`.
 | `clients.cmmc_target_level` | `1`, `2` |
 | `clients.engagement_stage` | `lead`, `active`, `completed` |
 | `clients.engagement_type` | `assessment`, `remediation` |
+| `packages.type` / `client_licenses.type` | `single`, `additional`, `unlimited` |
 | `assessment_responses.response` | `yes`, `partial`, `no`, `na` |
 | `control_ai_feedback.verdict` | `met`, `partially_met`, `not_met`, `needs_review` |
 | `assessor_determinations.assessor_verdict` | `met`, `partially_met`, `not_met`, `needs_review` |
@@ -627,7 +698,7 @@ by `assessments.reaffirmation_reminded_at`.
 ### 11.3 Migrations
 
 **DATA-01** — Schema changes **shall** be delivered as sequentially numbered SQL
-migrations in `supabase/migrations/`, applied in order. Twenty migrations exist
+migrations in `supabase/migrations/`, applied in order. Twenty-three migrations exist
 as of this version; see `README.md` for the per-migration summary.
 
 ---
@@ -675,6 +746,7 @@ The following are explicitly **not** in scope for the current system:
 | Client-to-client visibility | No shared or benchmarking views |
 | Assessor account administration | Deliberately administrator-only (SEC-05) |
 | Automated staging environment | Single production Supabase project |
+| Online payment | Purchases are paid offline and recorded by an administrator. No card data is handled. |
 
 ---
 
@@ -683,14 +755,17 @@ The following are explicitly **not** in scope for the current system:
 ### 15.1 Unit Tests
 
 **VER-01** — `npm test` (Vitest) **shall** cover SPRS scoring rules, catalog
-integrity (110 requirements, 17 Level 1 practices, 320 objectives) and upload
-validation. Twenty-five tests as of this version.
+integrity (110 requirements, 17 Level 1 practices, 320 objectives), upload
+validation, licensing entitlement and assignment rules, and the ownership,
+status and license checks on the client write routes (answer save, submit,
+evidence upload, scoping, start cycle) with a mocked database client. Seventy
+tests as of this version.
 
 ### 15.2 Route Smoke Test
 
 **VER-02** — `npm run smoke [baseUrl]` **shall** sign in as an admin, an
 assessor and a client, and request every `app/**/page.tsx` route as its owning
-role. Thirty-seven checks as of this version.
+role. Thirty-nine checks as of this version.
 
 **VER-03** — The smoke test **shall** additionally verify:
 
@@ -747,6 +822,7 @@ fall behind the source.
 | Version | Date | Changes |
 |---|---|---|
 | 1.0 | 2026-09-03 | Initial SRS, written against the shipped system. Documents the three-role model with assessor/admin parity on assessment work (SEC-04/05), the Supabase client discipline that governs staff data access (ARCH-03/04/05, SEC-08/09), self-service password change (SEC-12/13), the route smoke test (VER-02–05). |
+| 1.1 | 2026-09-25 | Client licensing and packages (FR-LC-01–13, §10.4): package catalog, append-only license ledger, entitlement-gated client writes, admin assignment and voiding, client-started Unlimited cycles, 14-day expiry reminders. Answer save now checks ownership and status (FR-CL-09). Route tests for the client write paths (VER-01). |
 
 ---
 

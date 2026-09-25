@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Classification** | **INTERNAL — Galaxy engineering only** |
-| **Version** | 1.0 |
-| **Date** | September 3, 2026 |
-| **Companion to** | [SRS.md](SRS.md) v1.0 |
+| **Version** | 1.1 |
+| **Date** | September 25, 2026 |
+| **Companion to** | [SRS.md](SRS.md) v1.1 |
 
 > **Do not distribute.** This document is deliberately candid about weaknesses
 > in the shipped system so they are tracked rather than rediscovered. It is not
@@ -83,7 +83,11 @@ guidance and generating artifacts are exercised manually or not at all.
 more logic (scoring, state machines, artifact generation) and no regression net.
 
 **Currently compensating.** Unit tests cover scoring and catalog integrity —
-the pure logic. The rest is manual verification.
+the pure logic. Since 2026-09-25, `tests/license-gates.test.ts` calls the
+answer-save, submit, evidence-upload, scoping and start-cycle handlers directly
+against an in-memory Supabase stand-in (`tests/helpers/fake-supabase.ts`),
+covering ownership, status and license checks for each. Lifecycle transitions,
+determinations, remediation approval and artifact generation remain manual.
 
 **To close.** Extend the smoke test with a write pass against the throwaway
 client it already creates: submit an assessment, record a determination, verify
@@ -174,6 +178,28 @@ account-management panels passed in.
 
 ---
 
+## 8. Answer save trusted the caller — fixed 2026-09-25
+
+**Severity:** High (closed)
+
+**Gap.** `POST /api/assessment` (the per-control answer save) upserted into
+`assessment_responses` through the service-role client with no check that the
+assessment belonged to the caller and no check of the assessment's status. Any
+signed-in user who knew an assessment id could write answers into it, including
+a finalized one.
+
+**Why it mattered.** Every other client write route verified ownership; this
+one was the exception, and it is the one the portal calls most. RLS did not
+help because the service-role client bypasses it (SEC-09).
+
+**Resolution.** The route now loads the assessment, requires
+`clients.user_id === user.id` (403 `Forbidden`), requires status `in_progress`
+or `remediation_required` (400), and requires an active license (403
+`license_inactive`). Covered by `tests/license-gates.test.ts`. Recorded as
+FR-CL-09 and FR-LC-07 in `SRS.md`.
+
+---
+
 ## Open decisions
 
 | Decision | Status |
@@ -190,3 +216,4 @@ account-management panels passed in.
 | Version | Date | Changes |
 |---|---|---|
 | 1.0 | 2026-09-03 | Split out of `SRS.md` §14 so the specification can be shared externally. Each item expanded with impact, compensating controls and closure path. |
+| 1.1 | 2026-09-25 | Item 8 (answer-save ownership/status gap) recorded and closed with the licensing work. Item 3 updated for the new route tests. |
