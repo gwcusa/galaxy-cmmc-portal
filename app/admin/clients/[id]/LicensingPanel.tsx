@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { formatLicenseDate } from "@/lib/format-date";
 
 type LicenseType = "single" | "additional" | "unlimited";
 
@@ -89,7 +90,7 @@ const thStyle: React.CSSProperties = {
 const tdStyle: React.CSSProperties = { padding: "10px 8px 10px 0", fontSize: 12, color: "rgba(255,255,255,0.6)", verticalAlign: "top" };
 
 function fmt(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+  return formatLicenseDate(iso);
 }
 
 function money(n: number): string {

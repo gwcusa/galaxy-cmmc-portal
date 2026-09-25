@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { createServiceSupabaseClient } from "@/lib/supabase-server";
+import { formatLicenseDate } from "@/lib/format-date";
 
 type Svc = ReturnType<typeof createServiceSupabaseClient>;
 
@@ -173,14 +174,14 @@ export async function requireClientLicense(svc: Svc, clientId: string): Promise<
 // Display helpers for server components
 // ---------------------------------------------------------------------------
 
-/** "December 25, 2026" */
+/** "December 25, 2026" (UTC) */
 export function formatLongDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  return formatLicenseDate(iso, "long");
 }
 
-/** "Dec 25, 2026" */
+/** "Dec 25, 2026" (UTC) */
 export function formatShortDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+  return formatLicenseDate(iso, "short");
 }
 
 /** List-column label such as "Active, Dec 25, 2026" / "Expired, Sep 1, 2026" / "None". */

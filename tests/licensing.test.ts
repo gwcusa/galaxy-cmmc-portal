@@ -172,3 +172,11 @@ describe("addMonths", () => {
     expect(addMonths(new Date("2026-01-31T00:00:00.000Z"), 1).toISOString()).toBe("2026-02-28T00:00:00.000Z");
   });
 });
+
+describe("license date formatting", () => {
+  it("formats in UTC so late-evening UTC instants keep their UTC calendar date", async () => {
+    const { formatLicenseDate } = await import("@/lib/format-date");
+    expect(formatLicenseDate("2026-12-25T00:30:00.000Z")).toBe("Dec 25, 2026");
+    expect(formatLicenseDate("2026-12-25T23:30:00.000Z", "long")).toBe("December 25, 2026");
+  });
+});
