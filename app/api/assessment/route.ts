@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
+import { getEntitlement } from "@/lib/licensing";
 
 // GET /api/assessment?clientId=xxx
 export async function GET(req: NextRequest) {
@@ -22,22 +23,23 @@ export async function GET(req: NextRequest) {
   // Look for any non-archived assessment for this client
   let { data: assessment } = await supabase
     .from("assessments")
-    .select("id, status")
+    .select("id, status, previous_assessment_id")
     .eq("client_id", clientId)
     .not("status", "eq", "archived")
     .order("started_at", { ascending: false })
     .limit(1)
     .single();
 
-  // Create a client's very first assessment automatically. Once an assessment is
-  // finalized, the next cycle only starts when an admin/assessor explicitly kicks
-  // off a reassessment (carrying forward the client's previous answers) — see
-  // /api/admin/assessment/[id]/reassess.
+  // Create a client's very first assessment automatically. It is an empty cycle
+  // the client cannot edit until a license is assigned. Once an assessment is
+  // finalized, the next cycle starts when an admin/assessor kicks off a
+  // reassessment, when a license assignment opens one, or when an Unlimited
+  // client starts one — all through lib/reassessment.ts.
   if (!assessment) {
     const { data: newAssessment, error } = await supabase
       .from("assessments")
       .insert({ client_id: clientId, status: "in_progress" })
-      .select("id, status")
+      .select("id, status, previous_assessment_id")
       .single();
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     assessment = newAssessment;
@@ -48,10 +50,25 @@ export async function GET(req: NextRequest) {
     .select("control_id, response, notes, no_artifacts, no_policy_document, no_implementation_artifact")
     .eq("assessment_id", assessment!.id);
 
+  // Previous cycle's answers, shown as a muted reference on each control.
+  let previousResponses: { control_id: string; response: string }[] = [];
+  const previousAssessmentId = (assessment as { previous_assessment_id?: string | null }).previous_assessment_id ?? null;
+  if (previousAssessmentId) {
+    const { data: prev } = await supabase
+      .from("assessment_responses")
+      .select("control_id, response")
+      .eq("assessment_id", previousAssessmentId);
+    previousResponses = prev ?? [];
+  }
+
+  const entitlement = await getEntitlement(supabase, clientId);
+
   return NextResponse.json({
     assessmentId: assessment!.id,
     assessmentStatus: assessment!.status,
     responses: responses || [],
+    previousResponses,
+    entitlement,
   });
 }
 
