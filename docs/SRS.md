@@ -611,7 +611,9 @@ remaining time.
 **FR-LC-04** — A Single Assessment license **shall** be assignable only to a
 client with no prior non-voided license. An Additional Assessment license
 **shall** require at least one. An Unlimited license **shall** be assignable at
-any time.
+any time. The database **shall** allow at most one non-voided Single license per
+client; a concurrent second assignment **shall** return 409
+`single_already_assigned`.
 
 **FR-LC-05** — Assigning a Single or Additional license **shall** open a new
 cycle when the latest cycle is finalized, and reuse the latest cycle when it is
@@ -641,6 +643,8 @@ days before a client's current license expires.
 
 **FR-LC-12** — Clients **shall** see their license status, expiry, and purchase
 history, and **shall** be able to request a package, which emails the admin.
+Requests **shall** be limited to one per client per hour; a repeat within the
+hour **shall** return 429 `too_many_requests`.
 
 **FR-LC-13** — License assignment, voiding, requests, and expiry reminders
 **shall** be written to the audit log.
@@ -822,7 +826,7 @@ fall behind the source.
 | Version | Date | Changes |
 |---|---|---|
 | 1.0 | 2026-09-03 | Initial SRS, written against the shipped system. Documents the three-role model with assessor/admin parity on assessment work (SEC-04/05), the Supabase client discipline that governs staff data access (ARCH-03/04/05, SEC-08/09), self-service password change (SEC-12/13), the route smoke test (VER-02–05). |
-| 1.1 | 2026-09-25 | Client licensing and packages (FR-LC-01–13, §10.4): package catalog, append-only license ledger, entitlement-gated client writes, admin assignment and voiding, client-started Unlimited cycles, 14-day expiry reminders. Answer save now checks ownership and status (FR-CL-09). Route tests for the client write paths (VER-01). |
+| 1.1 | 2026-09-25 | Client licensing and packages (FR-LC-01–13, §10.4): package catalog, append-only license ledger, entitlement-gated client writes, admin assignment and voiding, client-started Unlimited cycles, 14-day expiry reminders. Answer save now checks ownership and status (FR-CL-09). Route tests for the client write paths (VER-01). Database-enforced single Single license (409) and one package request per hour (429). |
 
 ---
 
