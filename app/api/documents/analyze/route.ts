@@ -4,6 +4,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { extractContent } from "@/lib/extract-text";
 import { CONTROLS } from "@/lib/controls";
+import { requireClientLicense } from "@/lib/licensing";
 
 const BUCKET = "documents";
 
@@ -60,6 +61,11 @@ export async function POST(req: NextRequest) {
   const owner = Array.isArray(doc.clients) ? doc.clients[0] : doc.clients;
   if (!isStaff && (owner as { user_id: string } | null)?.user_id !== user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  if (!isStaff) {
+    const denied = await requireClientLicense(svc, doc.client_id as string);
+    if (denied) return denied;
   }
 
   const storage = createClient(

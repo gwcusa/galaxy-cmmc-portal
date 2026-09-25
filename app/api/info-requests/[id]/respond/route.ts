@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { sendInfoRequestResponseEmail } from "@/lib/email";
+import { requireClientLicense } from "@/lib/licensing";
 
 // POST /api/info-requests/[id]/respond — client responds to an information request
 export async function POST(
@@ -40,6 +41,9 @@ export async function POST(
   if (assessment?.client_id !== client.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
+
+  const denied = await requireClientLicense(svc, client.id);
+  if (denied) return denied;
 
   const { response, answers } = await req.json();
 

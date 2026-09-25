@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { CONTROLS } from "@/lib/controls";
+import { requireClientLicense } from "@/lib/licensing";
 
 async function authorize(documentId: string, userId: string) {
   const svc = createServiceSupabaseClient();
@@ -9,14 +10,14 @@ async function authorize(documentId: string, userId: string) {
 
   const { data: doc } = await svc
     .from("documents")
-    .select("id, clients(user_id)")
+    .select("id, client_id, clients(user_id)")
     .eq("id", documentId)
     .single();
-  if (!doc) return { svc, allowed: false, isStaff };
+  if (!doc) return { svc, allowed: false, isStaff, clientId: null as string | null };
 
   const owner = Array.isArray(doc.clients) ? doc.clients[0] : doc.clients;
   const allowed = isStaff || (owner as { user_id: string } | null)?.user_id === userId;
-  return { svc, allowed, isStaff };
+  return { svc, allowed, isStaff, clientId: doc.client_id as string };
 }
 
 // POST /api/documents/links
@@ -35,8 +36,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unknown control" }, { status: 400 });
   }
 
-  const { svc, allowed, isStaff } = await authorize(documentId, user.id);
+  const { svc, allowed, isStaff, clientId } = await authorize(documentId, user.id);
   if (!allowed) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
+  if (!isStaff && clientId) {
+    const denied = await requireClientLicense(svc, clientId);
+    if (denied) return denied;
+  }
 
   if (action === "add") {
     const { error } = await svc.from("document_control_links").upsert(

@@ -4,6 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import { createServerSupabaseClient, createServiceSupabaseClient } from "@/lib/supabase-server";
 import { validateUpload, sanitizeFilename } from "@/lib/uploads";
 import { logAudit } from "@/lib/audit";
+import { getEntitlement, requireClientLicense } from "@/lib/licensing";
 
 const BUCKET = "documents";
 
@@ -59,7 +60,10 @@ export async function GET(req: NextRequest) {
     })
   );
 
-  return NextResponse.json({ documents });
+  // The portal Documents page disables its edit controls from this.
+  const entitlement = isStaff ? null : await getEntitlement(svc, clientId);
+
+  return NextResponse.json({ documents, entitlement });
 }
 
 // POST /api/documents — multipart upload (client uploads to own library)
@@ -82,6 +86,11 @@ export async function POST(req: NextRequest) {
     clientId = await getOwnedClientId(svc, user.id);
   }
   if (!clientId) return NextResponse.json({ error: "No client record" }, { status: 403 });
+
+  if (!isStaff) {
+    const denied = await requireClientLicense(svc, clientId);
+    if (denied) return denied;
+  }
 
   const storage = getStorageClient();
   await storage.storage.createBucket(BUCKET, { public: false }).catch(() => {});
@@ -147,6 +156,11 @@ export async function DELETE(req: NextRequest) {
   const owner = Array.isArray(doc.clients) ? doc.clients[0] : doc.clients;
   if (!isStaff && (owner as { user_id: string } | null)?.user_id !== user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  if (!isStaff) {
+    const denied = await requireClientLicense(svc, doc.client_id as string);
+    if (denied) return denied;
   }
 
   const storage = getStorageClient();
