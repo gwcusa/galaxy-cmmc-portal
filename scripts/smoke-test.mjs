@@ -281,7 +281,7 @@ async function main() {
     // Assessors work clients through /assessor/*, not the admin area — account
     // administration (create/delete/disable clients, invite assessors) stays
     // admin-only, so /admin/* must still turn an assessor away.
-    for (const route of ["/admin/dashboard", "/admin/team", `/admin/clients/${clientIdForRoutes}`]) {
+    for (const route of ["/admin/dashboard", "/admin/team", "/admin/packages", `/admin/clients/${clientIdForRoutes}`]) {
       await check({
         label: `assessor ${route} (admin-only)`,
         url: baseUrl + route,
