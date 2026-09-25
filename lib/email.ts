@@ -260,3 +260,104 @@ export async function sendReassessmentStartedEmail(params: {
   `);
   await send(clientEmail, `[Galaxy] New Assessment Cycle Started — ${companyName}`, html);
 }
+
+// ---------------------------------------------------------------------------
+// 7. Client notification: a package was assigned (license activated)
+// ---------------------------------------------------------------------------
+export async function sendPackageAssignedEmail(params: {
+  clientEmail: string;
+  clientName: string;
+  companyName: string;
+  packageName: string;
+  packageType: "single" | "additional" | "unlimited";
+  /** Long date, e.g. "December 25, 2026" */
+  expiresOn: string;
+  /** True when the assignment opened a new assessment cycle. */
+  cycleOpened: boolean;
+}) {
+  const { clientEmail, clientName, companyName, packageName, packageType, expiresOn, cycleOpened } = params;
+  const allows = packageType === "unlimited"
+    ? "lets you run assessments as often as you like"
+    : "lets you submit one assessment";
+
+  const html = baseTemplate(`
+    ${heading("Package Activated")}
+    ${para(`Hi ${clientName},`)}
+    ${para(`Galaxy Consulting has activated the <strong style="color:#fff;">${packageName}</strong> package for <strong style="color:#fff;">${companyName}</strong>. It ${allows} until <strong style="color:#fff;">${expiresOn}</strong>.`)}
+    ${divider()}
+    <div style="margin-bottom:16px;">${badge("Active", "#4DFFA0")}</div>
+    ${para(cycleOpened
+      ? "A new assessment cycle has been opened for you. Your previous answers have been carried forward — you only need to update the controls that have changed since your last assessment."
+      : "Log in to your portal to continue your assessment.")}
+    ${ctaButton("Go to Your Dashboard →", `${APP_URL}/portal/dashboard`)}
+  `);
+
+  await send(clientEmail, `[Galaxy] Package Activated: ${packageName}`, html);
+}
+
+// ---------------------------------------------------------------------------
+// 8. Client + admin notification: license expires in 14 days
+// ---------------------------------------------------------------------------
+export async function sendLicenseExpiringEmail(params: {
+  clientEmail: string;
+  clientName: string;
+  companyName: string;
+  packageName: string;
+  /** Long date, e.g. "December 25, 2026" */
+  expiresOn: string;
+}) {
+  const { clientEmail, clientName, companyName, packageName, expiresOn } = params;
+
+  const clientHtml = baseTemplate(`
+    ${heading("Your Package Expires Soon")}
+    ${para(`Hi ${clientName},`)}
+    ${para(`The <strong style="color:#fff;">${packageName}</strong> package for <strong style="color:#fff;">${companyName}</strong> expires on <strong style="color:#fff;">${expiresOn}</strong>.`)}
+    ${divider()}
+    <div style="margin-bottom:16px;">${badge("Expires Soon", "#FFB347")}</div>
+    ${para("After that date you keep access to your portal, past answers and reports, but you cannot edit your assessment until a new package is assigned. To continue, request a package from your dashboard or contact Galaxy Consulting.")}
+    ${ctaButton("Request a Package →", `${APP_URL}/portal/dashboard`)}
+  `);
+  await send(clientEmail, `[Galaxy] Your ${packageName} package expires ${expiresOn}`, clientHtml);
+
+  if (!ADMIN_EMAIL) return;
+  const adminHtml = baseTemplate(`
+    ${heading("Client Package Expiring")}
+    ${para(`The <strong style="color:#fff;">${packageName}</strong> package for <strong style="color:#fff;">${companyName}</strong> expires on <strong style="color:#fff;">${expiresOn}</strong>. The client has been notified.`)}
+    ${divider()}
+    <div style="margin-bottom:16px;">${badge("Expires Soon", "#FFB347")}</div>
+    ${para("Reach out to arrange a renewal, then record the purchase on the client's page to keep their access uninterrupted.", true)}
+  `);
+  await send(ADMIN_EMAIL, `[Galaxy] ${companyName} — package expires ${expiresOn}`, adminHtml);
+}
+
+// ---------------------------------------------------------------------------
+// 9. Admin notification: client requested a package
+// ---------------------------------------------------------------------------
+export async function sendPackageRequestEmail(params: {
+  companyName: string;
+  contactName: string;
+  clientId: string;
+  packageName: string;
+  priceUsd: number;
+  message: string | null;
+}) {
+  if (!ADMIN_EMAIL) return;
+  const { companyName, contactName, clientId, packageName, priceUsd, message } = params;
+  const url = `${APP_URL}/admin/clients/${clientId}`;
+
+  const html = baseTemplate(`
+    ${heading("Package Request")}
+    ${para(`<strong style="color:#fff;">${contactName}</strong> from <strong style="color:#fff;">${companyName}</strong> has requested a package.`)}
+    ${divider()}
+    <div style="margin-bottom:8px;font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;">Requested</div>
+    <div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:16px;">${packageName} — $${priceUsd.toFixed(2)}</div>
+    ${message
+      ? `<div style="margin-bottom:8px;font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;">Message</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.7;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;">${message.replace(/\n/g, "<br/>")}</div>`
+      : ""}
+    ${para("Record the purchase on the client's page once payment is arranged.", true)}
+    ${ctaButton("Open Client in Admin Portal →", url)}
+  `);
+
+  await send(ADMIN_EMAIL, `[Galaxy] ${companyName} — Package Request: ${packageName}`, html);
+}
