@@ -13,6 +13,7 @@ import ArtifactGenerationPanel from "@/app/admin/clients/[id]/ArtifactGeneration
 import RunAiButton from "@/app/admin/clients/[id]/RunAiButton";
 import AssessmentSummaryPanel, { AssessmentSummary } from "@/app/admin/clients/[id]/AssessmentSummaryPanel";
 import IntakeQuestionsPanel from "@/app/admin/clients/[id]/IntakeQuestionsPanel";
+import LicensingPanel from "@/app/admin/clients/[id]/LicensingPanel";
 import NextStepBanner, { NextStep } from "@/components/NextStepBanner";
 import CollapsibleSection from "@/components/CollapsibleSection";
 import EvidenceArtifactsSection from "@/components/EvidenceArtifactsSection";
@@ -294,6 +295,9 @@ export default async function AssessorClientDetailPage({ params }: { params: { i
 
       {/* What to do next */}
       <NextStepBanner step={nextStep} />
+
+      {/* Licensing — read-only mirror of the admin panel */}
+      <LicensingPanel clientId={params.id} readOnly />
 
       {/* Assessment lifecycle */}
       <div id="lifecycle">
