@@ -9,6 +9,16 @@ const FROM = process.env.EMAIL_FROM ?? "Galaxy CMMC <notifications@galaxyconsult
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "";
 const ADMIN_EMAIL = process.env.ADMIN_NOTIFY_EMAIL ?? "";
 
+/** Escapes text for safe interpolation into email HTML. */
+export function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 // ---------------------------------------------------------------------------
 // Base template
 // ---------------------------------------------------------------------------
@@ -276,14 +286,15 @@ export async function sendPackageAssignedEmail(params: {
   cycleOpened: boolean;
 }) {
   const { clientEmail, clientName, companyName, packageName, packageType, expiresOn, cycleOpened } = params;
+  const h = { clientName: escapeHtml(clientName), companyName: escapeHtml(companyName), packageName: escapeHtml(packageName) };
   const allows = packageType === "unlimited"
     ? "lets you run assessments as often as you like"
     : "lets you submit one assessment";
 
   const html = baseTemplate(`
     ${heading("Package Activated")}
-    ${para(`Hi ${clientName},`)}
-    ${para(`Galaxy Consulting has activated the <strong style="color:#fff;">${packageName}</strong> package for <strong style="color:#fff;">${companyName}</strong>. It ${allows} until <strong style="color:#fff;">${expiresOn}</strong>.`)}
+    ${para(`Hi ${h.clientName},`)}
+    ${para(`Galaxy Consulting has activated the <strong style="color:#fff;">${h.packageName}</strong> package for <strong style="color:#fff;">${h.companyName}</strong>. It ${allows} until <strong style="color:#fff;">${expiresOn}</strong>.`)}
     ${divider()}
     <div style="margin-bottom:16px;">${badge("Active", "#4DFFA0")}</div>
     ${para(cycleOpened
@@ -307,11 +318,12 @@ export async function sendLicenseExpiringEmail(params: {
   expiresOn: string;
 }) {
   const { clientEmail, clientName, companyName, packageName, expiresOn } = params;
+  const h = { clientName: escapeHtml(clientName), companyName: escapeHtml(companyName), packageName: escapeHtml(packageName) };
 
   const clientHtml = baseTemplate(`
     ${heading("Your Package Expires Soon")}
-    ${para(`Hi ${clientName},`)}
-    ${para(`The <strong style="color:#fff;">${packageName}</strong> package for <strong style="color:#fff;">${companyName}</strong> expires on <strong style="color:#fff;">${expiresOn}</strong>.`)}
+    ${para(`Hi ${h.clientName},`)}
+    ${para(`The <strong style="color:#fff;">${h.packageName}</strong> package for <strong style="color:#fff;">${h.companyName}</strong> expires on <strong style="color:#fff;">${expiresOn}</strong>.`)}
     ${divider()}
     <div style="margin-bottom:16px;">${badge("Expires Soon", "#FFB347")}</div>
     ${para("After that date you keep access to your portal, past answers and reports, but you cannot edit your assessment until a new package is assigned. To continue, request a package from your dashboard or contact Galaxy Consulting.")}
@@ -322,7 +334,7 @@ export async function sendLicenseExpiringEmail(params: {
   if (!ADMIN_EMAIL) return;
   const adminHtml = baseTemplate(`
     ${heading("Client Package Expiring")}
-    ${para(`The <strong style="color:#fff;">${packageName}</strong> package for <strong style="color:#fff;">${companyName}</strong> expires on <strong style="color:#fff;">${expiresOn}</strong>. The client has been notified.`)}
+    ${para(`The <strong style="color:#fff;">${h.packageName}</strong> package for <strong style="color:#fff;">${h.companyName}</strong> expires on <strong style="color:#fff;">${expiresOn}</strong>. The client has been notified.`)}
     ${divider()}
     <div style="margin-bottom:16px;">${badge("Expires Soon", "#FFB347")}</div>
     ${para("Reach out to arrange a renewal, then record the purchase on the client's page to keep their access uninterrupted.", true)}
@@ -344,16 +356,17 @@ export async function sendPackageRequestEmail(params: {
   if (!ADMIN_EMAIL) return;
   const { companyName, contactName, clientId, packageName, priceUsd, message } = params;
   const url = `${APP_URL}/admin/clients/${clientId}`;
+  const h = { contactName: escapeHtml(contactName), companyName: escapeHtml(companyName), packageName: escapeHtml(packageName) };
 
   const html = baseTemplate(`
     ${heading("Package Request")}
-    ${para(`<strong style="color:#fff;">${contactName}</strong> from <strong style="color:#fff;">${companyName}</strong> has requested a package.`)}
+    ${para(`<strong style="color:#fff;">${h.contactName}</strong> from <strong style="color:#fff;">${h.companyName}</strong> has requested a package.`)}
     ${divider()}
     <div style="margin-bottom:8px;font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;">Requested</div>
-    <div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:16px;">${packageName} — $${priceUsd.toFixed(2)}</div>
+    <div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:16px;">${h.packageName} — $${priceUsd.toFixed(2)}</div>
     ${message
       ? `<div style="margin-bottom:8px;font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;">Message</div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.7;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;">${message.replace(/\n/g, "<br/>")}</div>`
+    <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.7;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;">${escapeHtml(message).replace(/\n/g, "<br/>")}</div>`
       : ""}
     ${para("Record the purchase on the client's page once payment is arranged.", true)}
     ${ctaButton("Open Client in Admin Portal →", url)}
