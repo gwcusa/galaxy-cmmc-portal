@@ -6,6 +6,9 @@ import { logAudit } from "@/lib/audit";
 // POST /api/licenses/request { packageId, message? }
 // Open to clients in any entitlement state. Emails the admin; nothing is
 // written to the ledger — the admin records the purchase after payment.
+// Throttled to one request per client per hour (checked against audit_log).
+const REQUEST_COOLDOWN_MS = 60 * 60 * 1000;
+
 export async function POST(req: NextRequest) {
   const authSupabase = createServerSupabaseClient();
   const { data: { user } } = await authSupabase.auth.getUser();
@@ -22,6 +25,23 @@ export async function POST(req: NextRequest) {
     .eq("user_id", user.id)
     .single();
   if (!client) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
+  const { data: recent } = await svc
+    .from("audit_log")
+    .select("created_at")
+    .eq("action", "license.requested")
+    .eq("entity_type", "client")
+    .eq("entity_id", client.id)
+    .gt("created_at", new Date(Date.now() - REQUEST_COOLDOWN_MS).toISOString())
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (recent) {
+    return NextResponse.json(
+      { error: "too_many_requests", message: "You already sent a request recently. Galaxy will be in touch." },
+      { status: 429 }
+    );
+  }
 
   const { data: pkg } = await svc
     .from("packages")

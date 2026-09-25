@@ -81,7 +81,7 @@ export default function RequestPackageButton() {
         body: JSON.stringify({ packageId, message }),
       });
       const data = await res.json();
-      if (!res.ok) setError(data.error ?? "Something went wrong.");
+      if (!res.ok) setError((res.status === 429 && data.message) || data.error || "Something went wrong.");
       else setSent(true);
     } catch { setError("Network error. Please try again."); }
     finally { setLoading(false); }
