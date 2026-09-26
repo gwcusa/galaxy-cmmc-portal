@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Classification** | **INTERNAL — Galaxy engineering only** |
-| **Version** | 1.1 |
+| **Version** | 1.2 |
 | **Date** | September 25, 2026 |
-| **Companion to** | [SRS.md](SRS.md) v1.1 |
+| **Companion to** | [SRS.md](SRS.md) v1.2 |
 
 > **Do not distribute.** This document is deliberately candid about weaknesses
 > in the shipped system so they are tracked rather than rediscovered. It is not
@@ -200,6 +200,42 @@ FR-CL-09 and FR-LC-07 in `SRS.md`.
 
 ---
 
+## 9. Licensing release review — 2026-09-25
+
+**Severity:** Mixed (fixed items closed; remaining items Low)
+
+**Answer save.** Before licensing enforcement, the answer-save route had no
+ownership check and no status check, and it wrote through the service client.
+Any signed-in user could change any assessment's answers, including submitted
+or finalized ones. Fixed as part of licensing enforcement; see item 8.
+
+**Code review findings fixed before release.**
+
+- Client-entered text in the request-package email was not HTML-escaped. Now
+  escaped (commit `33d0189`).
+- Concurrent assign or start-cycle requests could create duplicate licenses or
+  duplicate cycles. Now prevented at the database by the unique indexes
+  `assessments_one_successor` and `client_licenses_one_single` (commit
+  `a27a89b`).
+- License dates could show a day apart between server and browser. All license
+  dates are now formatted in UTC (commit `1c48a03`).
+- Request-package emails had no throttle. Now limited to one per client per
+  hour (commit `6ff4685`).
+
+**Known remaining items.**
+
+- The portal documents page still uses a `window.confirm` dialog. This predates
+  licensing.
+- The assign route is not a single database transaction. A failure between
+  writing the license and opening the cycle leaves partial state; retrying the
+  assignment self-heals it.
+- Migrations are applied by hand, so
+  `supabase_migrations.schema_migrations` is not a reliable record of what is
+  applied to production. Check the schema itself before assuming a migration
+  is or is not present.
+
+---
+
 ## Open decisions
 
 | Decision | Status |
@@ -217,3 +253,4 @@ FR-CL-09 and FR-LC-07 in `SRS.md`.
 |---|---|---|
 | 1.0 | 2026-09-03 | Split out of `SRS.md` §14 so the specification can be shared externally. Each item expanded with impact, compensating controls and closure path. |
 | 1.1 | 2026-09-25 | Item 8 (answer-save ownership/status gap) recorded and closed with the licensing work. Item 3 updated for the new route tests. |
+| 1.2 | 2026-09-25 | Item 9 added: licensing release review. Records the answer-save fix, the four code review findings fixed before release, and three known remaining items. |

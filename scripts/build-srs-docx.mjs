@@ -23,7 +23,7 @@ import {
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SOURCE = path.join(ROOT, "docs", "SRS.md");
-const OUTPUT = path.join(ROOT, "docs", "Galaxy_CMMC_Portal_SRS_v1.1.docx");
+const OUTPUT = path.join(ROOT, "docs", "Galaxy_CMMC_Portal_SRS_v1.2.docx");
 
 // US Letter, 1" margins → 9360 DXA of content width.
 const CONTENT_WIDTH = 9360;
@@ -198,7 +198,7 @@ function parse(markdown) {
         }));
       } else {
         children.push(new Paragraph({
-          heading: level === 2 ? HeadingLevel.HEADING_1 : HeadingLevel.HEADING_2,
+          heading: level === 2 ? HeadingLevel.HEADING_1 : level === 3 ? HeadingLevel.HEADING_2 : HeadingLevel.HEADING_3,
           pageBreakBefore: level === 2 && children.length > 8,
           children: [new TextRun({ text })],
         }));
@@ -281,7 +281,7 @@ const body = parse(markdown);
 
 const doc = new Document({
   creator: "Galaxy Consulting LLC",
-  title: "Galaxy CMMC Portal — System Requirements Specification v1.1",
+  title: "Galaxy CMMC Portal — System Requirements Specification v1.2",
   description: "System Requirements Specification for the Galaxy CMMC 2.0 Compliance Portal",
   styles: {
     default: { document: { run: { font: "Arial", size: 21 } } },
@@ -300,6 +300,11 @@ const doc = new Document({
         id: "Heading2", name: "Heading 2", basedOn: "Normal", next: "Normal", quickFormat: true,
         run: { size: 25, bold: true, font: "Arial", color: "2E5C8A" },
         paragraph: { spacing: { before: 240, after: 120 }, outlineLevel: 1 },
+      },
+      {
+        id: "Heading3", name: "Heading 3", basedOn: "Normal", next: "Normal", quickFormat: true,
+        run: { size: 22, bold: true, font: "Arial", color: "2E5C8A" },
+        paragraph: { spacing: { before: 200, after: 100 }, outlineLevel: 2 },
       },
     ],
   },
@@ -334,7 +339,7 @@ const doc = new Document({
           alignment: AlignmentType.RIGHT,
           border: { bottom: { style: BorderStyle.SINGLE, size: 4, color: "CCCCCC", space: 6 } },
           children: [new TextRun({
-            text: "Galaxy CMMC Portal — SRS v1.1",
+            text: "Galaxy CMMC Portal — SRS v1.2",
             size: 17, color: "888888",
           })],
         })],

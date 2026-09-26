@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Version** | 1.1 |
+| **Version** | 1.2 |
 | **Date** | September 25, 2026 |
 | **Prepared for** | Galaxy Consulting LLC (SDVOSB) |
 | **System** | CMMC 2.0 assessment, remediation and reporting platform |
@@ -649,6 +649,41 @@ hour **shall** return 429 `too_many_requests`.
 **FR-LC-13** — License assignment, voiding, requests, and expiry reminders
 **shall** be written to the audit log.
 
+#### Rationale
+
+The licensing design rests on the decisions below.
+
+- **Offline payment.** Galaxy invoices clients directly by invoice, purchase
+  order or check. An administrator records the purchase in the portal. This
+  keeps the portal out of payment-card scope. The ledger design allows online
+  payment to be added later.
+- **Clock starts on assignment.** A license starts on the day the administrator
+  assigns the package. An Additional Assessment adds three months from the date
+  it is assigned. It is not stacked on remaining time. This keeps expiry dates
+  simple to state on an invoice.
+- **Expiry blocks editing only.** An expired license blocks editing and
+  submitting. Clients keep read access and downloads. They never lose work they
+  already paid for.
+- **Editable catalog.** Packages and prices live in a catalog the administrator
+  edits. Galaxy can change its terms without a code change.
+- **Purchase ledger.** Each purchase is one ledger row. Voiding is the only
+  change allowed to a row. Nothing is stored on the client record. This keeps a
+  full purchase history and an audit trail.
+- **Answers carry forward.** Prior answers carry into each new cycle. The
+  assessor sees which controls changed. Clients update only what changed since
+  last time.
+- **Unlimited clients start their own cycles.** The Unlimited package is meant
+  for frequent re-runs, so the client starts each new cycle without waiting for
+  staff.
+- **Grandfathering.** Existing clients received a Single license at launch.
+  Nobody was locked out when enforcement went live.
+
+#### Rollout
+
+Migration 023 was applied to production on 2026-09-25. The six existing clients
+with an assessment each received a grandfathered Single license expiring
+2026-12-25. The three packages were seeded at $0 for the administrator to price.
+
 ---
 
 ## 11. Data Model
@@ -827,6 +862,7 @@ fall behind the source.
 |---|---|---|
 | 1.0 | 2026-09-03 | Initial SRS, written against the shipped system. Documents the three-role model with assessor/admin parity on assessment work (SEC-04/05), the Supabase client discipline that governs staff data access (ARCH-03/04/05, SEC-08/09), self-service password change (SEC-12/13), the route smoke test (VER-02–05). |
 | 1.1 | 2026-09-25 | Client licensing and packages (FR-LC-01–13, §10.4): package catalog, append-only license ledger, entitlement-gated client writes, admin assignment and voiding, client-started Unlimited cycles, 14-day expiry reminders. Answer save now checks ownership and status (FR-CL-09). Route tests for the client write paths (VER-01). Database-enforced single Single license (409) and one package request per hour (429). |
+| 1.2 | 2026-09-25 | Documentation update. Adds the rationale for the licensing design and the production rollout record to §10.4. No requirement changes. |
 
 ---
 
